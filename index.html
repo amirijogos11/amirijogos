@@ -1,206 +1,230 @@
-Create the complete index.html file for my gaming YouTube channel website.
-
-CHANNEL NAME:
-AMIRIJOGOS
-
-YOUTUBE CHANNEL:
-https://www.youtube.com/@amirijogos
-
-The website must be a professional gaming homepage for AMIRIJOGOS.
-
-IMPORTANT:
-- This is ONLY the index.html file.
-- Do not create style.css or script.js.
-- The HTML must be ready to work with separate files named:
-  - style.css
-  - script.js
-- Link them correctly in the HTML.
-- Use semantic HTML5.
-- Make the structure clean and easy to edit.
-- Do not use paid services or APIs.
-- The website must work with GitHub Pages.
-
-IMAGE:
-Use my YouTube profile image as:
-perfil.jpg
-
-The image will be located in the same folder as index.html.
-
-HEADER:
-Create a professional navigation bar containing:
-
-AMIRIJOGOS logo/profile image
-
-Navigation:
-- Início
-- Sobre
-- Vídeos
-- Comunidade
-- Contacto
-
-Add a language selector with:
-🇵🇹 Português
-🇬🇧 English
-🇪🇸 Español
-🇫🇷 Français
-🇩🇪 Deutsch
-🇮🇹 Italiano
-🇯🇵 日本語
-🇨🇳 中文
-🇰🇷 한국어
-🇷🇺 Русский
-🇸🇦 العربية
-🇹🇷 Türkçe
-
-The language selector must be prepared to be controlled by script.js.
-
-HOME / HERO:
-Create a large gaming hero section.
-
-Use:
-perfil.jpg
-
-Display:
-
-AMIRIJOGOS
-
-"Gaming, diversão e desafios."
-
-Add a short description:
-"Bem-vindo ao site oficial do AMIRIJOGOS! Descobre vídeos, jogos, desafios e muito mais."
-
-Add these buttons:
-
-"▶ Ver canal no YouTube"
-
-Link:
-https://www.youtube.com/@amirijogos
-
-"Explorar"
-
-The Explore button should scroll to the videos section.
-
-ABOUT SECTION:
-Create an "Sobre o canal" section.
-
-Title:
-"Sobre o AMIRIJOGOS"
-
-Text:
-"Olá! Bem-vindo ao AMIRIJOGOS, um canal dedicado a gaming, diversão, desafios e momentos épicos. Junta-te à comunidade e acompanha todas as novidades!"
-
-VIDEOS SECTION:
-Create a section called:
-
-"Últimos vídeos"
-
-Create 3 modern video cards.
-
-Do NOT invent YouTube video links.
-
-Use placeholders such as:
-VIDEO_LINK_1
-VIDEO_LINK_2
-VIDEO_LINK_3
-
-Make the cards easy to replace later.
-
-Add a button:
-"Ver todos os vídeos"
-
-Link:
-https://www.youtube.com/@amirijogos
-
-COMMUNITY SECTION:
-Create:
-
-"Junta-te à comunidade!"
-
-Text:
-"Faz parte da comunidade AMIRIJOGOS e não percas nenhuma novidade."
-
-Add:
-"▶ YouTube"
-
-Link:
-https://www.youtube.com/@amirijogos
-
-Add a Discord button with:
-DISCORD_LINK
-
-Do not invent a Discord URL.
-
-CONTACT SECTION:
-Create a contact section.
-
-Title:
-"Contacto"
-
-Text:
-"Queres entrar em contacto com o AMIRIJOGOS?"
-
-Use:
-EMAIL_ADDRESS
-
-Do not invent an email address.
-
-FOOTER:
-Create a professional footer containing:
-
-"© 2026 AMIRIJOGOS"
-
-"Todos os direitos reservados."
-
-YouTube link:
-https://www.youtube.com/@amirijogos
-
-SEO:
-Add:
-- title
-- meta description
-- viewport
-- keywords
-- Open Graph tags
-- favicon using perfil.jpg
-
-Use:
-
-Title:
-"AMIRIJOGOS | Gaming"
-
-Description:
-"Site oficial do AMIRIJOGOS — Gaming, vídeos, desafios e diversão."
-
-STRUCTURE:
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-PT">
 <head>
-  ...
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AMIRIJOGOS | Gaming</title>
+
+    <meta name="description" content="Site oficial do AMIRIJOGOS — Gaming, vídeos, desafios e diversão.">
+
+    <link rel="icon" type="image/jpeg" href="perfil.jpg">
+    <link rel="stylesheet" href="style.css">
 </head>
-<link rel="stylesheet" href="style.css">
+
 <body>
 
-  HEADER
-  HERO
-  ABOUT
-  VIDEOS
-  COMMUNITY
-  CONTACT
-  FOOTER
+    <header class="navbar">
+        <a href="#inicio" class="brand">
+            <img src="perfil.jpg" alt="AMIRIJOGOS">
+            <span>AMIRIJOGOS</span>
+        </a>
 
-  <script src="script.js"></script>
+        <nav>
+            <a href="#inicio" data-i18n="home">Início</a>
+            <a href="#sobre" data-i18n="about">Sobre</a>
+            <a href="#videos" data-i18n="videos">Vídeos</a>
+            <a href="#comunidade" data-i18n="community">Comunidade</a>
+            <a href="#contacto" data-i18n="contact">Contacto</a>
+        </nav>
+
+        <select id="language">
+            <option value="pt">🇵🇹 Português</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="it">🇮🇹 Italiano</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="zh">🇨🇳 中文</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="tr">🇹🇷 Türkçe</option>
+        </select>
+    </header>
+
+    <main>
+
+        <section id="inicio" class="hero">
+
+            <div class="hero-content">
+
+                <div class="profile">
+                    <img src="perfil.jpg" alt="Foto de perfil do AMIRIJOGOS">
+                </div>
+
+                <p class="eyebrow" data-i18n="gamingChannel">
+                    CANAL GAMING
+                </p>
+
+                <h1>
+                    AMIRI<span>JOGOS</span>
+                </h1>
+
+                <p class="subtitle" data-i18n="heroText">
+                    Gaming, diversão e desafios.
+                </p>
+
+                <div class="buttons">
+
+                    <a
+                        href="https://www.youtube.com/@amirijogos"
+                        target="_blank"
+                        class="btn primary"
+                    >
+                        ▶ <span data-i18n="youtube">Ver canal no YouTube</span>
+                    </a>
+
+                    <a href="#videos" class="btn secondary" data-i18n="explore">
+                        Explorar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="sobre" class="section">
+
+            <p class="eyebrow" data-i18n="aboutChannel">
+                SOBRE O CANAL
+            </p>
+
+            <h2 data-i18n="aboutTitle">
+                Sobre o AMIRIJOGOS
+            </h2>
+
+            <p class="description" data-i18n="aboutText">
+                Olá! Bem-vindo ao AMIRIJOGOS, um canal dedicado a gaming,
+                diversão, desafios e momentos épicos. Junta-te à comunidade
+                e acompanha todas as novidades!
+            </p>
+
+        </section>
+
+        <section id="videos" class="section">
+
+            <p class="eyebrow" data-i18n="latestVideos">
+                CONTEÚDO
+            </p>
+
+            <h2 data-i18n="videosTitle">
+                Últimos vídeos
+            </h2>
+
+            <div class="cards">
+
+                <article class="card">
+                    <div class="card-icon">🎮</div>
+                    <h3>Gaming</h3>
+                    <p data-i18n="gamingText">
+                        Jogos, desafios e momentos incríveis.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">🔥</div>
+                    <h3>Vídeos</h3>
+                    <p data-i18n="videoText">
+                        Acompanha os novos vídeos do canal.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-icon">🏆</div>
+                    <h3>Desafios</h3>
+                    <p data-i18n="challengeText">
+                        Grandes desafios e conquistas.
+                    </p>
+                </article>
+
+            </div>
+
+            <a
+                href="https://www.youtube.com/@amirijogos"
+                target="_blank"
+                class="btn primary youtube-button"
+                data-i18n="allVideos"
+            >
+                Ver todos os vídeos
+            </a>
+
+        </section>
+
+        <section id="comunidade" class="community">
+
+            <div>
+
+                <p class="eyebrow" data-i18n="community">
+                    COMUNIDADE
+                </p>
+
+                <h2 data-i18n="communityTitle">
+                    Junta-te à comunidade!
+                </h2>
+
+                <p data-i18n="communityText">
+                    Faz parte da comunidade AMIRIJOGOS e não percas nenhuma novidade.
+                </p>
+
+            </div>
+
+            <div class="buttons">
+
+                <a
+                    href="https://www.youtube.com/@amirijogos"
+                    target="_blank"
+                    class="btn primary"
+                >
+                    ▶ YouTube
+                </a>
+
+                <a href="#" class="btn secondary">
+                    Discord
+                </a>
+
+            </div>
+
+        </section>
+
+        <section id="contacto" class="section">
+
+            <p class="eyebrow" data-i18n="contact">
+                CONTACTO
+            </p>
+
+            <h2 data-i18n="contactTitle">
+                Contacta o AMIRIJOGOS
+            </h2>
+
+            <p class="description" data-i18n="contactText">
+                Queres entrar em contacto com o AMIRIJOGOS?
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <img src="perfil.jpg" alt="AMIRIJOGOS">
+
+        <p>
+            © 2026 AMIRIJOGOS
+        </p>
+
+        <a
+            href="https://www.youtube.com/@amirijogos"
+            target="_blank"
+        >
+            YouTube
+        </a>
+
+    </footer>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
-
-IMPORTANT:
-- Do not put CSS inside index.html.
-- Do not put JavaScript inside index.html.
-- Use classes and IDs that can easily be styled with style.css.
-- Use data-i18n attributes on all text that needs translation.
-- Make the HTML fully responsive through the external CSS.
-- Make all buttons accessible.
-- Add alt text to the profile image.
-- Do not invent information about my channel.
-- Keep the design structure professional and suitable for a gaming YouTuber.
