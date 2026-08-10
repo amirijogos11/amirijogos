@@ -1,0 +1,139 @@
+Create the complete style.css file for my AMIRIJOGOS gaming website.
+
+The website already has an index.html.
+
+IMPORTANT:
+- This is ONLY the style.css file.
+- Do not create or modify index.html.
+- Do not create JavaScript.
+- The CSS must work with the existing index.html.
+- Make the website fully responsive for PC, tablet and mobile.
+
+CHANNEL:
+AMIRIJOGOS
+YouTube:
+https://www.youtube.com/@amirijogos
+
+DESIGN:
+Create a professional gaming YouTuber website.
+
+Style:
+- Dark gaming theme
+- Black and very dark background
+- Neon red as the main accent
+- Secondary neon blue and purple effects
+- Modern glassmorphism elements
+- Glowing borders
+- Smooth hover effects
+- Smooth transitions
+- Gaming aesthetic
+- Professional rather than childish
+- Excellent readability
+
+HEADER:
+Style the navigation bar.
+
+Requirements:
+- Fixed or sticky header
+- Dark transparent background
+- Blur effect
+- AMIRIJOGOS profile image/logo
+- Navigation links
+- Language selector
+- Hover animation
+- Mobile-friendly navigation
+
+HERO:
+Create a spectacular hero section.
+
+Requirements:
+- Full-screen or almost full-screen
+- Use perfil.jpg as the profile image
+- Large AMIRIJOGOS title
+- Neon glow around important elements
+- Gaming background effect
+- Animated light/glow effects
+- Professional buttons
+
+Make the main YouTube button stand out.
+
+ABOUT:
+Create a clean modern section.
+
+Requirements:
+- Centered content
+- Maximum readable width
+- Modern typography
+- Good spacing
+- Subtle animations
+
+VIDEOS:
+Create modern video cards.
+
+Requirements:
+- 3-column layout on desktop
+- 2-column layout on tablet
+- 1-column layout on mobile
+- Rounded corners
+- Dark cards
+- Neon border on hover
+- Image/video placeholder area
+- Hover animation
+- Buttons should look like gaming UI
+
+COMMUNITY:
+Create a large community call-to-action section.
+
+Requirements:
+- Gaming card/banner
+- Neon effects
+- YouTube button
+- Discord button
+- Responsive layout
+
+CONTACT:
+Create a clean contact section.
+
+FOOTER:
+Create a professional dark footer.
+
+LANGUAGE SELECTOR:
+Style the language selector so it fits the gaming design.
+
+ANIMATIONS:
+Add CSS animations such as:
+- fade-in
+- floating/glowing effects
+- button hover
+- card hover
+- profile image glow
+- subtle background animation
+
+Do not make animations excessive or slow.
+
+RESPONSIVE DESIGN:
+At widths below 900px:
+- Adapt the navigation
+- Reduce large text
+- Adjust spacing
+
+At widths below 600px:
+- Make everything single-column where appropriate
+- Make buttons easier to tap
+- Make the header mobile-friendly
+- Make the profile image smaller
+- Make the AMIRIJOGOS title responsive
+- Prevent horizontal scrolling
+
+ACCESSIBILITY:
+- Maintain good contrast
+- Add visible focus states
+- Do not rely only on color
+- Respect prefers-reduced-motion
+
+IMPORTANT:
+Use the existing class names and IDs from index.html whenever possible.
+
+Do not invent new HTML elements that are required for the CSS to work.
+
+Return ONLY the complete style.css code.
