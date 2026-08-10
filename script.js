@@ -1,3 +1,19 @@
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function (event) {
+        const target = document.querySelector(this.getAttribute('href'));
+
+        if (target) {
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// resto do teu código do script.js vem aqui...
 /* ==========================================================================
    AMIRIJOGOS — Gaming Channel Website
    script.js
