@@ -6,1135 +6,1633 @@
 <title>AMIRIJOGOS — Jogos</title>
 <style>
   :root{
-    --bg:#070a12;
-    --bg2:#0d1220;
-    --panel:#0f1626;
-    --blue:#2ea8ff;
-    --blue-glow:rgba(46,168,255,.55);
-    --orange:#ff7a1a;
-    --orange-glow:rgba(255,122,26,.55);
-    --text:#dce6f5;
-    --muted:#7c8aa3;
-    --gold:#ffd25c;
-    --green:#38e29a;
-    --red:#ff4d5e;
+    --bg:#070a10;
+    --panel:#0d121c;
+    --panel2:#111827;
+    --text:#eef2ff;
+    --muted:#9aa4b2;
+    --blue:#2388ff;
+    --blue2:#57a6ff;
+    --orange:#ff7a18;
+    --green:#38d27d;
+    --danger:#ff3b5c;
+    --shadow:0 15px 45px rgba(0,0,0,.35);
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
-    font-family:'Segoe UI',Roboto,Arial,sans-serif;overflow-x:hidden;}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
   body{
-    background:
-      radial-gradient(circle at 15% 0%, rgba(46,168,255,.10), transparent 40%),
-      radial-gradient(circle at 85% 10%, rgba(255,122,26,.10), transparent 40%),
-      var(--bg);
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:radial-gradient(circle at 50% -10%,#13233d 0,#070a10 45%);
+    color:var(--text);
     min-height:100vh;
   }
-  a{color:inherit;text-decoration:none;}
-
-  /* ===== TOP NAV ===== */
+  button,a{font:inherit}
+  button{cursor:pointer}
   .topbar{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:14px 22px;background:linear-gradient(180deg,#0b0f1a,#070a12);
-    border-bottom:1px solid rgba(46,168,255,.25);
-    position:sticky;top:0;z-index:50;
+    position:sticky;
+    top:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:14px 22px;
+    background:rgba(7,10,16,.88);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,.08);
   }
-  .back-btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:9px 16px;border-radius:8px;
-    background:rgba(46,168,255,.08);
-    border:1px solid rgba(46,168,255,.4);
-    color:var(--blue);font-weight:600;font-size:14px;
-    transition:.2s;cursor:pointer;
-  }
-  .back-btn:hover{background:rgba(46,168,255,.18);box-shadow:0 0 14px var(--blue-glow);}
   .brand{
-    font-size:20px;font-weight:800;letter-spacing:1px;
-    background:linear-gradient(90deg,var(--blue),var(--orange));
-    -webkit-background-clip:text;background-clip:text;color:transparent;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:900;
+    letter-spacing:.5px;
   }
-  .credits-pill{
-    display:flex;align-items:center;gap:8px;
-    padding:8px 16px;border-radius:999px;
-    background:var(--panel);border:1px solid rgba(255,210,92,.4);
-    font-weight:700;color:var(--gold);font-size:14px;
-    box-shadow:0 0 12px rgba(255,210,92,.15);
+  .brand img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid var(--blue);
   }
-
-  /* ===== HERO / TABS ===== */
-  .hero{text-align:center;padding:34px 16px 10px;}
-  .hero h1{
-    margin:0;font-size:clamp(26px,5vw,42px);font-weight:900;letter-spacing:1px;
-    text-shadow:0 0 22px var(--blue-glow);
+  .back{
+    text-decoration:none;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:10px;
+    background:#172235;
+    border:1px solid rgba(255,255,255,.1);
   }
-  .hero p{color:var(--muted);margin:8px 0 0;font-size:14px;}
-
-  .tabs{
-    display:flex;justify-content:center;gap:14px;margin:26px 0 6px;flex-wrap:wrap;
+  .back:hover{background:#21314b}
+  .credits{
+    padding:10px 15px;
+    border-radius:10px;
+    background:linear-gradient(135deg,#122b50,#0d1b30);
+    border:1px solid rgba(87,166,255,.3);
+    color:#9fd0ff;
+    font-weight:800;
   }
-  .tab-btn{
-    cursor:pointer;padding:12px 26px;border-radius:10px;font-weight:700;font-size:15px;
-    background:var(--panel);border:1px solid rgba(124,138,163,.3);color:var(--muted);
-    transition:.2s;
+  .page{
+    width:min(1200px,94%);
+    margin:auto;
+    padding:35px 0 70px;
   }
-  .tab-btn.active.blue{color:var(--blue);border-color:var(--blue);box-shadow:0 0 16px var(--blue-glow);background:rgba(46,168,255,.08);}
-  .tab-btn.active.orange{color:var(--orange);border-color:var(--orange);box-shadow:0 0 16px var(--orange-glow);background:rgba(255,122,26,.08);}
-  .tab-btn:hover{color:var(--text);}
-
-  .game-section{display:none;padding:20px 16px 60px;max-width:1100px;margin:0 auto;}
-  .game-section.active{display:block;animation:fadein .35s ease;}
-  @keyframes fadein{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-
-  /* ===== CLICKER ===== */
-  .clicker-wrap{
-    display:grid;grid-template-columns:1fr 320px;gap:24px;
-  }
-  @media(max-width:820px){.clicker-wrap{grid-template-columns:1fr;}}
-
-  .clicker-stage{
-    background:var(--panel);border:1px solid rgba(46,168,255,.25);
-    border-radius:16px;padding:28px;text-align:center;
-    display:flex;flex-direction:column;align-items:center;gap:18px;
-  }
-  .coin-count{font-size:38px;font-weight:900;color:var(--blue);text-shadow:0 0 18px var(--blue-glow);}
-  .coin-sub{color:var(--muted);font-size:13px;}
-  #clickTarget{
-    width:190px;height:190px;border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #47c2ff, #0f6fb8 70%, #073656);
-    border:4px solid rgba(46,168,255,.6);
-    box-shadow:0 0 40px var(--blue-glow), inset 0 0 30px rgba(0,0,0,.4);
-    cursor:pointer;user-select:none;
-    display:flex;align-items:center;justify-content:center;
-    font-size:56px;font-weight:900;color:#fff;
-    transition:transform .06s ease;
-  }
-  #clickTarget:active{transform:scale(.92);}
-  .cps{color:var(--muted);font-size:13px;}
-  .float-num{
-    position:absolute;pointer-events:none;font-weight:800;color:var(--blue);
-    text-shadow:0 0 8px var(--blue-glow);animation:floatup .8s ease-out forwards;font-size:18px;
-  }
-  @keyframes floatup{
-    from{opacity:1;transform:translateY(0);}
-    to{opacity:0;transform:translateY(-60px);}
-  }
-  .stage-relative{position:relative;}
-
-  .shop-panel{
-    background:var(--panel);border:1px solid rgba(255,122,26,.25);
-    border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px;
-  }
-  .shop-panel h3{margin:0 0 4px;font-size:16px;color:var(--orange);}
-  .upgrade{
-    background:var(--bg2);border:1px solid rgba(124,138,163,.25);border-radius:10px;
-    padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;
-  }
-  .upgrade .info{font-size:13px;}
-  .upgrade .info b{display:block;font-size:14px;color:var(--text);}
-  .upgrade .info span{color:var(--muted);font-size:12px;}
-  .buy-btn{
-    background:linear-gradient(90deg,var(--blue),#1c7fc7);border:none;color:#04121e;
-    padding:8px 12px;border-radius:8px;font-weight:800;cursor:pointer;font-size:12px;white-space:nowrap;
-  }
-  .buy-btn:disabled{background:#22293a;color:#5c6478;cursor:not-allowed;}
-  .buy-btn:not(:disabled):hover{filter:brightness(1.15);}
-
-  .convert-box{
-    background:var(--bg2);border:1px solid rgba(255,210,92,.35);border-radius:10px;padding:12px;
-  }
-  .convert-box p{margin:0 0 8px;font-size:12px;color:var(--muted);}
-  .convert-box .rate{font-size:12px;color:var(--gold);margin-bottom:8px;}
-  .convert-btn{
-    width:100%;padding:10px;border-radius:8px;border:none;font-weight:800;cursor:pointer;
-    background:linear-gradient(90deg,var(--gold),#e0a400);color:#241a00;
-  }
-  .convert-btn:hover{filter:brightness(1.1);}
-
-  /* ===== BATTLE ===== */
-  .battle-intro{
-    background:var(--panel);border:1px solid rgba(255,122,26,.3);border-radius:16px;
-    padding:22px;margin-bottom:16px;
-  }
-  .battle-intro h2{margin:0 0 8px;color:var(--orange);}
-  .controls-grid{
-    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:14px;
-  }
-  .ctrl-chip{
-    background:var(--bg2);border:1px solid rgba(124,138,163,.25);border-radius:8px;
-    padding:8px 10px;font-size:12px;display:flex;justify-content:space-between;color:var(--muted);
-  }
-  .ctrl-chip b{color:var(--text);}
-  .start-btn{
-    margin-top:16px;padding:14px 30px;border-radius:10px;border:none;font-weight:900;font-size:16px;
-    background:linear-gradient(90deg,var(--orange),#c94e00);color:#1a0800;cursor:pointer;
-    box-shadow:0 0 20px var(--orange-glow);
-  }
-  .start-btn:hover{filter:brightness(1.1);}
-
-  #battleWrap{
-    position:relative;width:100%;height:70vh;min-height:460px;border-radius:14px;overflow:hidden;
-    border:1px solid rgba(255,122,26,.3);background:#000;display:none;
-  }
-  #battleWrap.active{display:block;}
-  #battleCanvas{width:100%;height:100%;display:block;}
-  #threeError{
-    position:absolute;inset:0;display:none;align-items:center;justify-content:center;
-    background:#0a0e17;color:var(--red);text-align:center;padding:30px;font-weight:700;
-  }
-
-  /* HUD */
-  #hud{
-    position:absolute;inset:0;pointer-events:none;font-size:14px;
-  }
-  #hud .top-hud{
-    position:absolute;top:10px;left:50%;transform:translateX(-50%);
-    display:flex;align-items:center;gap:14px;
-    background:rgba(5,8,14,.65);padding:8px 18px;border-radius:10px;
-    border:1px solid rgba(124,138,163,.3);font-weight:800;
-  }
-  #hud .top-hud .b{color:var(--blue);text-shadow:0 0 8px var(--blue-glow);}
-  #hud .top-hud .o{color:var(--orange);text-shadow:0 0 8px var(--orange-glow);}
-  #hud .timer{color:var(--muted);font-weight:700;}
-
-  #hud .bottom-left{
-    position:absolute;bottom:14px;left:14px;display:flex;flex-direction:column;gap:6px;
-    background:rgba(5,8,14,.6);padding:10px 14px;border-radius:10px;border:1px solid rgba(124,138,163,.25);
-    min-width:190px;
-  }
-  #hud .bar{height:9px;border-radius:6px;background:#1b2233;overflow:hidden;}
-  #hud .bar > div{height:100%;}
-  #hud #healthBar>div{background:linear-gradient(90deg,#38e29a,#1c9e6a);}
-  #hud .row{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
-
-  #hud .bottom-right{
-    position:absolute;bottom:14px;right:14px;text-align:right;
-    background:rgba(5,8,14,.6);padding:10px 14px;border-radius:10px;border:1px solid rgba(124,138,163,.25);
-  }
-  #hud .credits-hud{color:var(--gold);font-weight:800;font-size:15px;}
-  #hud .ammo-hud{font-weight:800;font-size:15px;}
-  #hud .cam-mode{color:var(--muted);font-size:11px;margin-top:4px;}
-
-  #crosshair{
-    position:absolute;top:50%;left:50%;width:8px;height:8px;margin:-4px 0 0 -4px;
-    border-radius:50%;background:#fff;box-shadow:0 0 6px #fff;
-  }
-
-  /* Shop overlay */
-  #shopOverlay{
-    position:absolute;inset:0;background:rgba(5,8,14,.92);display:none;
-    align-items:center;justify-content:center;pointer-events:all;z-index:20;
-  }
-  #shopOverlay.active{display:flex;}
-  .shop-modal{
-    background:var(--panel);border:1px solid rgba(255,122,26,.4);border-radius:16px;
-    padding:24px;max-width:560px;width:92%;max-height:80%;overflow-y:auto;
-  }
-  .shop-modal h2{margin:0 0 4px;color:var(--orange);}
-  .shop-modal .sub{color:var(--muted);font-size:12px;margin-bottom:14px;}
-  .weapon-item{
-    display:flex;justify-content:space-between;align-items:center;
-    background:var(--bg2);border:1px solid rgba(124,138,163,.25);border-radius:10px;
-    padding:10px 14px;margin-bottom:8px;
-  }
-  .weapon-item .w-info b{display:block;font-size:14px;}
-  .weapon-item .w-info span{font-size:11px;color:var(--muted);}
-  .shop-close{
-    margin-top:10px;width:100%;padding:10px;border-radius:8px;border:none;font-weight:800;
-    background:#22293a;color:var(--text);cursor:pointer;
-  }
-
-  /* Game over */
-  #gameOverOverlay{
-    position:absolute;inset:0;background:rgba(2,3,6,.94);display:none;
-    align-items:center;justify-content:center;flex-direction:column;z-index:30;pointer-events:all;
+  .hero{
     text-align:center;
+    margin-bottom:30px;
   }
-  #gameOverOverlay.active{display:flex;}
-  #gameOverOverlay h1{font-size:52px;margin:0 0 6px;letter-spacing:2px;}
-  #gameOverOverlay h1.win{color:var(--blue);text-shadow:0 0 30px var(--blue-glow);}
-  #gameOverOverlay h1.lose{color:var(--orange);text-shadow:0 0 30px var(--orange-glow);}
-  #gameOverOverlay .stats{margin:14px 0;color:var(--muted);font-size:14px;line-height:1.8;}
-  #gameOverOverlay .stats b{color:var(--text);}
-
-  #startOverlay{
-    position:absolute;inset:0;background:rgba(2,3,6,.85);display:flex;
-    align-items:center;justify-content:center;z-index:15;pointer-events:all;
-    flex-direction:column;text-align:center;padding:20px;
+  .hero h1{
+    font-size:clamp(34px,6vw,62px);
+    margin:15px 0 10px;
   }
-  #startOverlay p{color:var(--muted);max-width:420px;font-size:13px;}
+  .hero p{
+    color:var(--muted);
+    max-width:720px;
+    margin:0 auto;
+    line-height:1.6;
+  }
+  .tabs{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:25px 0;
+  }
+  .tab{
+    border:1px solid rgba(255,255,255,.1);
+    background:#101827;
+    color:#dce7f7;
+    padding:12px 18px;
+    border-radius:12px;
+  }
+  .tab.active,.tab:hover{
+    background:#16335a;
+    border-color:#287fff;
+  }
+  .game{
+    display:none;
+  }
+  .game.active{
+    display:block;
+  }
+  .panel{
+    background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(10,14,22,.96));
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:22px;
+  }
+  .panel h2{
+    margin-top:0;
+  }
+  .clicker-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:20px;
+  }
+  .click-area{
+    min-height:440px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle,#102746 0,#0b111b 65%);
+    border-radius:16px;
+    border:1px solid rgba(87,166,255,.15);
+  }
+  .coin{
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    border:8px solid #4c9eff;
+    background:radial-gradient(circle at 35% 30%,#5cb0ff,#1555a0 70%);
+    color:#fff;
+    font-size:34px;
+    font-weight:900;
+    box-shadow:0 0 45px rgba(35,136,255,.35),inset 0 -15px 25px rgba(0,0,0,.25);
+    transition:transform .08s;
+  }
+  .coin:active{transform:scale(.93)}
+  .stat-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin:18px 0;
+  }
+  .stat{
+    background:#101827;
+    padding:12px 16px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .shop-list{
+    display:grid;
+    gap:10px;
+  }
+  .shop-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:13px;
+    background:#0d1420;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.06);
+  }
+  .shop-item small{display:block;color:var(--muted);margin-top:3px}
+  .btn{
+    border:0;
+    border-radius:10px;
+    padding:10px 14px;
+    font-weight:800;
+    color:#fff;
+    background:#1c65b9;
+  }
+  .btn:hover{filter:brightness(1.12)}
+  .btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+  }
+  .btn.orange{background:#b95716}
+  .btn.green{background:#18874d}
+  .message{
+    min-height:24px;
+    text-align:center;
+    color:#9fd0ff;
+    margin-top:12px;
+  }
 
-  footer{text-align:center;color:var(--muted);font-size:12px;padding:24px;opacity:.6;}
+  /* BATTLE */
+  .battle-layout{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+  .hud{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+  }
+  .hud-box{
+    padding:12px;
+    border-radius:12px;
+    background:#0d1420;
+    border:1px solid rgba(255,255,255,.07);
+  }
+  .hud-box strong{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
+  .blue{color:#59aaff}
+  .orange{color:#ff8b3d}
+  .game-wrap{
+    position:relative;
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.1);
+    background:#02050a;
+  }
+  #battleCanvas{
+    display:block;
+    width:100%;
+    height:auto;
+    min-height:520px;
+  }
+  .crosshair{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:24px;
+    height:24px;
+    pointer-events:none;
+  }
+  .crosshair:before,.crosshair:after{
+    content:"";
+    position:absolute;
+    background:rgba(255,255,255,.9);
+  }
+  .crosshair:before{
+    width:2px;
+    height:24px;
+    left:11px;
+  }
+  .crosshair:after{
+    width:24px;
+    height:2px;
+    top:11px;
+  }
+  .controls{
+    color:var(--muted);
+    line-height:1.6;
+  }
+  .scoreline{
+    text-align:center;
+    font-size:25px;
+    font-weight:900;
+    padding:5px;
+  }
+  .overlay{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.72);
+    z-index:20;
+  }
+  .overlay.show{display:flex}
+  .overlay-card{
+    width:min(480px,90%);
+    text-align:center;
+    background:#0c121d;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:18px;
+    padding:30px;
+    box-shadow:var(--shadow);
+  }
+  .overlay-card h2{
+    font-size:42px;
+    margin:0 0 10px;
+  }
+  .shop-overlay{
+    position:absolute;
+    inset:0;
+    display:none;
+    background:rgba(2,5,10,.9);
+    z-index:15;
+    overflow:auto;
+    padding:25px;
+  }
+  .shop-overlay.show{display:block}
+  .shop-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:15px;
+  }
+  .weapon-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+  }
+  .weapon{
+    background:#101827;
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:14px;
+    padding:15px;
+  }
+  .weapon h3{margin:0 0 5px}
+  .weapon p{color:var(--muted);font-size:13px;min-height:35px}
+  .notice{
+    margin-top:10px;
+    color:#ffcb7d;
+    font-size:13px;
+  }
+  .tips{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:15px;
+  }
+  footer{
+    text-align:center;
+    color:#687487;
+    padding:20px;
+  }
+  @media(max-width:800px){
+    .clicker-grid{grid-template-columns:1fr}
+    .hud{grid-template-columns:1fr 1fr}
+    .weapon-grid{grid-template-columns:1fr}
+    .tips{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <a href="index.html" class="back-btn">← Voltar ao AMIRIJOGOS</a>
-  <div class="brand">AMIRIJOGOS</div>
-  <div class="credits-pill">💠 <span id="globalCredits">0</span> Credits</div>
-</div>
-
-<div class="hero">
-  <h1>AMIRIJOGOS — Jogos</h1>
-  <p>Dois jogos, uma moeda universal. Jogue, ganhe Credits, e use-os em qualquer jogo do site.</p>
-</div>
-
-<div class="tabs">
-  <div class="tab-btn active blue" id="tabClicker" onclick="switchTab('clicker')">🟦 AMIRIJOGOS CLICKER</div>
-  <div class="tab-btn orange" id="tabBattle" onclick="switchTab('battle')">🟧 AMIRIJOGOS BATTLE</div>
-</div>
-
-<!-- ===================== CLICKER GAME ===================== -->
-<section class="game-section active" id="section-clicker">
-  <div class="clicker-wrap">
-    <div class="clicker-stage stage-relative" id="clickerStage">
-      <div class="coin-count"><span id="coinCount">0</span> 🪙 Coins</div>
-      <div class="coin-sub">Coins são exclusivos deste jogo (Clicker Coins)</div>
-      <div id="clickTarget">⚡</div>
-      <div class="cps">+<span id="perClick">1</span> por clique</div>
-    </div>
-
-    <div class="shop-panel">
-      <h3>🛒 Loja de Upgrades</h3>
-      <div id="upgradeList"></div>
-
-      <div class="convert-box">
-        <h3 style="margin-top:6px;">🔄 Converter Coins → Credits</h3>
-        <p>Troque suas Clicker Coins pela moeda universal do site, usável em qualquer jogo.</p>
-        <div class="rate">Taxa: 100 Coins = 1 Credit</div>
-        <button class="convert-btn" id="convertBtn" onclick="convertCoins()">Converter 100 Coins</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== BATTLE GAME ===================== -->
-<section class="game-section" id="section-battle">
-  <div class="battle-intro">
-    <h2>AMIRIJOGOS BATTLE</h2>
-    <p style="color:var(--muted);font-size:13px;">Time Azul vs Time Laranja. Você está sempre no time Azul (1 jogador + 9 bots) contra 10 bots Laranja. Primeiro time a 30 kills vence.</p>
-    <div class="controls-grid">
-      <div class="ctrl-chip"><b>WASD</b> Mover</div>
-      <div class="ctrl-chip"><b>Mouse</b> Olhar</div>
-      <div class="ctrl-chip"><b>Click Esq.</b> Atirar</div>
-      <div class="ctrl-chip"><b>R</b> Recarregar</div>
-      <div class="ctrl-chip"><b>E</b> Entrar/Sair veículo</div>
-      <div class="ctrl-chip"><b>V</b> 1ª/3ª pessoa</div>
-      <div class="ctrl-chip"><b>TAB</b> Loja</div>
-      <div class="ctrl-chip"><b>ESC</b> Fechar loja / mouse</div>
-    </div>
-    <button class="start-btn" id="startBattleBtn" onclick="initBattleIfNeeded()">▶ Iniciar Partida</button>
+<header class="topbar">
+  <div class="brand">
+    <img src="perfil.jpg" alt="AMIRIJOGOS">
+    <span>AMIRIJOGOS</span>
   </div>
 
-  <div id="battleWrap">
-    <canvas id="battleCanvas"></canvas>
+  <a class="back" href="index.html">← Voltar ao AMIRIJOGOS</a>
 
-    <div id="startOverlay">
-      <h2 style="color:var(--orange);">Clique para jogar</h2>
-      <p>O mouse será travado na tela para controlar a câmera. Pressione ESC a qualquer momento para liberar o mouse. WASD move, clique esquerdo atira.</p>
-    </div>
+  <div class="credits">
+    💳 Credits: <span id="globalCredits">0</span>
+  </div>
+</header>
 
-    <div id="hud">
-      <div class="top-hud">
-        <span class="b" id="blueKills">0</span>
-        <span>—</span>
-        <span class="o" id="orangeKills">0</span>
-        <span class="timer" id="matchTimer">00:00</span>
-      </div>
-      <div class="bottom-left">
-        <div class="row"><span>Vida</span><span id="healthText">100</span></div>
-        <div class="bar" id="healthBar"><div style="width:100%"></div></div>
-        <div class="row" style="margin-top:4px;"><span id="weaponName">Pistola</span><span id="vehicleTag"></span></div>
-      </div>
-      <div class="bottom-right">
-        <div class="credits-hud">💠 <span id="battleCredits">0</span></div>
-        <div class="ammo-hud"><span id="ammoText">12</span> munição</div>
-        <div class="cam-mode" id="camModeText">1ª Pessoa</div>
-      </div>
-      <div id="crosshair"></div>
-    </div>
+<main class="page">
 
-    <div id="shopOverlay">
-      <div class="shop-modal">
-        <h2>🛒 Loja de Armas</h2>
-        <div class="sub">Compre armas e itens com Universal Credits. Pressione TAB ou ESC para fechar.</div>
-        <div id="weaponShopList"></div>
-        <button class="shop-close" onclick="closeShop()">Fechar Loja</button>
-      </div>
-    </div>
+  <section class="hero">
+    <h1>🎮 Jogos AMIRIJOGOS</h1>
+    <p>
+      Joga, ganha Coins, transforma-os em Credits e usa os teus Credits
+      nos jogos do site.
+    </p>
+  </section>
 
-    <div id="gameOverOverlay">
-      <h1 id="goTitle">VICTORY!</h1>
-      <div class="stats" id="goStats"></div>
-      <button class="start-btn" onclick="restartBattle()">Jogar Novamente</button>
-    </div>
+  <div class="tabs">
+    <button class="tab active" data-game="clickerGame">🖱️ AMIRIJOGOS Clicker</button>
+    <button class="tab" data-game="battleGame">⚔️ AMIRIJOGOS Battle</button>
   </div>
 
-  <div id="threeError">
-    Não foi possível carregar o motor 3D (Three.js). Verifique sua conexão com a internet e recarregue a página.
-  </div>
-</section>
+  <section id="clickerGame" class="game active">
+    <div class="clicker-grid">
 
-<footer>AMIRIJOGOS © — Todos os créditos são virtuais e não possuem valor monetário real.</footer>
+      <div class="panel click-area">
+        <h2>🪙 AMIRIJOGOS Clicker</h2>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <div class="stat-row">
+          <div class="stat">Coins: <strong id="coins">0</strong></div>
+          <div class="stat">Por clique: <strong id="perClick">1</strong></div>
+          <div class="stat">Multiplicador: <strong id="multiplier">x1</strong></div>
+        </div>
+
+        <button id="coinButton" class="coin">CLICK!</button>
+
+        <div class="message" id="clickerMessage"></div>
+      </div>
+
+      <div class="panel">
+        <h2>🛒 Loja do Clicker</h2>
+
+        <div class="shop-list">
+
+          <div class="shop-item">
+            <div>
+              <strong>⚡ Clique Forte</strong>
+              <small>+1 Coin por clique</small>
+            </div>
+            <button class="btn" id="upgradeClick">Comprar — 50</button>
+          </div>
+
+          <div class="shop-item">
+            <div>
+              <strong>🔥 Super Clique</strong>
+              <small>+5 Coins por clique</small>
+            </div>
+            <button class="btn" id="upgradeClick5">Comprar — 300</button>
+          </div>
+
+          <div class="shop-item">
+            <div>
+              <strong>🚀 Multiplicador</strong>
+              <small>Multiplica os Coins por 2</small>
+            </div>
+            <button class="btn" id="upgradeMultiplier">Comprar — 1000</button>
+          </div>
+
+          <div class="shop-item">
+            <div>
+              <strong>💳 Trocar Coins</strong>
+              <small>1000 Coins → 10 Credits</small>
+            </div>
+            <button class="btn green" id="convertCoins">Trocar</button>
+          </div>
+
+        </div>
+
+        <div class="message" id="conversionMessage"></div>
+
+        <div class="notice">
+          ⚠️ Coins pertencem apenas ao Clicker. Credits são a moeda universal do site.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="battleGame" class="game">
+
+    <div class="panel battle-layout">
+
+      <div class="scoreline">
+        <span class="blue">🔵 BLUE <span id="blueScore">0</span></span>
+        &nbsp;—&nbsp;
+        <span class="orange">🟠 ORANGE <span id="orangeScore">0</span></span>
+      </div>
+
+      <div class="hud">
+
+        <div class="hud-box">
+          <strong>VIDA</strong>
+          <span id="health">100</span>
+        </div>
+
+        <div class="hud-box">
+          <strong>ARMA</strong>
+          <span id="weaponName">Pistol</span>
+        </div>
+
+        <div class="hud-box">
+          <strong>MUNIÇÃO</strong>
+          <span id="ammo">60</span>
+        </div>
+
+        <div class="hud-box">
+          <strong>CÂMARA</strong>
+          <span id="cameraMode">Third Person</span>
+        </div>
+
+      </div>
+
+      <div class="game-wrap">
+
+        <canvas id="battleCanvas" width="1100" height="620"></canvas>
+
+        <div class="crosshair"></div>
+
+        <div id="shopOverlay" class="shop-overlay">
+
+          <div class="shop-head">
+            <h2>🛒 Loja de Batalha</h2>
+            <button class="btn" id="closeShop">Fechar [TAB]</button>
+          </div>
+
+          <p>
+            Credits disponíveis:
+            <strong id="shopCredits">0</strong>
+          </p>
+
+          <div class="weapon-grid">
+
+            <div class="weapon">
+              <h3>🔫 Pistol</h3>
+              <p>Arma básica e rápida.</p>
+              <button class="btn buyWeapon" data-name="Pistol" data-price="0" data-ammo="60">
+                Equipar — GRÁTIS
+              </button>
+            </div>
+
+            <div class="weapon">
+              <h3>🔫 Rifle</h3>
+              <p>Boa precisão e dano equilibrado.</p>
+              <button class="btn buyWeapon" data-name="Rifle" data-price="25" data-ammo="120">
+                Comprar — 25
+              </button>
+            </div>
+
+            <div class="weapon">
+              <h3>💥 Shotgun</h3>
+              <p>Dano elevado a curta distância.</p>
+              <button class="btn buyWeapon" data-name="Shotgun" data-price="40" data-ammo="40">
+                Comprar — 40
+              </button>
+            </div>
+
+            <div class="weapon">
+              <h3>⚡ SMG</h3>
+              <p>Alta cadência de disparo.</p>
+              <button class="btn buyWeapon" data-name="SMG" data-price="55" data-ammo="180">
+                Comprar — 55
+              </button>
+            </div>
+
+            <div class="weapon">
+              <h3>🎯 Sniper</h3>
+              <p>Precisão elevada e disparos fortes.</p>
+              <button class="btn buyWeapon" data-name="Sniper" data-price="75" data-ammo="30">
+                Comprar — 75
+              </button>
+            </div>
+
+            <div class="weapon">
+              <h3>🚀 Rocket Launcher</h3>
+              <p>Projéteis explosivos fictícios.</p>
+              <button class="btn buyWeapon" data-name="Rocket Launcher" data-price="100" data-ammo="10">
+                Comprar — 100
+              </button>
+            </div>
+
+            <div class="weapon">
+              <h3>💣 Grenade</h3>
+              <p>Item explosivo exclusivamente para o jogo.</p>
+              <button class="btn buyWeapon" data-name="Grenade" data-price="35" data-ammo="5">
+                Comprar — 35
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="gameOver" class="overlay">
+
+          <div class="overlay-card">
+            <h2 id="gameOverTitle">VICTORY!</h2>
+
+            <p id="finalScore"></p>
+            <p id="finalKills"></p>
+            <p id="earnedCredits"></p>
+
+            <button class="btn green" id="restartBattle">
+              🔄 Jogar novamente
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="controls">
+        <strong>Controlos:</strong><br>
+        WASD — Mover &nbsp; | &nbsp;
+        Mouse — Olhar &nbsp; | &nbsp;
+        Clique esquerdo — Disparar &nbsp; | &nbsp;
+        R — Recarregar &nbsp; | &nbsp;
+        E — Entrar/Sair do veículo &nbsp; | &nbsp;
+        V — Primeira/Terceira pessoa &nbsp; | &nbsp;
+        TAB — Loja &nbsp; | &nbsp;
+        ESC — Fechar loja
+      </div>
+
+      <div class="tips">
+        <div class="panel">
+          <strong>🔵 Equipa Blue</strong>
+          <p>Tu + 9 bots. A tua equipa é sempre azul.</p>
+        </div>
+
+        <div class="panel">
+          <strong>🟠 Equipa Orange</strong>
+          <p>10 bots adversários com dificuldade moderada.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 AMIRIJOGOS — Todos os Credits são virtuais e usados apenas no site.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+
 <script>
-/* =========================================================
-   UNIVERSAL CREDITS (shared via localStorage)
-========================================================= */
-const CREDITS_KEY = 'amirijogos_universal_credits';
-function getCredits(){ return parseInt(localStorage.getItem(CREDITS_KEY) || '0', 10); }
-function setCredits(v){ localStorage.setItem(CREDITS_KEY, String(Math.max(0,Math.floor(v)))); refreshCreditsUI(); }
-function addCredits(v){ setCredits(getCredits() + v); }
-function refreshCreditsUI(){
-  const v = getCredits();
-  document.getElementById('globalCredits').textContent = v;
-  const b = document.getElementById('battleCredits');
-  if(b) b.textContent = v;
+/* =========================
+   UNIVERSAL CREDITS
+========================= */
+
+let globalCredits = Number(localStorage.getItem("amirijogosCredits") || 0);
+
+function updateCredits(){
+  globalCredits = Math.max(0, Math.floor(globalCredits));
+  localStorage.setItem("amirijogosCredits", globalCredits);
+  document.getElementById("globalCredits").textContent = globalCredits;
+  document.getElementById("shopCredits").textContent = globalCredits;
 }
 
-/* =========================================================
+function addCredits(amount){
+  globalCredits += amount;
+  updateCredits();
+}
+
+function spendCredits(amount){
+  if(globalCredits < amount) return false;
+  globalCredits -= amount;
+  updateCredits();
+  return true;
+}
+
+updateCredits();
+
+
+/* =========================
    TABS
-========================================================= */
-function switchTab(name){
-  document.getElementById('section-clicker').classList.toggle('active', name==='clicker');
-  document.getElementById('section-battle').classList.toggle('active', name==='battle');
-  document.getElementById('tabClicker').classList.toggle('active', name==='clicker');
-  document.getElementById('tabBattle').classList.toggle('active', name==='battle');
-}
+========================= */
 
-/* =========================================================
-   GAME 1 — CLICKER
-========================================================= */
-const COINS_KEY = 'amirijogos_clicker_coins';
-const UPGRADES_KEY = 'amirijogos_clicker_upgrades';
+document.querySelectorAll(".tab").forEach(tab=>{
+  tab.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    document.querySelectorAll(".game").forEach(g=>g.classList.remove("active"));
 
-let clickerCoins = parseInt(localStorage.getItem(COINS_KEY) || '0', 10);
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.game).classList.add("active");
 
-const upgradeDefs = [
-  { id:'u1', name:'Dedo Rápido', desc:'+1 por clique', baseCost:25, addPerClick:1 },
-  { id:'u2', name:'Luva Turbo', desc:'+3 por clique', baseCost:150, addPerClick:3 },
-  { id:'u3', name:'Botão Neon', desc:'+8 por clique', baseCost:800, addPerClick:8 },
-  { id:'u4', name:'Núcleo AMIRI', desc:'+25 por clique', baseCost:4000, addPerClick:25 },
-];
-let ownedUpgrades = JSON.parse(localStorage.getItem(UPGRADES_KEY) || '{}');
-
-function perClickValue(){
-  let v = 1;
-  upgradeDefs.forEach(u=>{
-    const count = ownedUpgrades[u.id] || 0;
-    v += count * u.addPerClick;
+    if(tab.dataset.game === "battleGame" && !battleStarted){
+      startBattle();
+    }
   });
-  return v;
-}
-function upgradeCost(u){
-  const count = ownedUpgrades[u.id] || 0;
-  return Math.floor(u.baseCost * Math.pow(1.6, count));
-}
-function saveClicker(){
-  localStorage.setItem(COINS_KEY, String(Math.floor(clickerCoins)));
-  localStorage.setItem(UPGRADES_KEY, JSON.stringify(ownedUpgrades));
-}
-function renderClicker(){
-  document.getElementById('coinCount').textContent = Math.floor(clickerCoins);
-  document.getElementById('perClick').textContent = perClickValue();
-  const list = document.getElementById('upgradeList');
-  list.innerHTML = '';
-  upgradeDefs.forEach(u=>{
-    const cost = upgradeCost(u);
-    const count = ownedUpgrades[u.id] || 0;
-    const div = document.createElement('div');
-    div.className = 'upgrade';
-    div.innerHTML = `
-      <div class="info"><b>${u.name} ${count>0?`(x${count})`:''}</b><span>${u.desc} — Custo: ${cost} 🪙</span></div>
-      <button class="buy-btn" ${clickerCoins < cost ? 'disabled' : ''} onclick="buyUpgrade('${u.id}')">Comprar</button>`;
-    list.appendChild(div);
-  });
-}
-function buyUpgrade(id){
-  const u = upgradeDefs.find(x=>x.id===id);
-  const cost = upgradeCost(u);
-  if(clickerCoins >= cost){
-    clickerCoins -= cost;
-    ownedUpgrades[id] = (ownedUpgrades[id]||0) + 1;
-    saveClicker();
-    renderClicker();
-  }
-}
-function convertCoins(){
-  if(clickerCoins >= 100){
-    clickerCoins -= 100;
-    addCredits(1);
-    saveClicker();
-    renderClicker();
-  }
-}
-
-let audioCtx;
-function playClickSound(){
-  try{
-    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-    const o = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    o.type = 'sine';
-    o.frequency.setValueAtTime(520, audioCtx.currentTime);
-    o.frequency.exponentialRampToValueAtTime(220, audioCtx.currentTime + 0.08);
-    g.gain.setValueAtTime(0.12, audioCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-    o.connect(g); g.connect(audioCtx.destination);
-    o.start(); o.stop(audioCtx.currentTime + 0.1);
-  }catch(e){ /* audio unsupported, ignore */ }
-}
-
-const clickTarget = document.getElementById('clickTarget');
-const clickerStage = document.getElementById('clickerStage');
-clickTarget.addEventListener('click', (e)=>{
-  const gain = perClickValue();
-  clickerCoins += gain;
-  saveClicker();
-  renderClicker();
-  playClickSound();
-
-  clickTarget.style.transform = 'scale(.9)';
-  setTimeout(()=>{ clickTarget.style.transform = 'scale(1)'; }, 90);
-
-  const rect = clickerStage.getBoundingClientRect();
-  const num = document.createElement('div');
-  num.className = 'float-num';
-  num.textContent = '+' + gain;
-  num.style.left = (e.clientX - rect.left) + 'px';
-  num.style.top = (e.clientY - rect.top) + 'px';
-  clickerStage.appendChild(num);
-  setTimeout(()=>num.remove(), 800);
 });
 
-renderClicker();
-refreshCreditsUI();
 
-/* =========================================================
-   GAME 2 — BATTLE (Three.js)
-========================================================= */
-let battleInited = false;
-function initBattleIfNeeded(){
-  document.getElementById('battleWrap').classList.add('active');
-  document.getElementById('startBattleBtn').textContent = '▶ Partida em andamento abaixo';
-  document.getElementById('battleWrap').scrollIntoView({behavior:'smooth', block:'start'});
-  if(battleInited) return;
-  battleInited = true;
+/* =========================
+   CLICKER
+========================= */
 
-  if(typeof THREE === 'undefined'){
-    document.getElementById('threeError').style.display = 'flex';
+let coins = Number(localStorage.getItem("amirijogosCoins") || 0);
+let perClick = Number(localStorage.getItem("amirijogosPerClick") || 1);
+let multiplier = Number(localStorage.getItem("amirijogosMultiplier") || 1);
+
+const coinButton = document.getElementById("coinButton");
+const coinsEl = document.getElementById("coins");
+const perClickEl = document.getElementById("perClick");
+const multiplierEl = document.getElementById("multiplier");
+
+function saveClicker(){
+  localStorage.setItem("amirijogosCoins", coins);
+  localStorage.setItem("amirijogosPerClick", perClick);
+  localStorage.setItem("amirijogosMultiplier", multiplier);
+
+  coinsEl.textContent = Math.floor(coins);
+  perClickEl.textContent = perClick;
+  multiplierEl.textContent = "x" + multiplier;
+}
+
+coinButton.addEventListener("click",()=>{
+  coins += perClick * multiplier;
+  saveClicker();
+
+  coinButton.style.transform = "scale(.93)";
+  setTimeout(()=>coinButton.style.transform="",80);
+});
+
+document.getElementById("upgradeClick").addEventListener("click",()=>{
+  if(coins >= 50){
+    coins -= 50;
+    perClick += 1;
+    saveClicker();
+  }
+});
+
+document.getElementById("upgradeClick5").addEventListener("click",()=>{
+  if(coins >= 300){
+    coins -= 300;
+    perClick += 5;
+    saveClicker();
+  }
+});
+
+document.getElementById("upgradeMultiplier").addEventListener("click",()=>{
+  if(coins >= 1000){
+    coins -= 1000;
+    multiplier *= 2;
+    saveClicker();
+  }
+});
+
+document.getElementById("convertCoins").addEventListener("click",()=>{
+  if(coins >= 1000){
+    coins -= 1000;
+    addCredits(10);
+
+    document.getElementById("conversionMessage").textContent =
+      "✅ Trocaste 1000 Coins por 10 Credits!";
+
+    saveClicker();
+  }else{
+    document.getElementById("conversionMessage").textContent =
+      "❌ Precisas de 1000 Coins.";
+  }
+});
+
+saveClicker();
+
+
+/* =========================
+   BATTLE — THREE.JS
+========================= */
+
+let battleStarted = false;
+let scene, camera, renderer;
+let player;
+let bots = [];
+let vehicles = [];
+let keys = {};
+let mouse = {x:0,y:0};
+let cameraThirdPerson = true;
+let shopOpen = false;
+let gameEnded = false;
+
+let blueScore = 0;
+let orangeScore = 0;
+let playerKills = 0;
+
+let health = 100;
+let ammo = 60;
+let weapon = "Pistol";
+
+const battleCanvas = document.getElementById("battleCanvas");
+
+function startBattle(){
+
+  if(battleStarted) return;
+
+  battleStarted = true;
+
+  if(typeof THREE === "undefined"){
+    document.getElementById("battleCanvas").style.display="none";
+
+    const error = document.createElement("div");
+    error.style.padding="40px";
+    error.style.textAlign="center";
+    error.style.color="#ff6b6b";
+    error.textContent="Erro ao carregar o motor 3D. Verifica a ligação à internet e recarrega a página.";
+
+    battleCanvas.parentElement.appendChild(error);
     return;
   }
-  try{
-    startBattleGame();
-  }catch(err){
-    console.error(err);
-    document.getElementById('threeError').style.display = 'flex';
-    document.getElementById('threeError').textContent = 'Erro ao iniciar o jogo 3D: ' + err.message;
-  }
+
+  initThree();
+  createMap();
+  createPlayer();
+  createBots();
+  createVehicles();
+  setupControls();
+  animate();
 }
 
-function startBattleGame(){
-  const canvas = document.getElementById('battleCanvas');
-  const wrap = document.getElementById('battleWrap');
-  let W = wrap.clientWidth, H = wrap.clientHeight;
 
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0a0d16);
-  scene.fog = new THREE.Fog(0x0a0d16, 40, 260);
+/* =========================
+   SCENE
+========================= */
 
-  const camera = new THREE.PerspectiveCamera(75, W/H, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({canvas, antialias:true});
-  renderer.setSize(W, H);
-  renderer.shadowMap.enabled = true;
+function initThree(){
 
-  // Lighting
-  const hemi = new THREE.HemisphereLight(0x8fb8ff, 0x1a1408, 0.7);
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x87a9c4);
+
+  camera = new THREE.PerspectiveCamera(
+    70,
+    battleCanvas.width / battleCanvas.height,
+    .1,
+    1000
+  );
+
+  renderer = new THREE.WebGLRenderer({
+    canvas:battleCanvas,
+    antialias:true
+  });
+
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+  renderer.shadowMap.enabled=true;
+
+  const hemi = new THREE.HemisphereLight(
+    0xffffff,
+    0x405060,
+    1.2
+  );
+
   scene.add(hemi);
-  const sun = new THREE.DirectionalLight(0xffffff, 0.9);
-  sun.position.set(60, 90, 40);
-  sun.castShadow = true;
-  sun.shadow.mapSize.set(1024,1024);
-  sun.shadow.camera.left = -100; sun.shadow.camera.right = 100;
-  sun.shadow.camera.top = 100; sun.shadow.camera.bottom = -100;
-  scene.add(sun);
 
-  // Ground
-  const groundMat = new THREE.MeshStandardMaterial({color:0x1c2333});
-  const ground = new THREE.Mesh(new THREE.PlaneGeometry(300,300), groundMat);
-  ground.rotation.x = -Math.PI/2;
-  ground.receiveShadow = true;
+  const sun = new THREE.DirectionalLight(0xffffff,1.4);
+  sun.position.set(30,60,20);
+  sun.castShadow=true;
+  scene.add(sun);
+}
+
+
+/* =========================
+   MAP
+========================= */
+
+function createMap(){
+
+  const ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(140,140),
+    new THREE.MeshStandardMaterial({color:0x314b32})
+  );
+
+  ground.rotation.x=-Math.PI/2;
+  ground.receiveShadow=true;
   scene.add(ground);
 
-  // Roads (simple crossing strips)
-  const roadMat = new THREE.MeshStandardMaterial({color:0x2a2f3d});
-  [[0,0,300,14],[0,0,14,300]].forEach(([x,z,w,d])=>{
-    const road = new THREE.Mesh(new THREE.PlaneGeometry(w,d), roadMat);
-    road.rotation.x = -Math.PI/2; road.position.set(x,0.01,z);
-    scene.add(road);
-  });
+  function box(x,y,z,sx,sy,sz,color){
 
-  // Buildings / walls / trees
-  const solids = []; // {mesh, box}
-  function addBox(x,z,w,h,d,color){
-    const mesh = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), new THREE.MeshStandardMaterial({color}));
-    mesh.position.set(x,h/2,z);
-    mesh.castShadow = true; mesh.receiveShadow = true;
+    const mesh = new THREE.Mesh(
+      new THREE.BoxGeometry(sx,sy,sz),
+      new THREE.MeshStandardMaterial({color})
+    );
+
+    mesh.position.set(x,y,z);
+    mesh.castShadow=true;
+    mesh.receiveShadow=true;
+
     scene.add(mesh);
-    solids.push({mesh, minX:x-w/2, maxX:x+w/2, minZ:z-d/2, maxZ:z+d/2});
+
     return mesh;
   }
-  const buildingPositions = [
-    [-40,-40],[40,-40],[-40,40],[40,40],[-70,0],[70,0],[0,-70],[0,70],[-25,25],[25,-25]
-  ];
-  buildingPositions.forEach(([x,z],i)=>{
-    addBox(x,z, 12+ (i%3)*3, 10+(i%4)*4, 12+(i%2)*4, 0x333c50);
-  });
-  // perimeter walls
-  addBox(0,-100,220,6,3,0x40485c); addBox(0,100,220,6,3,0x40485c);
-  addBox(-100,0,3,6,220,0x40485c); addBox(100,0,3,6,220,0x40485c);
-  // trees
-  for(let i=0;i<24;i++){
-    const x = (Math.random()-0.5)*180;
-    const z = (Math.random()-0.5)*180;
-    if(Math.abs(x)<10 && Math.abs(z)<10) continue;
-    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.4,0.4,3,6), new THREE.MeshStandardMaterial({color:0x5a3d22}));
-    trunk.position.set(x,1.5,z); trunk.castShadow = true;
-    const leaves = new THREE.Mesh(new THREE.ConeGeometry(2.4,5,7), new THREE.MeshStandardMaterial({color:0x2e6b3f}));
-    leaves.position.set(x,5,z); leaves.castShadow = true;
-    scene.add(trunk); scene.add(leaves);
-    solids.push({mesh:trunk, minX:x-0.6,maxX:x+0.6,minZ:z-0.6,maxZ:z+0.6});
+
+  /* Roads */
+
+  box(0,.02,0,140,.05,10,0x343434);
+  box(0,.03,0,10,.06,140,0x343434);
+
+  /* Buildings */
+
+  for(let i=0;i<18;i++){
+
+    const x=(Math.random()*110)-55;
+    const z=(Math.random()*110)-55;
+
+    if(Math.abs(x)<15 || Math.abs(z)<15) continue;
+
+    box(
+      x,
+      3,
+      z,
+      8+Math.random()*8,
+      6,
+      8+Math.random()*8,
+      0x555c66
+    );
   }
 
-  // Spawn markers
-  const blueSpawn = new THREE.Vector3(-85,0,-85);
-  const orangeSpawn = new THREE.Vector3(85,0,85);
-  function spawnMarker(pos,color){
-    const ring = new THREE.Mesh(new THREE.RingGeometry(6,7,32), new THREE.MeshBasicMaterial({color, side:THREE.DoubleSide}));
-    ring.rotation.x = -Math.PI/2; ring.position.set(pos.x,0.05,pos.z);
-    scene.add(ring);
-  }
-  spawnMarker(blueSpawn, 0x2ea8ff);
-  spawnMarker(orangeSpawn, 0xff7a1a);
+  /* Walls */
 
-  /* ---------- Characters ---------- */
-  function makeCharacter(color){
-    const g = new THREE.Group();
-    const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.6,1.2,4,8), new THREE.MeshStandardMaterial({color}));
-    body.position.y = 1.1; body.castShadow = true;
-    const head = new THREE.Mesh(new THREE.SphereGeometry(0.4,10,10), new THREE.MeshStandardMaterial({color:0xf0c9a0}));
-    head.position.y = 2.05; head.castShadow = true;
-    g.add(body); g.add(head);
-    return g;
-  }
+  box(-55,2,0,2,4,110,0x666666);
+  box(55,2,0,2,4,110,0x666666);
+  box(0,2,-55,110,4,2,0x666666);
+  box(0,2,55,110,4,2,0x666666);
 
-  /* ---------- Vehicles ---------- */
-  const vehicles = [];
-  function makeVan(x,z,color){
-    const g = new THREE.Group();
-    const body = new THREE.Mesh(new THREE.BoxGeometry(4,2.2,7), new THREE.MeshStandardMaterial({color}));
-    body.position.y = 1.3; body.castShadow = true;
-    const cabin = new THREE.Mesh(new THREE.BoxGeometry(3.6,1.2,3), new THREE.MeshStandardMaterial({color:0x1c2333}));
-    cabin.position.set(0,2.5,-1.4); cabin.castShadow = true;
-    g.add(body); g.add(cabin);
-    g.position.set(x,0,z);
-    scene.add(g);
-    return {mesh:g, type:'van', speed:16, health:150, maxHealth:150, occupied:false, radius:4};
-  }
-  function makeTank(x,z,color){
-    const g = new THREE.Group();
-    const hull = new THREE.Mesh(new THREE.BoxGeometry(4.6,1.6,7.5), new THREE.MeshStandardMaterial({color}));
-    hull.position.y = 1; hull.castShadow = true;
-    const turret = new THREE.Mesh(new THREE.CylinderGeometry(1.6,1.8,1.2,10), new THREE.MeshStandardMaterial({color:0x2a2f3d}));
-    turret.position.y = 2.1; turret.castShadow = true;
-    const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.18,4,8), new THREE.MeshStandardMaterial({color:0x111318}));
-    barrel.rotation.x = Math.PI/2; barrel.position.set(0,2.1,3);
-    g.add(hull); g.add(turret); g.add(barrel);
-    g.position.set(x,0,z);
-    scene.add(g);
-    return {mesh:g, type:'tank', speed:10, health:400, maxHealth:400, occupied:false, radius:5};
-  }
-  vehicles.push(makeVan(-60,-20,0x2ea8ff));
-  vehicles.push(makeVan(60,20,0xff7a1a));
-  vehicles.push(makeTank(-20,-60,0x2ea8ff));
-  vehicles.push(makeTank(20,60,0xff7a1a));
+  /* Blue spawn */
 
-  /* ---------- Player state ---------- */
-  const player = {
-    pos: blueSpawn.clone(),
-    yaw: 0, pitch: 0,
-    health: 100, maxHealth:100,
-    alive: true,
-    kills: 0,
-    inVehicle: null,
-    thirdPerson: false,
-    weaponIndex: 0,
-    weaponTimeLeft: {}, // ammo-time seconds per weapon
+  box(-45,.15,0,12,.3,25,0x165da8);
+
+  /* Orange spawn */
+
+  box(45,.15,0,12,.3,25,0xb95318);
+
+  /* Trees */
+
+  for(let i=0;i<25;i++){
+
+    const x=(Math.random()*100)-50;
+    const z=(Math.random()*100)-50;
+
+    const trunk = new THREE.Mesh(
+      new THREE.CylinderGeometry(.35,.5,3,8),
+      new THREE.MeshStandardMaterial({color:0x60432e})
+    );
+
+    trunk.position.set(x,1.5,z);
+    trunk.castShadow=true;
+
+    const leaves = new THREE.Mesh(
+      new THREE.SphereGeometry(2.2,8,8),
+      new THREE.MeshStandardMaterial({color:0x1e7139})
+    );
+
+    leaves.position.set(x,4,z);
+    leaves.castShadow=true;
+
+    scene.add(trunk);
+    scene.add(leaves);
+  }
+}
+
+
+/* =========================
+   CHARACTERS
+========================= */
+
+function createCharacter(color){
+
+  const g = new THREE.Group();
+
+  /*
+    Compatible with Three.js r128:
+    DO NOT use THREE.CapsuleGeometry.
+    The body is made from a cylinder and two flattened spheres.
+  */
+
+  const bodyMat = new THREE.MeshStandardMaterial({color});
+
+  const body = new THREE.Mesh(
+    new THREE.CylinderGeometry(.6,.6,1.2,10),
+    bodyMat
+  );
+
+  body.position.y=1.1;
+  body.castShadow=true;
+
+  const bodyTop = new THREE.Mesh(
+    new THREE.SphereGeometry(.6,10,8),
+    bodyMat
+  );
+
+  bodyTop.scale.y=.55;
+  bodyTop.position.y=1.7;
+  bodyTop.castShadow=true;
+
+  const bodyBottom = new THREE.Mesh(
+    new THREE.SphereGeometry(.6,10,8),
+    bodyMat
+  );
+
+  bodyBottom.scale.y=.55;
+  bodyBottom.position.y=.5;
+  bodyBottom.castShadow=true;
+
+  const head = new THREE.Mesh(
+    new THREE.SphereGeometry(.4,10,10),
+    new THREE.MeshStandardMaterial({color:0xf0c9a0})
+  );
+
+  head.position.y=2.05;
+  head.castShadow=true;
+
+  g.add(body);
+  g.add(bodyTop);
+  g.add(bodyBottom);
+  g.add(head);
+
+  return g;
+}
+
+function createPlayer(){
+
+  player={
+    mesh:createCharacter(0x2388ff),
+    position:new THREE.Vector3(-42,0,0),
+    vehicle:null
   };
-  const mesh = makeCharacter(0x2ea8ff);
-  scene.add(mesh);
 
-  const weapons = [
-    {id:'pistol', name:'Pistola', dmg:18, cooldown:0.35, range:60, ammo:12, maxAmmo:12, reload:1.1, cost:0, timeLimit:120},
-    {id:'rifle', name:'Rifle AR', dmg:22, cooldown:0.14, range:80, ammo:30, maxAmmo:30, reload:1.8, cost:150, timeLimit:120},
-    {id:'shotgun', name:'Espingarda', dmg:60, cooldown:0.9, range:20, ammo:8, maxAmmo:8, reload:1.6, cost:180, timeLimit:120},
-    {id:'smg', name:'SMG', dmg:14, cooldown:0.08, range:45, ammo:40, maxAmmo:40, reload:1.6, cost:160, timeLimit:120},
-    {id:'sniper', name:'Sniper', dmg:95, cooldown:1.4, range:150, ammo:5, maxAmmo:5, reload:2.2, cost:260, timeLimit:120},
-    {id:'rocket', name:'Lança-Foguetes', dmg:130, cooldown:1.8, range:70, ammo:4, maxAmmo:4, reload:2.6, cost:400, timeLimit:120, splash:6},
-    {id:'grenade', name:'Granada', dmg:80, cooldown:1.0, range:25, ammo:3, maxAmmo:3, reload:1.5, cost:120, timeLimit:120, splash:5},
-  ];
-  const ownedWeapons = new Set(['pistol']);
-  let currentAmmo = {}; weapons.forEach(w=>currentAmmo[w.id]=w.ammo);
-  let weaponTimeUsed = {}; weapons.forEach(w=>weaponTimeUsed[w.id]=0); // seconds of use
-  let shootCooldown = 0;
-  let reloading = false, reloadT = 0;
+  player.mesh.position.copy(player.position);
+  scene.add(player.mesh);
 
-  function currentWeapon(){ return weapons[player.weaponIndex]; }
+  camera.position.set(
+    player.position.x,
+    player.position.y+5,
+    player.position.z+8
+  );
+}
 
-  /* ---------- Bots ---------- */
-  const bots = [];
-  function spawnBot(team){
-    const spawn = team==='blue' ? blueSpawn : orangeSpawn;
-    const color = team==='blue' ? 0x2ea8ff : 0xff7a1a;
-    const g = makeCharacter(color);
-    scene.add(g);
-    const bot = {
-      mesh:g, team, health:100, maxHealth:100, alive:true,
-      pos: spawn.clone().add(new THREE.Vector3((Math.random()-0.5)*18,0,(Math.random()-0.5)*18)),
-      target:null, fireCd: Math.random()*1.5, respawnT:0, speed: 3.2 + Math.random()*1.2,
+function createBots(){
+
+  bots=[];
+
+  for(let i=0;i<19;i++){
+
+    const blue=i<9;
+
+    const bot={
+      mesh:createCharacter(blue?0x2388ff:0xff7a18),
+      team:blue?"blue":"orange",
+      health:100,
+      alive:true,
+      timer:Math.random()*10,
+      target:null,
+      vehicle:null
     };
+
+    bot.mesh.position.set(
+      blue ? -35-Math.random()*10 : 35+Math.random()*10,
+      0,
+      (Math.random()*30)-15
+    );
+
+    scene.add(bot.mesh);
     bots.push(bot);
-    return bot;
   }
-  for(let i=0;i<9;i++) spawnBot('blue');
-  for(let i=0;i<10;i++) spawnBot('orange');
+}
 
-  /* ---------- Score / match state ---------- */
-  let blueKills = 0, orangeKills = 0;
-  const KILL_TARGET = 30;
-  let matchOver = false;
-  let matchSeconds = 0;
-  let creditTickTimer = 0;
-  let paused = false;
 
-  function allActors(){
-    const list = [{ref:'player', team:'blue', getPos:()=>player.pos, alive:()=>player.alive}];
-    bots.forEach((b,i)=> list.push({ref:'bot'+i, team:b.team, getPos:()=>b.pos, alive:()=>b.alive}));
-    return list;
-  }
+/* =========================
+   VEHICLES
+========================= */
 
-  function registerKill(victimTeam, killerTeam){
-    if(killerTeam==='blue') blueKills++; else orangeKills++;
-    document.getElementById('blueKills').textContent = blueKills;
-    document.getElementById('orangeKills').textContent = orangeKills;
-    if(blueKills>=KILL_TARGET || orangeKills>=KILL_TARGET) endMatch(blueKills>=KILL_TARGET);
-  }
+function createVehicle(type,x,z,color){
 
-  function endMatch(blueWon){
-    matchOver = true;
-    paused = true;
-    releasePointerLock();
-    if(blueWon) addCredits(10); // bonus for winning
-    const overlay = document.getElementById('gameOverOverlay');
-    const title = document.getElementById('goTitle');
-    title.textContent = blueWon ? 'VICTORY!' : 'DEFEAT!';
-    title.className = blueWon ? 'win' : 'lose';
-    document.getElementById('goStats').innerHTML = `
-      Placar final: <b>${blueKills} — ${orangeKills}</b><br>
-      Suas eliminações: <b>${player.kills}</b><br>
-      Credits ganhos nesta partida: <b>${sessionCreditsEarned}</b>`;
-    overlay.classList.add('active');
-  }
-  let sessionCreditsEarned = 0;
-  function earnCredits(v){ addCredits(v); sessionCreditsEarned += v; }
+  const g=new THREE.Group();
 
-  function restartBattleGlobal(){
-    document.getElementById('gameOverOverlay').classList.remove('active');
-    blueKills = 0; orangeKills = 0; matchOver = false; sessionCreditsEarned = 0;
-    document.getElementById('blueKills').textContent = 0;
-    document.getElementById('orangeKills').textContent = 0;
-    player.health = player.maxHealth; player.alive = true; player.pos.copy(blueSpawn); player.kills = 0;
-    bots.forEach(b=>{
-      b.alive = true; b.health = b.maxHealth; b.respawnT = 0;
-      const spawn = b.team==='blue'?blueSpawn:orangeSpawn;
-      b.pos.copy(spawn).add(new THREE.Vector3((Math.random()-0.5)*18,0,(Math.random()-0.5)*18));
-      b.mesh.visible = true;
-    });
-    paused = false;
-  }
-  window.restartBattle = restartBattleGlobal;
+  const body=new THREE.Mesh(
+    new THREE.BoxGeometry(
+      type==="tank"?5:4,
+      type==="tank"?1.5:1.8,
+      type==="tank"?7:6
+    ),
+    new THREE.MeshStandardMaterial({color})
+  );
 
-  /* ---------- Input ---------- */
-  const keys = {};
-  let pointerLocked = false;
-  wrap.addEventListener('click', ()=>{
-    if(!pointerLocked && !document.getElementById('shopOverlay').classList.contains('active') && !matchOver){
-      canvas.requestPointerLock();
-    }
-  });
-  document.addEventListener('pointerlockchange', ()=>{
-    pointerLocked = document.pointerLockElement === canvas;
-    document.getElementById('startOverlay').style.display = pointerLocked ? 'none' : 'flex';
-  });
-  function releasePointerLock(){ if(document.pointerLockElement===canvas) document.exitPointerLock(); }
+  body.position.y=1;
+  body.castShadow=true;
 
-  document.addEventListener('mousemove', (e)=>{
-    if(!pointerLocked || paused) return;
-    player.yaw -= e.movementX * 0.0022;
-    player.pitch -= e.movementY * 0.0022;
-    player.pitch = Math.max(-1.2, Math.min(1.2, player.pitch));
-  });
+  g.add(body);
 
-  window.addEventListener('keydown', (e)=>{
-    keys[e.code] = true;
-    if(e.code === 'Tab'){ e.preventDefault(); toggleShop(); }
-    if(e.code === 'Escape'){ if(document.getElementById('shopOverlay').classList.contains('active')) closeShop(); else releasePointerLock(); }
-    if(e.code === 'KeyV'){ player.thirdPerson = !player.thirdPerson; document.getElementById('camModeText').textContent = player.thirdPerson ? '3ª Pessoa' : '1ª Pessoa'; }
-    if(e.code === 'KeyR'){ startReload(); }
-    if(e.code === 'KeyE'){ toggleVehicle(); }
-  });
-  window.addEventListener('keyup', (e)=>{ keys[e.code]=false; });
-  canvas.addEventListener('mousedown', (e)=>{
-    if(e.button===0) shootHeld = true;
-  });
-  window.addEventListener('mouseup', ()=>{ shootHeld=false; });
-  let shootHeld = false;
+  if(type==="tank"){
 
-  /* ---------- Shop ---------- */
-  function renderShop(){
-    const list = document.getElementById('weaponShopList');
-    list.innerHTML = '';
-    weapons.forEach((w,idx)=>{
-      const owned = ownedWeapons.has(w.id);
-      const div = document.createElement('div');
-      div.className = 'weapon-item';
-      div.innerHTML = `
-        <div class="w-info"><b>${w.name}</b><span>Dano ${w.dmg} • Cadência ${(1/w.cooldown).toFixed(1)}/s • Munição ${w.maxAmmo}</span></div>
-        <button class="buy-btn" onclick="buyWeapon('${w.id}')">${owned ? 'Reabastecer • '+w.cost+' 💠' : 'Comprar • '+w.cost+' 💠'}</button>`;
-      list.appendChild(div);
-    });
-  }
-  window.buyWeapon = function(id){
-    const w = weapons.find(x=>x.id===id);
-    if(getCredits() >= w.cost){
-      addCredits(-w.cost);
-      ownedWeapons.add(id);
-      currentAmmo[id] = w.maxAmmo;
-      weaponTimeUsed[id] = 0;
-      player.weaponIndex = weapons.indexOf(w);
-      updateWeaponHud();
-    }
-  };
-  function toggleShop(){
-    const ov = document.getElementById('shopOverlay');
-    if(ov.classList.contains('active')) closeShop();
-    else { renderShop(); ov.classList.add('active'); paused = true; releasePointerLock(); }
-  }
-  window.closeShop = function(){
-    document.getElementById('shopOverlay').classList.remove('active');
-    paused = false;
-  };
+    const turret=new THREE.Mesh(
+      new THREE.BoxGeometry(3,1,3),
+      new THREE.MeshStandardMaterial({color:0x444444})
+    );
 
-  /* ---------- Vehicle interaction ---------- */
-  function toggleVehicle(){
-    if(player.inVehicle){
-      const v = player.inVehicle;
-      v.occupied = false;
-      player.pos.set(v.mesh.position.x + 4, 0, v.mesh.position.z);
-      player.inVehicle = null;
-      document.getElementById('vehicleTag').textContent = '';
-    } else {
-      for(const v of vehicles){
-        if(v.occupied) continue;
-        const d = player.pos.distanceTo(v.mesh.position);
-        if(d < v.radius + 2){
-          v.occupied = true;
-          player.inVehicle = v;
-          document.getElementById('vehicleTag').textContent = ' • ' + (v.type==='van'?'Van':'Tanque');
-          break;
-        }
-      }
-    }
+    turret.position.y=2;
+    g.add(turret);
+
+    const cannon=new THREE.Mesh(
+      new THREE.BoxGeometry(.5,.5,4),
+      new THREE.MeshStandardMaterial({color:0x222222})
+    );
+
+    cannon.position.set(0,2,-2.5);
+    g.add(cannon);
   }
 
-  /* ---------- Reload ---------- */
-  function startReload(){
-    const w = currentWeapon();
-    if(reloading || currentAmmo[w.id] >= w.maxAmmo) return;
-    reloading = true; reloadT = w.reload;
-  }
+  g.position.set(x,0,z);
+  scene.add(g);
 
-  /* ---------- Damage / respawn ---------- */
-  function damagePlayer(dmg){
-    if(!player.alive) return;
-    player.health -= dmg;
-    if(player.health <= 0){
-      player.alive = false;
-      player.health = 0;
-      registerKill('blue','orange');
-      setTimeout(respawnPlayer, 2500);
-    }
-  }
-  function respawnPlayer(){
-    player.alive = true; player.health = player.maxHealth;
-    player.pos.copy(blueSpawn).add(new THREE.Vector3((Math.random()-0.5)*10,0,(Math.random()-0.5)*10));
-  }
-  function damageBot(bot, dmg, killerTeam){
-    if(!bot.alive) return;
-    bot.health -= dmg;
-    if(bot.health <= 0){
-      bot.alive = false;
-      bot.mesh.visible = false;
-      registerKill(bot.team, killerTeam);
-      if(killerTeam==='blue' && bot.team==='orange'){ earnCredits(10); player.kills++; }
-      bot.respawnT = 3 + Math.random()*2;
-    }
-  }
-
-  /* ---------- Shooting ---------- */
-  function fireWeapon(){
-    const w = currentWeapon();
-    if(reloading || matchOver || !player.alive) return;
-    if(shootCooldown > 0) return;
-    if(currentAmmo[w.id] <= 0){ startReload(); return; }
-    if(weaponTimeUsed[w.id] >= w.timeLimit){ return; } // out of usable time, must buy more
-    currentAmmo[w.id]--;
-    shootCooldown = w.cooldown;
-    updateWeaponHud();
-
-    // raycast from camera
-    const dir = new THREE.Vector3();
-    camera.getWorldDirection(dir);
-    const rayOrigin = camera.position.clone();
-    let closest = null, closestDist = w.range;
-    bots.forEach(bot=>{
-      if(!bot.alive || bot.team==='blue') return;
-      const toBot = bot.pos.clone().setY(1.2).sub(rayOrigin);
-      const dist = toBot.length();
-      if(dist > closestDist) return;
-      const angle = toBot.normalize().angleTo(dir);
-      if(angle < 0.07){ closest = bot; closestDist = dist; }
-    });
-    if(closest){ damageBot(closest, w.dmg, 'blue'); }
-  }
-
-  function updateWeaponHud(){
-    const w = currentWeapon();
-    document.getElementById('weaponName').textContent = w.name;
-    document.getElementById('ammoText').textContent = currentAmmo[w.id] + '/' + w.maxAmmo;
-  }
-
-  /* ---------- Collision helper ---------- */
-  function collides(pos, radius){
-    for(const s of solids){
-      if(pos.x+radius > s.minX && pos.x-radius < s.maxX && pos.z+radius > s.minZ && pos.z-radius < s.maxZ) return true;
-    }
-    return Math.abs(pos.x) > 98 || Math.abs(pos.z) > 98;
-  }
-
-  /* ---------- Bot AI ---------- */
-  function updateBots(dt){
-    bots.forEach(bot=>{
-      if(!bot.alive){
-        bot.respawnT -= dt;
-        if(bot.respawnT <= 0){
-          bot.alive = true; bot.health = bot.maxHealth; bot.mesh.visible = true;
-          const spawn = bot.team==='blue'?blueSpawn:orangeSpawn;
-          bot.pos.copy(spawn).add(new THREE.Vector3((Math.random()-0.5)*18,0,(Math.random()-0.5)*18));
-        }
-        return;
-      }
-      // find nearest enemy (player or opposite-team bot)
-      let nearest = null, nearestDist = 999;
-      if(bot.team==='orange' && player.alive){
-        const d = bot.pos.distanceTo(player.pos);
-        if(d < nearestDist){ nearest = {pos:player.pos, isPlayer:true}; nearestDist = d; }
-      }
-      bots.forEach(other=>{
-        if(other===bot || !other.alive || other.team===bot.team) return;
-        const d = bot.pos.distanceTo(other.pos);
-        if(d < nearestDist){ nearest = {pos:other.pos, bot:other}; nearestDist = d; }
-      });
-
-      if(nearest){
-        if(nearestDist > 8){
-          const dir = nearest.pos.clone().sub(bot.pos).setY(0).normalize();
-          const newPos = bot.pos.clone().add(dir.multiplyScalar(bot.speed*dt));
-          if(!collides(newPos, 0.7)) bot.pos.copy(newPos);
-          bot.mesh.lookAt(nearest.pos.x, bot.mesh.position.y, nearest.pos.z);
-        } else {
-          bot.mesh.lookAt(nearest.pos.x, bot.mesh.position.y, nearest.pos.z);
-        }
-        bot.fireCd -= dt;
-        if(nearestDist < 45 && bot.fireCd <= 0){
-          bot.fireCd = 0.8 + Math.random()*0.8;
-          const hitChance = Math.max(0.15, 0.55 - nearestDist/100);
-          if(Math.random() < hitChance){
-            const dmg = 6 + Math.random()*8;
-            if(nearest.isPlayer) damagePlayer(dmg);
-            else damageBot(nearest.bot, dmg, bot.team);
-          }
-        }
-      } else {
-        // wander
-        bot.wanderT = (bot.wanderT||0) - dt;
-        if(bot.wanderT <= 0){
-          bot.wanderDir = new THREE.Vector3(Math.random()-0.5,0,Math.random()-0.5).normalize();
-          bot.wanderT = 2 + Math.random()*2;
-        }
-        const newPos = bot.pos.clone().add(bot.wanderDir.clone().multiplyScalar(bot.speed*0.5*dt));
-        if(!collides(newPos,0.7)) bot.pos.copy(newPos);
-      }
-      bot.mesh.position.set(bot.pos.x, 0, bot.pos.z);
-    });
-  }
-
-  /* ---------- Vehicle-run-over kills ---------- */
-  function checkVehicleRunOver(v, prevPos){
-    const movedDist = v.mesh.position.distanceTo(prevPos);
-    if(movedDist < 0.05) return;
-    const driverTeam = v.driverTeam || 'blue';
-    bots.forEach(bot=>{
-      if(!bot.alive) return;
-      const d = v.mesh.position.distanceTo(bot.pos);
-      if(d < v.radius*0.7 && bot.team !== driverTeam){
-        damageBot(bot, 999, driverTeam);
-      }
-    });
-    if(player.alive && !player.inVehicle){
-      const d = v.mesh.position.distanceTo(player.pos);
-      if(d < v.radius*0.7 && driverTeam !== 'blue'){
-        damagePlayer(999);
-      }
-    }
-  }
-
-  /* ---------- Main update ---------- */
-  const clock = new THREE.Clock();
-  function updatePlayerMovement(dt){
-    if(player.inVehicle){
-      const v = player.inVehicle;
-      v.driverTeam = 'blue';
-      const prevPos = v.mesh.position.clone();
-      let moveX=0, moveZ=0;
-      if(keys['KeyW']) moveZ -= 1;
-      if(keys['KeyS']) moveZ += 1;
-      if(keys['KeyA']) moveX -= 1;
-      if(keys['KeyD']) moveX += 1;
-      if(moveX||moveZ){
-        const forward = new THREE.Vector3(Math.sin(player.yaw),0,Math.cos(player.yaw));
-        const right = new THREE.Vector3(Math.sin(player.yaw+Math.PI/2),0,Math.cos(player.yaw+Math.PI/2));
-        const delta = forward.multiplyScalar(-moveZ).add(right.multiplyScalar(moveX)).normalize().multiplyScalar(v.speed*dt);
-        v.mesh.position.add(delta);
-        v.mesh.rotation.y = player.yaw;
-      }
-      player.pos.copy(v.mesh.position);
-      checkVehicleRunOver(v, prevPos);
-      return;
-    }
-    if(!player.alive) return;
-    let moveX=0, moveZ=0;
-    if(keys['KeyW']) moveZ -= 1;
-    if(keys['KeyS']) moveZ += 1;
-    if(keys['KeyA']) moveX -= 1;
-    if(keys['KeyD']) moveX += 1;
-    if(moveX||moveZ){
-      const forward = new THREE.Vector3(Math.sin(player.yaw),0,Math.cos(player.yaw));
-      const right = new THREE.Vector3(Math.sin(player.yaw+Math.PI/2),0,Math.cos(player.yaw+Math.PI/2));
-      const delta = forward.multiplyScalar(-moveZ).add(right.multiplyScalar(moveX)).normalize().multiplyScalar(5.5*dt);
-      const newPos = player.pos.clone().add(delta);
-      if(!collides(newPos, 0.7)) player.pos.copy(newPos);
-    }
-  }
-
-  function updateCamera(){
-    mesh.position.set(player.pos.x, 0, player.pos.z);
-    mesh.rotation.y = player.yaw;
-    mesh.visible = player.thirdPerson && !player.inVehicle;
-
-    if(player.inVehicle){
-      const v = player.inVehicle;
-      const camOffset = new THREE.Vector3(0, 5, 10).applyAxisAngle(new THREE.Vector3(0,1,0), player.yaw);
-      camera.position.copy(v.mesh.position.clone().add(camOffset));
-      camera.lookAt(v.mesh.position.x, v.mesh.position.y+1, v.mesh.position.z);
-      return;
-    }
-
-    if(player.thirdPerson){
-      const camOffset = new THREE.Vector3(0, 3.2, 6.5).applyAxisAngle(new THREE.Vector3(0,1,0), player.yaw);
-      const targetCam = player.pos.clone().add(new THREE.Vector3(0,1.6,0)).add(camOffset);
-      camera.position.copy(targetCam);
-      const lookAt = player.pos.clone().add(new THREE.Vector3(0,1.6,0));
-      camera.lookAt(lookAt);
-    } else {
-      camera.position.set(player.pos.x, 1.7, player.pos.z);
-      const lookDir = new THREE.Vector3(
-        Math.sin(player.yaw)*Math.cos(player.pitch),
-        Math.sin(player.pitch),
-        Math.cos(player.yaw)*Math.cos(player.pitch)
-      );
-      camera.lookAt(camera.position.clone().add(lookDir));
-    }
-  }
-
-  function updateHud(){
-    document.getElementById('healthText').textContent = Math.max(0,Math.round(player.health));
-    document.getElementById('healthBar').firstElementChild.style.width = Math.max(0,player.health) + '%';
-    refreshCreditsUI();
-    const mm = Math.floor(matchSeconds/60).toString().padStart(2,'0');
-    const ss = Math.floor(matchSeconds%60).toString().padStart(2,'0');
-    document.getElementById('matchTimer').textContent = mm+':'+ss;
-  }
-
-  function animate(){
-    requestAnimationFrame(animate);
-    const dt = Math.min(clock.getDelta(), 0.06);
-    W = wrap.clientWidth; H = wrap.clientHeight;
-    if(renderer.domElement.width !== W*window.devicePixelRatio){
-      renderer.setSize(W,H); camera.aspect = W/H; camera.updateProjectionMatrix();
-    }
-
-    if(!paused && !matchOver){
-      matchSeconds += dt;
-      updatePlayerMovement(dt);
-      updateBots(dt);
-      updateCamera();
-
-      shootCooldown = Math.max(0, shootCooldown - dt);
-      if(reloading){
-        reloadT -= dt;
-        if(reloadT <= 0){
-          reloading = false;
-          const w = currentWeapon();
-          currentAmmo[w.id] = w.maxAmmo;
-          updateWeaponHud();
-        }
-      } else if(shootHeld){
-        fireWeapon();
-      }
-      const w = currentWeapon();
-      if(!reloading && shootHeld && currentAmmo[w.id] > 0){
-        weaponTimeUsed[w.id] += dt;
-      }
-
-      creditTickTimer += dt;
-      if(creditTickTimer >= 60){ creditTickTimer = 0; earnCredits(5); }
-
-      updateHud();
-    } else {
-      updateCamera();
-    }
-
-    renderer.render(scene, camera);
-  }
-  updateWeaponHud();
-  animate();
-
-  window.addEventListener('resize', ()=>{
-    W = wrap.clientWidth; H = wrap.clientHeight;
-    renderer.setSize(W,H); camera.aspect = W/H; camera.updateProjectionMatrix();
+  vehicles.push({
+    mesh:g,
+    type,
+    occupied:null
   });
 }
+
+function createVehicles(){
+
+  createVehicle("van",-25,-15,0x2365a5);
+  createVehicle("van",-25,15,0x2365a5);
+
+  createVehicle("tank",25,-15,0xd06422);
+  createVehicle("tank",25,15,0xd06422);
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+function setupControls(){
+
+  window.addEventListener("keydown",e=>{
+
+    keys[e.code]=true;
+
+    if(e.code==="Tab"){
+      e.preventDefault();
+      toggleShop();
+    }
+
+    if(e.code==="Escape"){
+      closeShop();
+    }
+
+    if(e.code==="KeyV"){
+      cameraThirdPerson=!cameraThirdPerson;
+
+      document.getElementById("cameraMode").textContent =
+        cameraThirdPerson ? "Third Person":"First Person";
+    }
+
+    if(e.code==="KeyR"){
+      reload();
+    }
+
+    if(e.code==="KeyE"){
+      toggleVehicle();
+    }
+  });
+
+  window.addEventListener("keyup",e=>{
+    keys[e.code]=false;
+  });
+
+  battleCanvas.addEventListener("click",()=>{
+    if(!shopOpen && !gameEnded){
+      shoot();
+    }
+  });
+}
+
+
+/* =========================
+   MOVEMENT
+========================= */
+
+function updatePlayer(){
+
+  if(gameEnded || shopOpen) return;
+
+  const speed=0.16;
+
+  if(keys["KeyW"]) player.mesh.position.z-=speed;
+  if(keys["KeyS"]) player.mesh.position.z+=speed;
+  if(keys["KeyA"]) player.mesh.position.x-=speed;
+  if(keys["KeyD"]) player.mesh.position.x+=speed;
+
+  player.mesh.position.x=Math.max(-52,Math.min(52,player.mesh.position.x));
+  player.mesh.position.z=Math.max(-52,Math.min(52,player.mesh.position.z));
+
+  if(cameraThirdPerson){
+
+    camera.position.lerp(
+      new THREE.Vector3(
+        player.mesh.position.x,
+        player.mesh.position.y+5,
+        player.mesh.position.z+8
+      ),
+      .12
+    );
+
+    camera.lookAt(
+      player.mesh.position.x,
+      player.mesh.position.y+1,
+      player.mesh.position.z
+    );
+
+  }else{
+
+    camera.position.lerp(
+      new THREE.Vector3(
+        player.mesh.position.x,
+        player.mesh.position.y+1.7,
+        player.mesh.position.z
+      ),
+      .15
+    );
+
+    camera.lookAt(
+      player.mesh.position.x,
+      player.mesh.position.y+1.7,
+      player.mesh.position.z-10
+    );
+  }
+}
+
+
+/* =========================
+   BOT AI
+========================= */
+
+function updateBots(){
+
+  if(gameEnded || shopOpen) return;
+
+  bots.forEach(bot=>{
+
+    if(!bot.alive) return;
+
+    bot.timer += .016;
+
+    const target =
+      bot.team==="orange"
+      ? player.mesh.position
+      : findNearestEnemy(bot);
+
+    if(!target) return;
+
+    const dx=target.x-bot.mesh.position.x;
+    const dz=target.z-bot.mesh.position.z;
+
+    const dist=Math.sqrt(dx*dx+dz*dz);
+
+    if(dist>8){
+
+      bot.mesh.position.x += (dx/dist)*.025;
+      bot.mesh.position.z += (dz/dist)*.025;
+
+    }else{
+
+      if(bot.timer>4){
+
+        bot.timer=0;
+
+        if(bot.team==="orange"){
+          damagePlayer(15);
+        }else if(target){
+
+          const enemy=getEnemyBotNear(target);
+
+          if(enemy){
+            killBot(enemy,bot.team);
+          }
+        }
+      }
+    }
+  });
+}
+
+function findNearestEnemy(bot){
+
+  let nearest=null;
+  let best=Infinity;
+
+  bots.forEach(other=>{
+
+    if(
+      other!==bot &&
+      other.alive &&
+      other.team!==bot.team
+    ){
+
+      const d=bot.mesh.position.distanceTo(other.mesh.position);
+
+      if(d<best){
+        best=d;
+        nearest=other.mesh.position;
+      }
+    }
+  });
+
+  return nearest || player.mesh.position;
+}
+
+function getEnemyBotNear(position){
+
+  let nearest=null;
+  let best=10;
+
+  bots.forEach(bot=>{
+
+    if(
+      bot.alive &&
+      bot.team==="orange"
+    ){
+
+      const d=bot.mesh.position.distanceTo(position);
+
+      if(d<best){
+        best=d;
+        nearest=bot;
+      }
+    }
+  });
+
+  return nearest;
+}
+
+
+/* =========================
+   COMBAT
+========================= */
+
+function shoot(){
+
+  if(ammo<=0){
+
+    document.getElementById("weaponName").textContent =
+      "Sem munição! Pressiona TAB para comprar.";
+
+    return;
+  }
+
+  ammo--;
+  updateHUD();
+
+  let nearest=null;
+  let best=12;
+
+  bots.forEach(bot=>{
+
+    if(bot.alive && bot.team==="orange"){
+
+      const d=bot.mesh.position.distanceTo(player.mesh.position);
+
+      if(d<best){
+        best=d;
+        nearest=bot;
+      }
+    }
+  });
+
+  if(nearest){
+    killBot(nearest,"blue");
+  }
+}
+
+function reload(){
+
+  ammo=60;
+  updateHUD();
+}
+
+function damagePlayer(amount){
+
+  health-=amount;
+
+  if(health<=0){
+    health=0;
+    playerDied();
+  }
+
+  updateHUD();
+}
+
+function playerDied(){
+
+  player.mesh.position.set(-42,0,0);
+  health=100;
+
+  updateHUD();
+}
+
+function killBot(bot,killerTeam){
+
+  if(!bot || !bot.alive) return;
+
+  bot.alive=false;
+  bot.mesh.visible=false;
+
+  if(killerTeam==="blue"){
+    blueScore++;
+
+    playerKills++;
+    addCredits(10);
+  }else{
+    orangeScore++;
+  }
+
+  updateHUD();
+
+  if(blueScore>=30 || orangeScore>=30){
+    endBattle();
+    return;
+  }
+
+  setTimeout(()=>respawnBot(bot),2500);
+}
+
+function respawnBot(bot){
+
+  bot.alive=true;
+  bot.health=100;
+  bot.mesh.visible=true;
+
+  bot.mesh.position.set(
+    bot.team==="blue"
+    ? -35-Math.random()*10
+    : 35+Math.random()*10,
+    0,
+    (Math.random()*30)-15
+  );
+}
+
+
+/* =========================
+   VEHICLES
+========================= */
+
+function toggleVehicle(){
+
+  if(player.vehicle){
+
+    player.vehicle.occupied=null;
+    player.vehicle=null;
+
+    player.mesh.visible=true;
+
+    return;
+  }
+
+  let nearest=null;
+  let best=5;
+
+  vehicles.forEach(v=>{
+
+    const d=v.mesh.position.distanceTo(player.mesh.position);
+
+    if(d<best){
+      best=d;
+      nearest=v;
+    }
+  });
+
+  if(nearest){
+
+    player.vehicle=nearest;
+    nearest.occupied=player;
+
+    player.mesh.visible=false;
+  }
+}
+
+
+/* =========================
+   SHOP
+========================= */
+
+function toggleShop(){
+
+  if(gameEnded) return;
+
+  shopOpen=!shopOpen;
+
+  document.getElementById("shopOverlay")
+    .classList.toggle("show",shopOpen);
+
+  updateCredits();
+}
+
+function closeShop(){
+
+  shopOpen=false;
+
+  document.getElementById("shopOverlay")
+    .classList.remove("show");
+}
+
+document.getElementById("closeShop")
+.addEventListener("click",closeShop);
+
+document.querySelectorAll(".buyWeapon")
+.forEach(button=>{
+
+  button.addEventListener("click",()=>{
+
+    const price=Number(button.dataset.price);
+
+    if(price===0 || spendCredits(price)){
+
+      weapon=button.dataset.name;
+      ammo=Number(button.dataset.ammo);
+
+      updateHUD();
+
+      document.getElementById("weaponName")
+        .textContent=weapon;
+
+    }else{
+
+      alert("❌ Não tens Credits suficientes!");
+
+    }
+  });
+});
+
+
+/* =========================
+   HUD
+========================= */
+
+function updateHUD(){
+
+  document.getElementById("health").textContent=health;
+  document.getElementById("ammo").textContent=ammo;
+  document.getElementById("weaponName").textContent=weapon;
+
+  document.getElementById("blueScore").textContent=blueScore;
+  document.getElementById("orangeScore").textContent=orangeScore;
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+setInterval(()=>{
+
+  if(battleStarted && !gameEnded && !shopOpen){
+
+    addCredits(5);
+  }
+
+},60000);
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+function endBattle(){
+
+  gameEnded=true;
+
+  const blueWon=blueScore>orangeScore;
+
+  document.getElementById("gameOverTitle").textContent =
+    blueWon ? "VICTORY!" : "DEFEAT!";
+
+  document.getElementById("finalScore").textContent =
+    `🔵 ${blueScore} — ${orangeScore} 🟠`;
+
+  document.getElementById("finalKills").textContent =
+    `Kills do jogador: ${playerKills}`;
+
+  const reward=blueWon ? 50:10;
+
+  addCredits(reward);
+
+  document.getElementById("earnedCredits").textContent =
+    `💳 Credits ganhos: ${reward}`;
+
+  document.getElementById("gameOver")
+    .classList.add("show");
+}
+
+document.getElementById("restartBattle")
+.addEventListener("click",()=>{
+
+  blueScore=0;
+  orangeScore=0;
+  playerKills=0;
+  health=100;
+  ammo=60;
+  weapon="Pistol";
+  gameEnded=false;
+
+  bots.forEach(bot=>{
+    bot.alive=true;
+    bot.health=100;
+    bot.mesh.visible=true;
+
+    bot.mesh.position.set(
+      bot.team==="blue"
+      ? -35-Math.random()*10
+      : 35+Math.random()*10,
+      0,
+      (Math.random()*30)-15
+    );
+  });
+
+  player.mesh.position.set(-42,0,0);
+
+  document.getElementById("gameOver")
+    .classList.remove("show");
+
+  updateHUD();
+});
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+function animate(){
+
+  requestAnimationFrame(animate);
+
+  if(!battleStarted) return;
+
+  updatePlayer();
+  updateBots();
+
+  vehicles.forEach(v=>{
+
+    if(v.occupied===player){
+
+      const speed=.12;
+
+      if(keys["KeyW"]) v.mesh.position.z-=speed;
+      if(keys["KeyS"]) v.mesh.position.z+=speed;
+      if(keys["KeyA"]) v.mesh.position.x-=speed;
+      if(keys["KeyD"]) v.mesh.position.x+=speed;
+
+      v.mesh.position.x=Math.max(-52,Math.min(52,v.mesh.position.x));
+      v.mesh.position.z=Math.max(-52,Math.min(52,v.mesh.position.z));
+
+      /* Vehicle collision kills */
+
+      bots.forEach(bot=>{
+
+        if(
+          bot.alive &&
+          bot.mesh.position.distanceTo(v.mesh.position)<3
+        ){
+
+          killBot(bot,"blue");
+        }
+      });
+    }
+  });
+
+  renderer.render(scene,camera);
+}
+
 </script>
+
 </body>
 </html>
