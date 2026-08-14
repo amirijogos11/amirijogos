@@ -1,719 +1,1111 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AMIRIJOGOS — Jogos</title>
+
 <style>
-  :root{
-    --bg:#070a10;
-    --panel:#0d121c;
-    --panel2:#111827;
-    --text:#eef2ff;
-    --muted:#9aa4b2;
-    --blue:#2388ff;
-    --blue2:#57a6ff;
-    --orange:#ff7a18;
-    --green:#38d27d;
-    --danger:#ff3b5c;
-    --shadow:0 15px 45px rgba(0,0,0,.35);
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:radial-gradient(circle at 50% -10%,#13233d 0,#070a10 45%);
-    color:var(--text);
-    min-height:100vh;
-  }
-  button,a{font:inherit}
-  button{cursor:pointer}
-  .topbar{
-    position:sticky;
-    top:0;
-    z-index:50;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    padding:14px 22px;
-    background:rgba(7,10,16,.88);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid rgba(255,255,255,.08);
-  }
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-weight:900;
-    letter-spacing:.5px;
-  }
-  .brand img{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    object-fit:cover;
-    border:2px solid var(--blue);
-  }
-  .back{
-    text-decoration:none;
-    color:#fff;
-    padding:10px 15px;
-    border-radius:10px;
-    background:#172235;
-    border:1px solid rgba(255,255,255,.1);
-  }
-  .back:hover{background:#21314b}
-  .credits{
-    padding:10px 15px;
-    border-radius:10px;
-    background:linear-gradient(135deg,#122b50,#0d1b30);
-    border:1px solid rgba(87,166,255,.3);
-    color:#9fd0ff;
-    font-weight:800;
-  }
-  .page{
-    width:min(1200px,94%);
-    margin:auto;
-    padding:35px 0 70px;
-  }
-  .hero{
-    text-align:center;
-    margin-bottom:30px;
-  }
-  .hero h1{
-    font-size:clamp(34px,6vw,62px);
-    margin:15px 0 10px;
-  }
-  .hero p{
-    color:var(--muted);
-    max-width:720px;
-    margin:0 auto;
-    line-height:1.6;
-  }
-  .tabs{
-    display:flex;
-    gap:10px;
-    justify-content:center;
-    flex-wrap:wrap;
-    margin:25px 0;
-  }
-  .tab{
-    border:1px solid rgba(255,255,255,.1);
-    background:#101827;
-    color:#dce7f7;
-    padding:12px 18px;
-    border-radius:12px;
-  }
-  .tab.active,.tab:hover{
-    background:#16335a;
-    border-color:#287fff;
-  }
-  .game{
-    display:none;
-  }
-  .game.active{
-    display:block;
-  }
-  .panel{
-    background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(10,14,22,.96));
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    box-shadow:var(--shadow);
-    padding:22px;
-  }
-  .panel h2{
-    margin-top:0;
-  }
+:root{
+  --bg:#070a10;
+  --panel:#0d121c;
+  --panel2:#111827;
+  --text:#eef2ff;
+  --muted:#9aa4b2;
+  --blue:#2388ff;
+  --orange:#ff7a18;
+  --green:#38d27d;
+  --shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:radial-gradient(circle at 50% -10%,#13233d 0,#070a10 45%);
+  color:var(--text);
+  min-height:100vh;
+}
+
+button,a{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:14px 22px;
+  background:rgba(7,10,16,.88);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+
+.brand img{
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid var(--blue);
+}
+
+.back{
+  text-decoration:none;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:10px;
+  background:#172235;
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.back:hover{
+  background:#21314b;
+}
+
+.credits{
+  padding:10px 15px;
+  border-radius:10px;
+  background:linear-gradient(135deg,#122b50,#0d1b30);
+  border:1px solid rgba(87,166,255,.3);
+  color:#9fd0ff;
+  font-weight:800;
+}
+
+.page{
+  width:min(1200px,94%);
+  margin:auto;
+  padding:35px 0 70px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:30px;
+}
+
+.hero h1{
+  font-size:clamp(34px,6vw,62px);
+  margin:15px 0 10px;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:720px;
+  margin:0 auto;
+  line-height:1.6;
+}
+
+.tabs{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:25px 0;
+}
+
+.tab{
+  border:1px solid rgba(255,255,255,.1);
+  background:#101827;
+  color:#dce7f7;
+  padding:12px 18px;
+  border-radius:12px;
+}
+
+.tab.active,
+.tab:hover{
+  background:#16335a;
+  border-color:#287fff;
+}
+
+.game{
+  display:none;
+}
+
+.game.active{
+  display:block;
+}
+
+.panel{
+  background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(10,14,22,.96));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:22px;
+}
+
+.panel h2{
+  margin-top:0;
+}
+
+.clicker-grid{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:20px;
+}
+
+.click-area{
+  min-height:440px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle,#102746 0,#0b111b 65%);
+  border-radius:16px;
+  border:1px solid rgba(87,166,255,.15);
+}
+
+.coin{
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  border:8px solid #4c9eff;
+  background:radial-gradient(circle at 35% 30%,#5cb0ff,#1555a0 70%);
+  color:#fff;
+  font-size:34px;
+  font-weight:900;
+  box-shadow:0 0 45px rgba(35,136,255,.35),inset 0 -15px 25px rgba(0,0,0,.25);
+  transition:transform .08s;
+}
+
+.coin:active{
+  transform:scale(.93);
+}
+
+.stat-row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin:18px 0;
+}
+
+.stat{
+  background:#101827;
+  padding:12px 16px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.shop-list{
+  display:grid;
+  gap:10px;
+}
+
+.shop-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:13px;
+  background:#0d1420;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.shop-item small{
+  display:block;
+  color:var(--muted);
+  margin-top:3px;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  font-weight:800;
+  color:#fff;
+  background:#1c65b9;
+}
+
+.btn:hover{
+  filter:brightness(1.12);
+}
+
+.btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.btn.orange{
+  background:#b95716;
+}
+
+.btn.green{
+  background:#18874d;
+}
+
+.message{
+  min-height:24px;
+  text-align:center;
+  color:#9fd0ff;
+  margin-top:12px;
+}
+
+/* BATTLE */
+
+.battle-layout{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
+}
+
+.hud{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.hud-box{
+  padding:12px;
+  border-radius:12px;
+  background:#0d1420;
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.hud-box strong{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:4px;
+}
+
+.blue{
+  color:#59aaff;
+}
+
+.orange{
+  color:#ff8b3d;
+}
+
+.game-wrap{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  background:#02050a;
+}
+
+.game-wrap:fullscreen{
+  width:100vw;
+  height:100vh;
+  border-radius:0;
+}
+
+.game-wrap:fullscreen #battleCanvas{
+  width:100%;
+  height:100%;
+}
+
+#battleCanvas{
+  display:block;
+  width:100%;
+  height:auto;
+  min-height:520px;
+  cursor:crosshair;
+}
+
+.crosshair{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  width:24px;
+  height:24px;
+  pointer-events:none;
+}
+
+.crosshair:before,
+.crosshair:after{
+  content:"";
+  position:absolute;
+  background:rgba(255,255,255,.9);
+}
+
+.crosshair:before{
+  width:2px;
+  height:24px;
+  left:11px;
+}
+
+.crosshair:after{
+  width:24px;
+  height:2px;
+  top:11px;
+}
+
+.controls{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.scoreline{
+  text-align:center;
+  font-size:25px;
+  font-weight:900;
+  padding:5px;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.72);
+  z-index:20;
+}
+
+.overlay.show{
+  display:flex;
+}
+
+.overlay-card{
+  width:min(480px,90%);
+  text-align:center;
+  background:#0c121d;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:18px;
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+
+.overlay-card h2{
+  font-size:42px;
+  margin:0 0 10px;
+}
+
+.shop-overlay{
+  position:absolute;
+  inset:0;
+  display:none;
+  background:rgba(2,5,10,.9);
+  z-index:15;
+  overflow:auto;
+  padding:25px;
+}
+
+.shop-overlay.show{
+  display:block;
+}
+
+.shop-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+.weapon-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.weapon{
+  background:#101827;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:15px;
+}
+
+.weapon h3{
+  margin:0 0 5px;
+}
+
+.weapon p{
+  color:var(--muted);
+  font-size:13px;
+  min-height:35px;
+}
+
+.notice{
+  margin-top:10px;
+  color:#ffcb7d;
+  font-size:13px;
+}
+
+.tips{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-top:15px;
+}
+
+footer{
+  text-align:center;
+  color:#687487;
+  padding:20px;
+}
+
+@media(max-width:800px){
+
   .clicker-grid{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:20px;
-  }
-  .click-area{
-    min-height:440px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    background:radial-gradient(circle,#102746 0,#0b111b 65%);
-    border-radius:16px;
-    border:1px solid rgba(87,166,255,.15);
-  }
-  .coin{
-    width:190px;
-    height:190px;
-    border-radius:50%;
-    border:8px solid #4c9eff;
-    background:radial-gradient(circle at 35% 30%,#5cb0ff,#1555a0 70%);
-    color:#fff;
-    font-size:34px;
-    font-weight:900;
-    box-shadow:0 0 45px rgba(35,136,255,.35),inset 0 -15px 25px rgba(0,0,0,.25);
-    transition:transform .08s;
-  }
-  .coin:active{transform:scale(.93)}
-  .stat-row{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin:18px 0;
-  }
-  .stat{
-    background:#101827;
-    padding:12px 16px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,.08);
-  }
-  .shop-list{
-    display:grid;
-    gap:10px;
-  }
-  .shop-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    padding:13px;
-    background:#0d1420;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,.06);
-  }
-  .shop-item small{display:block;color:var(--muted);margin-top:3px}
-  .btn{
-    border:0;
-    border-radius:10px;
-    padding:10px 14px;
-    font-weight:800;
-    color:#fff;
-    background:#1c65b9;
-  }
-  .btn:hover{filter:brightness(1.12)}
-  .btn:disabled{
-    opacity:.45;
-    cursor:not-allowed;
-  }
-  .btn.orange{background:#b95716}
-  .btn.green{background:#18874d}
-  .message{
-    min-height:24px;
-    text-align:center;
-    color:#9fd0ff;
-    margin-top:12px;
+    grid-template-columns:1fr;
   }
 
-  /* BATTLE */
-  .battle-layout{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:15px;
-  }
   .hud{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-  }
-  .hud-box{
-    padding:12px;
-    border-radius:12px;
-    background:#0d1420;
-    border:1px solid rgba(255,255,255,.07);
-  }
-  .hud-box strong{display:block;font-size:12px;color:var(--muted);margin-bottom:4px}
-  .blue{color:#59aaff}
-  .orange{color:#ff8b3d}
-  .game-wrap{
-    position:relative;
-    border-radius:16px;
-    overflow:hidden;
-    border:1px solid rgba(255,255,255,.1);
-    background:#02050a;
-  }
-  #battleCanvas{
-    display:block;
-    width:100%;
-    height:auto;
-    min-height:520px;
-  }
-  .crosshair{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:24px;
-    height:24px;
-    pointer-events:none;
-  }
-  .crosshair:before,.crosshair:after{
-    content:"";
-    position:absolute;
-    background:rgba(255,255,255,.9);
-  }
-  .crosshair:before{
-    width:2px;
-    height:24px;
-    left:11px;
-  }
-  .crosshair:after{
-    width:24px;
-    height:2px;
-    top:11px;
-  }
-  .controls{
-    color:var(--muted);
-    line-height:1.6;
-  }
-  .scoreline{
-    text-align:center;
-    font-size:25px;
-    font-weight:900;
-    padding:5px;
-  }
-  .overlay{
-    position:absolute;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.72);
-    z-index:20;
-  }
-  .overlay.show{display:flex}
-  .overlay-card{
-    width:min(480px,90%);
-    text-align:center;
-    background:#0c121d;
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:18px;
-    padding:30px;
-    box-shadow:var(--shadow);
-  }
-  .overlay-card h2{
-    font-size:42px;
-    margin:0 0 10px;
-  }
-  .shop-overlay{
-    position:absolute;
-    inset:0;
-    display:none;
-    background:rgba(2,5,10,.9);
-    z-index:15;
-    overflow:auto;
-    padding:25px;
-  }
-  .shop-overlay.show{display:block}
-  .shop-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:15px;
-  }
-  .weapon-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-  }
-  .weapon{
-    background:#101827;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:14px;
-    padding:15px;
-  }
-  .weapon h3{margin:0 0 5px}
-  .weapon p{color:var(--muted);font-size:13px;min-height:35px}
-  .notice{
-    margin-top:10px;
-    color:#ffcb7d;
-    font-size:13px;
-  }
-  .tips{
-    display:grid;
     grid-template-columns:1fr 1fr;
-    gap:15px;
-    margin-top:15px;
   }
-  footer{
-    text-align:center;
-    color:#687487;
-    padding:20px;
+
+  .weapon-grid{
+    grid-template-columns:1fr;
   }
-  @media(max-width:800px){
-    .clicker-grid{grid-template-columns:1fr}
-    .hud{grid-template-columns:1fr 1fr}
-    .weapon-grid{grid-template-columns:1fr}
-    .tips{grid-template-columns:1fr}
+
+  .tips{
+    grid-template-columns:1fr;
   }
+
+  .topbar{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
 </style>
 </head>
+
 <body>
 
 <header class="topbar">
+
   <div class="brand">
     <img src="perfil.jpg" alt="AMIRIJOGOS">
     <span>AMIRIJOGOS</span>
   </div>
 
-  <a class="back" href="index.html">← Voltar ao AMIRIJOGOS</a>
+  <a class="back" href="index.html">
+    ← Voltar ao AMIRIJOGOS
+  </a>
 
   <div class="credits">
     💳 Credits: <span id="globalCredits">0</span>
   </div>
+
 </header>
 
 <main class="page">
 
-  <section class="hero">
-    <h1>🎮 Jogos AMIRIJOGOS</h1>
-    <p>
-      Joga, ganha Coins, transforma-os em Credits e usa os teus Credits
-      nos jogos do site.
-    </p>
-  </section>
+<section class="hero">
 
-  <div class="tabs">
-    <button class="tab active" data-game="clickerGame">🖱️ AMIRIJOGOS Clicker</button>
-    <button class="tab" data-game="battleGame">⚔️ AMIRIJOGOS Battle</button>
-  </div>
+  <h1>🎮 Jogos AMIRIJOGOS</h1>
 
-  <section id="clickerGame" class="game active">
-    <div class="clicker-grid">
+  <p>
+    Joga, ganha Coins, transforma-os em Credits e usa os teus Credits
+    nos jogos do site.
+  </p>
 
-      <div class="panel click-area">
-        <h2>🪙 AMIRIJOGOS Clicker</h2>
+</section>
 
-        <div class="stat-row">
-          <div class="stat">Coins: <strong id="coins">0</strong></div>
-          <div class="stat">Por clique: <strong id="perClick">1</strong></div>
-          <div class="stat">Multiplicador: <strong id="multiplier">x1</strong></div>
-        </div>
+<div class="tabs">
 
-        <button id="coinButton" class="coin">CLICK!</button>
+  <button class="tab active" data-game="clickerGame">
+    🖱️ AMIRIJOGOS Clicker
+  </button>
 
-        <div class="message" id="clickerMessage"></div>
-      </div>
+  <button class="tab" data-game="battleGame">
+    ⚔️ AMIRIJOGOS Battle
+  </button>
 
-      <div class="panel">
-        <h2>🛒 Loja do Clicker</h2>
+</div>
 
-        <div class="shop-list">
+<section id="clickerGame" class="game active">
 
-          <div class="shop-item">
-            <div>
-              <strong>⚡ Clique Forte</strong>
-              <small>+1 Coin por clique</small>
-            </div>
-            <button class="btn" id="upgradeClick">Comprar — 50</button>
-          </div>
+<div class="clicker-grid">
 
-          <div class="shop-item">
-            <div>
-              <strong>🔥 Super Clique</strong>
-              <small>+5 Coins por clique</small>
-            </div>
-            <button class="btn" id="upgradeClick5">Comprar — 300</button>
-          </div>
+<div class="panel click-area">
 
-          <div class="shop-item">
-            <div>
-              <strong>🚀 Multiplicador</strong>
-              <small>Multiplica os Coins por 2</small>
-            </div>
-            <button class="btn" id="upgradeMultiplier">Comprar — 1000</button>
-          </div>
+<h2>🪙 AMIRIJOGOS Clicker</h2>
 
-          <div class="shop-item">
-            <div>
-              <strong>💳 Trocar Coins</strong>
-              <small>1000 Coins → 10 Credits</small>
-            </div>
-            <button class="btn green" id="convertCoins">Trocar</button>
-          </div>
+<div class="stat-row">
 
-        </div>
+<div class="stat">
+Coins: <strong id="coins">0</strong>
+</div>
 
-        <div class="message" id="conversionMessage"></div>
+<div class="stat">
+Por clique: <strong id="perClick">1</strong>
+</div>
 
-        <div class="notice">
-          ⚠️ Coins pertencem apenas ao Clicker. Credits são a moeda universal do site.
-        </div>
-      </div>
+<div class="stat">
+Multiplicador: <strong id="multiplier">x1</strong>
+</div>
 
-    </div>
-  </section>
+</div>
 
-  <section id="battleGame" class="game">
+<button id="coinButton" class="coin">
+CLICK!
+</button>
 
-    <div class="panel battle-layout">
+<div class="message" id="clickerMessage"></div>
 
-      <div class="scoreline">
-        <span class="blue">🔵 BLUE <span id="blueScore">0</span></span>
-        &nbsp;—&nbsp;
-        <span class="orange">🟠 ORANGE <span id="orangeScore">0</span></span>
-      </div>
+</div>
 
-      <div class="hud">
+<div class="panel">
 
-        <div class="hud-box">
-          <strong>VIDA</strong>
-          <span id="health">100</span>
-        </div>
+<h2>🛒 Loja do Clicker</h2>
 
-        <div class="hud-box">
-          <strong>ARMA</strong>
-          <span id="weaponName">Pistol</span>
-        </div>
+<div class="shop-list">
 
-        <div class="hud-box">
-          <strong>MUNIÇÃO</strong>
-          <span id="ammo">60</span>
-        </div>
+<div class="shop-item">
 
-        <div class="hud-box">
-          <strong>CÂMARA</strong>
-          <span id="cameraMode">Third Person</span>
-        </div>
+<div>
+<strong>⚡ Clique Forte</strong>
+<small>+1 Coin por clique</small>
+</div>
 
-      </div>
+<button class="btn" id="upgradeClick">
+Comprar — 50
+</button>
 
-        <div class="game-wrap">
-        <button id="fullscreenBtn" class="btn green">
-        ⛶ Ecrã Inteiro
-        </button>
-          
-        <canvas id="battleCanvas" width="1100" height="620"></canvas>
+</div>
 
-        <div class="crosshair"></div>
+<div class="shop-item">
 
-        <div id="shopOverlay" class="shop-overlay">
+<div>
+<strong>🔥 Super Clique</strong>
+<small>+5 Coins por clique</small>
+</div>
 
-          <div class="shop-head">
-            <h2>🛒 Loja de Batalha</h2>
-            <button class="btn" id="closeShop">Fechar [TAB]</button>
-          </div>
+<button class="btn" id="upgradeClick5">
+Comprar — 300
+</button>
 
-          <p>
-            Credits disponíveis:
-            <strong id="shopCredits">0</strong>
-          </p>
+</div>
 
-          <div class="weapon-grid">
+<div class="shop-item">
 
-            <div class="weapon">
-              <h3>🔫 Pistol</h3>
-              <p>Arma básica e rápida.</p>
-              <button class="btn buyWeapon" data-name="Pistol" data-price="0" data-ammo="60">
-                Equipar — GRÁTIS
-              </button>
-            </div>
+<div>
+<strong>🚀 Multiplicador</strong>
+<small>Multiplica os Coins por 2</small>
+</div>
 
-            <div class="weapon">
-              <h3>🔫 Rifle</h3>
-              <p>Boa precisão e dano equilibrado.</p>
-              <button class="btn buyWeapon" data-name="Rifle" data-price="25" data-ammo="120">
-                Comprar — 25
-              </button>
-            </div>
+<button class="btn" id="upgradeMultiplier">
+Comprar — 1000
+</button>
 
-            <div class="weapon">
-              <h3>💥 Shotgun</h3>
-              <p>Dano elevado a curta distância.</p>
-              <button class="btn buyWeapon" data-name="Shotgun" data-price="40" data-ammo="40">
-                Comprar — 40
-              </button>
-            </div>
+</div>
 
-            <div class="weapon">
-              <h3>⚡ SMG</h3>
-              <p>Alta cadência de disparo.</p>
-              <button class="btn buyWeapon" data-name="SMG" data-price="55" data-ammo="180">
-                Comprar — 55
-              </button>
-            </div>
+<div class="shop-item">
 
-            <div class="weapon">
-              <h3>🎯 Sniper</h3>
-              <p>Precisão elevada e disparos fortes.</p>
-              <button class="btn buyWeapon" data-name="Sniper" data-price="75" data-ammo="30">
-                Comprar — 75
-              </button>
-            </div>
+<div>
+<strong>💳 Trocar Coins</strong>
+<small>1000 Coins → 10 Credits</small>
+</div>
 
-            <div class="weapon">
-              <h3>🚀 Rocket Launcher</h3>
-              <p>Projéteis explosivos fictícios.</p>
-              <button class="btn buyWeapon" data-name="Rocket Launcher" data-price="100" data-ammo="10">
-                Comprar — 100
-              </button>
-            </div>
+<button class="btn green" id="convertCoins">
+Trocar
+</button>
 
-            <div class="weapon">
-              <h3>💣 Grenade</h3>
-              <p>Item explosivo exclusivamente para o jogo.</p>
-              <button class="btn buyWeapon" data-name="Grenade" data-price="35" data-ammo="5">
-                Comprar — 35
-              </button>
-            </div>
+</div>
 
-          </div>
+</div>
 
-        </div>
+<div class="message" id="conversionMessage"></div>
 
-        <div id="gameOver" class="overlay">
+<div class="notice">
+⚠️ Coins pertencem apenas ao Clicker. Credits são a moeda universal do site.
+</div>
 
-          <div class="overlay-card">
-            <h2 id="gameOverTitle">VICTORY!</h2>
+</div>
 
-            <p id="finalScore"></p>
-            <p id="finalKills"></p>
-            <p id="earnedCredits"></p>
+</div>
 
-            <button class="btn green" id="restartBattle">
-              🔄 Jogar novamente
-            </button>
-          </div>
+</section>
 
-        </div>
+<section id="battleGame" class="game">
 
-      </div>
+<div class="panel battle-layout">
 
-      <div class="controls">
-        <strong>Controlos:</strong><br>
-        WASD — Mover &nbsp; | &nbsp;
-        Mouse — Olhar &nbsp; | &nbsp;
-        Clique esquerdo — Disparar &nbsp; | &nbsp;
-        R — Recarregar &nbsp; | &nbsp;
-        E — Entrar/Sair do veículo &nbsp; | &nbsp;
-        V — Primeira/Terceira pessoa &nbsp; | &nbsp;
-        TAB — Loja &nbsp; | &nbsp;
-        ESC — Fechar loja
-      </div>
+<div class="scoreline">
 
-      <div class="tips">
-        <div class="panel">
-          <strong>🔵 Equipa Blue</strong>
-          <p>Tu + 9 bots. A tua equipa é sempre azul.</p>
-        </div>
+<span class="blue">
+🔵 BLUE <span id="blueScore">0</span>
+</span>
 
-        <div class="panel">
-          <strong>🟠 Equipa Orange</strong>
-          <p>10 bots adversários com dificuldade moderada.</p>
-        </div>
-      </div>
+&nbsp;—&nbsp;
 
-    </div>
-  </section>
+<span class="orange">
+🟠 ORANGE <span id="orangeScore">0</span>
+</span>
+
+</div>
+
+<div class="hud">
+
+<div class="hud-box">
+<strong>VIDA</strong>
+<span id="health">100</span>
+</div>
+
+<div class="hud-box">
+<strong>ARMA</strong>
+<span id="weaponName">Pistol</span>
+</div>
+
+<div class="hud-box">
+<strong>MUNIÇÃO</strong>
+<span id="ammo">60</span>
+</div>
+
+<div class="hud-box">
+<strong>CÂMARA</strong>
+<span id="cameraMode">Third Person</span>
+</div>
+
+</div>
+
+<div class="game-wrap" id="gameWrap">
+
+<button id="fullscreenBtn" class="btn green">
+⛶ Ecrã Inteiro
+</button>
+
+<canvas id="battleCanvas" width="1100" height="620"></canvas>
+
+<div class="crosshair"></div>
+
+<div id="shopOverlay" class="shop-overlay">
+
+<div class="shop-head">
+
+<h2>🛒 Loja de Batalha</h2>
+
+<button class="btn" id="closeShop">
+Fechar [TAB]
+</button>
+
+</div>
+
+<p>
+Credits disponíveis:
+<strong id="shopCredits">0</strong>
+</p>
+
+<div class="weapon-grid">
+
+<div class="weapon">
+<h3>🔫 Pistol</h3>
+<p>Arma básica e rápida.</p>
+
+<button class="btn buyWeapon"
+data-name="Pistol"
+data-price="0"
+data-ammo="60">
+Equipar — GRÁTIS
+</button>
+</div>
+
+<div class="weapon">
+<h3>🔫 Rifle</h3>
+<p>Boa precisão e dano equilibrado.</p>
+
+<button class="btn buyWeapon"
+data-name="Rifle"
+data-price="25"
+data-ammo="120">
+Comprar — 25
+</button>
+</div>
+
+<div class="weapon">
+<h3>💥 Shotgun</h3>
+<p>Dano elevado a curta distância.</p>
+
+<button class="btn buyWeapon"
+data-name="Shotgun"
+data-price="40"
+data-ammo="40">
+Comprar — 40
+</button>
+</div>
+
+<div class="weapon">
+<h3>⚡ SMG</h3>
+<p>Alta cadência de disparo.</p>
+
+<button class="btn buyWeapon"
+data-name="SMG"
+data-price="55"
+data-ammo="180">
+Comprar — 55
+</button>
+</div>
+
+<div class="weapon">
+<h3>🎯 Sniper</h3>
+<p>Precisão elevada e disparos fortes.</p>
+
+<button class="btn buyWeapon"
+data-name="Sniper"
+data-price="75"
+data-ammo="30">
+Comprar — 75
+</button>
+</div>
+
+<div class="weapon">
+<h3>🚀 Rocket Launcher</h3>
+<p>Projéteis fictícios para o jogo.</p>
+
+<button class="btn buyWeapon"
+data-name="Rocket Launcher"
+data-price="100"
+data-ammo="10">
+Comprar — 100
+</button>
+</div>
+
+<div class="weapon">
+<h3>💣 Grenade</h3>
+<p>Item explosivo exclusivamente para o jogo.</p>
+
+<button class="btn buyWeapon"
+data-name="Grenade"
+data-price="35"
+data-ammo="5">
+Comprar — 35
+</button>
+</div>
+
+</div>
+</div>
+
+<div id="gameOver" class="overlay">
+
+<div class="overlay-card">
+
+<h2 id="gameOverTitle">
+VICTORY!
+</h2>
+
+<p id="finalScore"></p>
+<p id="finalKills"></p>
+<p id="earnedCredits"></p>
+
+<button class="btn green" id="restartBattle">
+🔄 Jogar novamente
+</button>
+
+</div>
+</div>
+
+</div>
+
+<div class="controls">
+
+<strong>Controlos:</strong><br>
+
+WASD — Mover &nbsp; | &nbsp;
+Mouse — Olhar &nbsp; | &nbsp;
+Clique esquerdo — Disparar &nbsp; | &nbsp;
+R — Recarregar &nbsp; | &nbsp;
+E — Entrar/Sair do veículo &nbsp; | &nbsp;
+V — Primeira/Terceira pessoa &nbsp; | &nbsp;
+TAB — Loja &nbsp; | &nbsp;
+ESC — Fechar loja
+
+</div>
+
+<div class="tips">
+
+<div class="panel">
+
+<strong>🔵 Equipa Blue</strong>
+
+<p>
+Tu + 9 bots. A tua equipa é sempre azul.
+</p>
+
+</div>
+
+<div class="panel">
+
+<strong>🟠 Equipa Orange</strong>
+
+<p>
+10 bots adversários com dificuldade moderada.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
 <footer>
-  © 2026 AMIRIJOGOS — Todos os Credits são virtuais e usados apenas no site.
+© 2026 AMIRIJOGOS — Todos os Credits são virtuais e usados apenas no site.
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 
 <script>
-/* =========================
-   UNIVERSAL CREDITS
-========================= */
 
 /* =========================
-   FULLSCREEN + MOUSE LOOK
+   GLOBAL CREDITS
 ========================= */
 
-let yaw = 0;
-let pitch = 0;
-let pointerLocked = false;
-
-document.addEventListener("pointerlockchange", () => {
-  pointerLocked =
-    document.pointerLockElement === battleCanvas;
-});
-
-document.addEventListener("mousemove", (event) => {
-
-  if (!pointerLocked || shopOpen || gameEnded) return;
-
-  yaw -= event.movementX * 0.0025;
-  pitch -= event.movementY * 0.0025;
-
-  pitch = Math.max(-1.2, Math.min(1.2, pitch));
-});
-
-battleCanvas.addEventListener("click", () => {
-
-  if (
-    !shopOpen &&
-    !gameEnded &&
-    document.pointerLockElement !== battleCanvas
-  ) {
-    battleCanvas.requestPointerLock();
-  }
-
-});
-
-document.addEventListener("pointerlockchange", () => {
-
-  pointerLocked =
-    document.pointerLockElement === battleCanvas;
-
-});
-
-document.addEventListener("mousemove", (event) => {
-
-  if (!pointerLocked || shopOpen || gameEnded) return;
-
-  yaw -= event.movementX * 0.0025;
-  pitch -= event.movementY * 0.0025;
-
-  pitch = Math.max(
-    -1.2,
-    Math.min(1.2, pitch)
-  );
-
-});
-let globalCredits = Number(localStorage.getItem("amirijogosCredits") || 0);
+let globalCredits =
+Number(localStorage.getItem("amirijogosCredits") || 0);
 
 function updateCredits(){
-  globalCredits = Math.max(0, Math.floor(globalCredits));
-  localStorage.setItem("amirijogosCredits", globalCredits);
-  document.getElementById("globalCredits").textContent = globalCredits;
-  document.getElementById("shopCredits").textContent = globalCredits;
+
+globalCredits=Math.max(0,Math.floor(globalCredits));
+
+localStorage.setItem(
+"amirijogosCredits",
+globalCredits
+);
+
+document.getElementById("globalCredits").textContent=
+globalCredits;
+
+document.getElementById("shopCredits").textContent=
+globalCredits;
+
 }
 
 function addCredits(amount){
-  globalCredits += amount;
-  updateCredits();
+
+globalCredits+=amount;
+
+updateCredits();
+
 }
 
 function spendCredits(amount){
-  if(globalCredits < amount) return false;
-  globalCredits -= amount;
-  updateCredits();
-  return true;
+
+if(globalCredits<amount)
+return false;
+
+globalCredits-=amount;
+
+updateCredits();
+
+return true;
+
 }
 
 updateCredits();
 
 
 /* =========================
+   GAME VARIABLES
+========================= */
+
+let battleStarted=false;
+
+let scene;
+let camera;
+let renderer;
+
+let player;
+
+let bots=[];
+let vehicles=[];
+
+let keys={};
+
+let cameraThirdPerson=true;
+
+let shopOpen=false;
+let gameEnded=false;
+
+let blueScore=0;
+let orangeScore=0;
+let playerKills=0;
+
+let health=100;
+let ammo=60;
+let weapon="Pistol";
+
+let yaw=0;
+let pitch=0;
+
+let pointerLocked=false;
+
+const battleCanvas=
+document.getElementById("battleCanvas");
+
+const gameWrap=
+document.getElementById("gameWrap");
+
+const fullscreenBtn=
+document.getElementById("fullscreenBtn");
+
+
+/* =========================
+   POINTER LOCK
+========================= */
+
+document.addEventListener(
+"pointerlockchange",
+()=>{
+
+pointerLocked=
+document.pointerLockElement===
+battleCanvas;
+
+}
+);
+
+document.addEventListener(
+"mousemove",
+event=>{
+
+if(
+!pointerLocked ||
+shopOpen ||
+gameEnded
+)
+return;
+
+yaw-=event.movementX*.0025;
+
+pitch-=event.movementY*.0025;
+
+pitch=Math.max(
+-1.2,
+Math.min(1.2,pitch)
+);
+
+}
+);
+
+
+/* =========================
+   FULLSCREEN
+========================= */
+
+fullscreenBtn.addEventListener(
+"click",
+async()=>{
+
+try{
+
+if(!document.fullscreenElement){
+
+await gameWrap.requestFullscreen();
+
+}else{
+
+await document.exitFullscreen();
+
+}
+
+if(!shopOpen && !gameEnded){
+
+battleCanvas.requestPointerLock();
+
+}
+
+}catch(error){
+
+console.error(
+"Erro no fullscreen:",
+error
+);
+
+}
+
+}
+);
+
+
+/* =========================
+   CANVAS CLICK
+========================= */
+
+battleCanvas.addEventListener(
+"click",
+()=>{
+
+if(
+!shopOpen &&
+!gameEnded
+){
+
+if(
+document.pointerLockElement!==
+battleCanvas
+){
+
+battleCanvas.requestPointerLock();
+
+}else{
+
+shoot();
+
+}
+
+}
+
+}
+);
+
+
+/* =========================
    TABS
 ========================= */
 
-document.querySelectorAll(".tab").forEach(tab=>{
-  tab.addEventListener("click",()=>{
-    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-    document.querySelectorAll(".game").forEach(g=>g.classList.remove("active"));
+document.querySelectorAll(".tab")
+.forEach(tab=>{
 
-    tab.classList.add("active");
-    document.getElementById(tab.dataset.game).classList.add("active");
+tab.addEventListener(
+"click",
+()=>{
 
-    if(tab.dataset.game === "battleGame" && !battleStarted){
-      startBattle();
-    }
-  });
+document.querySelectorAll(".tab")
+.forEach(t=>
+t.classList.remove("active")
+);
+
+document.querySelectorAll(".game")
+.forEach(g=>
+g.classList.remove("active")
+);
+
+tab.classList.add("active");
+
+document.getElementById(
+tab.dataset.game
+).classList.add("active");
+
+if(
+tab.dataset.game==="battleGame" &&
+!battleStarted
+){
+
+startBattle();
+
+}
+
+}
+);
+
 });
 
 
@@ -721,165 +1113,309 @@ document.querySelectorAll(".tab").forEach(tab=>{
    CLICKER
 ========================= */
 
-let coins = Number(localStorage.getItem("amirijogosCoins") || 0);
-let perClick = Number(localStorage.getItem("amirijogosPerClick") || 1);
-let multiplier = Number(localStorage.getItem("amirijogosMultiplier") || 1);
+let coins=
+Number(localStorage.getItem(
+"amirijogosCoins"
+)||0);
 
-const coinButton = document.getElementById("coinButton");
-const coinsEl = document.getElementById("coins");
-const perClickEl = document.getElementById("perClick");
-const multiplierEl = document.getElementById("multiplier");
+let perClick=
+Number(localStorage.getItem(
+"amirijogosPerClick"
+)||1);
+
+let multiplier=
+Number(localStorage.getItem(
+"amirijogosMultiplier"
+)||1);
+
+const coinButton=
+document.getElementById("coinButton");
+
+const coinsEl=
+document.getElementById("coins");
+
+const perClickEl=
+document.getElementById("perClick");
+
+const multiplierEl=
+document.getElementById("multiplier");
 
 function saveClicker(){
-  localStorage.setItem("amirijogosCoins", coins);
-  localStorage.setItem("amirijogosPerClick", perClick);
-  localStorage.setItem("amirijogosMultiplier", multiplier);
 
-  coinsEl.textContent = Math.floor(coins);
-  perClickEl.textContent = perClick;
-  multiplierEl.textContent = "x" + multiplier;
+localStorage.setItem(
+"amirijogosCoins",
+coins
+);
+
+localStorage.setItem(
+"amirijogosPerClick",
+perClick
+);
+
+localStorage.setItem(
+"amirijogosMultiplier",
+multiplier
+);
+
+coinsEl.textContent=
+Math.floor(coins);
+
+perClickEl.textContent=
+perClick;
+
+multiplierEl.textContent=
+"x"+multiplier;
+
 }
 
-coinButton.addEventListener("click",()=>{
-  coins += perClick * multiplier;
-  saveClicker();
+coinButton.addEventListener(
+"click",
+()=>{
 
-  coinButton.style.transform = "scale(.93)";
-  setTimeout(()=>coinButton.style.transform="",80);
-});
+coins+=perClick*multiplier;
 
-document.getElementById("upgradeClick").addEventListener("click",()=>{
-  if(coins >= 50){
-    coins -= 50;
-    perClick += 1;
-    saveClicker();
-  }
-});
+saveClicker();
 
-document.getElementById("upgradeClick5").addEventListener("click",()=>{
-  if(coins >= 300){
-    coins -= 300;
-    perClick += 5;
-    saveClicker();
-  }
-});
+coinButton.style.transform=
+"scale(.93)";
 
-document.getElementById("upgradeMultiplier").addEventListener("click",()=>{
-  if(coins >= 1000){
-    coins -= 1000;
-    multiplier *= 2;
-    saveClicker();
-  }
-});
+setTimeout(
+()=>coinButton.style.transform="",
+80
+);
 
-document.getElementById("convertCoins").addEventListener("click",()=>{
-  if(coins >= 1000){
-    coins -= 1000;
-    addCredits(10);
+}
+);
 
-    document.getElementById("conversionMessage").textContent =
-      "✅ Trocaste 1000 Coins por 10 Credits!";
+document.getElementById(
+"upgradeClick"
+).addEventListener(
+"click",
+()=>{
 
-    saveClicker();
-  }else{
-    document.getElementById("conversionMessage").textContent =
-      "❌ Precisas de 1000 Coins.";
-  }
-});
+if(coins>=50){
+
+coins-=50;
+perClick+=1;
+
+saveClicker();
+
+}
+
+}
+);
+
+document.getElementById(
+"upgradeClick5"
+).addEventListener(
+"click",
+()=>{
+
+if(coins>=300){
+
+coins-=300;
+perClick+=5;
+
+saveClicker();
+
+}
+
+}
+);
+
+document.getElementById(
+"upgradeMultiplier"
+).addEventListener(
+"click",
+()=>{
+
+if(coins>=1000){
+
+coins-=1000;
+multiplier*=2;
+
+saveClicker();
+
+}
+
+}
+);
+
+document.getElementById(
+"convertCoins"
+).addEventListener(
+"click",
+()=>{
+
+if(coins>=1000){
+
+coins-=1000;
+
+addCredits(10);
+
+document.getElementById(
+"conversionMessage"
+).textContent=
+"✅ Trocaste 1000 Coins por 10 Credits!";
+
+saveClicker();
+
+}else{
+
+document.getElementById(
+"conversionMessage"
+).textContent=
+"❌ Precisas de 1000 Coins.";
+
+}
+
+}
+);
 
 saveClicker();
 
 
 /* =========================
-   BATTLE — THREE.JS
+   START BATTLE
 ========================= */
-
-let battleStarted = false;
-let scene, camera, renderer;
-let player;
-let bots = [];
-let vehicles = [];
-let keys = {};
-let mouse = {x:0,y:0};
-let cameraThirdPerson = true;
-let shopOpen = false;
-let gameEnded = false;
-
-let blueScore = 0;
-let orangeScore = 0;
-let playerKills = 0;
-
-let health = 100;
-let ammo = 60;
-let weapon = "Pistol";
-
-const battleCanvas = document.getElementById("battleCanvas");
 
 function startBattle(){
 
-  if(battleStarted) return;
+if(battleStarted)
+return;
 
-  battleStarted = true;
+battleStarted=true;
 
-  if(typeof THREE === "undefined"){
-    document.getElementById("battleCanvas").style.display="none";
+if(typeof THREE==="undefined"){
 
-    const error = document.createElement("div");
-    error.style.padding="40px";
-    error.style.textAlign="center";
-    error.style.color="#ff6b6b";
-    error.textContent="Erro ao carregar o motor 3D. Verifica a ligação à internet e recarrega a página.";
+const error=
+document.createElement("div");
 
-    battleCanvas.parentElement.appendChild(error);
-    return;
-  }
+error.style.padding="40px";
+error.style.textAlign="center";
+error.style.color="#ff6b6b";
 
-  initThree();
-  createMap();
-  createPlayer();
-  createBots();
-  createVehicles();
-  setupControls();
-  animate();
+error.textContent=
+"Erro ao carregar o motor 3D. Verifica a ligação à internet e recarrega a página.";
+
+battleCanvas.style.display="none";
+
+gameWrap.appendChild(error);
+
+return;
+
+}
+
+initThree();
+
+createMap();
+
+createPlayer();
+
+createBots();
+
+createVehicles();
+
+setupControls();
+
+updateHUD();
+
+animate();
+
 }
 
 
 /* =========================
-   SCENE
+   THREE.JS
 ========================= */
 
 function initThree(){
 
-  scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x87a9c4);
+scene=new THREE.Scene();
 
-  camera = new THREE.PerspectiveCamera(
-    70,
-    battleCanvas.width / battleCanvas.height,
-    .1,
-    1000
-  );
+scene.background=
+new THREE.Color(0x87a9c4);
 
-  renderer = new THREE.WebGLRenderer({
-    canvas:battleCanvas,
-    antialias:true
-  });
+camera=
+new THREE.PerspectiveCamera(
+70,
+battleCanvas.clientWidth/
+battleCanvas.clientHeight,
+.1,
+1000
+);
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-  renderer.shadowMap.enabled=true;
+renderer=
+new THREE.WebGLRenderer({
+canvas:battleCanvas,
+antialias:true
+});
 
-  const hemi = new THREE.HemisphereLight(
-    0xffffff,
-    0x405060,
-    1.2
-  );
+renderer.setPixelRatio(
+Math.min(window.devicePixelRatio,2)
+);
 
-  scene.add(hemi);
+renderer.setSize(
+battleCanvas.clientWidth,
+battleCanvas.clientHeight,
+false
+);
 
-  const sun = new THREE.DirectionalLight(0xffffff,1.4);
-  sun.position.set(30,60,20);
-  sun.castShadow=true;
-  scene.add(sun);
+renderer.shadowMap.enabled=true;
+
+const hemi=
+new THREE.HemisphereLight(
+0xffffff,
+0x405060,
+1.2
+);
+
+scene.add(hemi);
+
+const sun=
+new THREE.DirectionalLight(
+0xffffff,
+1.4
+);
+
+sun.position.set(30,60,20);
+
+sun.castShadow=true;
+
+scene.add(sun);
+
+window.addEventListener(
+"resize",
+resizeGame
+);
+
+}
+
+
+function resizeGame(){
+
+if(!camera || !renderer)
+return;
+
+const width=
+battleCanvas.clientWidth ||
+window.innerWidth;
+
+const height=
+battleCanvas.clientHeight ||
+window.innerHeight;
+
+camera.aspect=
+width/height;
+
+camera.updateProjectionMatrix();
+
+renderer.setSize(
+width,
+height,
+false
+);
+
 }
 
 
@@ -889,97 +1425,191 @@ function initThree(){
 
 function createMap(){
 
-  const ground = new THREE.Mesh(
-    new THREE.PlaneGeometry(140,140),
-    new THREE.MeshStandardMaterial({color:0x314b32})
-  );
+const ground=
+new THREE.Mesh(
+new THREE.PlaneGeometry(140,140),
+new THREE.MeshStandardMaterial({
+color:0x314b32
+})
+);
 
-  ground.rotation.x=-Math.PI/2;
-  ground.receiveShadow=true;
-  scene.add(ground);
+ground.rotation.x=
+-Math.PI/2;
 
-  function box(x,y,z,sx,sy,sz,color){
+ground.receiveShadow=true;
 
-    const mesh = new THREE.Mesh(
-      new THREE.BoxGeometry(sx,sy,sz),
-      new THREE.MeshStandardMaterial({color})
-    );
+scene.add(ground);
 
-    mesh.position.set(x,y,z);
-    mesh.castShadow=true;
-    mesh.receiveShadow=true;
 
-    scene.add(mesh);
+function box(
+x,y,z,
+sx,sy,sz,
+color
+){
 
-    return mesh;
-  }
+const mesh=
+new THREE.Mesh(
+new THREE.BoxGeometry(
+sx,sy,sz
+),
+new THREE.MeshStandardMaterial({
+color
+})
+);
 
-  /* Roads */
+mesh.position.set(x,y,z);
 
-  box(0,.02,0,140,.05,10,0x343434);
-  box(0,.03,0,10,.06,140,0x343434);
+mesh.castShadow=true;
+mesh.receiveShadow=true;
 
-  /* Buildings */
+scene.add(mesh);
 
-  for(let i=0;i<18;i++){
+return mesh;
 
-    const x=(Math.random()*110)-55;
-    const z=(Math.random()*110)-55;
+}
 
-    if(Math.abs(x)<15 || Math.abs(z)<15) continue;
 
-    box(
-      x,
-      3,
-      z,
-      8+Math.random()*8,
-      6,
-      8+Math.random()*8,
-      0x555c66
-    );
-  }
+/* ROADS */
 
-  /* Walls */
+box(
+0,.02,0,
+140,.05,10,
+0x343434
+);
 
-  box(-55,2,0,2,4,110,0x666666);
-  box(55,2,0,2,4,110,0x666666);
-  box(0,2,-55,110,4,2,0x666666);
-  box(0,2,55,110,4,2,0x666666);
+box(
+0,.03,0,
+10,.06,140,
+0x343434
+);
 
-  /* Blue spawn */
 
-  box(-45,.15,0,12,.3,25,0x165da8);
+/* BUILDINGS */
 
-  /* Orange spawn */
+for(
+let i=0;
+i<18;
+i++
+){
 
-  box(45,.15,0,12,.3,25,0xb95318);
+const x=
+Math.random()*110-55;
 
-  /* Trees */
+const z=
+Math.random()*110-55;
 
-  for(let i=0;i<25;i++){
+if(
+Math.abs(x)<15 ||
+Math.abs(z)<15
+)
+continue;
 
-    const x=(Math.random()*100)-50;
-    const z=(Math.random()*100)-50;
+box(
+x,
+3,
+z,
+8+Math.random()*8,
+6,
+8+Math.random()*8,
+0x555c66
+);
 
-    const trunk = new THREE.Mesh(
-      new THREE.CylinderGeometry(.35,.5,3,8),
-      new THREE.MeshStandardMaterial({color:0x60432e})
-    );
+}
 
-    trunk.position.set(x,1.5,z);
-    trunk.castShadow=true;
 
-    const leaves = new THREE.Mesh(
-      new THREE.SphereGeometry(2.2,8,8),
-      new THREE.MeshStandardMaterial({color:0x1e7139})
-    );
+/* WALLS */
 
-    leaves.position.set(x,4,z);
-    leaves.castShadow=true;
+box(
+-55,2,0,
+2,4,110,
+0x666666
+);
 
-    scene.add(trunk);
-    scene.add(leaves);
-  }
+box(
+55,2,0,
+2,4,110,
+0x666666
+);
+
+box(
+0,2,-55,
+110,4,2,
+0x666666
+);
+
+box(
+0,2,55,
+110,4,2,
+0x666666
+);
+
+
+/* SPAWNS */
+
+box(
+-45,.15,0,
+12,.3,25,
+0x165da8
+);
+
+box(
+45,.15,0,
+12,.3,25,
+0xb95318
+);
+
+
+/* TREES */
+
+for(
+let i=0;
+i<25;
+i++
+){
+
+const x=
+Math.random()*100-50;
+
+const z=
+Math.random()*100-50;
+
+const trunk=
+new THREE.Mesh(
+new THREE.CylinderGeometry(
+.35,.5,3,8
+),
+new THREE.MeshStandardMaterial({
+color:0x60432e
+})
+);
+
+trunk.position.set(
+x,1.5,z
+);
+
+trunk.castShadow=true;
+
+const leaves=
+new THREE.Mesh(
+new THREE.SphereGeometry(
+2.2,8,8
+),
+new THREE.MeshStandardMaterial({
+color:0x1e7139
+})
+);
+
+leaves.position.set(
+x,4,z
+);
+
+leaves.castShadow=true;
+
+scene.add(trunk);
+scene.add(leaves);
+
+}
+
 }
 
 
@@ -989,103 +1619,141 @@ function createMap(){
 
 function createCharacter(color){
 
-  const g = new THREE.Group();
+const group=
+new THREE.Group();
 
-  /*
-    Compatible with Three.js r128:
-    DO NOT use THREE.CapsuleGeometry.
-    The body is made from a cylinder and two flattened spheres.
-  */
+const material=
+new THREE.MeshStandardMaterial({
+color
+});
 
-  const bodyMat = new THREE.MeshStandardMaterial({color});
+const body=
+new THREE.Mesh(
+new THREE.CylinderGeometry(
+.6,.6,1.2,10
+),
+material
+);
 
-  const body = new THREE.Mesh(
-    new THREE.CylinderGeometry(.6,.6,1.2,10),
-    bodyMat
-  );
+body.position.y=1.1;
+body.castShadow=true;
 
-  body.position.y=1.1;
-  body.castShadow=true;
+const top=
+new THREE.Mesh(
+new THREE.SphereGeometry(
+.6,10,8
+),
+material
+);
 
-  const bodyTop = new THREE.Mesh(
-    new THREE.SphereGeometry(.6,10,8),
-    bodyMat
-  );
+top.scale.y=.55;
+top.position.y=1.7;
+top.castShadow=true;
 
-  bodyTop.scale.y=.55;
-  bodyTop.position.y=1.7;
-  bodyTop.castShadow=true;
+const bottom=
+new THREE.Mesh(
+new THREE.SphereGeometry(
+.6,10,8
+),
+material
+);
 
-  const bodyBottom = new THREE.Mesh(
-    new THREE.SphereGeometry(.6,10,8),
-    bodyMat
-  );
+bottom.scale.y=.55;
+bottom.position.y=.5;
+bottom.castShadow=true;
 
-  bodyBottom.scale.y=.55;
-  bodyBottom.position.y=.5;
-  bodyBottom.castShadow=true;
+const head=
+new THREE.Mesh(
+new THREE.SphereGeometry(
+.4,10,10
+),
+new THREE.MeshStandardMaterial({
+color:0xf0c9a0
+})
+);
 
-  const head = new THREE.Mesh(
-    new THREE.SphereGeometry(.4,10,10),
-    new THREE.MeshStandardMaterial({color:0xf0c9a0})
-  );
+head.position.y=2.05;
+head.castShadow=true;
 
-  head.position.y=2.05;
-  head.castShadow=true;
+group.add(body);
+group.add(top);
+group.add(bottom);
+group.add(head);
 
-  g.add(body);
-  g.add(bodyTop);
-  g.add(bodyBottom);
-  g.add(head);
+return group;
 
-  return g;
 }
+
+
+/* =========================
+   PLAYER
+========================= */
 
 function createPlayer(){
 
-  player={
-    mesh:createCharacter(0x2388ff),
-    position:new THREE.Vector3(-42,0,0),
-    vehicle:null
-  };
+player={
+mesh:createCharacter(0x2388ff),
+vehicle:null
+};
 
-  player.mesh.position.copy(player.position);
-  scene.add(player.mesh);
+player.mesh.position.set(
+-42,0,0
+);
 
-  camera.position.set(
-    player.position.x,
-    player.position.y+5,
-    player.position.z+8
-  );
+scene.add(player.mesh);
+
 }
+
+
+/* =========================
+   BOTS
+========================= */
 
 function createBots(){
 
-  bots=[];
+bots=[];
 
-  for(let i=0;i<19;i++){
+for(
+let i=0;
+i<19;
+i++
+){
 
-    const blue=i<9;
+const blue=
+i<9;
 
-    const bot={
-      mesh:createCharacter(blue?0x2388ff:0xff7a18),
-      team:blue?"blue":"orange",
-      health:100,
-      alive:true,
-      timer:Math.random()*10,
-      target:null,
-      vehicle:null
-    };
+const bot={
+mesh:createCharacter(
+blue?
+0x2388ff:
+0xff7a18
+),
 
-    bot.mesh.position.set(
-      blue ? -35-Math.random()*10 : 35+Math.random()*10,
-      0,
-      (Math.random()*30)-15
-    );
+team:
+blue?
+"blue":
+"orange",
 
-    scene.add(bot.mesh);
-    bots.push(bot);
-  }
+health:100,
+alive:true,
+timer:Math.random()*10,
+vehicle:null
+};
+
+bot.mesh.position.set(
+blue?
+-35-Math.random()*10:
+35+Math.random()*10,
+0,
+Math.random()*30-15
+);
+
+scene.add(bot.mesh);
+
+bots.push(bot);
+
+}
+
 }
 
 
@@ -1093,60 +1761,102 @@ function createBots(){
    VEHICLES
 ========================= */
 
-function createVehicle(type,x,z,color){
+function createVehicle(
+type,
+x,
+z,
+color
+){
 
-  const g=new THREE.Group();
+const group=
+new THREE.Group();
 
-  const body=new THREE.Mesh(
-    new THREE.BoxGeometry(
-      type==="tank"?5:4,
-      type==="tank"?1.5:1.8,
-      type==="tank"?7:6
-    ),
-    new THREE.MeshStandardMaterial({color})
-  );
+const body=
+new THREE.Mesh(
+new THREE.BoxGeometry(
+type==="tank"?5:4,
+type==="tank"?1.5:1.8,
+type==="tank"?7:6
+),
+new THREE.MeshStandardMaterial({
+color
+})
+);
 
-  body.position.y=1;
-  body.castShadow=true;
+body.position.y=1;
 
-  g.add(body);
+body.castShadow=true;
 
-  if(type==="tank"){
+group.add(body);
 
-    const turret=new THREE.Mesh(
-      new THREE.BoxGeometry(3,1,3),
-      new THREE.MeshStandardMaterial({color:0x444444})
-    );
 
-    turret.position.y=2;
-    g.add(turret);
+if(type==="tank"){
 
-    const cannon=new THREE.Mesh(
-      new THREE.BoxGeometry(.5,.5,4),
-      new THREE.MeshStandardMaterial({color:0x222222})
-    );
+const turret=
+new THREE.Mesh(
+new THREE.BoxGeometry(
+3,1,3
+),
+new THREE.MeshStandardMaterial({
+color:0x444444
+})
+);
 
-    cannon.position.set(0,2,-2.5);
-    g.add(cannon);
-  }
+turret.position.y=2;
 
-  g.position.set(x,0,z);
-  scene.add(g);
+group.add(turret);
 
-  vehicles.push({
-    mesh:g,
-    type,
-    occupied:null
-  });
+const cannon=
+new THREE.Mesh(
+new THREE.BoxGeometry(
+.5,.5,4
+),
+new THREE.MeshStandardMaterial({
+color:0x222222
+})
+);
+
+cannon.position.set(
+0,2,-2.5
+);
+
+group.add(cannon);
+
 }
+
+group.position.set(
+x,0,z
+);
+
+scene.add(group);
+
+vehicles.push({
+mesh:group,
+type,
+occupied:null
+});
+
+}
+
 
 function createVehicles(){
 
-  createVehicle("van",-25,-15,0x2365a5);
-  createVehicle("van",-25,15,0x2365a5);
+createVehicle(
+"van",-25,-15,0x2365a5
+);
 
-  createVehicle("tank",25,-15,0xd06422);
-  createVehicle("tank",25,15,0xd06422);
+createVehicle(
+"van",-25,15,0x2365a5
+);
+
+createVehicle(
+"tank",25,-15,0xd06422
+);
+
+createVehicle(
+"tank",25,15,0xd06422
+);
+
 }
 
 
@@ -1156,365 +1866,617 @@ function createVehicles(){
 
 function setupControls(){
 
-  window.addEventListener("keydown",e=>{
+window.addEventListener(
+"keydown",
+event=>{
 
-    keys[e.code]=true;
+if(
+["Tab","Space"].includes(event.code)
+){
 
-    if(e.code==="Tab"){
-      e.preventDefault();
-      toggleShop();
-    }
+event.preventDefault();
 
-    if(e.code==="Escape"){
-      closeShop();
-    }
+}
 
-    if(e.code==="KeyV"){
-      cameraThirdPerson=!cameraThirdPerson;
+keys[event.code]=true;
 
-      document.getElementById("cameraMode").textContent =
-        cameraThirdPerson ? "Third Person":"First Person";
-    }
 
-    if(e.code==="KeyR"){
-      reload();
-    }
+if(event.code==="Tab"){
 
-    if(e.code==="KeyE"){
-      toggleVehicle();
-    }
-  });
+toggleShop();
 
-  window.addEventListener("keyup",e=>{
-    keys[e.code]=false;
-  });
+}
 
-  battleCanvas.addEventListener("click",()=>{
-    if(!shopOpen && !gameEnded){
-      shoot();
-    }
-  });
+
+if(event.code==="Escape"){
+
+closeShop();
+
+}
+
+
+if(event.code==="KeyV"){
+
+cameraThirdPerson=
+!cameraThirdPerson;
+
+document.getElementById(
+"cameraMode"
+).textContent=
+cameraThirdPerson?
+"Third Person":
+"First Person";
+
+}
+
+
+if(event.code==="KeyR"){
+
+reload();
+
+}
+
+
+if(event.code==="KeyE"){
+
+toggleVehicle();
+
+}
+
+}
+);
+
+
+window.addEventListener(
+"keyup",
+event=>{
+
+keys[event.code]=false;
+
+}
+);
+
 }
 
 
 /* =========================
-   MOVEMENT
+   PLAYER MOVEMENT
 ========================= */
 
 function updatePlayer(){
 
-  if(gameEnded || shopOpen) return;
+if(
+gameEnded ||
+shopOpen
+)
+return;
 
-  const speed = 0.16;
+const speed=.16;
 
-  const forward = new THREE.Vector3(
-    Math.sin(yaw),
-    0,
-    -Math.cos(yaw)
-  );
+const forward=
+new THREE.Vector3(
+Math.sin(yaw),
+0,
+-Math.cos(yaw)
+);
 
-  const right = new THREE.Vector3(
-    Math.cos(yaw),
-    0,
-    Math.sin(yaw)
-  );
+const right=
+new THREE.Vector3(
+Math.cos(yaw),
+0,
+Math.sin(yaw)
+);
 
-  if(keys["KeyW"]){
-    player.mesh.position.add(
-      forward.clone().multiplyScalar(speed)
-    );
-  }
+if(keys["KeyW"]){
 
-  if(keys["KeyS"]){
-    player.mesh.position.add(
-      forward.clone().multiplyScalar(-speed)
-    );
-  }
+player.mesh.position.add(
+forward.clone().multiplyScalar(speed)
+);
 
-  if(keys["KeyA"]){
-    player.mesh.position.add(
-      right.clone().multiplyScalar(-speed)
-    );
-  }
+}
 
-  if(keys["KeyD"]){
-    player.mesh.position.add(
-      right.clone().multiplyScalar(speed)
-    );
-  }
+if(keys["KeyS"]){
 
-  player.mesh.position.x =
-    Math.max(-52, Math.min(52, player.mesh.position.x));
+player.mesh.position.add(
+forward.clone().multiplyScalar(-speed)
+);
 
-  player.mesh.position.z =
-    Math.max(-52, Math.min(52, player.mesh.position.z));
+}
 
-  /*
-     Faz o personagem virar para a direção
-     para onde o rato está a olhar.
-  */
+if(keys["KeyA"]){
 
-  player.mesh.rotation.y = yaw;
+player.mesh.position.add(
+right.clone().multiplyScalar(-speed)
+);
 
-  const lookDirection = new THREE.Vector3(
-    Math.sin(yaw) * Math.cos(pitch),
-    Math.sin(pitch),
-    -Math.cos(yaw) * Math.cos(pitch)
-  );
+}
 
-  if(cameraThirdPerson){
+if(keys["KeyD"]){
 
-    const cameraPosition = player.mesh.position.clone();
+player.mesh.position.add(
+right.clone().multiplyScalar(speed)
+);
 
-    cameraPosition.add(
-      lookDirection.clone().multiplyScalar(-7)
-    );
+}
 
-    cameraPosition.y += 4;
+player.mesh.position.x=
+Math.max(
+-52,
+Math.min(
+52,
+player.mesh.position.x
+)
+);
 
-    camera.position.lerp(
-      cameraPosition,
-      0.12
-    );
+player.mesh.position.z=
+Math.max(
+-52,
+Math.min(
+52,
+player.mesh.position.z
+)
+);
 
-    const target = player.mesh.position.clone();
+player.mesh.rotation.y=yaw;
 
-    target.y += 1.3;
+const lookDirection=
+new THREE.Vector3(
+Math.sin(yaw)*
+Math.cos(pitch),
+Math.sin(pitch),
+-Math.cos(yaw)*
+Math.cos(pitch)
+);
 
-    target.add(
-      lookDirection.clone().multiplyScalar(5)
-    );
 
-    camera.lookAt(target);
+if(cameraThirdPerson){
 
-  }else{
+const cameraPosition=
+player.mesh.position.clone();
 
-    const cameraPosition =
-      player.mesh.position.clone();
+cameraPosition.add(
+lookDirection
+.clone()
+.multiplyScalar(-7)
+);
 
-    cameraPosition.y += 1.7;
+cameraPosition.y+=4;
 
-    camera.position.lerp(
-      cameraPosition,
-      0.15
-    );
+camera.position.lerp(
+cameraPosition,
+.12
+);
 
-    camera.lookAt(
-      cameraPosition.clone().add(
-        lookDirection.multiplyScalar(10)
-      )
-    );
+const target=
+player.mesh.position.clone();
 
-  }
+target.y+=1.3;
+
+target.add(
+lookDirection
+.clone()
+.multiplyScalar(5)
+);
+
+camera.lookAt(target);
+
+}else{
+
+const cameraPosition=
+player.mesh.position.clone();
+
+cameraPosition.y+=1.7;
+
+camera.position.lerp(
+cameraPosition,
+.15
+);
+
+camera.lookAt(
+cameraPosition.clone().add(
+lookDirection
+.clone()
+.multiplyScalar(10)
+)
+);
+
+}
 
 }
 
 
 /* =========================
-   BOT AI
+   BOTS
 ========================= */
 
 function updateBots(){
 
-  if(gameEnded || shopOpen) return;
+if(
+gameEnded ||
+shopOpen
+)
+return;
 
-  bots.forEach(bot=>{
+bots.forEach(bot=>{
 
-    if(!bot.alive) return;
+if(!bot.alive)
+return;
 
-    bot.timer += .016;
+bot.timer+=.016;
 
-    const target =
-      bot.team==="orange"
-      ? player.mesh.position
-      : findNearestEnemy(bot);
+let target;
 
-    if(!target) return;
+if(bot.team==="orange"){
 
-    const dx=target.x-bot.mesh.position.x;
-    const dz=target.z-bot.mesh.position.z;
+target=
+player.mesh.position;
 
-    const dist=Math.sqrt(dx*dx+dz*dz);
+}else{
 
-    if(dist>8){
+const enemy=
+findNearestEnemy(bot);
 
-      bot.mesh.position.x += (dx/dist)*.025;
-      bot.mesh.position.z += (dz/dist)*.025;
+target=
+enemy ||
+player.mesh.position;
 
-    }else{
-
-      if(bot.timer>4){
-
-        bot.timer=0;
-
-        if(bot.team==="orange"){
-          damagePlayer(15);
-        }else if(target){
-
-          const enemy=getEnemyBotNear(target);
-
-          if(enemy){
-            killBot(enemy,bot.team);
-          }
-        }
-      }
-    }
-  });
 }
+
+const dx=
+target.x-
+bot.mesh.position.x;
+
+const dz=
+target.z-
+bot.mesh.position.z;
+
+const distance=
+Math.sqrt(
+dx*dx+dz*dz
+);
+
+if(distance>8){
+
+bot.mesh.position.x+=
+(dx/distance)*.025;
+
+bot.mesh.position.z+=
+(dz/distance)*.025;
+
+}else{
+
+if(bot.timer>4){
+
+bot.timer=0;
+
+if(bot.team==="orange"){
+
+damagePlayer(15);
+
+}else{
+
+const enemy=
+getEnemyBotNear(
+bot.mesh.position
+);
+
+if(enemy){
+
+killBot(
+enemy,
+"blue"
+);
+
+}
+
+}
+
+}
+
+}
+
+});
+
+}
+
 
 function findNearestEnemy(bot){
 
-  let nearest=null;
-  let best=Infinity;
+let nearest=null;
+let best=Infinity;
 
-  bots.forEach(other=>{
+bots.forEach(other=>{
 
-    if(
-      other!==bot &&
-      other.alive &&
-      other.team!==bot.team
-    ){
+if(
+other!==bot &&
+other.alive &&
+other.team!==bot.team
+){
 
-      const d=bot.mesh.position.distanceTo(other.mesh.position);
+const distance=
+bot.mesh.position.distanceTo(
+other.mesh.position
+);
 
-      if(d<best){
-        best=d;
-        nearest=other.mesh.position;
-      }
-    }
-  });
+if(distance<best){
 
-  return nearest || player.mesh.position;
+best=distance;
+nearest=other.mesh.position;
+
 }
+
+}
+
+});
+
+return nearest;
+
+}
+
 
 function getEnemyBotNear(position){
 
-  let nearest=null;
-  let best=10;
+let nearest=null;
+let best=10;
 
-  bots.forEach(bot=>{
+bots.forEach(bot=>{
 
-    if(
-      bot.alive &&
-      bot.team==="orange"
-    ){
+if(
+bot.alive &&
+bot.team==="orange"
+){
 
-      const d=bot.mesh.position.distanceTo(position);
+const distance=
+bot.mesh.position.distanceTo(
+position
+);
 
-      if(d<best){
-        best=d;
-        nearest=bot;
-      }
-    }
-  });
+if(distance<best){
 
-  return nearest;
+best=distance;
+nearest=bot;
+
+}
+
+}
+
+});
+
+return nearest;
+
 }
 
 
 /* =========================
-   COMBAT
+   SHOOTING
 ========================= */
 
 function shoot(){
 
-  if(ammo<=0){
+if(
+!battleStarted ||
+gameEnded ||
+shopOpen
+)
+return;
 
-    document.getElementById("weaponName").textContent =
-      "Sem munição! Pressiona TAB para comprar.";
+if(ammo<=0){
 
-    return;
-  }
+document.getElementById(
+"weaponName"
+).textContent=
+"Sem munição! TAB para comprar.";
 
-  ammo--;
-  updateHUD();
+return;
 
-  let nearest=null;
-  let best=12;
-
-  bots.forEach(bot=>{
-
-    if(bot.alive && bot.team==="orange"){
-
-      const d=bot.mesh.position.distanceTo(player.mesh.position);
-
-      if(d<best){
-        best=d;
-        nearest=bot;
-      }
-    }
-  });
-
-  if(nearest){
-    killBot(nearest,"blue");
-  }
 }
+
+ammo--;
+
+updateHUD();
+
+
+/*
+  Escolhe um inimigo próximo e dentro
+  de uma zona simples de mira.
+*/
+
+let nearest=null;
+let best=12;
+
+bots.forEach(bot=>{
+
+if(
+bot.alive &&
+bot.team==="orange"
+){
+
+const distance=
+bot.mesh.position.distanceTo(
+player.mesh.position
+);
+
+if(distance<best){
+
+best=distance;
+nearest=bot;
+
+}
+
+}
+
+});
+
+if(nearest){
+
+killBot(
+nearest,
+"blue"
+);
+
+}
+
+}
+
+
+/* =========================
+   RELOAD
+========================= */
 
 function reload(){
 
-  ammo=60;
-  updateHUD();
+if(gameEnded)
+return;
+
+ammo=
+weapon==="Pistol"?
+60:
+ammo;
+
+if(ammo<=0)
+ammo=60;
+
+updateHUD();
+
 }
+
+
+/* =========================
+   DAMAGE
+========================= */
 
 function damagePlayer(amount){
 
-  health-=amount;
+if(gameEnded)
+return;
 
-  if(health<=0){
-    health=0;
-    playerDied();
-  }
+health-=amount;
 
-  updateHUD();
+if(health<=0){
+
+health=0;
+
+playerDied();
+
 }
+
+updateHUD();
+
+}
+
+
+/* =========================
+   PLAYER DEATH
+========================= */
 
 function playerDied(){
 
-  player.mesh.position.set(-42,0,0);
-  health=100;
+/*
+  A morte do jogador NÃO dá uma kill
+  à equipa Blue.
+*/
 
-  updateHUD();
+health=100;
+
+player.mesh.position.set(
+-42,0,0
+);
+
+yaw=0;
+pitch=0;
+
+updateHUD();
+
 }
 
-function killBot(bot,killerTeam){
 
-  if(!bot || !bot.alive) return;
+/* =========================
+   BOT KILL
+========================= */
 
-  bot.alive=false;
-  bot.mesh.visible=false;
+function killBot(
+bot,
+killerTeam
+){
 
-  if(killerTeam==="blue"){
-    blueScore++;
+if(
+!bot ||
+!bot.alive
+)
+return;
 
-    playerKills++;
-    addCredits(10);
-  }else{
-    orangeScore++;
-  }
+bot.alive=false;
 
-  updateHUD();
+bot.mesh.visible=false;
 
-  if(blueScore>=30 || orangeScore>=30){
-    endBattle();
-    return;
-  }
 
-  setTimeout(()=>respawnBot(bot),2500);
+if(killerTeam==="blue"){
+
+blueScore++;
+
+/*
+  Apenas kills feitas pela equipa Blue
+  dão Credits.
+*/
+
+playerKills++;
+
+addCredits(10);
+
+}else{
+
+orangeScore++;
+
 }
+
+updateHUD();
+
+
+if(
+blueScore>=30 ||
+orangeScore>=30
+){
+
+endBattle();
+
+return;
+
+}
+
+
+setTimeout(
+()=>{
+respawnBot(bot);
+},
+2500
+);
+
+}
+
+
+/* =========================
+   BOT RESPAWN
+========================= */
 
 function respawnBot(bot){
 
-  bot.alive=true;
-  bot.health=100;
-  bot.mesh.visible=true;
+if(gameEnded)
+return;
 
-  bot.mesh.position.set(
-    bot.team==="blue"
-    ? -35-Math.random()*10
-    : 35+Math.random()*10,
-    0,
-    (Math.random()*30)-15
-  );
+bot.alive=true;
+
+bot.health=100;
+
+bot.mesh.visible=true;
+
+bot.mesh.position.set(
+bot.team==="blue"?
+-35-Math.random()*10:
+35+Math.random()*10,
+0,
+Math.random()*30-15
+);
+
 }
 
 
@@ -1524,36 +2486,56 @@ function respawnBot(bot){
 
 function toggleVehicle(){
 
-  if(player.vehicle){
+if(gameEnded)
+return;
 
-    player.vehicle.occupied=null;
-    player.vehicle=null;
 
-    player.mesh.visible=true;
+if(player.vehicle){
 
-    return;
-  }
+player.vehicle.occupied=null;
 
-  let nearest=null;
-  let best=5;
+player.vehicle=null;
 
-  vehicles.forEach(v=>{
+player.mesh.visible=true;
 
-    const d=v.mesh.position.distanceTo(player.mesh.position);
+return;
 
-    if(d<best){
-      best=d;
-      nearest=v;
-    }
-  });
+}
 
-  if(nearest){
 
-    player.vehicle=nearest;
-    nearest.occupied=player;
+let nearest=null;
+let best=5;
 
-    player.mesh.visible=false;
-  }
+vehicles.forEach(vehicle=>{
+
+const distance=
+vehicle.mesh.position.distanceTo(
+player.mesh.position
+);
+
+if(
+distance<best &&
+!vehicle.occupied
+){
+
+best=distance;
+nearest=vehicle;
+
+}
+
+});
+
+
+if(nearest){
+
+player.vehicle=nearest;
+
+nearest.occupied=player;
+
+player.mesh.visible=false;
+
+}
+
 }
 
 
@@ -1563,50 +2545,90 @@ function toggleVehicle(){
 
 function toggleShop(){
 
-  if(gameEnded) return;
+if(gameEnded)
+return;
 
-  shopOpen=!shopOpen;
+shopOpen=!shopOpen;
 
-  document.getElementById("shopOverlay")
-    .classList.toggle("show",shopOpen);
+document.getElementById(
+"shopOverlay"
+).classList.toggle(
+"show",
+shopOpen
+);
 
-  updateCredits();
+if(shopOpen){
+
+if(document.pointerLockElement){
+
+document.exitPointerLock();
+
 }
+
+}
+
+updateCredits();
+
+}
+
 
 function closeShop(){
 
-  shopOpen=false;
+shopOpen=false;
 
-  document.getElementById("shopOverlay")
-    .classList.remove("show");
+document.getElementById(
+"shopOverlay"
+).classList.remove(
+"show"
+);
+
 }
 
-document.getElementById("closeShop")
-.addEventListener("click",closeShop);
 
-document.querySelectorAll(".buyWeapon")
+document.getElementById(
+"closeShop"
+).addEventListener(
+"click",
+closeShop
+);
+
+
+document.querySelectorAll(
+".buyWeapon"
+)
 .forEach(button=>{
 
-  button.addEventListener("click",()=>{
+button.addEventListener(
+"click",
+()=>{
 
-    const price=Number(button.dataset.price);
+const price=
+Number(button.dataset.price);
 
-    if(price===0 || spendCredits(price)){
+if(
+price===0 ||
+spendCredits(price)
+){
 
-      weapon=button.dataset.name;
-      ammo=Number(button.dataset.ammo);
+weapon=
+button.dataset.name;
 
-      updateHUD();
+ammo=
+Number(button.dataset.ammo);
 
-      document.getElementById("weaponName")
-        .textContent=weapon;
+updateHUD();
 
-    }else{
+}else{
 
-      alert("❌ Não tens Credits suficientes!");
+alert(
+"❌ Não tens Credits suficientes!"
+);
 
-    }
-  });
+}
+
+}
+);
+
 });
 
 
@@ -1616,27 +2638,54 @@ document.querySelectorAll(".buyWeapon")
 
 function updateHUD(){
 
-  document.getElementById("health").textContent=health;
-  document.getElementById("ammo").textContent=ammo;
-  document.getElementById("weaponName").textContent=weapon;
+document.getElementById(
+"weaponName"
+).textContent=
+weapon;
 
-  document.getElementById("blueScore").textContent=blueScore;
-  document.getElementById("orangeScore").textContent=orangeScore;
+document.getElementById(
+"health"
+).textContent=
+health;
+
+document.getElementById(
+"ammo"
+).textContent=
+ammo;
+
+document.getElementById(
+"blueScore"
+).textContent=
+blueScore;
+
+document.getElementById(
+"orangeScore"
+).textContent=
+orangeScore;
+
 }
 
 
 /* =========================
-   TIMER
+   CREDITS POR MINUTO
 ========================= */
 
-setInterval(()=>{
+setInterval(
+()=>{
 
-  if(battleStarted && !gameEnded && !shopOpen){
+if(
+battleStarted &&
+!gameEnded &&
+!shopOpen
+){
 
-    addCredits(5);
-  }
+addCredits(5);
 
-},60000);
+}
+
+},
+60000
+);
 
 
 /* =========================
@@ -1645,62 +2694,108 @@ setInterval(()=>{
 
 function endBattle(){
 
-  gameEnded=true;
+gameEnded=true;
 
-  const blueWon=blueScore>orangeScore;
+if(document.pointerLockElement){
 
-  document.getElementById("gameOverTitle").textContent =
-    blueWon ? "VICTORY!" : "DEFEAT!";
+document.exitPointerLock();
 
-  document.getElementById("finalScore").textContent =
-    `🔵 ${blueScore} — ${orangeScore} 🟠`;
-
-  document.getElementById("finalKills").textContent =
-    `Kills do jogador: ${playerKills}`;
-
-  const reward=blueWon ? 50:10;
-
-  addCredits(reward);
-
-  document.getElementById("earnedCredits").textContent =
-    `💳 Credits ganhos: ${reward}`;
-
-  document.getElementById("gameOver")
-    .classList.add("show");
 }
 
-document.getElementById("restartBattle")
-.addEventListener("click",()=>{
+const blueWon=
+blueScore>orangeScore;
 
-  blueScore=0;
-  orangeScore=0;
-  playerKills=0;
-  health=100;
-  ammo=60;
-  weapon="Pistol";
-  gameEnded=false;
+document.getElementById(
+"gameOverTitle"
+).textContent=
+blueWon?
+"VICTORY!":
+"DEFEAT!";
 
-  bots.forEach(bot=>{
-    bot.alive=true;
-    bot.health=100;
-    bot.mesh.visible=true;
+document.getElementById(
+"finalScore"
+).textContent=
+`🔵 ${blueScore} — ${orangeScore} 🟠`;
 
-    bot.mesh.position.set(
-      bot.team==="blue"
-      ? -35-Math.random()*10
-      : 35+Math.random()*10,
-      0,
-      (Math.random()*30)-15
-    );
-  });
+document.getElementById(
+"finalKills"
+).textContent=
+`Kills do jogador: ${playerKills}`;
 
-  player.mesh.position.set(-42,0,0);
+const reward=
+blueWon?
+50:
+10;
 
-  document.getElementById("gameOver")
-    .classList.remove("show");
+addCredits(reward);
 
-  updateHUD();
+document.getElementById(
+"earnedCredits"
+).textContent=
+`💳 Credits ganhos: ${reward}`;
+
+document.getElementById(
+"gameOver"
+).classList.add(
+"show"
+);
+
+}
+
+
+/* =========================
+   RESTART
+========================= */
+
+document.getElementById(
+"restartBattle"
+).addEventListener(
+"click",
+()=>{
+
+blueScore=0;
+orangeScore=0;
+playerKills=0;
+
+health=100;
+ammo=60;
+weapon="Pistol";
+
+gameEnded=false;
+
+yaw=0;
+pitch=0;
+
+bots.forEach(bot=>{
+
+bot.alive=true;
+bot.health=100;
+bot.mesh.visible=true;
+
+bot.mesh.position.set(
+bot.team==="blue"?
+-35-Math.random()*10:
+35+Math.random()*10,
+0,
+Math.random()*30-15
+);
+
 });
+
+player.mesh.position.set(
+-42,0,0
+);
+
+document.getElementById(
+"gameOver"
+).classList.remove(
+"show"
+);
+
+updateHUD();
+
+}
+);
 
 
 /* =========================
@@ -1709,43 +2804,116 @@ document.getElementById("restartBattle")
 
 function animate(){
 
-  requestAnimationFrame(animate);
+requestAnimationFrame(
+animate
+);
 
-  if(!battleStarted) return;
+if(
+!battleStarted ||
+!renderer ||
+!scene
+)
+return;
 
-  updatePlayer();
-  updateBots();
 
-  vehicles.forEach(v=>{
+updatePlayer();
 
-    if(v.occupied===player){
+updateBots();
 
-      const speed=.12;
 
-      if(keys["KeyW"]) v.mesh.position.z-=speed;
-      if(keys["KeyS"]) v.mesh.position.z+=speed;
-      if(keys["KeyA"]) v.mesh.position.x-=speed;
-      if(keys["KeyD"]) v.mesh.position.x+=speed;
+vehicles.forEach(vehicle=>{
 
-      v.mesh.position.x=Math.max(-52,Math.min(52,v.mesh.position.x));
-      v.mesh.position.z=Math.max(-52,Math.min(52,v.mesh.position.z));
+if(
+vehicle.occupied===
+player
+){
 
-      /* Vehicle collision kills */
+const speed=.12;
 
-      bots.forEach(bot=>{
+const forward=
+new THREE.Vector3(
+Math.sin(yaw),
+0,
+-Math.cos(yaw)
+);
 
-        if(
-          bot.alive &&
-          bot.mesh.position.distanceTo(v.mesh.position)<3
-        ){
+if(keys["KeyW"]){
 
-          killBot(bot,"blue");
-        }
-      });
-    }
-  });
+vehicle.mesh.position.add(
+forward.clone().multiplyScalar(speed)
+);
 
-  renderer.render(scene,camera);
+}
+
+if(keys["KeyS"]){
+
+vehicle.mesh.position.add(
+forward.clone().multiplyScalar(-speed)
+);
+
+}
+
+if(keys["KeyA"]){
+
+vehicle.mesh.position.x-=speed;
+
+}
+
+if(keys["KeyD"]){
+
+vehicle.mesh.position.x+=speed;
+
+}
+
+vehicle.mesh.position.x=
+Math.max(
+-52,
+Math.min(
+52,
+vehicle.mesh.position.x
+)
+);
+
+vehicle.mesh.position.z=
+Math.max(
+-52,
+Math.min(
+52,
+vehicle.mesh.position.z
+)
+);
+
+
+/* VEHICLE COLLISIONS */
+
+bots.forEach(bot=>{
+
+if(
+bot.alive &&
+bot.mesh.position.distanceTo(
+vehicle.mesh.position
+)<3
+){
+
+killBot(
+bot,
+"blue"
+);
+
+}
+
+});
+
+}
+
+});
+
+
+renderer.render(
+scene,
+camera
+);
+
 }
 
 </script>
