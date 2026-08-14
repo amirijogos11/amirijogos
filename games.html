@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,14 +15,13 @@
   --blue:#2388ff;
   --orange:#ff7a18;
   --green:#38d27d;
+  --danger:#ff3b5c;
   --shadow:0 15px 45px rgba(0,0,0,.35);
 }
 
 *{box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
@@ -32,13 +31,8 @@ body{
   min-height:100vh;
 }
 
-button,a{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
+button,a{font:inherit}
+button{cursor:pointer}
 
 .topbar{
   position:sticky;
@@ -79,9 +73,7 @@ button{
   border:1px solid rgba(255,255,255,.1);
 }
 
-.back:hover{
-  background:#21314b;
-}
+.back:hover{background:#21314b}
 
 .credits{
   padding:10px 15px;
@@ -131,19 +123,13 @@ button{
   border-radius:12px;
 }
 
-.tab.active,
-.tab:hover{
+.tab.active,.tab:hover{
   background:#16335a;
   border-color:#287fff;
 }
 
-.game{
-  display:none;
-}
-
-.game.active{
-  display:block;
-}
+.game{display:none}
+.game.active{display:block}
 
 .panel{
   background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(10,14,22,.96));
@@ -153,9 +139,7 @@ button{
   padding:22px;
 }
 
-.panel h2{
-  margin-top:0;
-}
+.panel h2{margin-top:0}
 
 .clicker-grid{
   display:grid;
@@ -187,9 +171,7 @@ button{
   transition:transform .08s;
 }
 
-.coin:active{
-  transform:scale(.93);
-}
+.coin:active{transform:scale(.93)}
 
 .stat-row{
   display:flex;
@@ -237,22 +219,15 @@ button{
   background:#1c65b9;
 }
 
-.btn:hover{
-  filter:brightness(1.12);
-}
+.btn:hover{filter:brightness(1.12)}
 
 .btn:disabled{
   opacity:.45;
   cursor:not-allowed;
 }
 
-.btn.orange{
-  background:#b95716;
-}
-
-.btn.green{
-  background:#18874d;
-}
+.btn.orange{background:#b95716}
+.btn.green{background:#18874d}
 
 .message{
   min-height:24px;
@@ -289,13 +264,8 @@ button{
   margin-bottom:4px;
 }
 
-.blue{
-  color:#59aaff;
-}
-
-.orange{
-  color:#ff8b3d;
-}
+.blue{color:#59aaff}
+.orange{color:#ff8b3d}
 
 .game-wrap{
   position:relative;
@@ -305,23 +275,35 @@ button{
   background:#02050a;
 }
 
-.game-wrap:fullscreen{
-  width:100vw;
-  height:100vh;
-  border-radius:0;
-}
-
-.game-wrap:fullscreen #battleCanvas{
-  width:100%;
-  height:100%;
-}
-
 #battleCanvas{
   display:block;
   width:100%;
   height:auto;
   min-height:520px;
   cursor:crosshair;
+}
+
+#battleCanvas:focus{
+  outline:none;
+}
+
+#fullscreenBtn{
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:30;
+}
+
+.game-wrap:fullscreen{
+  width:100vw;
+  height:100vh;
+  background:#000;
+}
+
+.game-wrap:fullscreen #battleCanvas{
+  width:100vw;
+  height:100vh;
+  min-height:0;
 }
 
 .crosshair{
@@ -334,8 +316,7 @@ button{
   pointer-events:none;
 }
 
-.crosshair:before,
-.crosshair:after{
+.crosshair:before,.crosshair:after{
   content:"";
   position:absolute;
   background:rgba(255,255,255,.9);
@@ -375,9 +356,7 @@ button{
   z-index:20;
 }
 
-.overlay.show{
-  display:flex;
-}
+.overlay.show{display:flex}
 
 .overlay-card{
   width:min(480px,90%);
@@ -404,9 +383,7 @@ button{
   padding:25px;
 }
 
-.shop-overlay.show{
-  display:block;
-}
+.shop-overlay.show{display:block}
 
 .shop-head{
   display:flex;
@@ -429,9 +406,7 @@ button{
   padding:15px;
 }
 
-.weapon h3{
-  margin:0 0 5px;
-}
+.weapon h3{margin:0 0 5px}
 
 .weapon p{
   color:var(--muted);
@@ -459,27 +434,10 @@ footer{
 }
 
 @media(max-width:800px){
-
-  .clicker-grid{
-    grid-template-columns:1fr;
-  }
-
-  .hud{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .weapon-grid{
-    grid-template-columns:1fr;
-  }
-
-  .tips{
-    grid-template-columns:1fr;
-  }
-
-  .topbar{
-    flex-wrap:wrap;
-    justify-content:center;
-  }
+  .clicker-grid{grid-template-columns:1fr}
+  .hud{grid-template-columns:1fr 1fr}
+  .weapon-grid{grid-template-columns:1fr}
+  .tips{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -493,9 +451,7 @@ footer{
     <span>AMIRIJOGOS</span>
   </div>
 
-  <a class="back" href="index.html">
-    ← Voltar ao AMIRIJOGOS
-  </a>
+  <a class="back" href="index.html">← Voltar ao AMIRIJOGOS</a>
 
   <div class="credits">
     💳 Credits: <span id="globalCredits">0</span>
@@ -528,37 +484,41 @@ footer{
 
 </div>
 
+
+<!-- CLICKER -->
+
 <section id="clickerGame" class="game active">
 
 <div class="clicker-grid">
 
 <div class="panel click-area">
 
-<h2>🪙 AMIRIJOGOS Clicker</h2>
+  <h2>🪙 AMIRIJOGOS Clicker</h2>
 
-<div class="stat-row">
+  <div class="stat-row">
 
-<div class="stat">
-Coins: <strong id="coins">0</strong>
+    <div class="stat">
+      Coins: <strong id="coins">0</strong>
+    </div>
+
+    <div class="stat">
+      Por clique: <strong id="perClick">1</strong>
+    </div>
+
+    <div class="stat">
+      Multiplicador: <strong id="multiplier">x1</strong>
+    </div>
+
+  </div>
+
+  <button id="coinButton" class="coin">
+    CLICK!
+  </button>
+
+  <div class="message" id="clickerMessage"></div>
+
 </div>
 
-<div class="stat">
-Por clique: <strong id="perClick">1</strong>
-</div>
-
-<div class="stat">
-Multiplicador: <strong id="multiplier">x1</strong>
-</div>
-
-</div>
-
-<button id="coinButton" class="coin">
-CLICK!
-</button>
-
-<div class="message" id="clickerMessage"></div>
-
-</div>
 
 <div class="panel">
 
@@ -579,6 +539,7 @@ Comprar — 50
 
 </div>
 
+
 <div class="shop-item">
 
 <div>
@@ -592,6 +553,7 @@ Comprar — 300
 
 </div>
 
+
 <div class="shop-item">
 
 <div>
@@ -604,6 +566,7 @@ Comprar — 1000
 </button>
 
 </div>
+
 
 <div class="shop-item">
 
@@ -632,6 +595,9 @@ Trocar
 
 </section>
 
+
+<!-- BATTLE -->
+
 <section id="battleGame" class="game">
 
 <div class="panel battle-layout">
@@ -649,6 +615,7 @@ Trocar
 </span>
 
 </div>
+
 
 <div class="hud">
 
@@ -674,6 +641,7 @@ Trocar
 
 </div>
 
+
 <div class="game-wrap" id="gameWrap">
 
 <button id="fullscreenBtn" class="btn green">
@@ -683,6 +651,9 @@ Trocar
 <canvas id="battleCanvas" width="1100" height="620"></canvas>
 
 <div class="crosshair"></div>
+
+
+<!-- SHOP -->
 
 <div id="shopOverlay" class="shop-overlay">
 
@@ -701,94 +672,133 @@ Credits disponíveis:
 <strong id="shopCredits">0</strong>
 </p>
 
+
 <div class="weapon-grid">
 
 <div class="weapon">
+
 <h3>🔫 Pistol</h3>
+
 <p>Arma básica e rápida.</p>
 
-<button class="btn buyWeapon"
+<button
+class="btn buyWeapon"
 data-name="Pistol"
 data-price="0"
 data-ammo="60">
 Equipar — GRÁTIS
 </button>
+
 </div>
 
+
 <div class="weapon">
+
 <h3>🔫 Rifle</h3>
+
 <p>Boa precisão e dano equilibrado.</p>
 
-<button class="btn buyWeapon"
+<button
+class="btn buyWeapon"
 data-name="Rifle"
 data-price="25"
 data-ammo="120">
 Comprar — 25
 </button>
+
 </div>
 
+
 <div class="weapon">
+
 <h3>💥 Shotgun</h3>
+
 <p>Dano elevado a curta distância.</p>
 
-<button class="btn buyWeapon"
+<button
+class="btn buyWeapon"
 data-name="Shotgun"
 data-price="40"
 data-ammo="40">
 Comprar — 40
 </button>
+
 </div>
 
+
 <div class="weapon">
+
 <h3>⚡ SMG</h3>
+
 <p>Alta cadência de disparo.</p>
 
-<button class="btn buyWeapon"
+<button
+class="btn buyWeapon"
 data-name="SMG"
 data-price="55"
 data-ammo="180">
 Comprar — 55
 </button>
+
 </div>
 
+
 <div class="weapon">
+
 <h3>🎯 Sniper</h3>
+
 <p>Precisão elevada e disparos fortes.</p>
 
-<button class="btn buyWeapon"
+<button
+class="btn buyWeapon"
 data-name="Sniper"
 data-price="75"
 data-ammo="30">
 Comprar — 75
 </button>
+
 </div>
 
-<div class="weapon">
-<h3>🚀 Rocket Launcher</h3>
-<p>Projéteis fictícios para o jogo.</p>
 
-<button class="btn buyWeapon"
+<div class="weapon">
+
+<h3>🚀 Rocket Launcher</h3>
+
+<p>Projéteis explosivos fictícios.</p>
+
+<button
+class="btn buyWeapon"
 data-name="Rocket Launcher"
 data-price="100"
 data-ammo="10">
 Comprar — 100
 </button>
+
 </div>
 
+
 <div class="weapon">
+
 <h3>💣 Grenade</h3>
+
 <p>Item explosivo exclusivamente para o jogo.</p>
 
-<button class="btn buyWeapon"
+<button
+class="btn buyWeapon"
 data-name="Grenade"
 data-price="35"
 data-ammo="5">
 Comprar — 35
 </button>
+
 </div>
 
 </div>
+
 </div>
+
+
+<!-- GAME OVER -->
 
 <div id="gameOver" class="overlay">
 
@@ -799,7 +809,9 @@ VICTORY!
 </h2>
 
 <p id="finalScore"></p>
+
 <p id="finalKills"></p>
+
 <p id="earnedCredits"></p>
 
 <button class="btn green" id="restartBattle">
@@ -807,9 +819,11 @@ VICTORY!
 </button>
 
 </div>
+
 </div>
 
 </div>
+
 
 <div class="controls">
 
@@ -826,6 +840,7 @@ ESC — Fechar loja
 
 </div>
 
+
 <div class="tips">
 
 <div class="panel">
@@ -837,6 +852,7 @@ Tu + 9 bots. A tua equipa é sempre azul.
 </p>
 
 </div>
+
 
 <div class="panel">
 
@@ -856,67 +872,400 @@ Tu + 9 bots. A tua equipa é sempre azul.
 
 </main>
 
+
 <footer>
+
 © 2026 AMIRIJOGOS — Todos os Credits são virtuais e usados apenas no site.
+
 </footer>
+
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 
 <script>
 
-/* =========================
-   GLOBAL CREDITS
-========================= */
+/* =====================================================
+   UNIVERSAL CREDITS
+===================================================== */
 
 let globalCredits =
-Number(localStorage.getItem("amirijogosCredits") || 0);
+  Number(localStorage.getItem("amirijogosCredits") || 0);
 
 function updateCredits(){
 
-globalCredits=Math.max(0,Math.floor(globalCredits));
+  globalCredits = Math.max(0,Math.floor(globalCredits));
 
-localStorage.setItem(
-"amirijogosCredits",
-globalCredits
-);
+  localStorage.setItem(
+    "amirijogosCredits",
+    globalCredits
+  );
 
-document.getElementById("globalCredits").textContent=
-globalCredits;
+  document.getElementById("globalCredits").textContent =
+    globalCredits;
 
-document.getElementById("shopCredits").textContent=
-globalCredits;
-
+  document.getElementById("shopCredits").textContent =
+    globalCredits;
 }
 
 function addCredits(amount){
 
-globalCredits+=amount;
+  globalCredits += amount;
 
-updateCredits();
-
+  updateCredits();
 }
 
 function spendCredits(amount){
 
-if(globalCredits<amount)
-return false;
+  if(globalCredits < amount)
+    return false;
 
-globalCredits-=amount;
+  globalCredits -= amount;
 
-updateCredits();
+  updateCredits();
 
-return true;
-
+  return true;
 }
 
 updateCredits();
 
 
-/* =========================
-   GAME VARIABLES
-========================= */
+/* =====================================================
+   FULLSCREEN + MOUSE LOOK
+===================================================== */
 
-let battleStarted=false;
+let yaw = 0;
+let pitch = 0;
+let pointerLocked = false;
+
+const battleCanvas =
+  document.getElementById("battleCanvas");
+
+const gameWrap =
+  document.getElementById("gameWrap");
+
+const fullscreenBtn =
+  document.getElementById("fullscreenBtn");
+
+
+document.addEventListener(
+  "pointerlockchange",
+  () => {
+
+    pointerLocked =
+      document.pointerLockElement === battleCanvas;
+
+  }
+);
+
+
+document.addEventListener(
+  "mousemove",
+  event => {
+
+    if(
+      !pointerLocked ||
+      shopOpen ||
+      gameEnded
+    ){
+      return;
+    }
+
+    yaw -= event.movementX * 0.0025;
+
+    pitch -= event.movementY * 0.0025;
+
+    pitch =
+      Math.max(
+        -1.2,
+        Math.min(1.2,pitch)
+      );
+
+  }
+);
+
+
+battleCanvas.addEventListener(
+  "click",
+  () => {
+
+    if(
+      !shopOpen &&
+      !gameEnded
+    ){
+
+      if(
+        document.pointerLockElement !== battleCanvas
+      ){
+
+        battleCanvas.requestPointerLock();
+
+      }
+
+    }
+
+  }
+);
+
+
+fullscreenBtn.addEventListener(
+  "click",
+  async event => {
+
+    event.stopPropagation();
+
+    try{
+
+      if(!document.fullscreenElement){
+
+        await gameWrap.requestFullscreen();
+
+      }else{
+
+        await document.exitFullscreen();
+
+      }
+
+    }catch(error){
+
+      console.log(
+        "Fullscreen não suportado:",
+        error
+      );
+
+    }
+
+  }
+);
+
+
+document.addEventListener(
+  "fullscreenchange",
+  () => {
+
+    if(document.fullscreenElement === gameWrap){
+
+      fullscreenBtn.textContent =
+        "✕ Sair do Ecrã Inteiro";
+
+    }else{
+
+      fullscreenBtn.textContent =
+        "⛶ Ecrã Inteiro";
+
+    }
+
+    resizeRenderer();
+
+  }
+);
+
+
+/* =====================================================
+   TABS
+===================================================== */
+
+document.querySelectorAll(".tab").forEach(tab => {
+
+  tab.addEventListener("click",() => {
+
+    document
+      .querySelectorAll(".tab")
+      .forEach(t =>
+        t.classList.remove("active")
+      );
+
+    document
+      .querySelectorAll(".game")
+      .forEach(g =>
+        g.classList.remove("active")
+      );
+
+    tab.classList.add("active");
+
+    document
+      .getElementById(tab.dataset.game)
+      .classList.add("active");
+
+    if(
+      tab.dataset.game === "battleGame" &&
+      !battleStarted
+    ){
+
+      startBattle();
+
+    }
+
+  });
+
+});
+
+
+/* =====================================================
+   CLICKER
+===================================================== */
+
+let coins =
+  Number(localStorage.getItem("amirijogosCoins") || 0);
+
+let perClick =
+  Number(localStorage.getItem("amirijogosPerClick") || 1);
+
+let multiplier =
+  Number(localStorage.getItem("amirijogosMultiplier") || 1);
+
+
+const coinButton =
+  document.getElementById("coinButton");
+
+const coinsEl =
+  document.getElementById("coins");
+
+const perClickEl =
+  document.getElementById("perClick");
+
+const multiplierEl =
+  document.getElementById("multiplier");
+
+
+function saveClicker(){
+
+  localStorage.setItem(
+    "amirijogosCoins",
+    coins
+  );
+
+  localStorage.setItem(
+    "amirijogosPerClick",
+    perClick
+  );
+
+  localStorage.setItem(
+    "amirijogosMultiplier",
+    multiplier
+  );
+
+  coinsEl.textContent =
+    Math.floor(coins);
+
+  perClickEl.textContent =
+    perClick;
+
+  multiplierEl.textContent =
+    "x" + multiplier;
+
+}
+
+
+coinButton.addEventListener(
+  "click",
+  () => {
+
+    coins +=
+      perClick * multiplier;
+
+    saveClicker();
+
+    coinButton.style.transform =
+      "scale(.93)";
+
+    setTimeout(
+      () =>
+        coinButton.style.transform = "",
+      80
+    );
+
+  }
+);
+
+
+document
+  .getElementById("upgradeClick")
+  .addEventListener("click",() => {
+
+    if(coins >= 50){
+
+      coins -= 50;
+
+      perClick += 1;
+
+      saveClicker();
+
+    }
+
+  });
+
+
+document
+  .getElementById("upgradeClick5")
+  .addEventListener("click",() => {
+
+    if(coins >= 300){
+
+      coins -= 300;
+
+      perClick += 5;
+
+      saveClicker();
+
+    }
+
+  });
+
+
+document
+  .getElementById("upgradeMultiplier")
+  .addEventListener("click",() => {
+
+    if(coins >= 1000){
+
+      coins -= 1000;
+
+      multiplier *= 2;
+
+      saveClicker();
+
+    }
+
+  });
+
+
+document
+  .getElementById("convertCoins")
+  .addEventListener("click",() => {
+
+    if(coins >= 1000){
+
+      coins -= 1000;
+
+      addCredits(10);
+
+      document
+        .getElementById("conversionMessage")
+        .textContent =
+        "✅ Trocaste 1000 Coins por 10 Credits!";
+
+      saveClicker();
+
+    }else{
+
+      document
+        .getElementById("conversionMessage")
+        .textContent =
+        "❌ Precisas de 1000 Coins.";
+
+    }
+
+  });
+
+
+saveClicker();
+
+
+/* =====================================================
+   BATTLE — THREE.JS
+===================================================== */
+
+let battleStarted = false;
 
 let scene;
 let camera;
@@ -924,1997 +1273,1993 @@ let renderer;
 
 let player;
 
-let bots=[];
-let vehicles=[];
+let bots = [];
 
-let keys={};
+let vehicles = [];
 
-let cameraThirdPerson=true;
+let keys = {};
 
-let shopOpen=false;
-let gameEnded=false;
+let cameraThirdPerson = true;
 
-let blueScore=0;
-let orangeScore=0;
-let playerKills=0;
+let shopOpen = false;
 
-let health=100;
-let ammo=60;
-let weapon="Pistol";
+let gameEnded = false;
 
-let yaw=0;
-let pitch=0;
+let blueScore = 0;
+let orangeScore = 0;
 
-let pointerLocked=false;
+/*
+  IMPORTANTE:
+  playerKills só aumenta quando O JOGADOR
+  mata diretamente um bot adversário.
+*/
+let playerKills = 0;
 
-const battleCanvas=
-document.getElementById("battleCanvas");
+let health = 100;
 
-const gameWrap=
-document.getElementById("gameWrap");
+let ammo = 60;
 
-const fullscreenBtn=
-document.getElementById("fullscreenBtn");
+let weapon = "Pistol";
 
-
-/* =========================
-   POINTER LOCK
-========================= */
-
-document.addEventListener(
-"pointerlockchange",
-()=>{
-
-pointerLocked=
-document.pointerLockElement===
-battleCanvas;
-
-}
-);
-
-document.addEventListener(
-"mousemove",
-event=>{
-
-if(
-!pointerLocked ||
-shopOpen ||
-gameEnded
-)
-return;
-
-yaw-=event.movementX*.0025;
-
-pitch-=event.movementY*.0025;
-
-pitch=Math.max(
--1.2,
-Math.min(1.2,pitch)
-);
-
-}
-);
-
-
-/* =========================
-   FULLSCREEN
-========================= */
-
-fullscreenBtn.addEventListener(
-"click",
-async()=>{
-
-try{
-
-if(!document.fullscreenElement){
-
-await gameWrap.requestFullscreen();
-
-}else{
-
-await document.exitFullscreen();
-
-}
-
-if(!shopOpen && !gameEnded){
-
-battleCanvas.requestPointerLock();
-
-}
-
-}catch(error){
-
-console.error(
-"Erro no fullscreen:",
-error
-);
-
-}
-
-}
-);
-
-
-/* =========================
-   CANVAS CLICK
-========================= */
-
-battleCanvas.addEventListener(
-"click",
-()=>{
-
-if(
-!shopOpen &&
-!gameEnded
-){
-
-if(
-document.pointerLockElement!==
-battleCanvas
-){
-
-battleCanvas.requestPointerLock();
-
-}else{
-
-shoot();
-
-}
-
-}
-
-}
-);
-
-
-/* =========================
-   TABS
-========================= */
-
-document.querySelectorAll(".tab")
-.forEach(tab=>{
-
-tab.addEventListener(
-"click",
-()=>{
-
-document.querySelectorAll(".tab")
-.forEach(t=>
-t.classList.remove("active")
-);
-
-document.querySelectorAll(".game")
-.forEach(g=>
-g.classList.remove("active")
-);
-
-tab.classList.add("active");
-
-document.getElementById(
-tab.dataset.game
-).classList.add("active");
-
-if(
-tab.dataset.game==="battleGame" &&
-!battleStarted
-){
-
-startBattle();
-
-}
-
-}
-);
-
-});
-
-
-/* =========================
-   CLICKER
-========================= */
-
-let coins=
-Number(localStorage.getItem(
-"amirijogosCoins"
-)||0);
-
-let perClick=
-Number(localStorage.getItem(
-"amirijogosPerClick"
-)||1);
-
-let multiplier=
-Number(localStorage.getItem(
-"amirijogosMultiplier"
-)||1);
-
-const coinButton=
-document.getElementById("coinButton");
-
-const coinsEl=
-document.getElementById("coins");
-
-const perClickEl=
-document.getElementById("perClick");
-
-const multiplierEl=
-document.getElementById("multiplier");
-
-function saveClicker(){
-
-localStorage.setItem(
-"amirijogosCoins",
-coins
-);
-
-localStorage.setItem(
-"amirijogosPerClick",
-perClick
-);
-
-localStorage.setItem(
-"amirijogosMultiplier",
-multiplier
-);
-
-coinsEl.textContent=
-Math.floor(coins);
-
-perClickEl.textContent=
-perClick;
-
-multiplierEl.textContent=
-"x"+multiplier;
-
-}
-
-coinButton.addEventListener(
-"click",
-()=>{
-
-coins+=perClick*multiplier;
-
-saveClicker();
-
-coinButton.style.transform=
-"scale(.93)";
-
-setTimeout(
-()=>coinButton.style.transform="",
-80
-);
-
-}
-);
-
-document.getElementById(
-"upgradeClick"
-).addEventListener(
-"click",
-()=>{
-
-if(coins>=50){
-
-coins-=50;
-perClick+=1;
-
-saveClicker();
-
-}
-
-}
-);
-
-document.getElementById(
-"upgradeClick5"
-).addEventListener(
-"click",
-()=>{
-
-if(coins>=300){
-
-coins-=300;
-perClick+=5;
-
-saveClicker();
-
-}
-
-}
-);
-
-document.getElementById(
-"upgradeMultiplier"
-).addEventListener(
-"click",
-()=>{
-
-if(coins>=1000){
-
-coins-=1000;
-multiplier*=2;
-
-saveClicker();
-
-}
-
-}
-);
-
-document.getElementById(
-"convertCoins"
-).addEventListener(
-"click",
-()=>{
-
-if(coins>=1000){
-
-coins-=1000;
-
-addCredits(10);
-
-document.getElementById(
-"conversionMessage"
-).textContent=
-"✅ Trocaste 1000 Coins por 10 Credits!";
-
-saveClicker();
-
-}else{
-
-document.getElementById(
-"conversionMessage"
-).textContent=
-"❌ Precisas de 1000 Coins.";
-
-}
-
-}
-);
-
-saveClicker();
-
-
-/* =========================
-   START BATTLE
-========================= */
 
 function startBattle(){
 
-if(battleStarted)
-return;
+  if(battleStarted)
+    return;
 
-battleStarted=true;
+  battleStarted = true;
 
-if(typeof THREE==="undefined"){
+  if(typeof THREE === "undefined"){
 
-const error=
-document.createElement("div");
+    battleCanvas.style.display =
+      "none";
 
-error.style.padding="40px";
-error.style.textAlign="center";
-error.style.color="#ff6b6b";
+    const error =
+      document.createElement("div");
 
-error.textContent=
-"Erro ao carregar o motor 3D. Verifica a ligação à internet e recarrega a página.";
+    error.style.padding = "40px";
 
-battleCanvas.style.display="none";
+    error.style.textAlign =
+      "center";
 
-gameWrap.appendChild(error);
+    error.style.color =
+      "#ff6b6b";
 
-return;
+    error.textContent =
+      "Erro ao carregar o motor 3D. Verifica a ligação à internet e recarrega a página.";
+
+    gameWrap.appendChild(error);
+
+    return;
+
+  }
+
+  initThree();
+
+  createMap();
+
+  createPlayer();
+
+  createBots();
+
+  createVehicles();
+
+  setupControls();
+
+  animate();
 
 }
 
-initThree();
 
-createMap();
-
-createPlayer();
-
-createBots();
-
-createVehicles();
-
-setupControls();
-
-updateHUD();
-
-animate();
-
-}
-
-
-/* =========================
-   THREE.JS
-========================= */
+/* =====================================================
+   SCENE
+===================================================== */
 
 function initThree(){
 
-scene=new THREE.Scene();
+  scene =
+    new THREE.Scene();
 
-scene.background=
-new THREE.Color(0x87a9c4);
+  scene.background =
+    new THREE.Color(0x87a9c4);
 
-camera=
-new THREE.PerspectiveCamera(
-70,
-battleCanvas.clientWidth/
-battleCanvas.clientHeight,
-.1,
-1000
-);
 
-renderer=
-new THREE.WebGLRenderer({
-canvas:battleCanvas,
-antialias:true
-});
+  camera =
+    new THREE.PerspectiveCamera(
+      70,
+      battleCanvas.clientWidth /
+      battleCanvas.clientHeight,
+      .1,
+      1000
+    );
 
-renderer.setPixelRatio(
-Math.min(window.devicePixelRatio,2)
-);
 
-renderer.setSize(
-battleCanvas.clientWidth,
-battleCanvas.clientHeight,
-false
-);
+  renderer =
+    new THREE.WebGLRenderer({
+      canvas:battleCanvas,
+      antialias:true
+    });
 
-renderer.shadowMap.enabled=true;
 
-const hemi=
-new THREE.HemisphereLight(
-0xffffff,
-0x405060,
-1.2
-);
+  renderer.setPixelRatio(
+    Math.min(
+      window.devicePixelRatio,
+      2
+    )
+  );
 
-scene.add(hemi);
 
-const sun=
-new THREE.DirectionalLight(
-0xffffff,
-1.4
-);
+  renderer.shadowMap.enabled = true;
 
-sun.position.set(30,60,20);
 
-sun.castShadow=true;
+  const hemi =
+    new THREE.HemisphereLight(
+      0xffffff,
+      0x405060,
+      1.2
+    );
 
-scene.add(sun);
+  scene.add(hemi);
+
+
+  const sun =
+    new THREE.DirectionalLight(
+      0xffffff,
+      1.4
+    );
+
+  sun.position.set(
+    30,
+    60,
+    20
+  );
+
+  sun.castShadow = true;
+
+  scene.add(sun);
+
+
+  resizeRenderer();
+
+}
+
+
+function resizeRenderer(){
+
+  if(!renderer || !camera)
+    return;
+
+  const width =
+    battleCanvas.clientWidth ||
+    1100;
+
+  const height =
+    battleCanvas.clientHeight ||
+    620;
+
+  camera.aspect =
+    width / height;
+
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(
+    width,
+    height,
+    false
+  );
+
+}
+
 
 window.addEventListener(
-"resize",
-resizeGame
+  "resize",
+  resizeRenderer
 );
 
-}
 
-
-function resizeGame(){
-
-if(!camera || !renderer)
-return;
-
-const width=
-battleCanvas.clientWidth ||
-window.innerWidth;
-
-const height=
-battleCanvas.clientHeight ||
-window.innerHeight;
-
-camera.aspect=
-width/height;
-
-camera.updateProjectionMatrix();
-
-renderer.setSize(
-width,
-height,
-false
-);
-
-}
-
-
-/* =========================
+/* =====================================================
    MAP
-========================= */
+===================================================== */
 
 function createMap(){
 
-const ground=
-new THREE.Mesh(
-new THREE.PlaneGeometry(140,140),
-new THREE.MeshStandardMaterial({
-color:0x314b32
-})
-);
-
-ground.rotation.x=
--Math.PI/2;
-
-ground.receiveShadow=true;
-
-scene.add(ground);
+  const ground =
+    new THREE.Mesh(
+      new THREE.PlaneGeometry(
+        140,
+        140
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0x314b32
+      })
+    );
 
 
-function box(
-x,y,z,
-sx,sy,sz,
-color
-){
+  ground.rotation.x =
+    -Math.PI / 2;
 
-const mesh=
-new THREE.Mesh(
-new THREE.BoxGeometry(
-sx,sy,sz
-),
-new THREE.MeshStandardMaterial({
-color
-})
-);
+  ground.receiveShadow = true;
 
-mesh.position.set(x,y,z);
+  scene.add(ground);
 
-mesh.castShadow=true;
-mesh.receiveShadow=true;
 
-scene.add(mesh);
+  function box(
+    x,
+    y,
+    z,
+    sx,
+    sy,
+    sz,
+    color
+  ){
 
-return mesh;
+    const mesh =
+      new THREE.Mesh(
+        new THREE.BoxGeometry(
+          sx,
+          sy,
+          sz
+        ),
+        new THREE.MeshStandardMaterial({
+          color
+        })
+      );
+
+
+    mesh.position.set(
+      x,
+      y,
+      z
+    );
+
+    mesh.castShadow = true;
+
+    mesh.receiveShadow = true;
+
+    scene.add(mesh);
+
+    return mesh;
+
+  }
+
+
+  box(
+    0,
+    .02,
+    0,
+    140,
+    .05,
+    10,
+    0x343434
+  );
+
+  box(
+    0,
+    .03,
+    0,
+    10,
+    .06,
+    140,
+    0x343434
+  );
+
+
+  for(let i=0;i<18;i++){
+
+    const x =
+      Math.random()*110-55;
+
+    const z =
+      Math.random()*110-55;
+
+
+    if(
+      Math.abs(x)<15 ||
+      Math.abs(z)<15
+    ){
+      continue;
+    }
+
+
+    box(
+      x,
+      3,
+      z,
+      8+Math.random()*8,
+      6,
+      8+Math.random()*8,
+      0x555c66
+    );
+
+  }
+
+
+  box(
+    -55,
+    2,
+    0,
+    2,
+    4,
+    110,
+    0x666666
+  );
+
+  box(
+    55,
+    2,
+    0,
+    2,
+    4,
+    110,
+    0x666666
+  );
+
+  box(
+    0,
+    2,
+    -55,
+    110,
+    4,
+    2,
+    0x666666
+  );
+
+  box(
+    0,
+    2,
+    55,
+    110,
+    4,
+    2,
+    0x666666
+  );
+
+
+  box(
+    -45,
+    .15,
+    0,
+    12,
+    .3,
+    25,
+    0x165da8
+  );
+
+
+  box(
+    45,
+    .15,
+    0,
+    12,
+    .3,
+    25,
+    0xb95318
+  );
+
+
+  for(let i=0;i<25;i++){
+
+    const x =
+      Math.random()*100-50;
+
+    const z =
+      Math.random()*100-50;
+
+
+    const trunk =
+      new THREE.Mesh(
+        new THREE.CylinderGeometry(
+          .35,
+          .5,
+          3,
+          8
+        ),
+        new THREE.MeshStandardMaterial({
+          color:0x60432e
+        })
+      );
+
+
+    trunk.position.set(
+      x,
+      1.5,
+      z
+    );
+
+    trunk.castShadow = true;
+
+
+    const leaves =
+      new THREE.Mesh(
+        new THREE.SphereGeometry(
+          2.2,
+          8,
+          8
+        ),
+        new THREE.MeshStandardMaterial({
+          color:0x1e7139
+        })
+      );
+
+
+    leaves.position.set(
+      x,
+      4,
+      z
+    );
+
+    leaves.castShadow = true;
+
+
+    scene.add(trunk);
+
+    scene.add(leaves);
+
+  }
 
 }
 
 
-/* ROADS */
-
-box(
-0,.02,0,
-140,.05,10,
-0x343434
-);
-
-box(
-0,.03,0,
-10,.06,140,
-0x343434
-);
-
-
-/* BUILDINGS */
-
-for(
-let i=0;
-i<18;
-i++
-){
-
-const x=
-Math.random()*110-55;
-
-const z=
-Math.random()*110-55;
-
-if(
-Math.abs(x)<15 ||
-Math.abs(z)<15
-)
-continue;
-
-box(
-x,
-3,
-z,
-8+Math.random()*8,
-6,
-8+Math.random()*8,
-0x555c66
-);
-
-}
-
-
-/* WALLS */
-
-box(
--55,2,0,
-2,4,110,
-0x666666
-);
-
-box(
-55,2,0,
-2,4,110,
-0x666666
-);
-
-box(
-0,2,-55,
-110,4,2,
-0x666666
-);
-
-box(
-0,2,55,
-110,4,2,
-0x666666
-);
-
-
-/* SPAWNS */
-
-box(
--45,.15,0,
-12,.3,25,
-0x165da8
-);
-
-box(
-45,.15,0,
-12,.3,25,
-0xb95318
-);
-
-
-/* TREES */
-
-for(
-let i=0;
-i<25;
-i++
-){
-
-const x=
-Math.random()*100-50;
-
-const z=
-Math.random()*100-50;
-
-const trunk=
-new THREE.Mesh(
-new THREE.CylinderGeometry(
-.35,.5,3,8
-),
-new THREE.MeshStandardMaterial({
-color:0x60432e
-})
-);
-
-trunk.position.set(
-x,1.5,z
-);
-
-trunk.castShadow=true;
-
-const leaves=
-new THREE.Mesh(
-new THREE.SphereGeometry(
-2.2,8,8
-),
-new THREE.MeshStandardMaterial({
-color:0x1e7139
-})
-);
-
-leaves.position.set(
-x,4,z
-);
-
-leaves.castShadow=true;
-
-scene.add(trunk);
-scene.add(leaves);
-
-}
-
-}
-
-
-/* =========================
+/* =====================================================
    CHARACTERS
-========================= */
+===================================================== */
 
 function createCharacter(color){
 
-const group=
-new THREE.Group();
+  const group =
+    new THREE.Group();
 
-const material=
-new THREE.MeshStandardMaterial({
-color
-});
 
-const body=
-new THREE.Mesh(
-new THREE.CylinderGeometry(
-.6,.6,1.2,10
-),
-material
-);
+  const bodyMaterial =
+    new THREE.MeshStandardMaterial({
+      color
+    });
 
-body.position.y=1.1;
-body.castShadow=true;
 
-const top=
-new THREE.Mesh(
-new THREE.SphereGeometry(
-.6,10,8
-),
-material
-);
+  const body =
+    new THREE.Mesh(
+      new THREE.CylinderGeometry(
+        .6,
+        .6,
+        1.2,
+        10
+      ),
+      bodyMaterial
+    );
 
-top.scale.y=.55;
-top.position.y=1.7;
-top.castShadow=true;
+  body.position.y = 1.1;
 
-const bottom=
-new THREE.Mesh(
-new THREE.SphereGeometry(
-.6,10,8
-),
-material
-);
+  body.castShadow = true;
 
-bottom.scale.y=.55;
-bottom.position.y=.5;
-bottom.castShadow=true;
 
-const head=
-new THREE.Mesh(
-new THREE.SphereGeometry(
-.4,10,10
-),
-new THREE.MeshStandardMaterial({
-color:0xf0c9a0
-})
-);
+  const bodyTop =
+    new THREE.Mesh(
+      new THREE.SphereGeometry(
+        .6,
+        10,
+        8
+      ),
+      bodyMaterial
+    );
 
-head.position.y=2.05;
-head.castShadow=true;
+  bodyTop.scale.y = .55;
 
-group.add(body);
-group.add(top);
-group.add(bottom);
-group.add(head);
+  bodyTop.position.y = 1.7;
 
-return group;
+  bodyTop.castShadow = true;
+
+
+  const bodyBottom =
+    new THREE.Mesh(
+      new THREE.SphereGeometry(
+        .6,
+        10,
+        8
+      ),
+      bodyMaterial
+    );
+
+  bodyBottom.scale.y = .55;
+
+  bodyBottom.position.y = .5;
+
+  bodyBottom.castShadow = true;
+
+
+  const head =
+    new THREE.Mesh(
+      new THREE.SphereGeometry(
+        .4,
+        10,
+        10
+      ),
+      new THREE.MeshStandardMaterial({
+        color:0xf0c9a0
+      })
+    );
+
+  head.position.y = 2.05;
+
+  head.castShadow = true;
+
+
+  group.add(body);
+
+  group.add(bodyTop);
+
+  group.add(bodyBottom);
+
+  group.add(head);
+
+
+  return group;
 
 }
 
-
-/* =========================
-   PLAYER
-========================= */
 
 function createPlayer(){
 
-player={
-mesh:createCharacter(0x2388ff),
-vehicle:null
-};
+  player = {
 
-player.mesh.position.set(
--42,0,0
-);
+    mesh:
+      createCharacter(0x2388ff),
 
-scene.add(player.mesh);
+    position:
+      new THREE.Vector3(
+        -42,
+        0,
+        0
+      ),
+
+    vehicle:null
+
+  };
+
+
+  player.mesh.position.copy(
+    player.position
+  );
+
+  scene.add(player.mesh);
+
+
+  camera.position.set(
+    player.position.x,
+    player.position.y+5,
+    player.position.z+8
+  );
 
 }
 
 
-/* =========================
+/* =====================================================
    BOTS
-========================= */
+===================================================== */
 
 function createBots(){
 
-bots=[];
+  bots = [];
 
-for(
-let i=0;
-i<19;
-i++
-){
 
-const blue=
-i<9;
+  for(let i=0;i<19;i++){
 
-const bot={
-mesh:createCharacter(
-blue?
-0x2388ff:
-0xff7a18
-),
+    const blue =
+      i < 9;
 
-team:
-blue?
-"blue":
-"orange",
 
-health:100,
-alive:true,
-timer:Math.random()*10,
-vehicle:null
-};
+    const bot = {
 
-bot.mesh.position.set(
-blue?
--35-Math.random()*10:
-35+Math.random()*10,
-0,
-Math.random()*30-15
-);
+      mesh:
+        createCharacter(
+          blue
+            ? 0x2388ff
+            : 0xff7a18
+        ),
 
-scene.add(bot.mesh);
+      team:
+        blue
+          ? "blue"
+          : "orange",
 
-bots.push(bot);
+      health:100,
+
+      alive:true,
+
+      timer:
+        Math.random()*10,
+
+      target:null,
+
+      vehicle:null
+
+    };
+
+
+    bot.mesh.position.set(
+
+      blue
+        ? -35-Math.random()*10
+        : 35+Math.random()*10,
+
+      0,
+
+      Math.random()*30-15
+
+    );
+
+
+    scene.add(bot.mesh);
+
+    bots.push(bot);
+
+  }
 
 }
 
-}
 
-
-/* =========================
+/* =====================================================
    VEHICLES
-========================= */
+===================================================== */
 
 function createVehicle(
-type,
-x,
-z,
-color
+  type,
+  x,
+  z,
+  color
 ){
 
-const group=
-new THREE.Group();
-
-const body=
-new THREE.Mesh(
-new THREE.BoxGeometry(
-type==="tank"?5:4,
-type==="tank"?1.5:1.8,
-type==="tank"?7:6
-),
-new THREE.MeshStandardMaterial({
-color
-})
-);
-
-body.position.y=1;
-
-body.castShadow=true;
-
-group.add(body);
+  const group =
+    new THREE.Group();
 
 
-if(type==="tank"){
+  const body =
+    new THREE.Mesh(
+      new THREE.BoxGeometry(
+        type==="tank"
+          ? 5
+          : 4,
 
-const turret=
-new THREE.Mesh(
-new THREE.BoxGeometry(
-3,1,3
-),
-new THREE.MeshStandardMaterial({
-color:0x444444
-})
-);
+        type==="tank"
+          ? 1.5
+          : 1.8,
 
-turret.position.y=2;
+        type==="tank"
+          ? 7
+          : 6
+      ),
+      new THREE.MeshStandardMaterial({
+        color
+      })
+    );
 
-group.add(turret);
 
-const cannon=
-new THREE.Mesh(
-new THREE.BoxGeometry(
-.5,.5,4
-),
-new THREE.MeshStandardMaterial({
-color:0x222222
-})
-);
+  body.position.y = 1;
 
-cannon.position.set(
-0,2,-2.5
-);
+  body.castShadow = true;
 
-group.add(cannon);
+  group.add(body);
 
-}
 
-group.position.set(
-x,0,z
-);
+  if(type==="tank"){
 
-scene.add(group);
+    const turret =
+      new THREE.Mesh(
+        new THREE.BoxGeometry(
+          3,
+          1,
+          3
+        ),
+        new THREE.MeshStandardMaterial({
+          color:0x444444
+        })
+      );
 
-vehicles.push({
-mesh:group,
-type,
-occupied:null
-});
+
+    turret.position.y = 2;
+
+    group.add(turret);
+
+
+    const cannon =
+      new THREE.Mesh(
+        new THREE.BoxGeometry(
+          .5,
+          .5,
+          4
+        ),
+        new THREE.MeshStandardMaterial({
+          color:0x222222
+        })
+      );
+
+
+    cannon.position.set(
+      0,
+      2,
+      -2.5
+    );
+
+    group.add(cannon);
+
+  }
+
+
+  group.position.set(
+    x,
+    0,
+    z
+  );
+
+
+  scene.add(group);
+
+
+  vehicles.push({
+
+    mesh:group,
+
+    type,
+
+    occupied:null
+
+  });
 
 }
 
 
 function createVehicles(){
 
-createVehicle(
-"van",-25,-15,0x2365a5
-);
+  createVehicle(
+    "van",
+    -25,
+    -15,
+    0x2365a5
+  );
 
-createVehicle(
-"van",-25,15,0x2365a5
-);
+  createVehicle(
+    "van",
+    -25,
+    15,
+    0x2365a5
+  );
 
-createVehicle(
-"tank",25,-15,0xd06422
-);
+  createVehicle(
+    "tank",
+    25,
+    -15,
+    0xd06422
+  );
 
-createVehicle(
-"tank",25,15,0xd06422
-);
+  createVehicle(
+    "tank",
+    25,
+    15,
+    0xd06422
+  );
 
 }
 
 
-/* =========================
+/* =====================================================
    CONTROLS
-========================= */
+===================================================== */
 
 function setupControls(){
 
-window.addEventListener(
-"keydown",
-event=>{
+  window.addEventListener(
+    "keydown",
+    event => {
 
-if(
-["Tab","Space"].includes(event.code)
-){
+      keys[event.code] = true;
 
-event.preventDefault();
+
+      if(event.code === "Tab"){
+
+        event.preventDefault();
+
+        toggleShop();
+
+      }
+
+
+      if(event.code === "Escape"){
+
+        closeShop();
+
+      }
+
+
+      if(
+        event.code === "KeyV" &&
+        !shopOpen &&
+        !gameEnded
+      ){
+
+        cameraThirdPerson =
+          !cameraThirdPerson;
+
+
+        document
+          .getElementById("cameraMode")
+          .textContent =
+          cameraThirdPerson
+            ? "Third Person"
+            : "First Person";
+
+      }
+
+
+      if(event.code === "KeyR"){
+
+        reload();
+
+      }
+
+
+      if(event.code === "KeyE"){
+
+        toggleVehicle();
+
+      }
+
+    }
+  );
+
+
+  window.addEventListener(
+    "keyup",
+    event => {
+
+      keys[event.code] = false;
+
+    }
+  );
+
+
+  battleCanvas.addEventListener(
+    "click",
+    () => {
+
+      if(
+        !shopOpen &&
+        !gameEnded
+      ){
+
+        shoot();
+
+      }
+
+    }
+  );
 
 }
 
-keys[event.code]=true;
 
-
-if(event.code==="Tab"){
-
-toggleShop();
-
-}
-
-
-if(event.code==="Escape"){
-
-closeShop();
-
-}
-
-
-if(event.code==="KeyV"){
-
-cameraThirdPerson=
-!cameraThirdPerson;
-
-document.getElementById(
-"cameraMode"
-).textContent=
-cameraThirdPerson?
-"Third Person":
-"First Person";
-
-}
-
-
-if(event.code==="KeyR"){
-
-reload();
-
-}
-
-
-if(event.code==="KeyE"){
-
-toggleVehicle();
-
-}
-
-}
-);
-
-
-window.addEventListener(
-"keyup",
-event=>{
-
-keys[event.code]=false;
-
-}
-);
-
-}
-
-
-/* =========================
+/* =====================================================
    PLAYER MOVEMENT
-========================= */
+===================================================== */
 
 function updatePlayer(){
 
-if(
-gameEnded ||
-shopOpen
-)
-return;
+  if(
+    gameEnded ||
+    shopOpen
+  ){
+    return;
+  }
 
-const speed=.16;
 
-const forward=
-new THREE.Vector3(
-Math.sin(yaw),
-0,
--Math.cos(yaw)
-);
+  const speed = .16;
 
-const right=
-new THREE.Vector3(
-Math.cos(yaw),
-0,
-Math.sin(yaw)
-);
 
-if(keys["KeyW"]){
+  const forward =
+    new THREE.Vector3(
+      Math.sin(yaw),
+      0,
+      -Math.cos(yaw)
+    );
 
-player.mesh.position.add(
-forward.clone().multiplyScalar(speed)
-);
+
+  const right =
+    new THREE.Vector3(
+      Math.cos(yaw),
+      0,
+      Math.sin(yaw)
+    );
+
+
+  if(keys["KeyW"]){
+
+    player.mesh.position.add(
+      forward.clone()
+        .multiplyScalar(speed)
+    );
+
+  }
+
+
+  if(keys["KeyS"]){
+
+    player.mesh.position.add(
+      forward.clone()
+        .multiplyScalar(-speed)
+    );
+
+  }
+
+
+  if(keys["KeyA"]){
+
+    player.mesh.position.add(
+      right.clone()
+        .multiplyScalar(-speed)
+    );
+
+  }
+
+
+  if(keys["KeyD"]){
+
+    player.mesh.position.add(
+      right.clone()
+        .multiplyScalar(speed)
+    );
+
+  }
+
+
+  player.mesh.position.x =
+    Math.max(
+      -52,
+      Math.min(
+        52,
+        player.mesh.position.x
+      )
+    );
+
+
+  player.mesh.position.z =
+    Math.max(
+      -52,
+      Math.min(
+        52,
+        player.mesh.position.z
+      )
+    );
+
+
+  player.mesh.rotation.y = yaw;
+
+
+  const lookDirection =
+    new THREE.Vector3(
+      Math.sin(yaw) * Math.cos(pitch),
+      Math.sin(pitch),
+      -Math.cos(yaw) * Math.cos(pitch)
+    );
+
+
+  if(cameraThirdPerson){
+
+    const cameraPosition =
+      player.mesh.position.clone();
+
+
+    cameraPosition.add(
+      lookDirection.clone()
+        .multiplyScalar(-7)
+    );
+
+
+    cameraPosition.y += 4;
+
+
+    camera.position.lerp(
+      cameraPosition,
+      .12
+    );
+
+
+    const target =
+      player.mesh.position.clone();
+
+
+    target.y += 1.3;
+
+
+    target.add(
+      lookDirection.clone()
+        .multiplyScalar(5)
+    );
+
+
+    camera.lookAt(target);
+
+  }else{
+
+    const cameraPosition =
+      player.mesh.position.clone();
+
+
+    cameraPosition.y += 1.7;
+
+
+    camera.position.lerp(
+      cameraPosition,
+      .15
+    );
+
+
+    camera.lookAt(
+      cameraPosition.clone().add(
+        lookDirection.multiplyScalar(10)
+      )
+    );
+
+  }
 
 }
 
-if(keys["KeyS"]){
 
-player.mesh.position.add(
-forward.clone().multiplyScalar(-speed)
-);
-
-}
-
-if(keys["KeyA"]){
-
-player.mesh.position.add(
-right.clone().multiplyScalar(-speed)
-);
-
-}
-
-if(keys["KeyD"]){
-
-player.mesh.position.add(
-right.clone().multiplyScalar(speed)
-);
-
-}
-
-player.mesh.position.x=
-Math.max(
--52,
-Math.min(
-52,
-player.mesh.position.x
-)
-);
-
-player.mesh.position.z=
-Math.max(
--52,
-Math.min(
-52,
-player.mesh.position.z
-)
-);
-
-player.mesh.rotation.y=yaw;
-
-const lookDirection=
-new THREE.Vector3(
-Math.sin(yaw)*
-Math.cos(pitch),
-Math.sin(pitch),
--Math.cos(yaw)*
-Math.cos(pitch)
-);
-
-
-if(cameraThirdPerson){
-
-const cameraPosition=
-player.mesh.position.clone();
-
-cameraPosition.add(
-lookDirection
-.clone()
-.multiplyScalar(-7)
-);
-
-cameraPosition.y+=4;
-
-camera.position.lerp(
-cameraPosition,
-.12
-);
-
-const target=
-player.mesh.position.clone();
-
-target.y+=1.3;
-
-target.add(
-lookDirection
-.clone()
-.multiplyScalar(5)
-);
-
-camera.lookAt(target);
-
-}else{
-
-const cameraPosition=
-player.mesh.position.clone();
-
-cameraPosition.y+=1.7;
-
-camera.position.lerp(
-cameraPosition,
-.15
-);
-
-camera.lookAt(
-cameraPosition.clone().add(
-lookDirection
-.clone()
-.multiplyScalar(10)
-)
-);
-
-}
-
-}
-
-
-/* =========================
-   BOTS
-========================= */
+/* =====================================================
+   BOT AI
+===================================================== */
 
 function updateBots(){
 
-if(
-gameEnded ||
-shopOpen
-)
-return;
+  if(
+    gameEnded ||
+    shopOpen
+  ){
+    return;
+  }
 
-bots.forEach(bot=>{
 
-if(!bot.alive)
-return;
+  bots.forEach(bot => {
 
-bot.timer+=.016;
+    if(!bot.alive)
+      return;
 
-let target;
 
-if(bot.team==="orange"){
+    bot.timer += .016;
 
-target=
-player.mesh.position;
 
-}else{
+    const target =
+      bot.team === "orange"
+        ? player.mesh.position
+        : findNearestEnemy(bot);
 
-const enemy=
-findNearestEnemy(bot);
 
-target=
-enemy ||
-player.mesh.position;
+    if(!target)
+      return;
 
-}
 
-const dx=
-target.x-
-bot.mesh.position.x;
+    const dx =
+      target.x -
+      bot.mesh.position.x;
 
-const dz=
-target.z-
-bot.mesh.position.z;
 
-const distance=
-Math.sqrt(
-dx*dx+dz*dz
-);
+    const dz =
+      target.z -
+      bot.mesh.position.z;
 
-if(distance>8){
 
-bot.mesh.position.x+=
-(dx/distance)*.025;
+    const distance =
+      Math.sqrt(
+        dx*dx +
+        dz*dz
+      );
 
-bot.mesh.position.z+=
-(dz/distance)*.025;
 
-}else{
+    if(distance > 8){
 
-if(bot.timer>4){
+      bot.mesh.position.x +=
+        (dx/distance)*.025;
 
-bot.timer=0;
+      bot.mesh.position.z +=
+        (dz/distance)*.025;
 
-if(bot.team==="orange"){
+    }else{
 
-damagePlayer(15);
+      if(bot.timer > 4){
 
-}else{
+        bot.timer = 0;
 
-const enemy=
-getEnemyBotNear(
-bot.mesh.position
-);
 
-if(enemy){
+        if(bot.team === "orange"){
 
-killBot(
-enemy,
-"blue"
-);
+          damagePlayer(15);
 
-}
+        }else{
 
-}
+          const enemy =
+            getEnemyBotNear(target);
 
-}
+          if(enemy){
 
-}
+            killBot(
+              enemy,
+              "blue",
+              null
+            );
 
-});
+          }
+
+        }
+
+      }
+
+    }
+
+  });
 
 }
 
 
 function findNearestEnemy(bot){
 
-let nearest=null;
-let best=Infinity;
+  let nearest = null;
 
-bots.forEach(other=>{
+  let best = Infinity;
 
-if(
-other!==bot &&
-other.alive &&
-other.team!==bot.team
-){
 
-const distance=
-bot.mesh.position.distanceTo(
-other.mesh.position
-);
+  bots.forEach(other => {
 
-if(distance<best){
+    if(
+      other !== bot &&
+      other.alive &&
+      other.team !== bot.team
+    ){
 
-best=distance;
-nearest=other.mesh.position;
+      const distance =
+        bot.mesh.position.distanceTo(
+          other.mesh.position
+        );
 
-}
 
-}
+      if(distance < best){
 
-});
+        best = distance;
 
-return nearest;
+        nearest =
+          other.mesh.position;
+
+      }
+
+    }
+
+  });
+
+
+  return nearest ||
+    player.mesh.position;
 
 }
 
 
 function getEnemyBotNear(position){
 
-let nearest=null;
-let best=10;
+  let nearest = null;
 
-bots.forEach(bot=>{
+  let best = 10;
 
-if(
-bot.alive &&
-bot.team==="orange"
-){
 
-const distance=
-bot.mesh.position.distanceTo(
-position
-);
+  bots.forEach(bot => {
 
-if(distance<best){
+    if(
+      bot.alive &&
+      bot.team === "orange"
+    ){
 
-best=distance;
-nearest=bot;
+      const distance =
+        bot.mesh.position.distanceTo(
+          position
+        );
+
+
+      if(distance < best){
+
+        best = distance;
+
+        nearest = bot;
+
+      }
+
+    }
+
+  });
+
+
+  return nearest;
 
 }
 
-}
 
-});
-
-return nearest;
-
-}
-
-
-/* =========================
-   SHOOTING
-========================= */
+/* =====================================================
+   COMBAT
+===================================================== */
 
 function shoot(){
 
-if(
-!battleStarted ||
-gameEnded ||
-shopOpen
-)
-return;
+  if(
+    gameEnded ||
+    shopOpen
+  ){
+    return;
+  }
 
-if(ammo<=0){
 
-document.getElementById(
-"weaponName"
-).textContent=
-"Sem munição! TAB para comprar.";
+  if(ammo <= 0){
 
-return;
+    document
+      .getElementById("weaponName")
+      .textContent =
+      "Sem munição! Pressiona TAB para comprar.";
+
+    return;
+
+  }
+
+
+  ammo--;
+
+  updateHUD();
+
+
+  let nearest = null;
+
+  let best = 12;
+
+
+  bots.forEach(bot => {
+
+    if(
+      bot.alive &&
+      bot.team === "orange"
+    ){
+
+      const distance =
+        bot.mesh.position.distanceTo(
+          player.mesh.position
+        );
+
+
+      if(distance < best){
+
+        best = distance;
+
+        nearest = bot;
+
+      }
+
+    }
+
+  });
+
+
+  /*
+    IMPORTANTE:
+    Apenas esta função passa "player" como killer.
+    Portanto, apenas uma eliminação feita pelo jogador
+    aumenta playerKills.
+  */
+
+  if(nearest){
+
+    killBot(
+      nearest,
+      "blue",
+      "player"
+    );
+
+  }
 
 }
 
-ammo--;
-
-updateHUD();
-
-
-/*
-  Escolhe um inimigo próximo e dentro
-  de uma zona simples de mira.
-*/
-
-let nearest=null;
-let best=12;
-
-bots.forEach(bot=>{
-
-if(
-bot.alive &&
-bot.team==="orange"
-){
-
-const distance=
-bot.mesh.position.distanceTo(
-player.mesh.position
-);
-
-if(distance<best){
-
-best=distance;
-nearest=bot;
-
-}
-
-}
-
-});
-
-if(nearest){
-
-killBot(
-nearest,
-"blue"
-);
-
-}
-
-}
-
-
-/* =========================
-   RELOAD
-========================= */
 
 function reload(){
 
-if(gameEnded)
-return;
+  ammo = 60;
 
-ammo=
-weapon==="Pistol"?
-60:
-ammo;
-
-if(ammo<=0)
-ammo=60;
-
-updateHUD();
+  updateHUD();
 
 }
 
-
-/* =========================
-   DAMAGE
-========================= */
 
 function damagePlayer(amount){
 
-if(gameEnded)
-return;
+  if(
+    gameEnded ||
+    !player
+  ){
+    return;
+  }
 
-health-=amount;
 
-if(health<=0){
+  health -= amount;
 
-health=0;
 
-playerDied();
+  if(health <= 0){
+
+    health = 0;
+
+    updateHUD();
+
+    playerDied();
+
+    return;
+
+  }
+
+
+  updateHUD();
 
 }
 
-updateHUD();
 
-}
+/*
+  A MORTE DO JOGADOR NÃO É UMA KILL.
 
-
-/* =========================
-   PLAYER DEATH
-========================= */
-
+  Também não altera blueScore.
+*/
 function playerDied(){
 
-/*
-  A morte do jogador NÃO dá uma kill
-  à equipa Blue.
-*/
+  health = 0;
 
-health=100;
+  player.mesh.position.set(
+    -42,
+    0,
+    0
+  );
 
-player.mesh.position.set(
--42,0,0
-);
+  yaw = 0;
 
-yaw=0;
-pitch=0;
+  pitch = 0;
 
-updateHUD();
+  health = 100;
+
+  updateHUD();
 
 }
 
 
-/* =========================
-   BOT KILL
-========================= */
+/*
+  killerType:
+    "player" = jogador matou o bot
+    "bot"    = bot matou o bot
+    "vehicle"= veículo do jogador matou bot
+    null     = sem jogador
 
+  Apenas killerType === "player" aumenta playerKills.
+*/
 function killBot(
-bot,
-killerTeam
+  bot,
+  killerTeam,
+  killerType = null
 ){
 
-if(
-!bot ||
-!bot.alive
-)
-return;
-
-bot.alive=false;
-
-bot.mesh.visible=false;
+  if(
+    !bot ||
+    !bot.alive
+  ){
+    return;
+  }
 
 
-if(killerTeam==="blue"){
+  bot.alive = false;
 
-blueScore++;
+  bot.mesh.visible = false;
+
+
+  if(killerTeam === "blue"){
+
+    blueScore++;
+
+
+    /*
+      CORREÇÃO PRINCIPAL:
+      Só o jogador ganha uma kill quando
+      ele próprio matou o inimigo.
+    */
+    if(killerType === "player"){
+
+      playerKills++;
+
+      addCredits(10);
+
+    }
+
+  }else{
+
+    orangeScore++;
+
+  }
+
+
+  updateHUD();
+
+
+  if(
+    blueScore >= 30 ||
+    orangeScore >= 30
+  ){
+
+    endBattle();
+
+    return;
+
+  }
+
+
+  setTimeout(
+    () => respawnBot(bot),
+    2500
+  );
+
+}
+
 
 /*
-  Apenas kills feitas pela equipa Blue
-  dão Credits.
+  Quando um bot azul mata um bot laranja,
+  não dá uma kill ao jogador e não dá Credits.
 */
+function botKillsEnemy(bot){
 
-playerKills++;
-
-addCredits(10);
-
-}else{
-
-orangeScore++;
-
-}
-
-updateHUD();
-
-
-if(
-blueScore>=30 ||
-orangeScore>=30
-){
-
-endBattle();
-
-return;
+  killBot(
+    bot,
+    "blue",
+    "bot"
+  );
 
 }
 
-
-setTimeout(
-()=>{
-respawnBot(bot);
-},
-2500
-);
-
-}
-
-
-/* =========================
-   BOT RESPAWN
-========================= */
 
 function respawnBot(bot){
 
-if(gameEnded)
-return;
+  if(gameEnded)
+    return;
 
-bot.alive=true;
 
-bot.health=100;
+  bot.alive = true;
 
-bot.mesh.visible=true;
+  bot.health = 100;
 
-bot.mesh.position.set(
-bot.team==="blue"?
--35-Math.random()*10:
-35+Math.random()*10,
-0,
-Math.random()*30-15
-);
+  bot.mesh.visible = true;
+
+
+  bot.mesh.position.set(
+
+    bot.team === "blue"
+      ? -35-Math.random()*10
+      : 35+Math.random()*10,
+
+    0,
+
+    Math.random()*30-15
+
+  );
 
 }
 
 
-/* =========================
+/* =====================================================
    VEHICLES
-========================= */
+===================================================== */
 
 function toggleVehicle(){
 
-if(gameEnded)
-return;
+  if(
+    gameEnded ||
+    shopOpen
+  ){
+    return;
+  }
 
 
-if(player.vehicle){
+  if(player.vehicle){
 
-player.vehicle.occupied=null;
+    player.vehicle.occupied = null;
 
-player.vehicle=null;
+    player.vehicle = null;
 
-player.mesh.visible=true;
+    player.mesh.visible = true;
 
-return;
+    return;
+
+  }
+
+
+  let nearest = null;
+
+  let best = 5;
+
+
+  vehicles.forEach(vehicle => {
+
+    const distance =
+      vehicle.mesh.position.distanceTo(
+        player.mesh.position
+      );
+
+
+    if(distance < best){
+
+      best = distance;
+
+      nearest = vehicle;
+
+    }
+
+  });
+
+
+  if(nearest){
+
+    player.vehicle = nearest;
+
+    nearest.occupied = player;
+
+    player.mesh.visible = false;
+
+  }
 
 }
 
 
-let nearest=null;
-let best=5;
-
-vehicles.forEach(vehicle=>{
-
-const distance=
-vehicle.mesh.position.distanceTo(
-player.mesh.position
-);
-
-if(
-distance<best &&
-!vehicle.occupied
-){
-
-best=distance;
-nearest=vehicle;
-
-}
-
-});
-
-
-if(nearest){
-
-player.vehicle=nearest;
-
-nearest.occupied=player;
-
-player.mesh.visible=false;
-
-}
-
-}
-
-
-/* =========================
+/* =====================================================
    SHOP
-========================= */
+===================================================== */
 
 function toggleShop(){
 
-if(gameEnded)
-return;
+  if(gameEnded)
+    return;
 
-shopOpen=!shopOpen;
 
-document.getElementById(
-"shopOverlay"
-).classList.toggle(
-"show",
-shopOpen
-);
+  shopOpen =
+    !shopOpen;
 
-if(shopOpen){
 
-if(document.pointerLockElement){
+  document
+    .getElementById("shopOverlay")
+    .classList.toggle(
+      "show",
+      shopOpen
+    );
 
-document.exitPointerLock();
 
-}
+  updateCredits();
 
-}
 
-updateCredits();
+  if(shopOpen){
+
+    if(
+      document.pointerLockElement === battleCanvas
+    ){
+
+      document.exitPointerLock();
+
+    }
+
+  }
 
 }
 
 
 function closeShop(){
 
-shopOpen=false;
+  shopOpen = false;
 
-document.getElementById(
-"shopOverlay"
-).classList.remove(
-"show"
-);
+  document
+    .getElementById("shopOverlay")
+    .classList.remove("show");
 
 }
 
 
-document.getElementById(
-"closeShop"
-).addEventListener(
-"click",
-closeShop
-);
+document
+  .getElementById("closeShop")
+  .addEventListener(
+    "click",
+    closeShop
+  );
 
 
-document.querySelectorAll(
-".buyWeapon"
-)
-.forEach(button=>{
+document
+  .querySelectorAll(".buyWeapon")
+  .forEach(button => {
 
-button.addEventListener(
-"click",
-()=>{
+    button.addEventListener(
+      "click",
+      () => {
 
-const price=
-Number(button.dataset.price);
-
-if(
-price===0 ||
-spendCredits(price)
-){
-
-weapon=
-button.dataset.name;
-
-ammo=
-Number(button.dataset.ammo);
-
-updateHUD();
-
-}else{
-
-alert(
-"❌ Não tens Credits suficientes!"
-);
-
-}
-
-}
-);
-
-});
+        const price =
+          Number(button.dataset.price);
 
 
-/* =========================
+        if(
+          price === 0 ||
+          spendCredits(price)
+        ){
+
+          weapon =
+            button.dataset.name;
+
+          ammo =
+            Number(button.dataset.ammo);
+
+
+          updateHUD();
+
+
+        }else{
+
+          alert(
+            "❌ Não tens Credits suficientes!"
+          );
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =====================================================
    HUD
-========================= */
+===================================================== */
 
 function updateHUD(){
 
-document.getElementById(
-"weaponName"
-).textContent=
-weapon;
+  document
+    .getElementById("weaponName")
+    .textContent =
+    weapon;
 
-document.getElementById(
-"health"
-).textContent=
-health;
 
-document.getElementById(
-"ammo"
-).textContent=
-ammo;
+  document
+    .getElementById("health")
+    .textContent =
+    health;
 
-document.getElementById(
-"blueScore"
-).textContent=
-blueScore;
 
-document.getElementById(
-"orangeScore"
-).textContent=
-orangeScore;
+  document
+    .getElementById("ammo")
+    .textContent =
+    ammo;
+
+
+  document
+    .getElementById("blueScore")
+    .textContent =
+    blueScore;
+
+
+  document
+    .getElementById("orangeScore")
+    .textContent =
+    orangeScore;
 
 }
 
 
-/* =========================
+/* =====================================================
    CREDITS POR MINUTO
-========================= */
+===================================================== */
 
 setInterval(
-()=>{
+  () => {
 
-if(
-battleStarted &&
-!gameEnded &&
-!shopOpen
-){
+    if(
+      battleStarted &&
+      !gameEnded &&
+      !shopOpen
+    ){
 
-addCredits(5);
+      addCredits(5);
 
-}
+    }
 
-},
-60000
+  },
+  60000
 );
 
 
-/* =========================
+/* =====================================================
    GAME OVER
-========================= */
+===================================================== */
 
 function endBattle(){
 
-gameEnded=true;
+  gameEnded = true;
 
-if(document.pointerLockElement){
 
-document.exitPointerLock();
+  if(
+    document.pointerLockElement === battleCanvas
+  ){
+
+    document.exitPointerLock();
+
+  }
+
+
+  const blueWon =
+    blueScore > orangeScore;
+
+
+  document
+    .getElementById("gameOverTitle")
+    .textContent =
+    blueWon
+      ? "VICTORY!"
+      : "DEFEAT!";
+
+
+  document
+    .getElementById("finalScore")
+    .textContent =
+    `🔵 ${blueScore} — ${orangeScore} 🟠`;
+
+
+  document
+    .getElementById("finalKills")
+    .textContent =
+    `Kills do jogador: ${playerKills}`;
+
+
+  const reward =
+    blueWon
+      ? 50
+      : 10;
+
+
+  addCredits(reward);
+
+
+  document
+    .getElementById("earnedCredits")
+    .textContent =
+    `💳 Credits ganhos: ${reward}`;
+
+
+  document
+    .getElementById("gameOver")
+    .classList.add("show");
 
 }
 
-const blueWon=
-blueScore>orangeScore;
 
-document.getElementById(
-"gameOverTitle"
-).textContent=
-blueWon?
-"VICTORY!":
-"DEFEAT!";
-
-document.getElementById(
-"finalScore"
-).textContent=
-`🔵 ${blueScore} — ${orangeScore} 🟠`;
-
-document.getElementById(
-"finalKills"
-).textContent=
-`Kills do jogador: ${playerKills}`;
-
-const reward=
-blueWon?
-50:
-10;
-
-addCredits(reward);
-
-document.getElementById(
-"earnedCredits"
-).textContent=
-`💳 Credits ganhos: ${reward}`;
-
-document.getElementById(
-"gameOver"
-).classList.add(
-"show"
-);
-
-}
-
-
-/* =========================
+/* =====================================================
    RESTART
-========================= */
+===================================================== */
 
-document.getElementById(
-"restartBattle"
-).addEventListener(
-"click",
-()=>{
+document
+  .getElementById("restartBattle")
+  .addEventListener(
+    "click",
+    () => {
 
-blueScore=0;
-orangeScore=0;
-playerKills=0;
+      blueScore = 0;
 
-health=100;
-ammo=60;
-weapon="Pistol";
+      orangeScore = 0;
 
-gameEnded=false;
+      playerKills = 0;
 
-yaw=0;
-pitch=0;
+      health = 100;
 
-bots.forEach(bot=>{
+      ammo = 60;
 
-bot.alive=true;
-bot.health=100;
-bot.mesh.visible=true;
+      weapon = "Pistol";
 
-bot.mesh.position.set(
-bot.team==="blue"?
--35-Math.random()*10:
-35+Math.random()*10,
-0,
-Math.random()*30-15
-);
+      gameEnded = false;
 
-});
+      yaw = 0;
 
-player.mesh.position.set(
--42,0,0
-);
-
-document.getElementById(
-"gameOver"
-).classList.remove(
-"show"
-);
-
-updateHUD();
-
-}
-);
+      pitch = 0;
 
 
-/* =========================
+      if(player.vehicle){
+
+        player.vehicle.occupied = null;
+
+        player.vehicle = null;
+
+      }
+
+
+      player.mesh.visible = true;
+
+
+      bots.forEach(bot => {
+
+        bot.alive = true;
+
+        bot.health = 100;
+
+        bot.mesh.visible = true;
+
+
+        bot.mesh.position.set(
+
+          bot.team === "blue"
+            ? -35-Math.random()*10
+            : 35+Math.random()*10,
+
+          0,
+
+          Math.random()*30-15
+
+        );
+
+      });
+
+
+      player.mesh.position.set(
+        -42,
+        0,
+        0
+      );
+
+
+      document
+        .getElementById("gameOver")
+        .classList.remove("show");
+
+
+      updateHUD();
+
+    }
+  );
+
+
+/* =====================================================
    ANIMATION
-========================= */
+===================================================== */
 
 function animate(){
 
-requestAnimationFrame(
-animate
-);
-
-if(
-!battleStarted ||
-!renderer ||
-!scene
-)
-return;
+  requestAnimationFrame(animate);
 
 
-updatePlayer();
+  if(!battleStarted)
+    return;
 
-updateBots();
+
+  updatePlayer();
+
+  updateBots();
 
 
-vehicles.forEach(vehicle=>{
+  vehicles.forEach(vehicle => {
 
-if(
-vehicle.occupied===
-player
-){
+    if(
+      vehicle.occupied === player
+    ){
 
-const speed=.12;
+      const speed = .12;
 
-const forward=
-new THREE.Vector3(
-Math.sin(yaw),
-0,
--Math.cos(yaw)
-);
 
-if(keys["KeyW"]){
+      const forward =
+        new THREE.Vector3(
+          Math.sin(yaw),
+          0,
+          -Math.cos(yaw)
+        );
 
-vehicle.mesh.position.add(
-forward.clone().multiplyScalar(speed)
-);
+
+      const right =
+        new THREE.Vector3(
+          Math.cos(yaw),
+          0,
+          Math.sin(yaw)
+        );
+
+
+      if(keys["KeyW"]){
+
+        vehicle.mesh.position.add(
+          forward.clone()
+            .multiplyScalar(speed)
+        );
+
+      }
+
+
+      if(keys["KeyS"]){
+
+        vehicle.mesh.position.add(
+          forward.clone()
+            .multiplyScalar(-speed)
+        );
+
+      }
+
+
+      if(keys["KeyA"]){
+
+        vehicle.mesh.position.add(
+          right.clone()
+            .multiplyScalar(-speed)
+        );
+
+      }
+
+
+      if(keys["KeyD"]){
+
+        vehicle.mesh.position.add(
+          right.clone()
+            .multiplyScalar(speed)
+        );
+
+      }
+
+
+      vehicle.mesh.position.x =
+        Math.max(
+          -52,
+          Math.min(
+            52,
+            vehicle.mesh.position.x
+          )
+        );
+
+
+      vehicle.mesh.position.z =
+        Math.max(
+          -52,
+          Math.min(
+            52,
+            vehicle.mesh.position.z
+          )
+        );
+
+
+      /*
+        Atropelamento:
+        apenas se o veículo for conduzido
+        pelo jogador, a eliminação dá kill ao jogador.
+      */
+
+      bots.forEach(bot => {
+
+        if(
+          bot.alive &&
+          bot.team === "orange" &&
+          bot.mesh.position.distanceTo(
+            vehicle.mesh.position
+          ) < 3
+        ){
+
+          killBot(
+            bot,
+            "blue",
+            "vehicle"
+          );
+
+        }
+
+      });
+
+    }
+
+  });
+
+
+  renderer.render(
+    scene,
+    camera
+  );
 
 }
 
-if(keys["KeyS"]){
 
-vehicle.mesh.position.add(
-forward.clone().multiplyScalar(-speed)
-);
+/* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
 
-}
-
-if(keys["KeyA"]){
-
-vehicle.mesh.position.x-=speed;
-
-}
-
-if(keys["KeyD"]){
-
-vehicle.mesh.position.x+=speed;
-
-}
-
-vehicle.mesh.position.x=
-Math.max(
--52,
-Math.min(
-52,
-vehicle.mesh.position.x
-)
-);
-
-vehicle.mesh.position.z=
-Math.max(
--52,
-Math.min(
-52,
-vehicle.mesh.position.z
-)
-);
-
-
-/* VEHICLE COLLISIONS */
-
-bots.forEach(bot=>{
-
-if(
-bot.alive &&
-bot.mesh.position.distanceTo(
-vehicle.mesh.position
-)<3
-){
-
-killBot(
-bot,
-"blue"
-);
-
-}
-
-});
-
-}
-
-});
-
-
-renderer.render(
-scene,
-camera
-);
-
-}
+updateHUD();
 
 </script>
 
