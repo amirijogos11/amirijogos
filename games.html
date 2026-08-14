@@ -619,7 +619,7 @@
    UNIVERSAL CREDITS
 ========================= */
 
-  /* =========================
+/* =========================
    FULLSCREEN + MOUSE LOOK
 ========================= */
 
@@ -627,27 +627,19 @@ let yaw = 0;
 let pitch = 0;
 let pointerLocked = false;
 
-const fullscreenBtn = document.getElementById("fullscreenBtn");
-const battleCanvas = document.getElementById("battleCanvas");
+document.addEventListener("pointerlockchange", () => {
+  pointerLocked =
+    document.pointerLockElement === battleCanvas;
+});
 
-fullscreenBtn.addEventListener("click", async () => {
+document.addEventListener("mousemove", (event) => {
 
-  const gameWrap = document.querySelector(".game-wrap");
+  if (!pointerLocked || shopOpen || gameEnded) return;
 
-  try {
+  yaw -= event.movementX * 0.0025;
+  pitch -= event.movementY * 0.0025;
 
-    if (!document.fullscreenElement) {
-      await gameWrap.requestFullscreen();
-    }
-
-    if (document.pointerLockElement !== battleCanvas) {
-      battleCanvas.requestPointerLock();
-    }
-
-  } catch (error) {
-    console.error("Erro ao entrar em fullscreen:", error);
-  }
-
+  pitch = Math.max(-1.2, Math.min(1.2, pitch));
 });
 
 battleCanvas.addEventListener("click", () => {
@@ -1210,8 +1202,6 @@ function setupControls(){
 ========================= */
 
 function updatePlayer(){
-
-  function updatePlayer(){
 
   if(gameEnded || shopOpen) return;
 
