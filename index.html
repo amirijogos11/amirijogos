@@ -1,291 +1,3156 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>AMIRIJOGOS | Gaming</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-    <meta name="description" content="Site oficial do AMIRIJOGOS — Gaming, vídeos, desafios e diversão.">
+<title>AMIRIJOGOS</title>
 
-    <link rel="icon" type="image/jpeg" href="perfil.jpg">
-    <link rel="stylesheet" href="style.css">
+<style>
+
+/* =====================================================
+   CONFIGURAÇÕES
+===================================================== */
+
+:root{
+
+  --bg:#05070c;
+  --bg2:#090d15;
+
+  --panel:rgba(14,20,32,.72);
+
+  --text:#ffffff;
+  --muted:#9da9ba;
+
+  --red:#ff0033;
+  --youtube:#ff0000;
+
+  --blue:#2388ff;
+
+  --border:rgba(255,255,255,.10);
+
+  --shadow:
+  0 20px 60px rgba(0,0,0,.45);
+
+}
+
+
+/* =====================================================
+   BASE
+===================================================== */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+
+  scroll-behavior:smooth;
+
+  scrollbar-width:thin;
+  scrollbar-color:#ff1744 #070a10;
+
+}
+
+body{
+
+  margin:0;
+
+  font-family:
+  Arial,
+  Helvetica,
+  sans-serif;
+
+  color:var(--text);
+
+  background:
+  radial-gradient(
+    circle at 50% -10%,
+    #19263d 0%,
+    #080b12 40%,
+    #040609 100%
+  );
+
+  overflow-x:hidden;
+
+}
+
+
+/* SCROLLBAR CHROME */
+
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#070a10;
+}
+
+::-webkit-scrollbar-thumb{
+
+  background:
+  linear-gradient(
+    #ff0033,
+    #9c0b28
+  );
+
+  border-radius:20px;
+
+}
+
+
+/* =====================================================
+   FUNDO DE PARTÍCULAS
+===================================================== */
+
+#particleCanvas{
+
+  position:fixed;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  pointer-events:none;
+
+  z-index:-3;
+
+}
+
+
+/* efeitos de luz */
+
+.background-glow{
+
+  position:fixed;
+
+  inset:0;
+
+  pointer-events:none;
+
+  z-index:-2;
+
+  background:
+
+  radial-gradient(
+    circle at 20% 25%,
+    rgba(255,0,45,.10),
+    transparent 30%
+  ),
+
+  radial-gradient(
+    circle at 80% 70%,
+    rgba(35,136,255,.11),
+    transparent 34%
+  );
+
+}
+
+
+/* =====================================================
+   SCROLL PROGRESS
+===================================================== */
+
+#scrollProgress{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:0%;
+  height:4px;
+
+  z-index:9999;
+
+  background:
+  linear-gradient(
+    90deg,
+    #ff0000,
+    #ff2d55,
+    #2388ff
+  );
+
+  box-shadow:
+  0 0 15px rgba(255,0,0,.8);
+
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+  right:0;
+
+  z-index:1000;
+
+  height:76px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  padding:
+  0 clamp(18px,5vw,70px);
+
+  background:
+  rgba(5,7,12,.68);
+
+  backdrop-filter:
+  blur(18px);
+
+  border-bottom:
+  1px solid var(--border);
+
+  transition:
+  .35s ease;
+
+}
+
+
+.navbar.scrolled{
+
+  height:66px;
+
+  background:
+  rgba(5,7,12,.93);
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,.3);
+
+}
+
+
+/* BRAND */
+
+.brand{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  color:white;
+
+  text-decoration:none;
+
+  font-weight:1000;
+
+  letter-spacing:.5px;
+
+}
+
+
+.brand img{
+
+  width:46px;
+  height:46px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  border:
+  2px solid #ff1744;
+
+  box-shadow:
+  0 0 18px rgba(255,0,50,.4);
+
+}
+
+
+.brand-text span{
+
+  color:#ff234c;
+
+}
+
+
+/* NAV LINKS */
+
+.nav-links{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+}
+
+
+.nav-links a{
+
+  position:relative;
+
+  color:#dce5f2;
+
+  text-decoration:none;
+
+  padding:
+  10px 13px;
+
+  border-radius:10px;
+
+  font-size:14px;
+
+  transition:
+  .25s ease;
+
+}
+
+
+.nav-links a:hover{
+
+  color:white;
+
+  background:
+  rgba(255,255,255,.07);
+
+  transform:
+  translateY(-2px);
+
+}
+
+
+.nav-links .games-link{
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff0033,
+    #a60e2f
+  );
+
+  font-weight:800;
+
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+section{
+
+  position:relative;
+
+  min-height:100vh;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:
+  120px 6% 90px;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+  min-height:100vh;
+
+  text-align:center;
+
+}
+
+
+.hero-content{
+
+  width:min(
+    1000px,
+    100%
+  );
+
+  margin:auto;
+
+}
+
+
+.hero-logo-wrap{
+
+  position:relative;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  margin-bottom:25px;
+
+}
+
+
+/* círculo atrás */
+
+.hero-logo-wrap::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:210px;
+  height:210px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(
+    circle,
+    rgba(255,0,45,.35),
+    transparent 65%
+  );
+
+  filter:blur(20px);
+
+  animation:
+  logoGlow 3s ease-in-out infinite;
+
+}
+
+
+.hero-logo{
+
+  position:relative;
+
+  z-index:2;
+
+  width:
+  clamp(120px,18vw,180px);
+
+  height:
+  clamp(120px,18vw,180px);
+
+  object-fit:cover;
+
+  border-radius:50%;
+
+  border:
+  4px solid rgba(255,255,255,.9);
+
+  box-shadow:
+  0 0 0 7px rgba(255,0,40,.25),
+  0 25px 70px rgba(0,0,0,.5);
+
+  animation:
+  logoFloat 4s ease-in-out infinite;
+
+}
+
+
+@keyframes logoFloat{
+
+  0%,100%{
+    transform:
+    translateY(0)
+    rotate(-2deg);
+  }
+
+  50%{
+    transform:
+    translateY(-13px)
+    rotate(2deg);
+  }
+
+}
+
+
+@keyframes logoGlow{
+
+  0%,100%{
+    transform:scale(.9);
+    opacity:.55;
+  }
+
+  50%{
+    transform:scale(1.2);
+    opacity:1;
+  }
+
+}
+
+
+/* YOUTUBE BADGE */
+
+.youtube-badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  gap:9px;
+
+  padding:
+  8px 15px;
+
+  border:
+  1px solid rgba(255,0,0,.3);
+
+  border-radius:999px;
+
+  background:
+  rgba(255,0,0,.10);
+
+  color:#ff9ca9;
+
+  font-weight:700;
+
+  margin-bottom:18px;
+
+}
+
+
+.youtube-icon{
+
+  width:31px;
+  height:22px;
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:#ff0000;
+
+  border-radius:6px;
+
+  box-shadow:
+  0 0 15px rgba(255,0,0,.35);
+
+}
+
+
+.youtube-icon::after{
+
+  content:"";
+
+  width:0;
+  height:0;
+
+  margin-left:2px;
+
+  border-top:
+  5px solid transparent;
+
+  border-bottom:
+  5px solid transparent;
+
+  border-left:
+  8px solid white;
+
+}
+
+
+/* HERO TITLE */
+
+.hero h1{
+
+  margin:0;
+
+  font-size:
+  clamp(
+    52px,
+    10vw,
+    120px
+  );
+
+  line-height:.92;
+
+  letter-spacing:-5px;
+
+  font-weight:1000;
+
+  background:
+  linear-gradient(
+    130deg,
+    #ffffff 20%,
+    #ff4565 52%,
+    #ff0033 72%,
+    #8bbdff
+  );
+
+  background-size:200% 200%;
+
+  -webkit-background-clip:text;
+
+  background-clip:text;
+
+  color:transparent;
+
+  animation:
+  titleGradient 6s ease infinite;
+
+}
+
+
+@keyframes titleGradient{
+
+  0%{
+    background-position:0 50%;
+  }
+
+  50%{
+    background-position:100% 50%;
+  }
+
+  100%{
+    background-position:0 50%;
+  }
+
+}
+
+
+.hero-description{
+
+  max-width:700px;
+
+  margin:
+  25px auto;
+
+  font-size:
+  clamp(
+    16px,
+    2vw,
+    20px
+  );
+
+  line-height:1.7;
+
+  color:var(--muted);
+
+}
+
+
+/* HERO BUTTONS */
+
+.hero-buttons{
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:12px;
+
+  flex-wrap:wrap;
+
+  margin-top:32px;
+
+}
+
+
+.main-button{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:10px;
+
+  min-width:170px;
+
+  padding:
+  14px 22px;
+
+  border-radius:13px;
+
+  text-decoration:none;
+
+  color:white;
+
+  font-weight:900;
+
+  border:
+  1px solid rgba(255,255,255,.1);
+
+  transition:
+  transform .25s ease,
+  box-shadow .25s ease,
+  filter .25s ease;
+
+}
+
+
+.main-button:hover{
+
+  transform:
+  translateY(-4px)
+  scale(1.02);
+
+  filter:
+  brightness(1.12);
+
+}
+
+
+.youtube-button{
+
+  background:
+  linear-gradient(
+    135deg,
+    #ff0000,
+    #bb001e
+  );
+
+  box-shadow:
+  0 15px 35px rgba(255,0,20,.22);
+
+}
+
+
+.games-button{
+
+  background:
+  linear-gradient(
+    135deg,
+    #2388ff,
+    #194ea0
+  );
+
+  box-shadow:
+  0 15px 35px rgba(35,136,255,.20);
+
+}
+
+
+/* SCROLL INDICATOR */
+
+.scroll-down{
+
+  position:absolute;
+
+  bottom:28px;
+
+  left:50%;
+
+  transform:
+  translateX(-50%);
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  gap:8px;
+
+  color:#8d99aa;
+
+  font-size:12px;
+
+}
+
+
+.mouse{
+
+  width:27px;
+  height:43px;
+
+  border:
+  2px solid #718094;
+
+  border-radius:20px;
+
+  position:relative;
+
+}
+
+
+.mouse::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:4px;
+  height:8px;
+
+  border-radius:5px;
+
+  background:#ff244c;
+
+  top:8px;
+  left:50%;
+
+  transform:
+  translateX(-50%);
+
+  animation:
+  mouseScroll 1.5s infinite;
+
+}
+
+
+@keyframes mouseScroll{
+
+  0%{
+    opacity:0;
+    transform:
+    translate(-50%,0);
+  }
+
+  30%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+    transform:
+    translate(-50%,15px);
+  }
+
+}
+
+
+/* =====================================================
+   CONTENT WRAPPERS
+===================================================== */
+
+.section-content{
+
+  width:min(
+    1150px,
+    100%
+  );
+
+  margin:auto;
+
+}
+
+
+.section-header{
+
+  text-align:center;
+
+  margin-bottom:55px;
+
+}
+
+
+.section-label{
+
+  color:#ff3a59;
+
+  font-weight:900;
+
+  letter-spacing:3px;
+
+  font-size:12px;
+
+  text-transform:uppercase;
+
+}
+
+
+.section-header h2{
+
+  margin:
+  12px 0;
+
+  font-size:
+  clamp(
+    35px,
+    6vw,
+    65px
+  );
+
+}
+
+
+.section-header p{
+
+  max-width:650px;
+
+  margin:auto;
+
+  color:var(--muted);
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   ABOUT
+===================================================== */
+
+.about-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  .85fr 1.15fr;
+
+  gap:50px;
+
+  align-items:center;
+
+}
+
+
+.about-profile{
+
+  position:relative;
+
+  display:flex;
+
+  justify-content:center;
+
+}
+
+
+.about-profile img{
+
+  width:
+  min(
+    350px,
+    85vw
+  );
+
+  aspect-ratio:1;
+
+  object-fit:cover;
+
+  border-radius:30px;
+
+  border:
+  1px solid rgba(255,255,255,.15);
+
+  box-shadow:
+  0 30px 80px rgba(0,0,0,.5);
+
+}
+
+
+.about-profile::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:70%;
+  height:70%;
+
+  background:#ff0033;
+
+  filter:blur(100px);
+
+  opacity:.17;
+
+  z-index:-1;
+
+}
+
+
+.about-text h3{
+
+  margin-top:0;
+
+  font-size:
+  clamp(
+    30px,
+    4vw,
+    48px
+  );
+
+}
+
+
+.about-text p{
+
+  color:var(--muted);
+
+  line-height:1.8;
+
+  font-size:17px;
+
+}
+
+
+.stat-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:12px;
+
+  margin-top:30px;
+
+}
+
+
+.big-stat{
+
+  padding:22px 12px;
+
+  text-align:center;
+
+  border:
+  1px solid var(--border);
+
+  border-radius:15px;
+
+  background:
+  rgba(255,255,255,.035);
+
+}
+
+
+.big-stat strong{
+
+  display:block;
+
+  font-size:28px;
+
+  color:#ff3658;
+
+}
+
+
+.big-stat span{
+
+  color:var(--muted);
+
+  font-size:12px;
+
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.cards{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(3,1fr);
+
+  gap:18px;
+
+}
+
+
+.card{
+
+  position:relative;
+
+  min-height:280px;
+
+  overflow:hidden;
+
+  padding:28px;
+
+  border:
+  1px solid var(--border);
+
+  border-radius:20px;
+
+  background:
+  linear-gradient(
+    145deg,
+    rgba(18,27,44,.8),
+    rgba(8,12,20,.8)
+  );
+
+  box-shadow:
+  var(--shadow);
+
+  transition:
+  transform .4s ease,
+  border-color .4s ease;
+
+}
+
+
+.card:hover{
+
+  transform:
+  translateY(-10px);
+
+  border-color:
+  rgba(255,50,80,.45);
+
+}
+
+
+.card-number{
+
+  position:absolute;
+
+  right:15px;
+  top:3px;
+
+  font-size:95px;
+
+  font-weight:1000;
+
+  color:
+  rgba(255,255,255,.025);
+
+}
+
+
+.card-icon{
+
+  font-size:44px;
+
+  margin-bottom:18px;
+
+}
+
+
+.card h3{
+
+  margin:0 0 10px;
+
+  font-size:24px;
+
+}
+
+
+.card p{
+
+  color:var(--muted);
+
+  line-height:1.65;
+
+}
+
+
+/* =====================================================
+   GAMING
+===================================================== */
+
+.games-showcase{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:
+  60px;
+
+  border:
+  1px solid rgba(35,136,255,.18);
+
+  border-radius:28px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(35,136,255,.10),
+    rgba(255,0,51,.07)
+  );
+
+  box-shadow:
+  0 30px 90px rgba(0,0,0,.4);
+
+  text-align:center;
+
+}
+
+
+.games-showcase::before{
+
+  content:"🎮";
+
+  position:absolute;
+
+  font-size:300px;
+
+  right:-60px;
+  bottom:-120px;
+
+  opacity:.025;
+
+}
+
+
+.games-showcase h2{
+
+  margin:
+  0 0 15px;
+
+  font-size:
+  clamp(
+    38px,
+    7vw,
+    75px
+  );
+
+}
+
+
+.games-showcase p{
+
+  max-width:650px;
+
+  margin:
+  0 auto 30px;
+
+  color:var(--muted);
+
+  line-height:1.7;
+
+}
+
+
+/* =====================================================
+   YOUTUBE SECTION
+===================================================== */
+
+.youtube-box{
+
+  display:grid;
+
+  grid-template-columns:
+  1fr 1fr;
+
+  gap:45px;
+
+  align-items:center;
+
+}
+
+
+.big-youtube{
+
+  position:relative;
+
+  width:100%;
+
+  aspect-ratio:16/9;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:28px;
+
+  background:
+  linear-gradient(
+    145deg,
+    #ff0033,
+    #9f001c
+  );
+
+  box-shadow:
+  0 25px 90px rgba(255,0,40,.22);
+
+}
+
+
+.big-youtube-icon{
+
+  width:170px;
+  height:115px;
+
+  border-radius:28px;
+
+  background:white;
+
+  position:relative;
+
+  box-shadow:
+  0 10px 40px rgba(0,0,0,.25);
+
+}
+
+
+.big-youtube-icon::after{
+
+  content:"";
+
+  position:absolute;
+
+  top:50%;
+  left:54%;
+
+  transform:
+  translate(-50%,-50%);
+
+  width:0;
+  height:0;
+
+  border-top:
+  25px solid transparent;
+
+  border-bottom:
+  25px solid transparent;
+
+  border-left:
+  40px solid #ff0033;
+
+}
+
+
+.youtube-copy h2{
+
+  font-size:
+  clamp(
+    35px,
+    6vw,
+    65px
+  );
+
+  margin:0 0 18px;
+
+}
+
+
+.youtube-copy p{
+
+  color:var(--muted);
+
+  line-height:1.8;
+
+  font-size:17px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+  position:relative;
+
+  text-align:center;
+
+  padding:
+  55px 20px;
+
+  border-top:
+  1px solid rgba(255,255,255,.08);
+
+  background:
+  rgba(4,6,10,.72);
+
+}
+
+
+.footer-logo{
+
+  width:70px;
+  height:70px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  margin-bottom:15px;
+
+  border:
+  2px solid #ff234c;
+
+}
+
+
+footer p{
+
+  margin:6px;
+
+  color:#6f7b8d;
+
+}
+
+
+/* =====================================================
+   REVEAL ON SCROLL
+===================================================== */
+
+.reveal{
+
+  opacity:0;
+
+  transform:
+  translateY(55px)
+  scale(.98);
+
+  filter:
+  blur(6px);
+
+  transition:
+
+  opacity .9s
+  cubic-bezier(.2,.7,.2,1),
+
+  transform .9s
+  cubic-bezier(.2,.7,.2,1),
+
+  filter .9s ease;
+
+}
+
+
+.reveal.visible{
+
+  opacity:1;
+
+  transform:
+  translateY(0)
+  scale(1);
+
+  filter:
+  blur(0);
+
+}
+
+
+/* delays */
+
+.reveal-delay-1{
+  transition-delay:.08s;
+}
+
+.reveal-delay-2{
+  transition-delay:.16s;
+}
+
+.reveal-delay-3{
+  transition-delay:.24s;
+}
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.menu-button{
+
+  display:none;
+
+  border:0;
+
+  width:44px;
+  height:44px;
+
+  border-radius:12px;
+
+  background:
+  rgba(255,255,255,.07);
+
+  color:white;
+
+  font-size:22px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(
+  max-width:900px
+){
+
+  .about-grid,
+  .youtube-box{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .cards{
+
+    grid-template-columns:1fr 1fr;
+
+  }
+
+
+  .about-text{
+
+    text-align:center;
+
+  }
+
+
+  .games-showcase{
+
+    padding:
+    45px 25px;
+
+  }
+
+}
+
+
+@media(
+  max-width:700px
+){
+
+  .navbar{
+
+    padding:
+    0 16px;
+
+  }
+
+
+  .menu-button{
+
+    display:block;
+
+  }
+
+
+  .nav-links{
+
+    position:absolute;
+
+    top:70px;
+    left:12px;
+    right:12px;
+
+    display:none;
+
+    flex-direction:column;
+
+    padding:12px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:15px;
+
+    background:
+    rgba(7,10,16,.97);
+
+    box-shadow:
+    var(--shadow);
+
+  }
+
+
+  .nav-links.open{
+
+    display:flex;
+
+  }
+
+
+  .nav-links a{
+
+    width:100%;
+
+    text-align:center;
+
+  }
+
+
+  .hero h1{
+
+    letter-spacing:-2px;
+
+  }
+
+
+  .cards{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  .stat-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+
+  section{
+
+    padding:
+    105px 20px 70px;
+
+  }
+
+}
+
+
+/* utilizadores que preferem menos animação */
+
+@media(
+  prefers-reduced-motion:reduce
+){
+
+  html{
+    scroll-behavior:auto;
+  }
+
+  *,
+  *::before,
+  *::after{
+
+    animation-duration:
+    .01ms !important;
+
+    animation-iteration-count:
+    1 !important;
+
+    transition-duration:
+    .01ms !important;
+
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <header class="navbar">
-        <a href="#inicio" class="brand">
-            <img src="perfil.jpg" alt="AMIRIJOGOS">
-            <span>AMIRIJOGOS</span>
-        </a>
-
-        <nav>
-             <a href="#inicio" data-i18n="home">Início</a>
-             <a href="#sobre" data-i18n="about">Sobre</a>
-             <a href="#videos" data-i18n="videos">Vídeos</a>
-             <a href="games.html">🎮 Jogos</a>
-             <a href="#comunidade" data-i18n="community">Comunidade</a>
-             <a href="#contacto" data-i18n="contact">Contacto</a>
-        </nav>
-
-        <select id="language">
-            <option value="pt">🇵🇹 Português</option>
-            <option value="en">🇬🇧 English</option>
-            <option value="es">🇪🇸 Español</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="it">🇮🇹 Italiano</option>
-            <option value="ja">🇯🇵 日本語</option>
-            <option value="zh">🇨🇳 中文</option>
-            <option value="ko">🇰🇷 한국어</option>
-            <option value="ru">🇷🇺 Русский</option>
-            <option value="ar">🇸🇦 العربية</option>
-            <option value="tr">🇹🇷 Türkçe</option>
-        </select>
-    </header>
 
-    <main>
+<!-- FUNDO -->
 
-        <!-- INÍCIO -->
-        <section id="inicio" class="hero">
+<canvas id="particleCanvas"></canvas>
 
-            <div class="hero-content">
+<div class="background-glow"></div>
 
-                <div class="profile">
-                    <img src="perfil.jpg" alt="Foto de perfil do AMIRIJOGOS">
-                </div>
+<div id="scrollProgress"></div>
 
-                <p class="eyebrow" data-i18n="gamingChannel">
-                    CANAL GAMING
-                </p>
 
-                <h1>
-                    AMIRI<span>JOGOS</span>
-                </h1>
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-                <p class="subtitle" data-i18n="heroText">
-                    Gaming, diversão e desafios.
-                </p>
+<header class="navbar" id="navbar">
 
-                <div class="buttons">
+<a href="#inicio" class="brand">
 
-                    <a
-                        href="https://www.youtube.com/@amirijogos"
-                        target="_blank"
-                        rel="noopener"
-                        class="btn primary"
-                    >
-                        ▶ <span data-i18n="youtube">Ver canal no YouTube</span>
-                    </a>
+<img
+  src="perfil.jpg"
+  alt="AMIRIJOGOS"
+>
 
-                    <a
-                        href="#videos"
-                        class="btn secondary"
-                        data-i18n="explore"
-                    >
-                        Explorar
-                    </a>
+<div class="brand-text">
+AMIRI<span>JOGOS</span>
+</div>
 
-                </div>
+</a>
 
-            </div>
 
-        </section>
+<button
+  id="menuButton"
+  class="menu-button"
+  aria-label="Abrir menu"
+>
+☰
+</button>
 
 
-        <!-- SOBRE -->
-        <section id="sobre" class="section">
+<nav
+  class="nav-links"
+  id="navLinks"
+>
 
-            <p class="eyebrow" data-i18n="aboutChannel">
-                SOBRE O CANAL
-            </p>
+<a href="#inicio">
+Início
+</a>
 
-            <h2 data-i18n="aboutTitle">
-                Sobre o AMIRIJOGOS
-            </h2>
+<a href="#sobre">
+Sobre
+</a>
 
-            <p class="description" data-i18n="aboutText">
-                Olá! Bem-vindo ao AMIRIJOGOS, um canal dedicado a gaming,
-                diversão, desafios e momentos épicos. Junta-te à comunidade
-                e acompanha todas as novidades!
-            </p>
+<a href="#conteudo">
+Conteúdo
+</a>
 
-        </section>
+<a href="#youtube">
+YouTube
+</a>
 
+<a
+  href="games.html"
+  class="games-link"
+>
+🎮 Jogos
+</a>
 
-        <!-- VÍDEOS -->
-        <section id="videos" class="section">
+</nav>
 
-            <p class="eyebrow" data-i18n="latestVideos">
-                CONTEÚDO
-            </p>
+</header>
 
-            <h2 data-i18n="videosTitle">
-                Últimos vídeos
-            </h2>
 
-            <div class="cards">
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-                <article class="card">
-                    <div class="card-icon">🎮</div>
+<section
+  id="inicio"
+  class="hero"
+>
 
-                    <h3>Gaming</h3>
+<div class="hero-content">
 
-                    <p data-i18n="gamingText">
-                        Jogos, desafios e momentos incríveis.
-                    </p>
-                </article>
 
+<div class="hero-logo-wrap">
 
-                <article class="card">
-                    <div class="card-icon">🔥</div>
+<img
+  src="perfil.jpg"
+  class="hero-logo"
+  alt="Logo AMIRIJOGOS"
+>
 
-                    <h3>Vídeos</h3>
+</div>
 
-                    <p data-i18n="videoText">
-                        Acompanha os novos vídeos do canal.
-                    </p>
-                </article>
 
+<br>
 
-                <article class="card">
-                    <div class="card-icon">🏆</div>
 
-                    <h3>Desafios</h3>
+<div class="youtube-badge">
 
-                    <p data-i18n="challengeText">
-                        Grandes desafios e conquistas.
-                    </p>
-                </article>
+<span class="youtube-icon"></span>
 
-            </div>
+Criador de conteúdo no YouTube
 
+</div>
 
-            <a
-                href="https://www.youtube.com/@amirijogos"
-                target="_blank"
-                rel="noopener"
-                class="btn primary youtube-button"
-                data-i18n="allVideos"
-            >
-                Ver todos os vídeos
-            </a>
 
-        </section>
+<h1>
+AMIRIJOGOS
+</h1>
 
 
-        <!-- COMUNIDADE -->
-        <section id="comunidade" class="community">
+<p class="hero-description">
 
-            <div class="community-content">
+Gaming, vídeos, desafios e projetos.
+Explora o meu site, vê o conteúdo
+e experimenta os jogos AMIRIJOGOS.
 
-                <p class="eyebrow" data-i18n="community">
-                    COMUNIDADE
-                </p>
+</p>
 
-                <h2 data-i18n="communityTitle">
-                    Junta-te à comunidade!
-                </h2>
 
-                <p data-i18n="communityText">
-                    Faz parte da comunidade AMIRIJOGOS e não percas nenhuma novidade.
-                </p>
+<div class="hero-buttons">
 
-            </div>
+<a
+  href="https://www.youtube.com/@amirijogos"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="main-button youtube-button"
+>
 
+<span class="youtube-icon"></span>
 
-            <!-- DISCORD -->
-            <div class="discord-card">
+YouTube
 
-           <img
-               src="Discord.png"
-               alt="Servidor Discord do AMIRIJOGOS"
-               class="discord-image"
-            >
+</a>
 
-                <div class="discord-info">
 
-                    <h3>💬 Discord AMIRIJOGOS</h3>
+<a
+  href="games.html"
+  class="main-button games-button"
+>
 
-                    <p>
-                        Junta-te ao nosso servidor Discord,
-                        conversa com a comunidade e participa
-                        nos eventos!
-                    </p>
+🎮 Jogar agora
 
-                    <a
-                        href="https://discord.gg/GdcPE5mUb"
-                        target="_blank"
-                        rel="noopener"
-                        class="btn primary"
-                    >
-                        💬 Entrar no Discord
-                    </a>
+</a>
 
-                </div>
+</div>
 
-            </div>
+</div>
 
 
-            <!-- YOUTUBE -->
-            <div class="buttons">
+<a
+  href="#sobre"
+  class="scroll-down"
+  aria-label="Descer"
+>
 
-                <a
-                    href="https://www.youtube.com/@amirijogos"
-                    target="_blank"
-                    rel="noopener"
-                    class="btn primary"
-                >
-                    ▶ YouTube
-                </a>
+<span>
+SCROLL
+</span>
 
-            </div>
+<div class="mouse"></div>
 
-        </section>
+</a>
 
+</section>
 
-        <!-- CONTACTO -->
-        <section id="contacto" class="section">
 
-            <p class="eyebrow" data-i18n="contact">
-                CONTACTO
-            </p>
+<!-- =====================================================
+     SOBRE
+===================================================== -->
 
-            <h2 data-i18n="contactTitle">
-                Contacta o AMIRIJOGOS
-            </h2>
+<section id="sobre">
 
-            <p class="description" data-i18n="contactText">
-                Queres entrar em contacto com o AMIRIJOGOS?
-            </p>
+<div class="section-content">
 
-        </section>
 
-    </main>
+<div class="section-header reveal">
 
+<div class="section-label">
+AMIRIJOGOS
+</div>
 
-    <!-- FOOTER -->
-    <footer>
+<h2>
+Bem-vindo ao meu mundo
+</h2>
 
-        <img src="perfil.jpg" alt="AMIRIJOGOS">
+<p>
 
-        <p>
-            © 2026 AMIRIJOGOS
-        </p>
+Um espaço dedicado a gaming,
+vídeos, criatividade e experiências
+interativas.
 
-        <a
-            href="https://www.youtube.com/@amirijogos"
-            target="_blank"
-            rel="noopener"
-        >
-            YouTube
-        </a>
+</p>
 
-    </footer>
+</div>
 
 
-    <script src="script.js"></script>
+<div class="about-grid">
+
+
+<div class="about-profile reveal">
+
+<img
+  src="perfil.jpg"
+  alt="Logo do canal AMIRIJOGOS"
+>
+
+</div>
+
+
+<div class="about-text reveal reveal-delay-1">
+
+<h3>
+Gaming + YouTube + criatividade
+</h3>
+
+<p>
+
+O AMIRIJOGOS junta num só lugar
+o conteúdo do canal e projetos
+que podes experimentar diretamente
+no navegador.
+
+</p>
+
+<p>
+
+Continua a fazer scroll para descobrir
+mais partes do site. As partículas no
+fundo acompanham o movimento para
+dar um efeito de profundidade.
+
+</p>
+
+
+<div class="stat-grid">
+
+<div class="big-stat">
+
+<strong>
+🎮
+</strong>
+
+<span>
+Gaming
+</span>
+
+</div>
+
+
+<div class="big-stat">
+
+<strong>
+▶
+</strong>
+
+<span>
+YouTube
+</span>
+
+</div>
+
+
+<div class="big-stat">
+
+<strong>
+⚡
+</strong>
+
+<span>
+Projetos
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTEÚDO
+===================================================== -->
+
+<section id="conteudo">
+
+<div class="section-content">
+
+
+<div class="section-header reveal">
+
+<div class="section-label">
+CONTEÚDO
+</div>
+
+<h2>
+O que vais encontrar
+</h2>
+
+<p>
+
+Diferentes tipos de conteúdo
+e experiências AMIRIJOGOS.
+
+</p>
+
+</div>
+
+
+<div class="cards">
+
+
+<article class="card reveal reveal-delay-1">
+
+<div class="card-number">
+01
+</div>
+
+<div class="card-icon">
+🎮
+</div>
+
+<h3>
+Gaming
+</h3>
+
+<p>
+
+Conteúdo relacionado com jogos,
+desafios, partidas e momentos
+divertidos.
+
+</p>
+
+</article>
+
+
+<article class="card reveal reveal-delay-2">
+
+<div class="card-number">
+02
+</div>
+
+<div class="card-icon">
+▶️
+</div>
+
+<h3>
+YouTube
+</h3>
+
+<p>
+
+Acompanha os vídeos e novidades
+do canal AMIRIJOGOS.
+
+</p>
+
+</article>
+
+
+<article class="card reveal reveal-delay-3">
+
+<div class="card-number">
+03
+</div>
+
+<div class="card-icon">
+🕹️
+</div>
+
+<h3>
+Jogos do site
+</h3>
+
+<p>
+
+Experimenta o Clicker,
+AMIRIJOGOS Battle e outros
+jogos que podem ser adicionados
+ao site.
+
+</p>
+
+</article>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     JOGOS
+===================================================== -->
+
+<section id="jogos">
+
+<div class="section-content">
+
+<div class="games-showcase reveal">
+
+<div class="section-label">
+INTERATIVO
+</div>
+
+<h2>
+🎮 AMIRIJOGOS Games
+</h2>
+
+<p>
+
+Entra na área de jogos,
+ganha Coins e Credits,
+faz Rebirths no Clicker
+e experimenta o Battle.
+
+</p>
+
+<a
+  href="games.html"
+  class="main-button games-button"
+>
+
+🚀 Abrir Jogos
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     YOUTUBE
+===================================================== -->
+
+<section id="youtube">
+
+<div class="section-content">
+
+<div class="youtube-box">
+
+
+<div class="big-youtube reveal">
+
+<div class="big-youtube-icon"></div>
+
+</div>
+
+
+<div class="youtube-copy reveal reveal-delay-1">
+
+<div class="section-label">
+YOUTUBE
+</div>
+
+<h2>
+Segue o AMIRIJOGOS
+</h2>
+
+<p>
+
+Vê os vídeos do canal,
+acompanha os novos projetos
+e descobre o próximo conteúdo
+AMIRIJOGOS.
+
+</p>
+
+<a
+  href="https://www.youtube.com/@amirijogos"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="main-button youtube-button"
+>
+
+<span class="youtube-icon"></span>
+
+Abrir YouTube
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+<img
+  src="perfil.jpg"
+  class="footer-logo"
+  alt="AMIRIJOGOS"
+>
+
+<p>
+<strong>
+AMIRIJOGOS
+</strong>
+</p>
+
+<p>
+Gaming • YouTube • Jogos • Projetos
+</p>
+
+<p>
+© 2026 AMIRIJOGOS
+</p>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   MENU MOBILE
+===================================================== */
+
+const menuButton =
+document.getElementById(
+  "menuButton"
+);
+
+const navLinks =
+document.getElementById(
+  "navLinks"
+);
+
+
+menuButton.addEventListener(
+  "click",
+  ()=>{
+
+    navLinks.classList.toggle(
+      "open"
+    );
+
+  }
+);
+
+
+document
+.querySelectorAll(
+  ".nav-links a"
+)
+.forEach(link=>{
+
+  link.addEventListener(
+    "click",
+    ()=>{
+
+      navLinks.classList.remove(
+        "open"
+      );
+
+    }
+  );
+
+});
+
+
+/* =====================================================
+   SMOOTH SCROLL
+===================================================== */
+
+/*
+  Faz a navegação por #secção
+  ficar mais controlada e suave.
+*/
+
+document
+.querySelectorAll(
+  'a[href^="#"]'
+)
+.forEach(link=>{
+
+  link.addEventListener(
+    "click",
+    event=>{
+
+      const href =
+      link.getAttribute(
+        "href"
+      );
+
+
+      if(
+        !href ||
+        href==="#"
+      ){
+        return;
+      }
+
+
+      const target =
+      document.querySelector(
+        href
+      );
+
+
+      if(!target){
+        return;
+      }
+
+
+      event.preventDefault();
+
+
+      const navbarHeight =
+      document
+      .getElementById(
+        "navbar"
+      )
+      .offsetHeight;
+
+
+      const top =
+      target
+      .getBoundingClientRect()
+      .top +
+      window.scrollY -
+      navbarHeight;
+
+
+      window.scrollTo({
+        top:top,
+        behavior:"smooth"
+      });
+
+    }
+  );
+
+});
+
+
+/* =====================================================
+   SCROLL PROGRESS + NAVBAR
+===================================================== */
+
+const navbar =
+document.getElementById(
+  "navbar"
+);
+
+const progress =
+document.getElementById(
+  "scrollProgress"
+);
+
+
+function updateScrollUI(){
+
+  const scrollTop =
+  window.scrollY ||
+  document.documentElement.scrollTop;
+
+
+  const documentHeight =
+  document.documentElement.scrollHeight -
+  window.innerHeight;
+
+
+  const percentage =
+  documentHeight>0
+  ?
+  (
+    scrollTop /
+    documentHeight
+  ) * 100
+  :
+  0;
+
+
+  progress.style.width =
+  percentage + "%";
+
+
+  navbar.classList.toggle(
+    "scrolled",
+    scrollTop>30
+  );
+
+}
+
+
+window.addEventListener(
+  "scroll",
+  updateScrollUI,
+  {
+    passive:true
+  }
+);
+
+
+updateScrollUI();
+
+
+/* =====================================================
+   REVEAL ANIMATION
+===================================================== */
+
+const revealObserver =
+new IntersectionObserver(
+  entries=>{
+
+    entries.forEach(entry=>{
+
+      if(
+        entry.isIntersecting
+      ){
+
+        entry.target
+        .classList.add(
+          "visible"
+        );
+
+
+        revealObserver
+        .unobserve(
+          entry.target
+        );
+
+      }
+
+    });
+
+  },
+  {
+    threshold:.15,
+    rootMargin:
+    "0px 0px -50px 0px"
+  }
+);
+
+
+document
+.querySelectorAll(
+  ".reveal"
+)
+.forEach(element=>{
+
+  revealObserver.observe(
+    element
+  );
+
+});
+
+
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
+
+const canvas =
+document.getElementById(
+  "particleCanvas"
+);
+
+const ctx =
+canvas.getContext(
+  "2d"
+);
+
+
+let width = 0;
+let height = 0;
+
+let pixelRatio =
+Math.min(
+  window.devicePixelRatio || 1,
+  2
+);
+
+
+/* logo do canal */
+
+const channelLogo =
+new Image();
+
+channelLogo.src =
+"perfil.jpg";
+
+
+/* =====================================================
+   DESENHO DO LOGO YOUTUBE
+===================================================== */
+
+function drawYouTubeLogo(
+  x,
+  y,
+  size,
+  opacity,
+  rotation
+){
+
+  ctx.save();
+
+
+  ctx.globalAlpha =
+  opacity;
+
+
+  ctx.translate(
+    x,
+    y
+  );
+
+
+  ctx.rotate(
+    rotation
+  );
+
+
+  const w =
+  size;
+
+  const h =
+  size * .70;
+
+
+  const radius =
+  size * .17;
+
+
+  ctx.fillStyle =
+  "#ff0000";
+
+
+  roundedRect(
+    ctx,
+    -w/2,
+    -h/2,
+    w,
+    h,
+    radius
+  );
+
+
+  ctx.fill();
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    -size*.09,
+    -size*.17
+  );
+
+
+  ctx.lineTo(
+    size*.20,
+    0
+  );
+
+
+  ctx.lineTo(
+    -size*.09,
+    size*.17
+  );
+
+
+  ctx.closePath();
+
+
+  ctx.fillStyle =
+  "#ffffff";
+
+
+  ctx.fill();
+
+
+  ctx.restore();
+
+}
+
+
+/* =====================================================
+   RECTÂNGULO ARREDONDADO
+===================================================== */
+
+function roundedRect(
+  context,
+  x,
+  y,
+  w,
+  h,
+  radius
+){
+
+  const r =
+  Math.min(
+    radius,
+    w/2,
+    h/2
+  );
+
+
+  context.beginPath();
+
+
+  context.moveTo(
+    x+r,
+    y
+  );
+
+
+  context.lineTo(
+    x+w-r,
+    y
+  );
+
+
+  context.quadraticCurveTo(
+    x+w,
+    y,
+    x+w,
+    y+r
+  );
+
+
+  context.lineTo(
+    x+w,
+    y+h-r
+  );
+
+
+  context.quadraticCurveTo(
+    x+w,
+    y+h,
+    x+w-r,
+    y+h
+  );
+
+
+  context.lineTo(
+    x+r,
+    y+h
+  );
+
+
+  context.quadraticCurveTo(
+    x,
+    y+h,
+    x,
+    y+h-r
+  );
+
+
+  context.lineTo(
+    x,
+    y+r
+  );
+
+
+  context.quadraticCurveTo(
+    x,
+    y,
+    x+r,
+    y
+  );
+
+
+  context.closePath();
+
+}
+
+
+/* =====================================================
+   PARTICLE CLASS
+===================================================== */
+
+class Particle{
+
+  constructor(
+    index
+  ){
+
+    this.index =
+    index;
+
+
+    this.reset(
+      true
+    );
+
+  }
+
+
+  reset(
+    randomY=false
+  ){
+
+    this.x =
+    Math.random() *
+    width;
+
+
+    this.y =
+    randomY
+    ?
+    Math.random() *
+    height
+    :
+    height +
+    Math.random()*100;
+
+
+    this.size =
+    22 +
+    Math.random()*35;
+
+
+    this.speedY =
+    .08 +
+    Math.random()*.22;
+
+
+    this.speedX =
+    (
+      Math.random()-.5
+    ) * .12;
+
+
+    this.rotation =
+    Math.random() *
+    Math.PI*2;
+
+
+    this.rotationSpeed =
+    (
+      Math.random()-.5
+    ) * .0017;
+
+
+    this.opacity =
+    .06 +
+    Math.random()*.15;
+
+
+    /*
+      Alterna:
+      YouTube / perfil do canal
+    */
+
+    this.type =
+    this.index%2===0
+    ?
+    "youtube"
+    :
+    "channel";
+
+
+    this.parallax =
+    .015 +
+    Math.random()*.045;
+
+  }
+
+
+  update(
+    scrollDelta
+  ){
+
+    this.y -=
+    this.speedY;
+
+
+    this.x +=
+    this.speedX;
+
+
+    /*
+      movimento ligado ao scroll
+    */
+
+    this.y -=
+    scrollDelta *
+    this.parallax;
+
+
+    this.rotation +=
+    this.rotationSpeed;
+
+
+    if(
+      this.y <
+      -this.size*2
+    ){
+
+      this.reset(
+        false
+      );
+
+    }
+
+
+    if(
+      this.x <
+      -this.size
+    ){
+
+      this.x =
+      width+
+      this.size;
+
+    }
+
+
+    if(
+      this.x >
+      width+
+      this.size
+    ){
+
+      this.x =
+      -this.size;
+
+    }
+
+  }
+
+
+  draw(){
+
+    if(
+      this.type===
+      "youtube"
+    ){
+
+      drawYouTubeLogo(
+
+        this.x,
+        this.y,
+        this.size,
+        this.opacity,
+        this.rotation
+
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Partícula com logo do canal
+    */
+
+    ctx.save();
+
+
+    ctx.translate(
+      this.x,
+      this.y
+    );
+
+
+    ctx.rotate(
+      this.rotation
+    );
+
+
+    ctx.globalAlpha =
+    this.opacity;
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      0,
+      0,
+      this.size/2,
+      0,
+      Math.PI*2
+    );
+
+
+    ctx.closePath();
+
+
+    ctx.clip();
+
+
+    if(
+      channelLogo.complete &&
+      channelLogo.naturalWidth>0
+    ){
+
+      ctx.drawImage(
+
+        channelLogo,
+
+        -this.size/2,
+        -this.size/2,
+
+        this.size,
+        this.size
+
+      );
+
+    }else{
+
+      /*
+        fallback se perfil.jpg
+        ainda não carregou
+      */
+
+      ctx.fillStyle =
+      "#2388ff";
+
+
+      ctx.fillRect(
+
+        -this.size/2,
+        -this.size/2,
+
+        this.size,
+        this.size
+
+      );
+
+    }
+
+
+    ctx.restore();
+
+
+    /*
+      borda exterior
+    */
+
+    ctx.save();
+
+
+    ctx.globalAlpha =
+    this.opacity+.04;
+
+
+    ctx.strokeStyle =
+    "#ffffff";
+
+
+    ctx.lineWidth =
+    1;
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+
+      this.x,
+      this.y,
+
+      this.size/2,
+
+      0,
+      Math.PI*2
+
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.restore();
+
+  }
+
+}
+
+
+/* =====================================================
+   RESIZE PARTICLES
+===================================================== */
+
+let particles=[];
+
+
+function resizeParticles(){
+
+  width =
+  window.innerWidth;
+
+
+  height =
+  window.innerHeight;
+
+
+  pixelRatio =
+  Math.min(
+    window.devicePixelRatio || 1,
+    2
+  );
+
+
+  canvas.width =
+  width *
+  pixelRatio;
+
+
+  canvas.height =
+  height *
+  pixelRatio;
+
+
+  canvas.style.width =
+  width+"px";
+
+
+  canvas.style.height =
+  height+"px";
+
+
+  ctx.setTransform(
+    pixelRatio,
+    0,
+    0,
+    pixelRatio,
+    0,
+    0
+  );
+
+
+  /*
+    menos partículas em celular
+  */
+
+  const amount =
+  width<700
+  ?
+  20
+  :
+  38;
+
+
+  particles =
+  Array.from(
+    {
+      length:amount
+    },
+    (_,index)=>
+    new Particle(index)
+  );
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeParticles
+);
+
+
+resizeParticles();
+
+
+/* =====================================================
+   PARTICLE ANIMATION
+===================================================== */
+
+let previousScroll =
+window.scrollY;
+
+
+function particleLoop(){
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const currentScroll =
+  window.scrollY;
+
+
+  const scrollDelta =
+  currentScroll -
+  previousScroll;
+
+
+  previousScroll =
+  currentScroll;
+
+
+  particles.forEach(
+    particle=>{
+
+      particle.update(
+        scrollDelta
+      );
+
+      particle.draw();
+
+    }
+  );
+
+
+  requestAnimationFrame(
+    particleLoop
+  );
+
+}
+
+
+particleLoop();
+
+
+/* =====================================================
+   HERO PARALLAX
+===================================================== */
+
+const heroContent =
+document.querySelector(
+  ".hero-content"
+);
+
+
+let latestScroll =
+0;
+
+let parallaxRunning =
+false;
+
+
+window.addEventListener(
+  "scroll",
+  ()=>{
+
+    latestScroll =
+    window.scrollY;
+
+
+    if(parallaxRunning){
+      return;
+    }
+
+
+    parallaxRunning =
+    true;
+
+
+    requestAnimationFrame(
+      ()=>{
+
+        /*
+          efeito suave sem mexer
+          demasiado no layout
+        */
+
+        if(
+          latestScroll <
+          window.innerHeight
+        ){
+
+          heroContent.style.transform =
+          `translate3d(
+            0,
+            ${latestScroll*.08}px,
+            0
+          )`;
+
+
+          heroContent.style.opacity =
+          Math.max(
+            .25,
+            1-
+            latestScroll/
+            (
+              window.innerHeight*
+              1.15
+            )
+          );
+
+        }
+
+
+        parallaxRunning =
+        false;
+
+      }
+    );
+
+  },
+  {
+    passive:true
+  }
+);
+
+</script>
 
 </body>
 </html>
