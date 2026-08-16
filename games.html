@@ -462,7 +462,6 @@ footer{
 
 </header>
 
-
 <main class="page">
 
 <section class="hero">
@@ -476,7 +475,6 @@ Credits nos jogos do site.
 
 </section>
 
-
 <div class="tabs">
 
 <button class="tab active" data-game="clickerGame">
@@ -488,7 +486,6 @@ Credits nos jogos do site.
 </button>
 
 </div>
-
 
 <section id="clickerGame" class="game active">
 
@@ -522,7 +519,6 @@ CLICK!
 
 </div>
 
-
 <div class="panel">
 
 <h2>🛒 Loja do Clicker</h2>
@@ -542,7 +538,6 @@ Comprar — 50
 
 </div>
 
-
 <div class="shop-item">
 
 <div>
@@ -556,7 +551,6 @@ Comprar — 300
 
 </div>
 
-
 <div class="shop-item">
 
 <div>
@@ -569,7 +563,6 @@ Comprar — 1000
 </button>
 
 </div>
-
 
 <div class="shop-item">
 
@@ -594,7 +587,6 @@ Trocar
 
 </section>
 
-
 <section id="battleGame" class="game">
 
 <div class="panel battle-layout">
@@ -612,7 +604,6 @@ Trocar
 </span>
 
 </div>
-
 
 <div class="hud">
 
@@ -643,7 +634,6 @@ Trocar
 
 </div>
 
-
 <div class="game-wrap">
 
 <button id="fullscreenBtn" class="btn green">
@@ -653,7 +643,6 @@ Trocar
 <canvas id="battleCanvas" width="1100" height="620"></canvas>
 
 <div class="crosshair" id="crosshair"></div>
-
 
 <div id="shopOverlay" class="shop-overlay">
 
@@ -672,7 +661,6 @@ Credits disponíveis:
 <strong id="shopCredits">0</strong>
 </p>
 
-
 <div class="weapon-grid">
 
 <div class="weapon">
@@ -687,7 +675,6 @@ Equipar — GRÁTIS
 </button>
 </div>
 
-
 <div class="weapon">
 <h3>🔫 Rifle</h3>
 <p>Boa precisão e dano equilibrado.</p>
@@ -699,7 +686,6 @@ data-ammo="120">
 Comprar — 25
 </button>
 </div>
-
 
 <div class="weapon">
 <h3>💥 Shotgun</h3>
@@ -713,7 +699,6 @@ Comprar — 40
 </button>
 </div>
 
-
 <div class="weapon">
 <h3>⚡ SMG</h3>
 <p>Alta cadência de disparo.</p>
@@ -725,7 +710,6 @@ data-ammo="180">
 Comprar — 55
 </button>
 </div>
-
 
 <div class="weapon">
 <h3>🎯 Sniper</h3>
@@ -739,7 +723,6 @@ Comprar — 75
 </button>
 </div>
 
-
 <div class="weapon">
 <h3>🚀 Rocket Launcher</h3>
 <p>Projéteis exclusivamente virtuais.</p>
@@ -751,7 +734,6 @@ data-ammo="10">
 Comprar — 100
 </button>
 </div>
-
 
 <div class="weapon">
 <h3>💣 Grenade</h3>
@@ -768,7 +750,6 @@ Comprar — 35
 </div>
 
 </div>
-
 
 <div id="gameOver" class="overlay">
 
@@ -794,7 +775,6 @@ VICTORY!
 
 </div>
 
-
 <div class="controls">
 
 <strong>Controlos:</strong><br>
@@ -811,17 +791,16 @@ ESC — Fechar loja
 
 </div>
 
-
 <div class="tips">
 
 <div class="panel">
 <strong>🔵 Equipa Blue</strong>
-<p>Tu + 9 bots.</p>
+<p>Tu + 9 bots — dificuldade MEDIUM.</p>
 </div>
 
 <div class="panel">
 <strong>🟠 Equipa Orange</strong>
-<p>10 bots adversários avançados.</p>
+<p>10 bots adversários — dificuldade MEDIUM.</p>
 </div>
 
 </div>
@@ -832,11 +811,9 @@ ESC — Fechar loja
 
 </main>
 
-
 <footer>
 © 2026 AMIRIJOGOS — Credits virtuais usados apenas no site.
 </footer>
-
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 
@@ -917,6 +894,7 @@ document.querySelectorAll(".tab").forEach(tab=>{
     ){
 
       startBattle();
+
     }
 
   });
@@ -1110,7 +1088,7 @@ document.getElementById("crosshair");
 
 
 /* =========================================
-   WEAPON SETTINGS
+   ARMAS
 ========================================= */
 
 const weaponData={
@@ -1254,7 +1232,7 @@ document.getElementById(
 
 
 /* =========================================
-   START
+   START BATTLE
 ========================================= */
 
 function startBattle(){
@@ -1352,7 +1330,7 @@ function initThree(){
 
 
 /* =========================================
-   MAP
+   MAPA
 ========================================= */
 
 function createMap(){
@@ -1474,7 +1452,7 @@ function createMap(){
 
 
 /* =========================================
-   WEAPON VISUAL
+   VISUAL DA ARMA
 ========================================= */
 
 function createWeaponVisual(color){
@@ -1521,11 +1499,12 @@ function createWeaponVisual(color){
   weaponGroup.add(grip);
 
   return weaponGroup;
+
 }
 
 
 /* =========================================
-   CHARACTER
+   PERSONAGEM
 ========================================= */
 
 function createCharacter(color){
@@ -1597,11 +1576,12 @@ function createCharacter(color){
   group.userData.weapon=weapon;
 
   return group;
+
 }
 
 
 /* =========================================
-   UPDATE WEAPON VISUAL
+   ATUALIZAR ARMA
 ========================================= */
 
 function updateWeaponVisual(){
@@ -1635,19 +1615,15 @@ function updateWeaponVisual(){
         child.material.color
       ){
 
-        if(
-          child.geometry &&
-          child.geometry.type==="BoxGeometry"
-        ){
-          child.material.color.set(
-            colors[weapon]||0x333333
-          );
-        }
+        child.material.color.set(
+          colors[weapon]||0x333333
+        );
 
       }
 
     }
   );
+
 }
 
 
@@ -1675,6 +1651,7 @@ function createPlayer(){
 
 /* =========================================
    BOTS
+   MEDIUM
 ========================================= */
 
 function createBots(){
@@ -1686,6 +1663,7 @@ function createBots(){
     const blue=i<9;
 
     const bot={
+
       mesh:createCharacter(
         blue
         ? 0x2388ff
@@ -1709,7 +1687,11 @@ function createBots(){
 
       weapon:
       blue
-      ? "Pistol"
+      ? (
+        Math.random()<.7
+        ? "Pistol"
+        : "Rifle"
+      )
       : (
         Math.random()<.5
         ? "Rifle"
@@ -1720,6 +1702,7 @@ function createBots(){
 
 
     bot.mesh.position.set(
+
       blue
       ? -35-Math.random()*10
       : 35+Math.random()*10,
@@ -1727,6 +1710,7 @@ function createBots(){
       0,
 
       Math.random()*30-15
+
     );
 
 
@@ -1740,7 +1724,7 @@ function createBots(){
 
 
 /* =========================================
-   VEHICLES
+   VEÍCULOS
 ========================================= */
 
 function createVehicle(
@@ -1813,10 +1797,15 @@ function createVehicle(
   scene.add(group);
 
   vehicles.push({
+
     mesh:group,
+
     type:type,
+
     occupied:null,
+
     driver:null
+
   });
 
 }
@@ -1856,7 +1845,7 @@ function createVehicles(){
 
 
 /* =========================================
-   CONTROLS
+   CONTROLOS
 ========================================= */
 
 function setupControls(){
@@ -2048,6 +2037,7 @@ function updatePlayer(){
     player.vehicle.mesh.position.y=0;
 
     player.vehicle.mesh.rotation.y=yaw;
+
   }
 
 
@@ -2137,31 +2127,42 @@ function updatePlayer(){
 
 
 /* =========================================
-   FIND TARGET
+   PROCURAR INIMIGO
+   TODOS PERSEGUEM TODOS
 ========================================= */
 
 function findNearestEnemy(bot){
 
   let nearest=null;
-
   let best=Infinity;
 
 
-  if(
-    bot.team==="orange"
-  ){
+  /*
+    Orange pode perseguir:
+    - jogador
+    - bots Blue
+
+    Blue pode perseguir:
+    - bots Orange
+*/
+
+  if(bot.team==="orange"){
 
     const playerDistance=
-    bot.mesh.position.distanceTo(
-      player.mesh.position
-    );
+      bot.mesh.position.distanceTo(
+        player.mesh.position
+      );
 
-    best=playerDistance;
+    if(playerDistance<best){
 
-    nearest={
-      type:"player",
-      object:player
-    };
+      best=playerDistance;
+
+      nearest={
+        type:"player",
+        object:player
+      };
+
+    }
 
   }
 
@@ -2175,9 +2176,9 @@ function findNearestEnemy(bot){
     ){
 
       const d=
-      bot.mesh.position.distanceTo(
-        other.mesh.position
-      );
+        bot.mesh.position.distanceTo(
+          other.mesh.position
+        );
 
       if(d<best){
 
@@ -2196,11 +2197,12 @@ function findNearestEnemy(bot){
 
 
   return nearest;
+
 }
 
 
 /* =========================================
-   BOT VEHICLE
+   VEÍCULO LIVRE
 ========================================= */
 
 function findFreeVehicle(bot){
@@ -2218,9 +2220,9 @@ function findFreeVehicle(bot){
     ){
 
       const d=
-      bot.mesh.position.distanceTo(
-        vehicle.mesh.position
-      );
+        bot.mesh.position.distanceTo(
+          vehicle.mesh.position
+        );
 
       if(d<best){
 
@@ -2236,8 +2238,13 @@ function findFreeVehicle(bot){
 
 
   return nearest;
+
 }
 
+
+/* =========================================
+   BOT ENTRA NO VEÍCULO
+========================================= */
 
 function botEnterVehicle(bot,vehicle){
 
@@ -2261,6 +2268,10 @@ function botEnterVehicle(bot,vehicle){
 }
 
 
+/* =========================================
+   BOT SAI DO VEÍCULO
+========================================= */
+
 function botLeaveVehicle(bot){
 
   if(!bot.vehicle){
@@ -2281,14 +2292,14 @@ function botLeaveVehicle(bot){
     vehicle.mesh.position
   );
 
-  bot.mesh.position.x+=
-  3;
+  bot.mesh.position.x+=3;
 
 }
 
 
 /* =========================================
    BOT SHOOT
+   MEDIUM
 ========================================= */
 
 function botShoot(bot,target){
@@ -2302,8 +2313,8 @@ function botShoot(bot,target){
 
 
   const data=
-  weaponData[bot.weapon]||
-  weaponData.Pistol;
+    weaponData[bot.weapon]||
+    weaponData.Pistol;
 
 
   if(
@@ -2318,9 +2329,9 @@ function botShoot(bot,target){
 
 
   const distance=
-  bot.mesh.position.distanceTo(
-    target.mesh.position
-  );
+    bot.mesh.position.distanceTo(
+      target.mesh.position
+    );
 
 
   if(distance>data.range){
@@ -2328,10 +2339,13 @@ function botShoot(bot,target){
   }
 
 
+  /*
+    MEDIUM:
+    precisão moderada.
+  */
+
   const accuracy=
-  bot.team==="orange"
-  ? .82
-  : .42;
+    .58;
 
 
   if(Math.random()>accuracy){
@@ -2339,33 +2353,37 @@ function botShoot(bot,target){
   }
 
 
+  /*
+    Se o alvo for o jogador
+  */
+
   if(
     target===player
   ){
 
     damagePlayer(
-      data.damage*
-      (
-        bot.team==="orange"
-        ? 1
-        : .65
-      )
+      data.damage*.55
     );
 
-  }else{
+    return;
 
-    target.health-=
-    data.damage;
+  }
 
 
-    if(target.health<=0){
+  /*
+    Se o alvo for um bot
+  */
 
-      killBot(
-        target,
-        bot.team
-      );
+  target.health-=
+    data.damage*.65;
 
-    }
+
+  if(target.health<=0){
+
+    killBot(
+      target,
+      bot.team
+    );
 
   }
 
@@ -2374,6 +2392,7 @@ function botShoot(bot,target){
 
 /* =========================================
    UPDATE BOTS
+   MEDIUM
 ========================================= */
 
 function updateBots(){
@@ -2399,7 +2418,7 @@ function updateBots(){
 
 
     const target=
-    findNearestEnemy(bot);
+      findNearestEnemy(bot);
 
 
     if(!target){
@@ -2408,47 +2427,47 @@ function updateBots(){
 
 
     const targetObject=
-    target.object;
+      target.object;
 
 
     const targetPosition=
-    targetObject.mesh.position;
+      targetObject.mesh.position;
 
+
+    /* =====================================
+       BOT DENTRO DE VEÍCULO
+    ===================================== */
 
     if(bot.vehicle){
 
       const vehicle=
-      bot.vehicle;
+        bot.vehicle;
 
 
       const dx=
-      targetPosition.x-
-      vehicle.mesh.position.x;
+        targetPosition.x-
+        vehicle.mesh.position.x;
 
       const dz=
-      targetPosition.z-
-      vehicle.mesh.position.z;
+        targetPosition.z-
+        vehicle.mesh.position.z;
 
       const distance=
-      Math.sqrt(dx*dx+dz*dz);
+        Math.sqrt(dx*dx+dz*dz);
 
 
-      if(distance>12){
+      if(distance>10){
 
-        const speed=
-        bot.team==="orange"
-        ? .07
-        : .035;
-
+        const speed=.045;
 
         vehicle.mesh.position.x+=
-        dx/distance*speed;
+          dx/distance*speed;
 
         vehicle.mesh.position.z+=
-        dz/distance*speed;
+          dz/distance*speed;
 
         vehicle.mesh.rotation.y=
-        Math.atan2(dx,dz);
+          Math.atan2(dx,dz);
 
       }
 
@@ -2460,8 +2479,8 @@ function updateBots(){
 
 
       if(
-        distance<4 &&
-        Math.random()<.002
+        distance<7 &&
+        Math.random()<.001
       ){
 
         botLeaveVehicle(bot);
@@ -2470,84 +2489,39 @@ function updateBots(){
 
 
       return;
+
     }
 
+
+    /* =====================================
+       DISTÂNCIA
+    ===================================== */
 
     const dx=
-    targetPosition.x-
-    bot.mesh.position.x;
+      targetPosition.x-
+      bot.mesh.position.x;
 
     const dz=
-    targetPosition.z-
-    bot.mesh.position.z;
+      targetPosition.z-
+      bot.mesh.position.z;
 
     const distance=
-    Math.sqrt(dx*dx+dz*dz);
+      Math.sqrt(dx*dx+dz*dz);
 
 
-    /* Orange avançado */
-
-    if(bot.team==="orange"){
-
-      if(
-        !bot.vehicle &&
-        distance>10 &&
-        Math.random()<.0015
-      ){
-
-        const vehicle=
-        findFreeVehicle(bot);
-
-        if(vehicle){
-
-          botEnterVehicle(
-            bot,
-            vehicle
-          );
-
-          return;
-
-        }
-
-      }
-
-
-      if(distance>6){
-
-        const speed=.055;
-
-        bot.mesh.position.x+=
-        dx/distance*speed;
-
-        bot.mesh.position.z+=
-        dz/distance*speed;
-
-      }
-
-
-      bot.mesh.rotation.y=
-      Math.atan2(dx,dz);
-
-
-      botShoot(
-        bot,
-        targetObject
-      );
-
-      return;
-    }
-
-
-    /* Blue enfraquecido */
+    /* =====================================
+       ENTRAR EM VEÍCULO
+    ===================================== */
 
     if(
       !bot.vehicle &&
-      distance>12 &&
-      Math.random()<.0007
+      distance>15 &&
+      Math.random()<.0008
     ){
 
       const vehicle=
-      findFreeVehicle(bot);
+        findFreeVehicle(bot);
+
 
       if(vehicle){
 
@@ -2563,22 +2537,34 @@ function updateBots(){
     }
 
 
-    if(distance>9){
+    /* =====================================
+       PERSEGUIÇÃO MEDIUM
+    ===================================== */
 
-      const speed=.012;
+    if(distance>7){
+
+      const speed=.022;
 
       bot.mesh.position.x+=
-      dx/distance*speed;
+        dx/distance*speed;
 
       bot.mesh.position.z+=
-      dz/distance*speed;
+        dz/distance*speed;
 
     }
 
 
-    bot.mesh.rotation.y=
-    Math.atan2(dx,dz);
+    /* =====================================
+       OLHAR
+    ===================================== */
 
+    bot.mesh.rotation.y=
+      Math.atan2(dx,dz);
+
+
+    /* =====================================
+       DISPARAR
+    ===================================== */
 
     botShoot(
       bot,
@@ -2591,7 +2577,7 @@ function updateBots(){
 
 
 /* =========================================
-   SHOOT PLAYER
+   PLAYER SHOOT
 ========================================= */
 
 function shoot(){
@@ -2605,8 +2591,8 @@ function shoot(){
 
 
   const data=
-  weaponData[weapon]||
-  weaponData.Pistol;
+    weaponData[weapon]||
+    weaponData.Pistol;
 
 
   if(
@@ -2624,24 +2610,25 @@ function shoot(){
     "Sem munição — R";
 
     return;
+
   }
 
 
   ammo--;
 
   fireCooldown=
-  data.cooldown;
+    data.cooldown;
 
 
   updateHUD();
 
 
   const direction=
-  new THREE.Vector3(
-    Math.sin(yaw),
-    0,
-    -Math.cos(yaw)
-  );
+    new THREE.Vector3(
+      Math.sin(yaw),
+      0,
+      -Math.cos(yaw)
+    );
 
 
   let nearest=null;
@@ -2657,11 +2644,12 @@ function shoot(){
     ){
 
       const toBot=
-      bot.mesh.position.clone()
-      .sub(player.mesh.position);
+        bot.mesh.position.clone()
+        .sub(player.mesh.position);
+
 
       const distance=
-      toBot.length();
+        toBot.length();
 
 
       if(distance>best){
@@ -2673,13 +2661,13 @@ function shoot(){
 
 
       const dot=
-      direction.dot(toBot);
+        direction.dot(toBot);
 
 
       const requiredAccuracy=
-      aiming
-      ? .85
-      : .55;
+        aiming
+        ? .85
+        : .55;
 
 
       if(dot>requiredAccuracy){
@@ -2702,7 +2690,7 @@ function shoot(){
   if(nearest){
 
     nearest.health-=
-    data.damage;
+      data.damage;
 
 
     if(nearest.health<=0){
@@ -2720,7 +2708,7 @@ function shoot(){
 
 
 /* =========================================
-   AUTO FIRE
+   MOUSE SHOOT
 ========================================= */
 
 document.addEventListener(
@@ -2746,6 +2734,7 @@ event=>{
 function reload(){
 
   const ammoByWeapon={
+
     "Pistol":60,
     "Rifle":120,
     "Shotgun":40,
@@ -2753,11 +2742,12 @@ function reload(){
     "Sniper":30,
     "Rocket Launcher":10,
     "Grenade":5
+
   };
 
 
   ammo=
-  ammoByWeapon[weapon]||60;
+    ammoByWeapon[weapon]||60;
 
 
   updateHUD();
@@ -2803,10 +2793,6 @@ function damagePlayer(amount){
 
 function playerDied(){
 
-  /*
-    Morrer NÃO dá kill ao jogador.
-  */
-
   orangeScore++;
 
 
@@ -2823,15 +2809,18 @@ function playerDied(){
 
   health=100;
 
+
   player.mesh.position.set(
     -42,
     0,
     0
   );
 
+
   yaw=0;
 
   pitch=0;
+
 
   updateHUD();
 
@@ -2977,7 +2966,8 @@ function toggleVehicle(){
   if(player.vehicle){
 
     const vehicle=
-    player.vehicle;
+      player.vehicle;
+
 
     vehicle.occupied=null;
 
@@ -2987,9 +2977,11 @@ function toggleVehicle(){
 
     player.mesh.visible=true;
 
+
     player.mesh.position.copy(
       vehicle.mesh.position
     );
+
 
     player.mesh.position.x+=3;
 
@@ -3011,9 +3003,9 @@ function toggleVehicle(){
     ){
 
       const d=
-      vehicle.mesh.position.distanceTo(
-        player.mesh.position
-      );
+        vehicle.mesh.position.distanceTo(
+          player.mesh.position
+        );
 
 
       if(d<best){
@@ -3113,7 +3105,7 @@ document
     ()=>{
 
       const price=
-      Number(button.dataset.price);
+        Number(button.dataset.price);
 
 
       if(
@@ -3122,10 +3114,11 @@ document
       ){
 
         weapon=
-        button.dataset.name;
+          button.dataset.name;
+
 
         ammo=
-        Number(button.dataset.ammo);
+          Number(button.dataset.ammo);
 
 
         updateWeaponVisual();
@@ -3162,25 +3155,31 @@ function updateHUD(){
   document.getElementById(
     "health"
   ).textContent=
-  Math.max(0,Math.floor(health));
+    Math.max(
+      0,
+      Math.floor(health)
+    );
 
 
   document.getElementById(
     "ammo"
   ).textContent=
-  Math.max(0,ammo);
+    Math.max(
+      0,
+      ammo
+    );
 
 
   document.getElementById(
     "blueScore"
   ).textContent=
-  blueScore;
+    blueScore;
 
 
   document.getElementById(
     "orangeScore"
   ).textContent=
-  orangeScore;
+    orangeScore;
 
 
   updateAim();
@@ -3198,10 +3197,10 @@ setInterval(
     if(fireCooldown>0){
 
       fireCooldown=
-      Math.max(
-        0,
-        fireCooldown-.05
-      );
+        Math.max(
+          0,
+          fireCooldown-.05
+        );
 
     }
 
@@ -3253,33 +3252,33 @@ function endBattle(){
 
 
   const blueWon=
-  blueScore>orangeScore;
+    blueScore>orangeScore;
 
 
   document.getElementById(
     "gameOverTitle"
   ).textContent=
-  blueWon
-  ? "VICTORY!"
-  : "DEFEAT!";
+    blueWon
+    ? "VICTORY!"
+    : "DEFEAT!";
 
 
   document.getElementById(
     "finalScore"
   ).textContent=
-  `🔵 ${blueScore} — ${orangeScore} 🟠`;
+    `🔵 ${blueScore} — ${orangeScore} 🟠`;
 
 
   document.getElementById(
     "finalKills"
   ).textContent=
-  `Kills do jogador: ${playerKills}`;
+    `Kills do jogador: ${playerKills}`;
 
 
   const reward=
-  blueWon
-  ? 50
-  : 10;
+    blueWon
+    ? 50
+    : 10;
 
 
   addCredits(reward);
@@ -3288,7 +3287,7 @@ function endBattle(){
   document.getElementById(
     "earnedCredits"
   ).textContent=
-  `💳 Credits ganhos: ${reward}`;
+    `💳 Credits ganhos: ${reward}`;
 
 
   document
@@ -3342,6 +3341,7 @@ document
 
       }
 
+
       bot.alive=true;
 
       bot.health=100;
@@ -3381,6 +3381,7 @@ document
     0,
     0
   );
+
 
   player.mesh.visible=true;
 
@@ -3428,25 +3429,25 @@ function animate(){
       ){
 
         const speed=
-        aiming
-        ? .07
-        : .12;
+          aiming
+          ? .07
+          : .12;
 
 
         const forward=
-        new THREE.Vector3(
-          Math.sin(yaw),
-          0,
-          -Math.cos(yaw)
-        );
+          new THREE.Vector3(
+            Math.sin(yaw),
+            0,
+            -Math.cos(yaw)
+          );
 
 
         const right=
-        new THREE.Vector3(
-          Math.cos(yaw),
-          0,
-          Math.sin(yaw)
-        );
+          new THREE.Vector3(
+            Math.cos(yaw),
+            0,
+            Math.sin(yaw)
+          );
 
 
         if(keys["KeyW"]){
@@ -3490,23 +3491,23 @@ function animate(){
 
 
         vehicle.mesh.position.x=
-        Math.max(
-          -52,
-          Math.min(
-            52,
-            vehicle.mesh.position.x
-          )
-        );
+          Math.max(
+            -52,
+            Math.min(
+              52,
+              vehicle.mesh.position.x
+            )
+          );
 
 
         vehicle.mesh.position.z=
-        Math.max(
-          -52,
-          Math.min(
-            52,
-            vehicle.mesh.position.z
-          )
-        );
+          Math.max(
+            -52,
+            Math.min(
+              52,
+              vehicle.mesh.position.z
+            )
+          );
 
 
         vehicle.mesh.rotation.y=yaw;
@@ -3569,10 +3570,10 @@ window.addEventListener(
 
 
   const width=
-  battleCanvas.clientWidth;
+    battleCanvas.clientWidth;
 
   const height=
-  battleCanvas.clientHeight;
+    battleCanvas.clientHeight;
 
 
   if(height<=0){
@@ -3581,9 +3582,10 @@ window.addEventListener(
 
 
   camera.aspect=
-  width/height;
+    width/height;
 
   camera.updateProjectionMatrix();
+
 
   renderer.setSize(
     width,
