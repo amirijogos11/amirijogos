@@ -1676,9 +1676,7 @@ Number(
 
 function rebirthCost(){
 
-  return
-  5000+
-  rebirths*2500;
+  return 5000 + (rebirths * 2500);
 
 }
 
@@ -3646,33 +3644,20 @@ function createVehicles(){
 
 function actorPos(actor){
 
-  if(
-    actor===player &&
-    player.vehicle
-  ){
-
-    return
-    player.vehicle.mesh.position;
-
+  if(!actor){
+    return null;
   }
 
-
-  if(
-    actor &&
-    actor.vehicle
-  ){
-
-    return
-    actor.vehicle.mesh.position;
-
+  if(actor === player && player.vehicle){
+    return player.vehicle.mesh.position;
   }
 
+  if(actor.vehicle){
+    return actor.vehicle.mesh.position;
+  }
 
-  return
-  actor.mesh.position;
-
+  return actor.mesh.position;
 }
-
 
 /* ENCONTRAR VEÍCULO */
 
@@ -4679,11 +4664,11 @@ function updatePlayer(dt){
 
 function botConfig(bot){
 
-  return
-  bot.team==="orange"
-  ? diffs[selectedDifficulty]
-  : ally;
+  if(bot.team === "orange"){
+    return diffs[selectedDifficulty];
+  }
 
+  return ally;
 }
 
 
