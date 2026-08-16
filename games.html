@@ -1973,9 +1973,11 @@ function updateBots(){
       return;
     }
 
-    // ================================
-    // BOT ORANGE — DIFICULDADE AVANÇADA
-    // ================================
+    bot.timer+=0.016;
+
+    // =================================
+    // ORANGE — AVANÇADO
+    // =================================
 
     if(bot.team==="orange"){
 
@@ -1995,7 +1997,6 @@ function updateBots(){
         dz*dz
       );
 
-      // Velocidade avançada
       if(distance>5){
 
         const speed=0.055;
@@ -2011,14 +2012,10 @@ function updateBots(){
 
       }else{
 
-        bot.timer+=0.016;
-
-        // Ataca muito mais frequentemente
         if(bot.timer>1.2){
 
           bot.timer=0;
 
-          // Dano maior
           damagePlayer(20);
 
         }
@@ -2029,11 +2026,9 @@ function updateBots(){
     }
 
 
-    // ================================
-    // BOT BLUE
-    // ================================
-
-    bot.timer+=0.016;
+    // =================================
+    // BLUE — ENFRAQUECIDOS
+    // =================================
 
     const target=
     findNearestOrange(bot);
@@ -2056,9 +2051,11 @@ function updateBots(){
       dz*dz
     );
 
-    if(distance>8){
 
-      const speed=.025;
+    // Blue move-se mais devagar
+    if(distance>10){
+
+      const speed=0.012;
 
       bot.mesh.position.x+=
       dx/distance*speed;
@@ -2074,7 +2071,8 @@ function updateBots(){
 
     }else{
 
-      if(bot.timer>4){
+      // Blue demora mais tempo a atacar
+      if(bot.timer>7){
 
         bot.timer=0;
 
@@ -2083,7 +2081,11 @@ function updateBots(){
           bot.mesh.position
         );
 
-        if(enemy){
+        // Menor probabilidade de acertar
+        if(
+          enemy &&
+          Math.random()<0.45
+        ){
 
           killBot(
             enemy,
@@ -2099,7 +2101,6 @@ function updateBots(){
   });
 
 }
-
 
 function findNearestOrange(bot){
 
