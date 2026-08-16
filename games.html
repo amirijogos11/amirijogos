@@ -1,29 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-PT">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>AMIRIJOGOS — Jogos</title>
 
 <style>
 :root{
   --bg:#070a10;
   --panel:#0d121c;
-  --panel2:#111827;
   --text:#eef2ff;
   --muted:#9aa4b2;
   --blue:#2388ff;
-  --blue2:#57a6ff;
   --orange:#ff7a18;
   --green:#38d27d;
-  --danger:#ff3b5c;
   --shadow:0 15px 45px rgba(0,0,0,.35);
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
   scroll-behavior:smooth;
@@ -64,7 +58,6 @@ button{
   align-items:center;
   gap:10px;
   font-weight:900;
-  letter-spacing:.5px;
 }
 
 .brand img{
@@ -81,17 +74,12 @@ button{
   padding:10px 15px;
   border-radius:10px;
   background:#172235;
-  border:1px solid rgba(255,255,255,.1);
-}
-
-.back:hover{
-  background:#21314b;
 }
 
 .credits{
   padding:10px 15px;
   border-radius:10px;
-  background:linear-gradient(135deg,#122b50,#0d1b30);
+  background:#122b50;
   border:1px solid rgba(87,166,255,.3);
   color:#9fd0ff;
   font-weight:800;
@@ -116,7 +104,7 @@ button{
 .hero p{
   color:var(--muted);
   max-width:720px;
-  margin:0 auto;
+  margin:auto;
   line-height:1.6;
 }
 
@@ -158,10 +146,6 @@ button{
   padding:22px;
 }
 
-.panel h2{
-  margin-top:0;
-}
-
 .clicker-grid{
   display:grid;
   grid-template-columns:1.2fr .8fr;
@@ -176,7 +160,6 @@ button{
   justify-content:center;
   background:radial-gradient(circle,#102746 0,#0b111b 65%);
   border-radius:16px;
-  border:1px solid rgba(87,166,255,.15);
 }
 
 .coin{
@@ -188,7 +171,7 @@ button{
   color:#fff;
   font-size:34px;
   font-weight:900;
-  box-shadow:0 0 45px rgba(35,136,255,.35),inset 0 -15px 25px rgba(0,0,0,.25);
+  box-shadow:0 0 45px rgba(35,136,255,.35);
   transition:transform .08s;
 }
 
@@ -208,7 +191,6 @@ button{
   background:#101827;
   padding:12px 16px;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
 }
 
 .shop-list{
@@ -224,7 +206,6 @@ button{
   padding:13px;
   background:#0d1420;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.06);
 }
 
 .shop-item small{
@@ -246,15 +227,6 @@ button{
   filter:brightness(1.12);
 }
 
-.btn:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-.btn.orange{
-  background:#b95716;
-}
-
 .btn.green{
   background:#18874d;
 }
@@ -265,6 +237,8 @@ button{
   color:#9fd0ff;
   margin-top:12px;
 }
+
+/* BATTLE */
 
 .battle-layout{
   display:grid;
@@ -282,7 +256,6 @@ button{
   padding:12px;
   border-radius:12px;
   background:#0d1420;
-  border:1px solid rgba(255,255,255,.07);
 }
 
 .hud-box strong{
@@ -313,7 +286,6 @@ button{
   width:100%;
   height:auto;
   min-height:520px;
-  cursor:crosshair;
 }
 
 #fullscreenBtn{
@@ -338,7 +310,7 @@ button{
 .crosshair:after{
   content:"";
   position:absolute;
-  background:rgba(255,255,255,.9);
+  background:white;
 }
 
 .crosshair:before{
@@ -353,16 +325,10 @@ button{
   top:11px;
 }
 
-.controls{
-  color:var(--muted);
-  line-height:1.6;
-}
-
 .scoreline{
   text-align:center;
   font-size:25px;
   font-weight:900;
-  padding:5px;
 }
 
 .overlay{
@@ -372,7 +338,7 @@ button{
   align-items:center;
   justify-content:center;
   background:rgba(0,0,0,.72);
-  z-index:20;
+  z-index:40;
 }
 
 .overlay.show{
@@ -383,10 +349,8 @@ button{
   width:min(480px,90%);
   text-align:center;
   background:#0c121d;
-  border:1px solid rgba(255,255,255,.1);
   border-radius:18px;
   padding:30px;
-  box-shadow:var(--shadow);
 }
 
 .overlay-card h2{
@@ -398,8 +362,8 @@ button{
   position:absolute;
   inset:0;
   display:none;
-  background:rgba(2,5,10,.9);
-  z-index:15;
+  background:rgba(2,5,10,.94);
+  z-index:35;
   overflow:auto;
   padding:25px;
 }
@@ -410,10 +374,9 @@ button{
 
 .shop-head{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:15px;
-  margin-bottom:15px;
 }
 
 .weapon-grid{
@@ -424,32 +387,24 @@ button{
 
 .weapon{
   background:#101827;
-  border:1px solid rgba(255,255,255,.08);
   border-radius:14px;
   padding:15px;
 }
 
-.weapon h3{
-  margin:0 0 5px;
-}
-
 .weapon p{
   color:var(--muted);
-  font-size:13px;
   min-height:35px;
 }
 
-.notice{
-  margin-top:10px;
-  color:#ffcb7d;
-  font-size:13px;
+.controls{
+  color:var(--muted);
+  line-height:1.7;
 }
 
 .tips{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:15px;
-  margin-top:15px;
 }
 
 footer{
@@ -459,7 +414,6 @@ footer{
 }
 
 @media(max-width:800px){
-
   .clicker-grid{
     grid-template-columns:1fr;
   }
@@ -475,7 +429,6 @@ footer{
   .tips{
     grid-template-columns:1fr;
   }
-
 }
 </style>
 </head>
@@ -494,11 +447,11 @@ footer{
   </a>
 
   <div class="credits">
-    💳 Credits:
-    <span id="globalCredits">0</span>
+    💳 Credits: <span id="globalCredits">0</span>
   </div>
 
 </header>
+
 
 <main class="page">
 
@@ -507,11 +460,12 @@ footer{
   <h1>🎮 Jogos AMIRIJOGOS</h1>
 
   <p>
-    Joga, ganha Coins, transforma-os em Credits e usa os teus Credits
-    nos jogos do site.
+    Joga, ganha Coins, transforma-os em Credits e usa os teus
+    Credits nos jogos do site.
   </p>
 
 </section>
+
 
 <div class="tabs">
 
@@ -526,9 +480,7 @@ footer{
 </div>
 
 
-<!-- =========================
-     CLICKER
-========================= -->
+<!-- CLICKER -->
 
 <section id="clickerGame" class="game active">
 
@@ -536,32 +488,29 @@ footer{
 
 <div class="panel click-area">
 
-  <h2>🪙 AMIRIJOGOS Clicker</h2>
+<h2>🪙 AMIRIJOGOS Clicker</h2>
 
-  <div class="stat-row">
+<div class="stat-row">
 
-    <div class="stat">
-      Coins:
-      <strong id="coins">0</strong>
-    </div>
+<div class="stat">
+Coins: <strong id="coins">0</strong>
+</div>
 
-    <div class="stat">
-      Por clique:
-      <strong id="perClick">1</strong>
-    </div>
+<div class="stat">
+Por clique: <strong id="perClick">1</strong>
+</div>
 
-    <div class="stat">
-      Multiplicador:
-      <strong id="multiplier">x1</strong>
-    </div>
+<div class="stat">
+Multiplicador: <strong id="multiplier">x1</strong>
+</div>
 
-  </div>
+</div>
 
-  <button id="coinButton" class="coin">
-    CLICK!
-  </button>
+<button id="coinButton" class="coin">
+CLICK!
+</button>
 
-  <div class="message" id="clickerMessage"></div>
+<div class="message" id="clickerMessage"></div>
 
 </div>
 
@@ -631,11 +580,6 @@ Trocar
 
 <div class="message" id="conversionMessage"></div>
 
-<div class="notice">
-⚠️ Coins pertencem apenas ao Clicker.
-Credits são a moeda universal do site.
-</div>
-
 </div>
 
 </div>
@@ -643,9 +587,7 @@ Credits são a moeda universal do site.
 </section>
 
 
-<!-- =========================
-     BATTLE
-========================= -->
+<!-- BATTLE -->
 
 <section id="battleGame" class="game">
 
@@ -697,11 +639,7 @@ Credits são a moeda universal do site.
 ⛶ Ecrã Inteiro
 </button>
 
-<canvas
-id="battleCanvas"
-width="1100"
-height="620">
-</canvas>
+<canvas id="battleCanvas" width="1100" height="620"></canvas>
 
 <div class="crosshair"></div>
 
@@ -728,137 +666,94 @@ Credits disponíveis:
 
 <div class="weapon-grid">
 
-
 <div class="weapon">
-
 <h3>🔫 Pistol</h3>
+<p>Arma básica e rápida.</p>
 
-<p>
-Arma básica e rápida.
-</p>
-
-<button
-class="btn buyWeapon"
+<button class="btn buyWeapon"
 data-name="Pistol"
 data-price="0"
 data-ammo="60">
 Equipar — GRÁTIS
 </button>
-
 </div>
 
 
 <div class="weapon">
-
 <h3>🔫 Rifle</h3>
+<p>Boa precisão e dano equilibrado.</p>
 
-<p>
-Boa precisão e dano equilibrado.
-</p>
-
-<button
-class="btn buyWeapon"
+<button class="btn buyWeapon"
 data-name="Rifle"
 data-price="25"
 data-ammo="120">
 Comprar — 25
 </button>
-
 </div>
 
 
 <div class="weapon">
-
 <h3>💥 Shotgun</h3>
+<p>Dano elevado a curta distância.</p>
 
-<p>
-Dano elevado a curta distância.
-</p>
-
-<button
-class="btn buyWeapon"
+<button class="btn buyWeapon"
 data-name="Shotgun"
 data-price="40"
 data-ammo="40">
 Comprar — 40
 </button>
-
 </div>
 
 
 <div class="weapon">
-
 <h3>⚡ SMG</h3>
+<p>Alta cadência de disparo.</p>
 
-<p>
-Alta cadência de disparo.
-</p>
-
-<button
-class="btn buyWeapon"
+<button class="btn buyWeapon"
 data-name="SMG"
 data-price="55"
 data-ammo="180">
 Comprar — 55
 </button>
-
 </div>
 
 
 <div class="weapon">
-
 <h3>🎯 Sniper</h3>
+<p>Precisão elevada.</p>
 
-<p>
-Precisão elevada e disparos fortes.
-</p>
-
-<button
-class="btn buyWeapon"
+<button class="btn buyWeapon"
 data-name="Sniper"
 data-price="75"
 data-ammo="30">
 Comprar — 75
 </button>
-
 </div>
 
 
 <div class="weapon">
-
 <h3>🚀 Rocket Launcher</h3>
+<p>Projéteis fictícios para o jogo.</p>
 
-<p>
-Projéteis explosivos fictícios.
-</p>
-
-<button
-class="btn buyWeapon"
+<button class="btn buyWeapon"
 data-name="Rocket Launcher"
 data-price="100"
 data-ammo="10">
 Comprar — 100
 </button>
-
 </div>
 
 
 <div class="weapon">
-
 <h3>💣 Grenade</h3>
+<p>Item explosivo exclusivamente virtual.</p>
 
-<p>
-Item explosivo exclusivamente para o jogo.
-</p>
-
-<button
-class="btn buyWeapon"
+<button class="btn buyWeapon"
 data-name="Grenade"
 data-price="35"
 data-ammo="5">
 Comprar — 35
 </button>
-
 </div>
 
 </div>
@@ -897,27 +792,13 @@ VICTORY!
 
 <strong>Controlos:</strong><br>
 
-WASD — Mover
-&nbsp; | &nbsp;
-
-Mouse — Olhar
-&nbsp; | &nbsp;
-
-Clique esquerdo — Disparar
-&nbsp; | &nbsp;
-
-R — Recarregar
-&nbsp; | &nbsp;
-
-E — Entrar/Sair do veículo
-&nbsp; | &nbsp;
-
-V — Primeira/Terceira pessoa
-&nbsp; | &nbsp;
-
-TAB — Loja
-&nbsp; | &nbsp;
-
+WASD — Mover |
+Mouse — Olhar |
+Clique esquerdo — Disparar |
+R — Recarregar |
+E — Entrar/Sair do veículo |
+V — Primeira/Terceira pessoa |
+TAB — Loja |
 ESC — Fechar loja
 
 </div>
@@ -926,25 +807,13 @@ ESC — Fechar loja
 <div class="tips">
 
 <div class="panel">
-
 <strong>🔵 Equipa Blue</strong>
-
-<p>
-Tu + 9 bots.
-A tua equipa é sempre azul.
-</p>
-
+<p>Tu + 9 bots.</p>
 </div>
 
-
 <div class="panel">
-
 <strong>🟠 Equipa Orange</strong>
-
-<p>
-10 bots adversários com dificuldade moderada.
-</p>
-
+<p>10 bots adversários.</p>
 </div>
 
 </div>
@@ -957,21 +826,21 @@ A tua equipa é sempre azul.
 
 
 <footer>
-© 2026 AMIRIJOGOS — Todos os Credits são virtuais e usados apenas no site.
+© 2026 AMIRIJOGOS — Credits virtuais usados apenas no site.
 </footer>
 
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 
+
 <script>
 
-/* =====================================================
-   UNIVERSAL CREDITS
-===================================================== */
+/* =====================================
+   CREDITS
+===================================== */
 
 let globalCredits =
 Number(localStorage.getItem("amirijogosCredits") || 0);
-
 
 function updateCredits(){
 
@@ -983,180 +852,51 @@ function updateCredits(){
     globalCredits
   );
 
-  document.getElementById(
-    "globalCredits"
-  ).textContent=globalCredits;
+  document.getElementById("globalCredits").textContent =
+  globalCredits;
 
-  document.getElementById(
-    "shopCredits"
-  ).textContent=globalCredits;
-
+  document.getElementById("shopCredits").textContent =
+  globalCredits;
 }
-
 
 function addCredits(amount){
 
-  globalCredits+=amount;
+  globalCredits += amount;
 
   updateCredits();
-
 }
-
 
 function spendCredits(amount){
 
-  if(globalCredits<amount){
+  if(globalCredits < amount){
     return false;
   }
 
-  globalCredits-=amount;
+  globalCredits -= amount;
 
   updateCredits();
 
   return true;
 }
 
-
 updateCredits();
 
 
-/* =====================================================
-   FULLSCREEN + MOUSE
-===================================================== */
-
-const battleCanvas =
-document.getElementById("battleCanvas");
-
-const fullscreenBtn =
-document.getElementById("fullscreenBtn");
-
-let yaw=0;
-let pitch=0;
-let pointerLocked=false;
-
-
-document.addEventListener(
-"pointerlockchange",
-()=>{
-
-  pointerLocked =
-  document.pointerLockElement === battleCanvas;
-
-});
-
-
-battleCanvas.addEventListener(
-"click",
-()=>{
-
-  if(
-    !shopOpen &&
-    !gameEnded &&
-    document.pointerLockElement !== battleCanvas
-  ){
-
-    battleCanvas.requestPointerLock();
-
-  }
-
-});
-
-
-document.addEventListener(
-"mousemove",
-event=>{
-
-  if(
-    !pointerLocked ||
-    shopOpen ||
-    gameEnded
-  ){
-    return;
-  }
-
-  yaw -= event.movementX * .0025;
-
-  pitch -= event.movementY * .0025;
-
-  pitch =
-  Math.max(
-    -1.2,
-    Math.min(1.2,pitch)
-  );
-
-});
-
-
-fullscreenBtn.addEventListener(
-"click",
-async ()=>{
-
-  const gameWrap =
-  document.querySelector(".game-wrap");
-
-  try{
-
-    if(!document.fullscreenElement){
-
-      await gameWrap.requestFullscreen();
-
-    }else{
-
-      await document.exitFullscreen();
-
-    }
-
-  }catch(error){
-
-    console.log(
-      "Fullscreen não disponível:",
-      error
-    );
-
-  }
-
-});
-
-
-document.addEventListener(
-"fullscreenchange",
-()=>{
-
-  if(document.fullscreenElement){
-
-    fullscreenBtn.textContent =
-    "⛶ Sair do Ecrã Inteiro";
-
-  }else{
-
-    fullscreenBtn.textContent =
-    "⛶ Ecrã Inteiro";
-
-  }
-
-});
-
-
-/* =====================================================
+/* =====================================
    TABS
-===================================================== */
+===================================== */
 
-document.querySelectorAll(".tab")
-.forEach(tab=>{
+let battleStarted=false;
 
-  tab.addEventListener(
-  "click",
-  ()=>{
+document.querySelectorAll(".tab").forEach(tab=>{
+
+  tab.addEventListener("click",()=>{
 
     document.querySelectorAll(".tab")
-    .forEach(t=>
-      t.classList.remove("active")
-    );
+    .forEach(t=>t.classList.remove("active"));
 
     document.querySelectorAll(".game")
-    .forEach(g=>
-      g.classList.remove("active")
-    );
+    .forEach(g=>g.classList.remove("active"));
 
     tab.classList.add("active");
 
@@ -1170,7 +910,6 @@ document.querySelectorAll(".tab")
     ){
 
       startBattle();
-
     }
 
   });
@@ -1178,9 +917,9 @@ document.querySelectorAll(".tab")
 });
 
 
-/* =====================================================
+/* =====================================
    CLICKER
-===================================================== */
+===================================== */
 
 let coins =
 Number(localStorage.getItem("amirijogosCoins") || 0);
@@ -1222,43 +961,25 @@ function saveClicker(){
     multiplier
   );
 
-  coinsEl.textContent =
-  Math.floor(coins);
+  coinsEl.textContent=Math.floor(coins);
 
-  perClickEl.textContent =
-  perClick;
+  perClickEl.textContent=perClick;
 
-  multiplierEl.textContent =
-  "x"+multiplier;
-
+  multiplierEl.textContent="x"+multiplier;
 }
 
 
-coinButton.addEventListener(
-"click",
-()=>{
+coinButton.addEventListener("click",()=>{
 
-  coins +=
-  perClick * multiplier;
+  coins += perClick * multiplier;
 
   saveClicker();
-
-  coinButton.style.transform =
-  "scale(.93)";
-
-  setTimeout(
-    ()=>coinButton.style.transform="",
-    80
-  );
 
 });
 
 
-document
-.getElementById("upgradeClick")
-.addEventListener(
-"click",
-()=>{
+document.getElementById("upgradeClick")
+.addEventListener("click",()=>{
 
   if(coins>=50){
 
@@ -1273,11 +994,8 @@ document
 });
 
 
-document
-.getElementById("upgradeClick5")
-.addEventListener(
-"click",
-()=>{
+document.getElementById("upgradeClick5")
+.addEventListener("click",()=>{
 
   if(coins>=300){
 
@@ -1292,11 +1010,8 @@ document
 });
 
 
-document
-.getElementById("upgradeMultiplier")
-.addEventListener(
-"click",
-()=>{
+document.getElementById("upgradeMultiplier")
+.addEventListener("click",()=>{
 
   if(coins>=1000){
 
@@ -1311,11 +1026,8 @@ document
 });
 
 
-document
-.getElementById("convertCoins")
-.addEventListener(
-"click",
-()=>{
+document.getElementById("convertCoins")
+.addEventListener("click",()=>{
 
   if(coins>=1000){
 
@@ -1326,7 +1038,7 @@ document
     document.getElementById(
       "conversionMessage"
     ).textContent=
-      "✅ Trocaste 1000 Coins por 10 Credits!";
+    "✅ 1000 Coins convertidos em 10 Credits!";
 
     saveClicker();
 
@@ -1335,7 +1047,7 @@ document
     document.getElementById(
       "conversionMessage"
     ).textContent=
-      "❌ Precisas de 1000 Coins.";
+    "❌ Precisas de 1000 Coins.";
 
   }
 
@@ -1345,11 +1057,9 @@ document
 saveClicker();
 
 
-/* =====================================================
-   BATTLE VARIABLES
-===================================================== */
-
-let battleStarted=false;
+/* =====================================
+   THREE.JS
+===================================== */
 
 let scene;
 let camera;
@@ -1363,6 +1073,11 @@ let vehicles=[];
 
 let keys={};
 
+let yaw=0;
+let pitch=0;
+
+let pointerLocked=false;
+
 let cameraThirdPerson=true;
 
 let shopOpen=false;
@@ -1370,7 +1085,6 @@ let shopOpen=false;
 let gameEnded=false;
 
 let blueScore=0;
-
 let orangeScore=0;
 
 let playerKills=0;
@@ -1381,10 +1095,107 @@ let ammo=60;
 
 let weapon="Pistol";
 
+const battleCanvas =
+document.getElementById("battleCanvas");
 
-/* =====================================================
-   START BATTLE
-===================================================== */
+
+/* =====================================
+   POINTER LOCK
+===================================== */
+
+document.addEventListener(
+"pointerlockchange",
+()=>{
+
+  pointerLocked =
+  document.pointerLockElement === battleCanvas;
+
+});
+
+
+battleCanvas.addEventListener(
+"click",
+()=>{
+
+  if(
+    !shopOpen &&
+    !gameEnded
+  ){
+
+    if(
+      document.pointerLockElement !==
+      battleCanvas
+    ){
+
+      battleCanvas.requestPointerLock();
+
+    }else{
+
+      shoot();
+
+    }
+
+  }
+
+});
+
+
+document.addEventListener(
+"mousemove",
+event=>{
+
+  if(
+    !pointerLocked ||
+    shopOpen ||
+    gameEnded
+  ){
+
+    return;
+  }
+
+  yaw -= event.movementX*0.0025;
+
+  pitch -= event.movementY*0.0025;
+
+  pitch =
+  Math.max(
+    -1.2,
+    Math.min(1.2,pitch)
+  );
+
+});
+
+
+/* =====================================
+   FULLSCREEN
+===================================== */
+
+document.getElementById(
+"fullscreenBtn"
+).addEventListener(
+"click",
+()=>{
+
+  const wrapper =
+  document.querySelector(".game-wrap");
+
+  if(!document.fullscreenElement){
+
+    wrapper.requestFullscreen()
+    .catch(()=>{});
+
+  }else{
+
+    document.exitFullscreen();
+
+  }
+
+});
+
+
+/* =====================================
+   START
+===================================== */
 
 function startBattle(){
 
@@ -1396,26 +1207,11 @@ function startBattle(){
 
   if(typeof THREE==="undefined"){
 
-    battleCanvas.style.display="none";
-
-    const error =
-    document.createElement("div");
-
-    error.style.padding="40px";
-
-    error.style.textAlign="center";
-
-    error.style.color="#ff6b6b";
-
-    error.textContent=
-      "Erro ao carregar o motor 3D. Verifica a ligação à internet e recarrega a página.";
-
-    battleCanvas
-    .parentElement
-    .appendChild(error);
+    alert(
+      "Erro ao carregar Three.js."
+    );
 
     return;
-
   }
 
   initThree();
@@ -1430,26 +1226,24 @@ function startBattle(){
 
   setupControls();
 
-  updateHUD();
-
   animate();
 
 }
 
 
-/* =====================================================
-   THREE.JS
-===================================================== */
+/* =====================================
+   THREE SCENE
+===================================== */
 
 function initThree(){
 
   scene=new THREE.Scene();
 
-  scene.background =
+  scene.background=
   new THREE.Color(0x87a9c4);
 
 
-  camera =
+  camera=
   new THREE.PerspectiveCamera(
     70,
     battleCanvas.width /
@@ -1459,7 +1253,7 @@ function initThree(){
   );
 
 
-  renderer =
+  renderer=
   new THREE.WebGLRenderer({
     canvas:battleCanvas,
     antialias:true
@@ -1477,7 +1271,7 @@ function initThree(){
   renderer.shadowMap.enabled=true;
 
 
-  const hemi =
+  const hemi=
   new THREE.HemisphereLight(
     0xffffff,
     0x405060,
@@ -1487,7 +1281,7 @@ function initThree(){
   scene.add(hemi);
 
 
-  const sun =
+  const sun=
   new THREE.DirectionalLight(
     0xffffff,
     1.4
@@ -1506,13 +1300,13 @@ function initThree(){
 }
 
 
-/* =====================================================
+/* =====================================
    MAP
-===================================================== */
+===================================== */
 
 function createMap(){
 
-  const ground =
+  const ground=
   new THREE.Mesh(
     new THREE.PlaneGeometry(
       140,
@@ -1523,8 +1317,7 @@ function createMap(){
     })
   );
 
-  ground.rotation.x=
-  -Math.PI/2;
+  ground.rotation.x=-Math.PI/2;
 
   ground.receiveShadow=true;
 
@@ -1537,7 +1330,7 @@ function createMap(){
     color
   ){
 
-    const mesh =
+    const mesh=
     new THREE.Mesh(
       new THREE.BoxGeometry(
         sx,sy,sz
@@ -1568,6 +1361,7 @@ function createMap(){
     0x343434
   );
 
+
   box(
     0,.03,0,
     10,.06,140,
@@ -1575,7 +1369,11 @@ function createMap(){
   );
 
 
-  for(let i=0;i<18;i++){
+  for(
+    let i=0;
+    i<18;
+    i++
+  ){
 
     const x=
     Math.random()*110-55;
@@ -1583,12 +1381,16 @@ function createMap(){
     const z=
     Math.random()*110-55;
 
+
     if(
       Math.abs(x)<15 ||
       Math.abs(z)<15
     ){
+
       continue;
+
     }
+
 
     box(
       x,
@@ -1641,7 +1443,11 @@ function createMap(){
   );
 
 
-  for(let i=0;i<25;i++){
+  for(
+    let i=0;
+    i<25;
+    i++
+  ){
 
     const x=
     Math.random()*100-50;
@@ -1650,7 +1456,7 @@ function createMap(){
     Math.random()*100-50;
 
 
-    const trunk =
+    const trunk=
     new THREE.Mesh(
       new THREE.CylinderGeometry(
         .35,
@@ -1663,16 +1469,17 @@ function createMap(){
       })
     );
 
+
     trunk.position.set(
       x,
       1.5,
       z
     );
 
-    trunk.castShadow=true;
+    scene.add(trunk);
 
 
-    const leaves =
+    const leaves=
     new THREE.Mesh(
       new THREE.SphereGeometry(
         2.2,
@@ -1684,15 +1491,12 @@ function createMap(){
       })
     );
 
+
     leaves.position.set(
       x,
       4,
       z
     );
-
-    leaves.castShadow=true;
-
-    scene.add(trunk);
 
     scene.add(leaves);
 
@@ -1701,22 +1505,23 @@ function createMap(){
 }
 
 
-/* =====================================================
-   CHARACTERS
-===================================================== */
+/* =====================================
+   CHARACTER
+===================================== */
 
 function createCharacter(color){
 
-  const g =
+  const group=
   new THREE.Group();
 
-  const bodyMat =
+
+  const material=
   new THREE.MeshStandardMaterial({
     color
   });
 
 
-  const body =
+  const body=
   new THREE.Mesh(
     new THREE.CylinderGeometry(
       .6,
@@ -1724,49 +1529,49 @@ function createCharacter(color){
       1.2,
       10
     ),
-    bodyMat
+    material
   );
 
   body.position.y=1.1;
 
-  body.castShadow=true;
+  group.add(body);
 
 
-  const bodyTop =
+  const top=
   new THREE.Mesh(
     new THREE.SphereGeometry(
       .6,
       10,
       8
     ),
-    bodyMat
+    material
   );
 
-  bodyTop.scale.y=.55;
+  top.scale.y=.55;
 
-  bodyTop.position.y=1.7;
+  top.position.y=1.7;
 
-  bodyTop.castShadow=true;
+  group.add(top);
 
 
-  const bodyBottom =
+  const bottom=
   new THREE.Mesh(
     new THREE.SphereGeometry(
       .6,
       10,
       8
     ),
-    bodyMat
+    material
   );
 
-  bodyBottom.scale.y=.55;
+  bottom.scale.y=.55;
 
-  bodyBottom.position.y=.5;
+  bottom.position.y=.5;
 
-  bodyBottom.castShadow=true;
+  group.add(bottom);
 
 
-  const head =
+  const head=
   new THREE.Mesh(
     new THREE.SphereGeometry(
       .4,
@@ -1780,81 +1585,59 @@ function createCharacter(color){
 
   head.position.y=2.05;
 
-  head.castShadow=true;
+  group.add(head);
 
 
-  g.add(body);
-
-  g.add(bodyTop);
-
-  g.add(bodyBottom);
-
-  g.add(head);
-
-
-  return g;
+  return group;
 
 }
 
 
-/* =====================================================
+/* =====================================
    PLAYER
-===================================================== */
+===================================== */
 
 function createPlayer(){
 
   player={
-
-    mesh:createCharacter(
-      0x2388ff
-    ),
-
-    position:
-      new THREE.Vector3(
-        -42,
-        0,
-        0
-      ),
-
+    mesh:createCharacter(0x2388ff),
     vehicle:null
-
   };
 
 
-  player.mesh.position.copy(
-    player.position
+  player.mesh.position.set(
+    -42,
+    0,
+    0
   );
+
 
   scene.add(
     player.mesh
   );
 
-
-  camera.position.set(
-    player.position.x,
-    player.position.y+5,
-    player.position.z+8
-  );
-
 }
 
 
-/* =====================================================
+/* =====================================
    BOTS
-===================================================== */
+===================================== */
 
 function createBots(){
 
   bots=[];
 
 
-  for(let i=0;i<19;i++){
+  for(
+    let i=0;
+    i<19;
+    i++
+  ){
 
     const blue=i<9;
 
 
     const bot={
-
       mesh:createCharacter(
         blue
         ? 0x2388ff
@@ -1862,9 +1645,9 @@ function createBots(){
       ),
 
       team:
-        blue
-        ? "blue"
-        : "orange",
+      blue
+      ? "blue"
+      : "orange",
 
       health:100,
 
@@ -1872,15 +1655,11 @@ function createBots(){
 
       timer:Math.random()*10,
 
-      target:null,
-
       vehicle:null
-
     };
 
 
     bot.mesh.position.set(
-
       blue
       ? -35-Math.random()*10
       : 35+Math.random()*10,
@@ -1888,13 +1667,13 @@ function createBots(){
       0,
 
       Math.random()*30-15
-
     );
 
 
     scene.add(
       bot.mesh
     );
+
 
     bots.push(bot);
 
@@ -1903,9 +1682,9 @@ function createBots(){
 }
 
 
-/* =====================================================
+/* =====================================
    VEHICLES
-===================================================== */
+===================================== */
 
 function createVehicle(
   type,
@@ -1914,79 +1693,58 @@ function createVehicle(
   color
 ){
 
-  const g =
+  const group=
   new THREE.Group();
 
 
-  const body =
+  const body=
   new THREE.Mesh(
-
     new THREE.BoxGeometry(
-
-      type==="tank"
-      ? 5
-      : 4,
-
-      type==="tank"
-      ? 1.5
-      : 1.8,
-
-      type==="tank"
-      ? 7
-      : 6
-
+      type==="tank"?5:4,
+      type==="tank"?1.5:1.8,
+      type==="tank"?7:6
     ),
-
     new THREE.MeshStandardMaterial({
       color
     })
-
   );
 
 
   body.position.y=1;
 
-  body.castShadow=true;
-
-  g.add(body);
+  group.add(body);
 
 
   if(type==="tank"){
 
-    const turret =
+    const turret=
     new THREE.Mesh(
-
       new THREE.BoxGeometry(
         3,
         1,
         3
       ),
-
       new THREE.MeshStandardMaterial({
         color:0x444444
       })
-
     );
 
 
     turret.position.y=2;
 
-    g.add(turret);
+    group.add(turret);
 
 
-    const cannon =
+    const cannon=
     new THREE.Mesh(
-
       new THREE.BoxGeometry(
         .5,
         .5,
         4
       ),
-
       new THREE.MeshStandardMaterial({
         color:0x222222
       })
-
     );
 
 
@@ -1996,29 +1754,25 @@ function createVehicle(
       -2.5
     );
 
-    g.add(cannon);
+    group.add(cannon);
 
   }
 
 
-  g.position.set(
+  group.position.set(
     x,
     0,
     z
   );
 
 
-  scene.add(g);
+  scene.add(group);
 
 
   vehicles.push({
-
-    mesh:g,
-
-    type,
-
+    mesh:group,
+    type:type,
     occupied:null
-
   });
 
 }
@@ -2057,45 +1811,44 @@ function createVehicles(){
 }
 
 
-/* =====================================================
+/* =====================================
    CONTROLS
-===================================================== */
+===================================== */
 
 function setupControls(){
 
   window.addEventListener(
     "keydown",
-    e=>{
+    event=>{
 
-      keys[e.code]=true;
+      keys[event.code]=true;
 
 
-      if(e.code==="Tab"){
+      if(event.code==="Tab"){
 
-        e.preventDefault();
+        event.preventDefault();
 
         toggleShop();
 
       }
 
 
-      if(e.code==="Escape"){
+      if(event.code==="Escape"){
 
         closeShop();
 
       }
 
 
-      if(e.code==="KeyV"){
+      if(event.code==="KeyV"){
 
-        cameraThirdPerson =
+        cameraThirdPerson=
         !cameraThirdPerson;
 
-        document
-        .getElementById(
+
+        document.getElementById(
           "cameraMode"
-        )
-        .textContent =
+        ).textContent=
         cameraThirdPerson
         ? "Third Person"
         : "First Person";
@@ -2103,14 +1856,14 @@ function setupControls(){
       }
 
 
-      if(e.code==="KeyR"){
+      if(event.code==="KeyR"){
 
         reload();
 
       }
 
 
-      if(e.code==="KeyE"){
+      if(event.code==="KeyE"){
 
         toggleVehicle();
 
@@ -2122,26 +1875,9 @@ function setupControls(){
 
   window.addEventListener(
     "keyup",
-    e=>{
+    event=>{
 
-      keys[e.code]=false;
-
-    }
-  );
-
-
-  battleCanvas.addEventListener(
-    "click",
-    ()=>{
-
-      if(
-        !shopOpen &&
-        !gameEnded
-      ){
-
-        shoot();
-
-      }
+      keys[event.code]=false;
 
     }
   );
@@ -2149,9 +1885,9 @@ function setupControls(){
 }
 
 
-/* =====================================================
+/* =====================================
    PLAYER MOVEMENT
-===================================================== */
+===================================== */
 
 function updatePlayer(){
 
@@ -2159,6 +1895,7 @@ function updatePlayer(){
     gameEnded ||
     shopOpen
   ){
+
     return;
   }
 
@@ -2166,7 +1903,7 @@ function updatePlayer(){
   const speed=.16;
 
 
-  const forward =
+  const forward=
   new THREE.Vector3(
     Math.sin(yaw),
     0,
@@ -2174,7 +1911,7 @@ function updatePlayer(){
   );
 
 
-  const right =
+  const right=
   new THREE.Vector3(
     Math.cos(yaw),
     0,
@@ -2185,8 +1922,7 @@ function updatePlayer(){
   if(keys["KeyW"]){
 
     player.mesh.position.add(
-      forward
-      .clone()
+      forward.clone()
       .multiplyScalar(speed)
     );
 
@@ -2196,8 +1932,7 @@ function updatePlayer(){
   if(keys["KeyS"]){
 
     player.mesh.position.add(
-      forward
-      .clone()
+      forward.clone()
       .multiplyScalar(-speed)
     );
 
@@ -2207,8 +1942,7 @@ function updatePlayer(){
   if(keys["KeyA"]){
 
     player.mesh.position.add(
-      right
-      .clone()
+      right.clone()
       .multiplyScalar(-speed)
     );
 
@@ -2218,15 +1952,14 @@ function updatePlayer(){
   if(keys["KeyD"]){
 
     player.mesh.position.add(
-      right
-      .clone()
+      right.clone()
       .multiplyScalar(speed)
     );
 
   }
 
 
-  player.mesh.position.x =
+  player.mesh.position.x=
   Math.max(
     -52,
     Math.min(
@@ -2236,7 +1969,7 @@ function updatePlayer(){
   );
 
 
-  player.mesh.position.z =
+  player.mesh.position.z=
   Math.max(
     -52,
     Math.min(
@@ -2249,9 +1982,8 @@ function updatePlayer(){
   player.mesh.rotation.y=yaw;
 
 
-  const lookDirection =
+  const look=
   new THREE.Vector3(
-
     Math.sin(yaw)*
     Math.cos(pitch),
 
@@ -2259,33 +1991,31 @@ function updatePlayer(){
 
     -Math.cos(yaw)*
     Math.cos(pitch)
-
   );
 
 
   if(cameraThirdPerson){
 
-    const cameraPosition =
+    const cam=
     player.mesh.position.clone();
 
 
-    cameraPosition.add(
-      lookDirection
-      .clone()
+    cam.add(
+      look.clone()
       .multiplyScalar(-7)
     );
 
 
-    cameraPosition.y+=4;
+    cam.y+=4;
 
 
     camera.position.lerp(
-      cameraPosition,
+      cam,
       .12
     );
 
 
-    const target =
+    const target=
     player.mesh.position.clone();
 
 
@@ -2293,35 +2023,34 @@ function updatePlayer(){
 
 
     target.add(
-      lookDirection
-      .clone()
+      look.clone()
       .multiplyScalar(5)
     );
 
 
-    camera.lookAt(target);
+    camera.lookAt(
+      target
+    );
 
   }else{
 
-    const cameraPosition =
+    const cam=
     player.mesh.position.clone();
 
 
-    cameraPosition.y+=1.7;
+    cam.y+=1.7;
 
 
     camera.position.lerp(
-      cameraPosition,
+      cam,
       .15
     );
 
 
     camera.lookAt(
-      cameraPosition
-      .clone()
+      cam.clone()
       .add(
-        lookDirection
-        .multiplyScalar(10)
+        look.multiplyScalar(10)
       )
     );
 
@@ -2330,9 +2059,9 @@ function updatePlayer(){
 }
 
 
-/* =====================================================
-   BOT AI
-===================================================== */
+/* =====================================
+   BOTS
+===================================== */
 
 function updateBots(){
 
@@ -2340,6 +2069,7 @@ function updateBots(){
     gameEnded ||
     shopOpen
   ){
+
     return;
   }
 
@@ -2354,10 +2084,20 @@ function updateBots(){
     bot.timer+=.016;
 
 
-    const target =
-    bot.team==="orange"
-    ? player.mesh.position
-    : findNearestEnemy(bot);
+    let target;
+
+
+    if(bot.team==="orange"){
+
+      target=
+      player.mesh.position;
+
+    }else{
+
+      target=
+      findNearestOrange(bot);
+
+    }
 
 
     if(!target){
@@ -2365,29 +2105,35 @@ function updateBots(){
     }
 
 
-    const dx =
-    target.x -
+    const dx=
+    target.x-
     bot.mesh.position.x;
 
-
-    const dz =
-    target.z -
+    const dz=
+    target.z-
     bot.mesh.position.z;
 
 
-    const dist =
+    const distance=
     Math.sqrt(
-      dx*dx+dz*dz
+      dx*dx+
+      dz*dz
     );
 
 
-    if(dist>8){
+    if(distance>8){
 
-      bot.mesh.position.x +=
-      (dx/dist)*.025;
+      bot.mesh.position.x+=
+      dx/distance*.025;
 
-      bot.mesh.position.z +=
-      (dz/dist)*.025;
+      bot.mesh.position.z+=
+      dz/distance*.025;
+
+      bot.mesh.rotation.y=
+      Math.atan2(
+        dx,
+        dz
+      );
 
     }else{
 
@@ -2398,18 +2144,15 @@ function updateBots(){
 
         if(bot.team==="orange"){
 
-          /*
-             Orange matou o jogador.
-             Isto aumenta apenas o score ORANGE.
-             Não aumenta as kills do jogador.
-          */
-
           damagePlayer(15);
 
         }else{
 
-          const enemy =
-          getEnemyBotNear(target);
+          const enemy=
+          getNearestOrangeBot(
+            bot.mesh.position
+          );
+
 
           if(enemy){
 
@@ -2431,11 +2174,7 @@ function updateBots(){
 }
 
 
-/* =====================================================
-   FIND ENEMY
-===================================================== */
-
-function findNearestEnemy(bot){
+function findNearestOrange(bot){
 
   let nearest=null;
 
@@ -2447,13 +2186,11 @@ function findNearestEnemy(bot){
     if(
       other!==bot &&
       other.alive &&
-      other.team!==bot.team
+      other.team==="orange"
     ){
 
-      const d =
-      bot.mesh
-      .position
-      .distanceTo(
+      const d=
+      bot.mesh.position.distanceTo(
         other.mesh.position
       );
 
@@ -2462,7 +2199,7 @@ function findNearestEnemy(bot){
 
         best=d;
 
-        nearest =
+        nearest=
         other.mesh.position;
 
       }
@@ -2478,15 +2215,11 @@ function findNearestEnemy(bot){
 }
 
 
-/* =====================================================
-   GET ENEMY BOT
-===================================================== */
-
-function getEnemyBotNear(position){
+function getNearestOrangeBot(position){
 
   let nearest=null;
 
-  let best=10;
+  let best=12;
 
 
   bots.forEach(bot=>{
@@ -2496,10 +2229,10 @@ function getEnemyBotNear(position){
       bot.team==="orange"
     ){
 
-      const d =
-      bot.mesh
-      .position
-      .distanceTo(position);
+      const d=
+      bot.mesh.position.distanceTo(
+        position
+      );
 
 
       if(d<best){
@@ -2520,21 +2253,29 @@ function getEnemyBotNear(position){
 }
 
 
-/* =====================================================
-   SHOOT
-===================================================== */
+/* =====================================
+   SHOOTING
+===================================== */
 
 function shoot(){
+
+  if(
+    shopOpen ||
+    gameEnded
+  ){
+
+    return;
+  }
+
 
   if(ammo<=0){
 
     document.getElementById(
       "weaponName"
     ).textContent=
-      "Sem munição! Pressiona TAB para comprar.";
+    "Sem munição — TAB";
 
     return;
-
   }
 
 
@@ -2545,7 +2286,15 @@ function shoot(){
 
   let nearest=null;
 
-  let best=12;
+  let best=15;
+
+
+  const direction=
+  new THREE.Vector3(
+    Math.sin(yaw),
+    0,
+    -Math.cos(yaw)
+  );
 
 
   bots.forEach(bot=>{
@@ -2555,19 +2304,39 @@ function shoot(){
       bot.team==="orange"
     ){
 
-      const d =
-      bot.mesh
-      .position
-      .distanceTo(
+      const toBot=
+      bot.mesh.position
+      .clone()
+      .sub(
         player.mesh.position
       );
 
 
-      if(d<best){
+      const distance=
+      toBot.length();
 
-        best=d;
 
-        nearest=bot;
+      if(distance>best){
+        return;
+      }
+
+
+      toBot.normalize();
+
+
+      const dot=
+      direction.dot(toBot);
+
+
+      if(dot>.55){
+
+        if(distance<best){
+
+          best=distance;
+
+          nearest=bot;
+
+        }
 
       }
 
@@ -2575,14 +2344,6 @@ function shoot(){
 
   });
 
-
-  /*
-     IMPORTANTE:
-     Aqui usamos "player".
-     Portanto apenas uma morte causada
-     diretamente pelo jogador conta como
-     kill pessoal.
-  */
 
   if(nearest){
 
@@ -2596,24 +2357,42 @@ function shoot(){
 }
 
 
-/* =====================================================
+/* =====================================
    RELOAD
-===================================================== */
+===================================== */
 
 function reload(){
 
-  ammo=60;
+  const ammoByWeapon={
+    "Pistol":60,
+    "Rifle":120,
+    "Shotgun":40,
+    "SMG":180,
+    "Sniper":30,
+    "Rocket Launcher":10,
+    "Grenade":5
+  };
+
+
+  ammo=
+  ammoByWeapon[weapon] || 60;
+
 
   updateHUD();
 
 }
 
 
-/* =====================================================
+/* =====================================
    DAMAGE PLAYER
-===================================================== */
+===================================== */
 
 function damagePlayer(amount){
+
+  if(gameEnded){
+    return;
+  }
+
 
   health-=amount;
 
@@ -2622,7 +2401,11 @@ function damagePlayer(amount){
 
     health=0;
 
+    updateHUD();
+
     playerDied();
+
+    return;
 
   }
 
@@ -2632,28 +2415,24 @@ function damagePlayer(amount){
 }
 
 
-/* =====================================================
-   PLAYER DIED
-===================================================== */
+/* =====================================
+   PLAYER DEATH
+===================================== */
 
 function playerDied(){
 
   /*
-     IMPORTANTE:
-     Morrer NÃO aumenta playerKills.
+    IMPORTANTE:
+    A morte do jogador NÃO aumenta
+    playerKills e NÃO aumenta Blue.
   */
 
   orangeScore++;
 
 
-  /*
-     Se a morte do jogador fez a ORANGE
-     chegar aos 30, termina imediatamente.
-  */
-
-  if(orangeScore>=30){
-
-    health=0;
+  if(
+    orangeScore>=30
+  ){
 
     updateHUD();
 
@@ -2662,6 +2441,9 @@ function playerDied(){
     return;
 
   }
+
+
+  health=100;
 
 
   player.mesh.position.set(
@@ -2675,17 +2457,15 @@ function playerDied(){
 
   pitch=0;
 
-  health=100;
-
 
   updateHUD();
 
 }
 
 
-/* =====================================================
-   KILL BOT
-===================================================== */
+/* =====================================
+   KILL SYSTEM
+===================================== */
 
 function killBot(
   bot,
@@ -2694,22 +2474,27 @@ function killBot(
 
   if(
     !bot ||
-    !bot.alive
+    !bot.alive ||
+    gameEnded
   ){
+
     return;
+
   }
 
+
+  /*
+    Marca primeiro como morto.
+    Isto impede que a mesma morte
+    conte duas vezes.
+  */
 
   bot.alive=false;
 
   bot.mesh.visible=false;
 
 
-  /*
-     ==============================================
-     JOGADOR MATOU
-     ==============================================
-  */
+  /* TU mataste Orange */
 
   if(killer==="player"){
 
@@ -2722,32 +2507,16 @@ function killBot(
   }
 
 
-  /*
-     ==============================================
-     BOT BLUE MATOU
-     ==============================================
-  */
+  /* Bot Blue matou Orange */
 
   else if(killer==="blueBot"){
 
     blueScore++;
 
-    /*
-       NÃO:
-       playerKills++
-       addCredits(10)
-
-       Porque o jogador não fez a kill.
-    */
-
   }
 
 
-  /*
-     ==============================================
-     VEÍCULO BLUE MATOU
-     ==============================================
-  */
+  /* Veículo Blue matou Orange */
 
   else if(killer==="vehicleBlue"){
 
@@ -2756,11 +2525,7 @@ function killBot(
   }
 
 
-  /*
-     ==============================================
-     ORANGE MATOU
-     ==============================================
-  */
+  /* Orange matou Blue */
 
   else if(killer==="orange"){
 
@@ -2771,10 +2536,6 @@ function killBot(
 
   updateHUD();
 
-
-  /*
-     Vitória / derrota aos 30.
-  */
 
   if(
     blueScore>=30 ||
@@ -2789,18 +2550,16 @@ function killBot(
 
 
   setTimeout(
-    ()=>{
-      respawnBot(bot);
-    },
+    ()=>respawnBot(bot),
     2500
   );
 
 }
 
 
-/* =====================================================
-   RESPAWN BOT
-===================================================== */
+/* =====================================
+   BOT RESPAWN
+===================================== */
 
 function respawnBot(bot){
 
@@ -2831,9 +2590,9 @@ function respawnBot(bot){
 }
 
 
-/* =====================================================
-   VEHICLE
-===================================================== */
+/* =====================================
+   VEHICLES
+===================================== */
 
 function toggleVehicle(){
 
@@ -2855,12 +2614,10 @@ function toggleVehicle(){
   let best=5;
 
 
-  vehicles.forEach(v=>{
+  vehicles.forEach(vehicle=>{
 
-    const d =
-    v.mesh
-    .position
-    .distanceTo(
+    const d=
+    vehicle.mesh.position.distanceTo(
       player.mesh.position
     );
 
@@ -2869,7 +2626,7 @@ function toggleVehicle(){
 
       best=d;
 
-      nearest=v;
+      nearest=vehicle;
 
     }
 
@@ -2889,9 +2646,9 @@ function toggleVehicle(){
 }
 
 
-/* =====================================================
+/* =====================================
    SHOP
-===================================================== */
+===================================== */
 
 function toggleShop(){
 
@@ -2904,11 +2661,8 @@ function toggleShop(){
 
 
   document
-  .getElementById(
-    "shopOverlay"
-  )
-  .classList
-  .toggle(
+  .getElementById("shopOverlay")
+  .classList.toggle(
     "show",
     shopOpen
   );
@@ -2936,11 +2690,10 @@ function closeShop(){
 
 
   document
-  .getElementById(
-    "shopOverlay"
-  )
-  .classList
-  .remove("show");
+  .getElementById("shopOverlay")
+  .classList.remove(
+    "show"
+  );
 
 }
 
@@ -2961,10 +2714,8 @@ document
     "click",
     ()=>{
 
-      const price =
-      Number(
-        button.dataset.price
-      );
+      const price=
+      Number(button.dataset.price);
 
 
       if(
@@ -2972,24 +2723,18 @@ document
         spendCredits(price)
       ){
 
-        weapon =
+        weapon=
         button.dataset.name;
 
-        ammo =
-        Number(
-          button.dataset.ammo
-        );
+        ammo=
+        Number(button.dataset.ammo);
 
 
         updateHUD();
 
 
-        document
-        .getElementById(
-          "weaponName"
-        )
-        .textContent=
-        weapon;
+        closeShop();
+
 
       }else{
 
@@ -3005,9 +2750,9 @@ document
 });
 
 
-/* =====================================================
+/* =====================================
    HUD
-===================================================== */
+===================================== */
 
 function updateHUD(){
 
@@ -3018,12 +2763,18 @@ function updateHUD(){
 
   document.getElementById(
     "health"
-  ).textContent=health;
+  ).textContent=Math.max(
+    0,
+    health
+  );
 
 
   document.getElementById(
     "ammo"
-  ).textContent=ammo;
+  ).textContent=Math.max(
+    0,
+    ammo
+  );
 
 
   document.getElementById(
@@ -3038,30 +2789,30 @@ function updateHUD(){
 }
 
 
-/* =====================================================
+/* =====================================
    CREDITS POR MINUTO
-===================================================== */
+===================================== */
 
 setInterval(
-()=>{
+  ()=>{
 
-  if(
-    battleStarted &&
-    !gameEnded &&
-    !shopOpen
-  ){
+    if(
+      battleStarted &&
+      !gameEnded
+    ){
 
-    addCredits(5);
+      addCredits(5);
 
-  }
+    }
 
-},
-60000);
+  },
+  60000
+);
 
 
-/* =====================================================
+/* =====================================
    GAME OVER
-===================================================== */
+===================================== */
 
 function endBattle(){
 
@@ -3073,17 +2824,20 @@ function endBattle(){
   gameEnded=true;
 
 
-  /*
-     BLUE vence se tiver mais pontos.
-  */
+  if(pointerLocked){
 
-  const blueWon =
+    document.exitPointerLock();
+
+  }
+
+
+  const blueWon=
   blueScore>orangeScore;
 
 
   document.getElementById(
     "gameOverTitle"
-  ).textContent =
+  ).textContent=
   blueWon
   ? "VICTORY!"
   : "DEFEAT!";
@@ -3101,13 +2855,7 @@ function endBattle(){
   `Kills do jogador: ${playerKills}`;
 
 
-  /*
-     Recompensa da partida.
-     Esta recompensa é independente
-     das kills individuais.
-  */
-
-  const reward =
+  const reward=
   blueWon
   ? 50
   : 10;
@@ -3122,31 +2870,19 @@ function endBattle(){
   `💳 Credits ganhos: ${reward}`;
 
 
-  document
-  .getElementById(
+  document.getElementById(
     "gameOver"
-  )
-  .classList
-  .add("show");
-
-
-  if(pointerLocked){
-
-    document.exitPointerLock();
-
-  }
+  ).classList.add("show");
 
 }
 
 
-/* =====================================================
+/* =====================================
    RESTART
-===================================================== */
+===================================== */
 
 document
-.getElementById(
-  "restartBattle"
-)
+.getElementById("restartBattle")
 .addEventListener(
   "click",
   ()=>{
@@ -3165,29 +2901,35 @@ document
 
     gameEnded=false;
 
+    yaw=0;
 
-    bots.forEach(bot=>{
-
-      bot.alive=true;
-
-      bot.health=100;
-
-      bot.mesh.visible=true;
+    pitch=0;
 
 
-      bot.mesh.position.set(
+    bots.forEach(
+      bot=>{
 
-        bot.team==="blue"
-        ? -35-Math.random()*10
-        : 35+Math.random()*10,
+        bot.alive=true;
 
-        0,
+        bot.health=100;
 
-        Math.random()*30-15
+        bot.mesh.visible=true;
 
-      );
 
-    });
+        bot.mesh.position.set(
+
+          bot.team==="blue"
+          ? -35-Math.random()*10
+          : 35+Math.random()*10,
+
+          0,
+
+          Math.random()*30-15
+
+        );
+
+      }
+    );
 
 
     player.mesh.position.set(
@@ -3199,26 +2941,19 @@ document
 
     player.mesh.visible=true;
 
-
     player.vehicle=null;
 
 
-    vehicles.forEach(v=>{
-      v.occupied=null;
-    });
-
-
-    yaw=0;
-
-    pitch=0;
+    vehicles.forEach(
+      vehicle=>{
+        vehicle.occupied=null;
+      }
+    );
 
 
     document
-    .getElementById(
-      "gameOver"
-    )
-    .classList
-    .remove("show");
+    .getElementById("gameOver")
+    .classList.remove("show");
 
 
     updateHUD();
@@ -3227,9 +2962,9 @@ document
 );
 
 
-/* =====================================================
+/* =====================================
    ANIMATION
-===================================================== */
+===================================== */
 
 function animate(){
 
@@ -3248,171 +2983,125 @@ function animate(){
   updateBots();
 
 
-  vehicles.forEach(v=>{
+  vehicles.forEach(
+    vehicle=>{
 
-    if(
-      v.occupied===player
-    ){
+      if(
+        vehicle.occupied===player
+      ){
 
-      const speed=.12;
-
-
-      /*
-         Movimento do veículo.
-      */
-
-      const direction =
-      new THREE.Vector3(
-        Math.sin(yaw),
-        0,
-        -Math.cos(yaw)
-      );
+        const speed=.12;
 
 
-      if(keys["KeyW"]){
-
-        v.mesh.position.add(
-          direction
-          .clone()
-          .multiplyScalar(speed)
+        const forward=
+        new THREE.Vector3(
+          Math.sin(yaw),
+          0,
+          -Math.cos(yaw)
         );
 
-      }
 
-
-      if(keys["KeyS"]){
-
-        v.mesh.position.add(
-          direction
-          .clone()
-          .multiplyScalar(-speed)
+        const right=
+        new THREE.Vector3(
+          Math.cos(yaw),
+          0,
+          Math.sin(yaw)
         );
 
-      }
 
+        if(keys["KeyW"]){
 
-      if(keys["KeyA"]){
-
-        v.mesh.position.x-=speed;
-
-      }
-
-
-      if(keys["KeyD"]){
-
-        v.mesh.position.x+=speed;
-
-      }
-
-
-      v.mesh.position.x=
-      Math.max(
-        -52,
-        Math.min(
-          52,
-          v.mesh.position.x
-        )
-      );
-
-
-      v.mesh.position.z=
-      Math.max(
-        -52,
-        Math.min(
-          52,
-          v.mesh.position.z
-        )
-      );
-
-
-      v.mesh.rotation.y=yaw;
-
-
-      /*
-         ==========================================
-         COLISÃO DO VEÍCULO BLUE
-         ==========================================
-      */
-
-      bots.forEach(bot=>{
-
-        if(
-          bot.alive &&
-          bot.team==="orange" &&
-          bot.mesh
-          .position
-          .distanceTo(
-            v.mesh.position
-          )<3
-        ){
-
-          killBot(
-            bot,
-            "vehicleBlue"
+          vehicle.mesh.position.add(
+            forward.clone()
+            .multiplyScalar(speed)
           );
 
         }
 
-      });
+
+        if(keys["KeyS"]){
+
+          vehicle.mesh.position.add(
+            forward.clone()
+            .multiplyScalar(-speed)
+          );
+
+        }
+
+
+        if(keys["KeyA"]){
+
+          vehicle.mesh.position.add(
+            right.clone()
+            .multiplyScalar(-speed)
+          );
+
+        }
+
+
+        if(keys["KeyD"]){
+
+          vehicle.mesh.position.add(
+            right.clone()
+            .multiplyScalar(speed)
+          );
+
+        }
+
+
+        vehicle.mesh.position.x=
+        Math.max(
+          -52,
+          Math.min(
+            52,
+            vehicle.mesh.position.x
+          )
+        );
+
+
+        vehicle.mesh.position.z=
+        Math.max(
+          -52,
+          Math.min(
+            52,
+            vehicle.mesh.position.z
+          )
+        );
+
+
+        vehicle.mesh.rotation.y=yaw;
+
+
+        /*
+          O veículo Blue apenas pode dar
+          kills aos bots Orange.
+        */
+
+        bots.forEach(
+          bot=>{
+
+            if(
+              bot.alive &&
+              bot.team==="orange" &&
+              bot.mesh.position.distanceTo(
+                vehicle.mesh.position
+              )<3
+            ){
+
+              killBot(
+                bot,
+                "vehicleBlue"
+              );
+
+            }
+
+          }
+        );
+
+      }
 
     }
-
-  });
-
-
-  /*
-     Se o jogador estiver num veículo,
-     a câmara acompanha o veículo.
-  */
-
-  if(
-    player &&
-    player.vehicle &&
-    !shopOpen
-  ){
-
-    const vehicle =
-    player.vehicle.mesh;
-
-
-    const vehicleLook =
-    new THREE.Vector3(
-      Math.sin(yaw),
-      0,
-      -Math.cos(yaw)
-    );
-
-
-    const vehicleCamera =
-    vehicle.position.clone();
-
-
-    vehicleCamera.add(
-      vehicleLook
-      .clone()
-      .multiplyScalar(-8)
-    );
-
-
-    vehicleCamera.y+=5;
-
-
-    camera.position.lerp(
-      vehicleCamera,
-      .1
-    );
-
-
-    camera.lookAt(
-      vehicle.position
-      .clone()
-      .add(
-        vehicleLook
-        .multiplyScalar(8)
-      )
-    );
-
-  }
+  );
 
 
   renderer.render(
@@ -3421,6 +3110,57 @@ function animate(){
   );
 
 }
+
+
+/* =====================================
+   RESIZE
+===================================== */
+
+window.addEventListener(
+  "resize",
+  ()=>{
+
+    if(
+      !camera ||
+      !renderer
+    ){
+
+      return;
+    }
+
+
+    const width=
+    battleCanvas.clientWidth;
+
+    const height=
+    battleCanvas.clientHeight;
+
+
+    if(height<=0){
+      return;
+    }
+
+
+    camera.aspect=
+    width/height;
+
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(
+      width,
+      height,
+      false
+    );
+
+  }
+);
+
+
+/* =====================================
+   INITIAL HUD
+===================================== */
+
+updateHUD();
 
 </script>
 
