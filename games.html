@@ -121,6 +121,117 @@ button{cursor:pointer}
 footer{text-align:center;color:#687487;padding:20px}
 @media(max-width:850px){.clicker-grid{grid-template-columns:1fr}.hud{grid-template-columns:repeat(3,1fr)}.weapon-grid{grid-template-columns:1fr}.tips{grid-template-columns:1fr}}
 @media(max-width:650px){.topbar{flex-wrap:wrap}.back{display:none}.hud{grid-template-columns:repeat(2,1fr)}.choice-grid,.choice-grid.three{grid-template-columns:1fr}.game-wrap{min-height:520px}#battleCanvas{height:70vh;min-height:520px}.controls{font-size:13px}}
+  /* =========================================
+   PARTÍCULAS DO CLICKER
+========================================= */
+
+.click-particle{
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+
+  font-weight:900;
+  font-size:20px;
+
+  animation:
+    clickParticleFly .9s
+    ease-out forwards;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,.6);
+}
+
+.click-spark{
+  position:fixed;
+
+  width:9px;
+  height:9px;
+
+  border-radius:50%;
+
+  z-index:9998;
+
+  pointer-events:none;
+
+  box-shadow:
+    0 0 12px currentColor;
+
+  animation:
+    clickSparkFly .75s
+    ease-out forwards;
+}
+
+.coin-pop{
+  animation:
+    coinPop .18s ease;
+}
+
+@keyframes coinPop{
+
+  0%{
+    transform:scale(1);
+  }
+
+  50%{
+    transform:scale(.90);
+  }
+
+  100%{
+    transform:scale(1);
+  }
+
+}
+
+@keyframes clickParticleFly{
+
+  0%{
+    transform:
+      translate(-50%,-50%)
+      scale(.6);
+
+    opacity:1;
+  }
+
+  70%{
+    opacity:1;
+  }
+
+  100%{
+    transform:
+      translate(
+        calc(-50% + var(--moveX)),
+        calc(-50% + var(--moveY))
+      )
+      rotate(var(--rotate))
+      scale(1.25);
+
+    opacity:0;
+  }
+
+}
+
+@keyframes clickSparkFly{
+
+  0%{
+    transform:
+      translate(-50%,-50%)
+      scale(1);
+
+    opacity:1;
+  }
+
+  100%{
+    transform:
+      translate(
+        calc(-50% + var(--moveX)),
+        calc(-50% + var(--moveY))
+      )
+      scale(.1);
+
+    opacity:0;
+  }
+
+}
 </style>
 </head>
 <body>
