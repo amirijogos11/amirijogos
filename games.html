@@ -1964,7 +1964,6 @@ function updateBots(){
     gameEnded ||
     shopOpen
   ){
-
     return;
   }
 
@@ -1974,21 +1973,70 @@ function updateBots(){
       return;
     }
 
-    bot.timer+=.016;
-
-    let target;
+    // ================================
+    // BOT ORANGE — DIFICULDADE AVANÇADA
+    // ================================
 
     if(bot.team==="orange"){
 
-      target=
-      player.mesh.position;
+      const target=player.mesh.position;
 
-    }else{
+      const dx=
+      target.x-
+      bot.mesh.position.x;
 
-      target=
-      findNearestOrange(bot);
+      const dz=
+      target.z-
+      bot.mesh.position.z;
 
+      const distance=
+      Math.sqrt(
+        dx*dx+
+        dz*dz
+      );
+
+      // Velocidade avançada
+      if(distance>5){
+
+        const speed=0.055;
+
+        bot.mesh.position.x+=
+        dx/distance*speed;
+
+        bot.mesh.position.z+=
+        dz/distance*speed;
+
+        bot.mesh.rotation.y=
+        Math.atan2(dx,dz);
+
+      }else{
+
+        bot.timer+=0.016;
+
+        // Ataca muito mais frequentemente
+        if(bot.timer>1.2){
+
+          bot.timer=0;
+
+          // Dano maior
+          damagePlayer(20);
+
+        }
+
+      }
+
+      return;
     }
+
+
+    // ================================
+    // BOT BLUE
+    // ================================
+
+    bot.timer+=0.016;
+
+    const target=
+    findNearestOrange(bot);
 
     if(!target){
       return;
@@ -2010,11 +2058,13 @@ function updateBots(){
 
     if(distance>8){
 
+      const speed=.025;
+
       bot.mesh.position.x+=
-      dx/distance*.025;
+      dx/distance*speed;
 
       bot.mesh.position.z+=
-      dz/distance*.025;
+      dz/distance*speed;
 
       bot.mesh.rotation.y=
       Math.atan2(
@@ -2028,25 +2078,17 @@ function updateBots(){
 
         bot.timer=0;
 
-        if(bot.team==="orange"){
+        const enemy=
+        getNearestOrangeBot(
+          bot.mesh.position
+        );
 
-          damagePlayer(15);
+        if(enemy){
 
-        }else{
-
-          const enemy=
-          getNearestOrangeBot(
-            bot.mesh.position
+          killBot(
+            enemy,
+            "blueBot"
           );
-
-          if(enemy){
-
-            killBot(
-              enemy,
-              "blueBot"
-            );
-
-          }
 
         }
 
