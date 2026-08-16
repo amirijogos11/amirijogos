@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -19,22 +21,32 @@
 :root{
 
   --bg:#05070c;
+
   --bg2:#090d15;
 
-  --panel:rgba(14,20,32,.72);
+  --panel:
+  rgba(14,20,32,.75);
 
   --text:#ffffff;
+
   --muted:#9da9ba;
 
   --red:#ff0033;
+
   --youtube:#ff0000;
 
   --blue:#2388ff;
 
-  --border:rgba(255,255,255,.10);
+  --purple:#7048ff;
+
+  --green:#38d27d;
+
+  --border:
+  rgba(255,255,255,.10);
 
   --shadow:
-  0 20px 60px rgba(0,0,0,.45);
+  0 20px 60px
+  rgba(0,0,0,.45);
 
 }
 
@@ -47,14 +59,19 @@
   box-sizing:border-box;
 }
 
+
 html{
 
   scroll-behavior:smooth;
 
   scrollbar-width:thin;
-  scrollbar-color:#ff1744 #070a10;
+
+  scrollbar-color:
+  #ff1744
+  #070a10;
 
 }
+
 
 body{
 
@@ -65,13 +82,15 @@ body{
   Helvetica,
   sans-serif;
 
-  color:var(--text);
+  color:
+  var(--text);
 
   background:
+
   radial-gradient(
     circle at 50% -10%,
     #19263d 0%,
-    #080b12 40%,
+    #080b12 42%,
     #040609 100%
   );
 
@@ -80,19 +99,40 @@ body{
 }
 
 
-/* SCROLLBAR CHROME */
+body.menu-open{
+  overflow:hidden;
+}
+
+
+button,
+a{
+  font:inherit;
+}
+
+
+button{
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   SCROLLBAR
+===================================================== */
 
 ::-webkit-scrollbar{
   width:10px;
 }
 
+
 ::-webkit-scrollbar-track{
   background:#070a10;
 }
 
+
 ::-webkit-scrollbar-thumb{
 
   background:
+
   linear-gradient(
     #ff0033,
     #9c0b28
@@ -104,7 +144,7 @@ body{
 
 
 /* =====================================================
-   FUNDO DE PARTÍCULAS
+   FUNDO
 ===================================================== */
 
 #particleCanvas{
@@ -114,16 +154,15 @@ body{
   inset:0;
 
   width:100%;
+
   height:100%;
 
   pointer-events:none;
 
-  z-index:-3;
+  z-index:-5;
 
 }
 
-
-/* efeitos de luz */
 
 .background-glow{
 
@@ -131,29 +170,35 @@ body{
 
   inset:0;
 
-  pointer-events:none;
+  z-index:-4;
 
-  z-index:-2;
+  pointer-events:none;
 
   background:
 
   radial-gradient(
-    circle at 20% 25%,
-    rgba(255,0,45,.10),
+    circle at 15% 20%,
+    rgba(255,0,45,.11),
     transparent 30%
   ),
 
   radial-gradient(
-    circle at 80% 70%,
-    rgba(35,136,255,.11),
-    transparent 34%
+    circle at 85% 70%,
+    rgba(35,136,255,.12),
+    transparent 35%
+  ),
+
+  radial-gradient(
+    circle at 50% 100%,
+    rgba(112,72,255,.07),
+    transparent 35%
   );
 
 }
 
 
 /* =====================================================
-   SCROLL PROGRESS
+   PROGRESSO DO SCROLL
 ===================================================== */
 
 #scrollProgress{
@@ -161,23 +206,29 @@ body{
   position:fixed;
 
   top:0;
+
   left:0;
 
   width:0%;
+
   height:4px;
 
   z-index:9999;
 
   background:
+
   linear-gradient(
     90deg,
     #ff0000,
-    #ff2d55,
+    #ff3153,
+    #7048ff,
     #2388ff
   );
 
   box-shadow:
-  0 0 15px rgba(255,0,0,.8);
+
+  0 0 16px
+  rgba(255,0,0,.8);
 
 }
 
@@ -191,12 +242,22 @@ body{
   position:fixed;
 
   top:0;
+
   left:0;
+
   right:0;
 
   z-index:1000;
 
-  height:76px;
+  height:78px;
+
+  padding:
+
+  0 clamp(
+    18px,
+    5vw,
+    70px
+  );
 
   display:flex;
 
@@ -206,38 +267,46 @@ body{
 
   gap:20px;
 
-  padding:
-  0 clamp(18px,5vw,70px);
-
   background:
+
   rgba(5,7,12,.68);
 
   backdrop-filter:
   blur(18px);
 
   border-bottom:
-  1px solid var(--border);
+
+  1px solid
+  var(--border);
 
   transition:
-  .35s ease;
+
+  height .3s ease,
+  background .3s ease,
+  box-shadow .3s ease;
 
 }
 
 
 .navbar.scrolled{
 
-  height:66px;
+  height:67px;
 
   background:
-  rgba(5,7,12,.93);
+
+  rgba(5,7,12,.94);
 
   box-shadow:
-  0 10px 40px rgba(0,0,0,.3);
+
+  0 10px 40px
+  rgba(0,0,0,.35);
 
 }
 
 
-/* BRAND */
+/* =====================================================
+   LOGO NAVBAR
+===================================================== */
 
 .brand{
 
@@ -245,7 +314,7 @@ body{
 
   align-items:center;
 
-  gap:12px;
+  gap:11px;
 
   color:white;
 
@@ -261,29 +330,34 @@ body{
 .brand img{
 
   width:46px;
-  height:46px;
 
-  border-radius:50%;
+  height:46px;
 
   object-fit:cover;
 
+  border-radius:50%;
+
   border:
-  2px solid #ff1744;
+
+  2px solid
+  #ff1744;
 
   box-shadow:
-  0 0 18px rgba(255,0,50,.4);
+
+  0 0 18px
+  rgba(255,0,50,.4);
 
 }
 
 
-.brand-text span{
-
+.brand span span{
   color:#ff234c;
-
 }
 
 
-/* NAV LINKS */
+/* =====================================================
+   LINKS NAVBAR
+===================================================== */
 
 .nav-links{
 
@@ -291,27 +365,27 @@ body{
 
   align-items:center;
 
-  gap:8px;
+  gap:6px;
 
 }
 
 
 .nav-links a{
 
-  position:relative;
-
   color:#dce5f2;
 
   text-decoration:none;
 
   padding:
-  10px 13px;
+
+  10px 12px;
 
   border-radius:10px;
 
   font-size:14px;
 
   transition:
+
   .25s ease;
 
 }
@@ -322,30 +396,71 @@ body{
   color:white;
 
   background:
+
   rgba(255,255,255,.07);
 
   transform:
+
   translateY(-2px);
 
 }
 
 
-.nav-links .games-link{
+.nav-links .creator-nav{
 
   background:
+
   linear-gradient(
     135deg,
-    #ff0033,
-    #a60e2f
+    #7048ff,
+    #3e42bd
   );
 
-  font-weight:800;
+}
+
+
+.nav-links .games-nav{
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #2388ff,
+    #174f9c
+  );
 
 }
 
 
 /* =====================================================
-   SECTIONS
+   MENU MOBILE
+===================================================== */
+
+.menu-button{
+
+  display:none;
+
+  width:44px;
+
+  height:44px;
+
+  border:0;
+
+  border-radius:12px;
+
+  color:white;
+
+  background:
+
+  rgba(255,255,255,.07);
+
+  font-size:22px;
+
+}
+
+
+/* =====================================================
+   SECÇÕES
 ===================================================== */
 
 section{
@@ -356,12 +471,26 @@ section{
 
   display:flex;
 
-  align-items:center;
-
   justify-content:center;
 
+  align-items:center;
+
   padding:
-  120px 6% 90px;
+
+  120px 6%
+  90px;
+
+}
+
+
+.section-content{
+
+  width:min(
+    1150px,
+    100%
+  );
+
+  margin:auto;
 
 }
 
@@ -376,20 +505,30 @@ section{
 
   text-align:center;
 
+  overflow:hidden;
+
 }
 
 
 .hero-content{
 
   width:min(
-    1000px,
+    1050px,
     100%
   );
 
   margin:auto;
 
+  will-change:
+  transform,
+  opacity;
+
 }
 
+
+/* =====================================================
+   LOGO PRINCIPAL
+===================================================== */
 
 .hero-logo-wrap{
 
@@ -401,12 +540,10 @@ section{
 
   justify-content:center;
 
-  margin-bottom:25px;
+  margin-bottom:22px;
 
 }
 
-
-/* círculo atrás */
 
 .hero-logo-wrap::before{
 
@@ -414,22 +551,28 @@ section{
 
   position:absolute;
 
-  width:210px;
-  height:210px;
+  width:220px;
+
+  height:220px;
 
   border-radius:50%;
 
   background:
+
   radial-gradient(
     circle,
-    rgba(255,0,45,.35),
-    transparent 65%
+    rgba(255,0,45,.40),
+    transparent 67%
   );
 
-  filter:blur(20px);
+  filter:
+  blur(22px);
 
   animation:
-  logoGlow 3s ease-in-out infinite;
+
+  logoGlow
+  3s ease-in-out
+  infinite;
 
 }
 
@@ -441,40 +584,64 @@ section{
   z-index:2;
 
   width:
-  clamp(120px,18vw,180px);
+
+  clamp(
+    125px,
+    18vw,
+    180px
+  );
 
   height:
-  clamp(120px,18vw,180px);
 
-  object-fit:cover;
+  clamp(
+    125px,
+    18vw,
+    180px
+  );
 
   border-radius:50%;
 
+  object-fit:cover;
+
   border:
-  4px solid rgba(255,255,255,.9);
+
+  4px solid
+  rgba(255,255,255,.92);
 
   box-shadow:
-  0 0 0 7px rgba(255,0,40,.25),
-  0 25px 70px rgba(0,0,0,.5);
+
+  0 0 0 7px
+  rgba(255,0,40,.20),
+
+  0 25px 70px
+  rgba(0,0,0,.5);
 
   animation:
-  logoFloat 4s ease-in-out infinite;
+
+  logoFloat
+  4s ease-in-out
+  infinite;
 
 }
 
 
 @keyframes logoFloat{
 
-  0%,100%{
+  0%,
+  100%{
+
     transform:
     translateY(0)
     rotate(-2deg);
+
   }
 
   50%{
+
     transform:
     translateY(-13px)
     rotate(2deg);
+
   }
 
 }
@@ -482,20 +649,31 @@ section{
 
 @keyframes logoGlow{
 
-  0%,100%{
-    transform:scale(.9);
+  0%,
+  100%{
+
+    transform:
+    scale(.9);
+
     opacity:.55;
+
   }
 
   50%{
-    transform:scale(1.2);
+
+    transform:
+    scale(1.2);
+
     opacity:1;
+
   }
 
 }
 
 
-/* YOUTUBE BADGE */
+/* =====================================================
+   BADGE YOUTUBE
+===================================================== */
 
 .youtube-badge{
 
@@ -506,21 +684,25 @@ section{
   gap:9px;
 
   padding:
+
   8px 15px;
 
+  margin-bottom:17px;
+
   border:
-  1px solid rgba(255,0,0,.3);
+
+  1px solid
+  rgba(255,0,0,.32);
 
   border-radius:999px;
 
   background:
+
   rgba(255,0,0,.10);
 
   color:#ff9ca9;
 
-  font-weight:700;
-
-  margin-bottom:18px;
+  font-weight:800;
 
 }
 
@@ -528,6 +710,7 @@ section{
 .youtube-icon{
 
   width:31px;
+
   height:22px;
 
   display:inline-flex;
@@ -536,12 +719,16 @@ section{
 
   justify-content:center;
 
+  flex-shrink:0;
+
   background:#ff0000;
 
   border-radius:6px;
 
   box-shadow:
-  0 0 15px rgba(255,0,0,.35);
+
+  0 0 15px
+  rgba(255,0,0,.35);
 
 }
 
@@ -551,51 +738,65 @@ section{
   content:"";
 
   width:0;
+
   height:0;
 
   margin-left:2px;
 
   border-top:
-  5px solid transparent;
+
+  5px solid
+  transparent;
 
   border-bottom:
-  5px solid transparent;
+
+  5px solid
+  transparent;
 
   border-left:
-  8px solid white;
+
+  8px solid
+  white;
 
 }
 
 
-/* HERO TITLE */
+/* =====================================================
+   TÍTULO PRINCIPAL
+===================================================== */
 
 .hero h1{
 
-  margin:0;
+  margin:
+
+  0 0 10px;
 
   font-size:
+
   clamp(
-    52px,
-    10vw,
-    120px
+    43px,
+    8vw,
+    100px
   );
 
-  line-height:.92;
+  line-height:.98;
 
-  letter-spacing:-5px;
+  letter-spacing:-4px;
 
   font-weight:1000;
 
   background:
+
   linear-gradient(
-    130deg,
-    #ffffff 20%,
-    #ff4565 52%,
-    #ff0033 72%,
-    #8bbdff
+    120deg,
+    #fff 15%,
+    #ff4565 42%,
+    #ff0033 60%,
+    #8bbdff 90%
   );
 
-  background-size:200% 200%;
+  background-size:
+  200% 200%;
 
   -webkit-background-clip:text;
 
@@ -604,7 +805,10 @@ section{
   color:transparent;
 
   animation:
-  titleGradient 6s ease infinite;
+
+  titleGradient
+  6s ease
+  infinite;
 
 }
 
@@ -612,28 +816,57 @@ section{
 @keyframes titleGradient{
 
   0%{
-    background-position:0 50%;
+    background-position:
+    0% 50%;
   }
 
   50%{
-    background-position:100% 50%;
+    background-position:
+    100% 50%;
   }
 
   100%{
-    background-position:0 50%;
+    background-position:
+    0% 50%;
   }
+
+}
+
+
+.hero-subtitle{
+
+  margin:
+
+  14px auto
+  0;
+
+  font-size:
+
+  clamp(
+    25px,
+    4vw,
+    42px
+  );
+
+  font-weight:900;
 
 }
 
 
 .hero-description{
 
-  max-width:700px;
+  max-width:760px;
 
   margin:
-  25px auto;
+
+  20px auto
+  30px;
+
+  color:
+  var(--muted);
 
   font-size:
+
   clamp(
     16px,
     2vw,
@@ -642,12 +875,12 @@ section{
 
   line-height:1.7;
 
-  color:var(--muted);
-
 }
 
 
-/* HERO BUTTONS */
+/* =====================================================
+   BOTÕES PRINCIPAIS
+===================================================== */
 
 .hero-buttons{
 
@@ -655,16 +888,22 @@ section{
 
   justify-content:center;
 
-  gap:12px;
-
   flex-wrap:wrap;
 
-  margin-top:32px;
+  gap:12px;
+
+  margin-top:30px;
 
 }
 
 
 .main-button{
+
+  position:relative;
+
+  overflow:hidden;
+
+  min-width:190px;
 
   display:inline-flex;
 
@@ -672,25 +911,27 @@ section{
 
   justify-content:center;
 
-  gap:10px;
-
-  min-width:170px;
+  gap:9px;
 
   padding:
-  14px 22px;
 
-  border-radius:13px;
+  15px 21px;
 
-  text-decoration:none;
+  border-radius:14px;
 
   color:white;
+
+  text-decoration:none;
 
   font-weight:900;
 
   border:
-  1px solid rgba(255,255,255,.1);
+
+  1px solid
+  rgba(255,255,255,.11);
 
   transition:
+
   transform .25s ease,
   box-shadow .25s ease,
   filter .25s ease;
@@ -698,11 +939,46 @@ section{
 }
 
 
+.main-button::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+
+  linear-gradient(
+    110deg,
+    transparent 20%,
+    rgba(255,255,255,.18),
+    transparent 80%
+  );
+
+  transform:
+  translateX(-120%);
+
+  transition:
+  transform .55s ease;
+
+}
+
+
+.main-button:hover::before{
+
+  transform:
+  translateX(120%);
+
+}
+
+
 .main-button:hover{
 
   transform:
-  translateY(-4px)
-  scale(1.02);
+
+  translateY(-5px)
+  scale(1.025);
 
   filter:
   brightness(1.12);
@@ -710,17 +986,51 @@ section{
 }
 
 
-.youtube-button{
+.create-channel{
 
   background:
+
   linear-gradient(
     135deg,
-    #ff0000,
-    #bb001e
+    #ff0033,
+    #a9001c
   );
 
   box-shadow:
-  0 15px 35px rgba(255,0,20,.22);
+
+  0 15px 38px
+  rgba(255,0,40,.23);
+
+}
+
+
+.join-channel{
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #ff0000,
+    #62000d
+  );
+
+}
+
+
+.creator-button{
+
+  background:
+
+  linear-gradient(
+    135deg,
+    #7048ff,
+    #2388ff
+  );
+
+  box-shadow:
+
+  0 15px 38px
+  rgba(80,85,255,.24);
 
 }
 
@@ -728,27 +1038,56 @@ section{
 .games-button{
 
   background:
+
   linear-gradient(
     135deg,
     #2388ff,
-    #194ea0
+    #17458d
   );
-
-  box-shadow:
-  0 15px 35px rgba(35,136,255,.20);
 
 }
 
 
-/* SCROLL INDICATOR */
+/* =====================================================
+   NOTA YOUTUBE
+===================================================== */
+
+.youtube-note{
+
+  max-width:750px;
+
+  margin:
+
+  22px auto 0;
+
+  padding:
+
+  11px 15px;
+
+  border-radius:11px;
+
+  color:#7d8999;
+
+  font-size:12px;
+
+  background:
+
+  rgba(255,255,255,.025);
+
+}
+
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
 
 .scroll-down{
 
   position:absolute;
 
-  bottom:28px;
-
   left:50%;
+
+  bottom:24px;
 
   transform:
   translateX(-50%);
@@ -761,24 +1100,31 @@ section{
 
   gap:8px;
 
-  color:#8d99aa;
+  color:#8390a2;
 
-  font-size:12px;
+  text-decoration:none;
+
+  font-size:11px;
+
+  letter-spacing:2px;
 
 }
 
 
 .mouse{
 
+  position:relative;
+
   width:27px;
+
   height:43px;
 
   border:
-  2px solid #718094;
+
+  2px solid
+  #718094;
 
   border-radius:20px;
-
-  position:relative;
 
 }
 
@@ -789,21 +1135,25 @@ section{
 
   position:absolute;
 
+  left:50%;
+
+  top:8px;
+
   width:4px;
+
   height:8px;
 
   border-radius:5px;
 
   background:#ff244c;
 
-  top:8px;
-  left:50%;
-
   transform:
   translateX(-50%);
 
   animation:
-  mouseScroll 1.5s infinite;
+
+  mouseScroll
+  1.5s infinite;
 
 }
 
@@ -811,45 +1161,43 @@ section{
 @keyframes mouseScroll{
 
   0%{
+
     opacity:0;
+
     transform:
+
     translate(-50%,0);
+
   }
 
   30%{
+
     opacity:1;
+
   }
 
   100%{
+
     opacity:0;
+
     transform:
+
     translate(-50%,15px);
+
   }
 
 }
 
 
 /* =====================================================
-   CONTENT WRAPPERS
+   HEADERS DAS SECÇÕES
 ===================================================== */
-
-.section-content{
-
-  width:min(
-    1150px,
-    100%
-  );
-
-  margin:auto;
-
-}
-
 
 .section-header{
 
   text-align:center;
 
-  margin-bottom:55px;
+  margin-bottom:50px;
 
 }
 
@@ -858,13 +1206,11 @@ section{
 
   color:#ff3a59;
 
+  font-size:12px;
+
   font-weight:900;
 
   letter-spacing:3px;
-
-  font-size:12px;
-
-  text-transform:uppercase;
 
 }
 
@@ -872,9 +1218,11 @@ section{
 .section-header h2{
 
   margin:
+
   12px 0;
 
   font-size:
+
   clamp(
     35px,
     6vw,
@@ -886,11 +1234,12 @@ section{
 
 .section-header p{
 
-  max-width:650px;
+  max-width:680px;
 
   margin:auto;
 
-  color:var(--muted);
+  color:
+  var(--muted);
 
   line-height:1.7;
 
@@ -898,7 +1247,7 @@ section{
 
 
 /* =====================================================
-   ABOUT
+   SOBRE
 ===================================================== */
 
 .about-grid{
@@ -906,7 +1255,9 @@ section{
   display:grid;
 
   grid-template-columns:
-  .85fr 1.15fr;
+
+  .85fr
+  1.15fr;
 
   gap:50px;
 
@@ -915,7 +1266,7 @@ section{
 }
 
 
-.about-profile{
+.about-image{
 
   position:relative;
 
@@ -926,45 +1277,50 @@ section{
 }
 
 
-.about-profile img{
-
-  width:
-  min(
-    350px,
-    85vw
-  );
-
-  aspect-ratio:1;
-
-  object-fit:cover;
-
-  border-radius:30px;
-
-  border:
-  1px solid rgba(255,255,255,.15);
-
-  box-shadow:
-  0 30px 80px rgba(0,0,0,.5);
-
-}
-
-
-.about-profile::before{
+.about-image::before{
 
   content:"";
 
   position:absolute;
 
   width:70%;
+
   height:70%;
 
   background:#ff0033;
 
-  filter:blur(100px);
+  filter:
+  blur(100px);
 
-  opacity:.17;
+  opacity:.16;
 
   z-index:-1;
+
+}
+
+
+.about-image img{
+
+  width:min(
+    350px,
+    85vw
+  );
+
+  aspect-ratio:1;
+
+  border-radius:30px;
+
+  object-fit:cover;
+
+  border:
+
+  1px solid
+  rgba(255,255,255,.15);
+
+  box-shadow:
+
+  0 30px 80px
+  rgba(0,0,0,.5);
 
 }
 
@@ -974,6 +1330,7 @@ section{
   margin-top:0;
 
   font-size:
+
   clamp(
     30px,
     4vw,
@@ -985,7 +1342,8 @@ section{
 
 .about-text p{
 
-  color:var(--muted);
+  color:
+  var(--muted);
 
   line-height:1.8;
 
@@ -994,12 +1352,20 @@ section{
 }
 
 
-.stat-grid{
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
 
   display:grid;
 
   grid-template-columns:
-  repeat(3,1fr);
+
+  repeat(
+    3,
+    1fr
+  );
 
   gap:12px;
 
@@ -1008,37 +1374,44 @@ section{
 }
 
 
-.big-stat{
+.stat{
 
-  padding:22px 12px;
+  padding:
+
+  22px
+  12px;
 
   text-align:center;
 
   border:
-  1px solid var(--border);
+
+  1px solid
+  var(--border);
 
   border-radius:15px;
 
   background:
+
   rgba(255,255,255,.035);
 
 }
 
 
-.big-stat strong{
+.stat strong{
 
   display:block;
 
-  font-size:28px;
-
   color:#ff3658;
+
+  font-size:29px;
 
 }
 
 
-.big-stat span{
+.stat span{
 
-  color:var(--muted);
+  color:
+  var(--muted);
 
   font-size:12px;
 
@@ -1046,7 +1419,162 @@ section{
 
 
 /* =====================================================
-   CARDS
+   CREATOR SECTION
+===================================================== */
+
+.creator-showcase{
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:
+
+  clamp(
+    30px,
+    6vw,
+    65px
+  );
+
+  border-radius:30px;
+
+  text-align:center;
+
+  border:
+
+  1px solid
+  rgba(112,72,255,.25);
+
+  background:
+
+  linear-gradient(
+    135deg,
+    rgba(112,72,255,.15),
+    rgba(35,136,255,.09),
+    rgba(255,0,51,.07)
+  );
+
+  box-shadow:
+
+  0 30px 90px
+  rgba(0,0,0,.4);
+
+}
+
+
+.creator-showcase::after{
+
+  content:"🎬";
+
+  position:absolute;
+
+  right:-50px;
+
+  bottom:-100px;
+
+  font-size:300px;
+
+  opacity:.025;
+
+}
+
+
+.creator-showcase h2{
+
+  margin:
+
+  10px 0
+  15px;
+
+  font-size:
+
+  clamp(
+    38px,
+    7vw,
+    72px
+  );
+
+}
+
+
+.creator-showcase > p{
+
+  max-width:720px;
+
+  margin:
+
+  0 auto
+  35px;
+
+  color:
+  var(--muted);
+
+  line-height:1.7;
+
+}
+
+
+.creator-features{
+
+  display:grid;
+
+  grid-template-columns:
+
+  repeat(
+    4,
+    1fr
+  );
+
+  gap:12px;
+
+  margin:
+
+  30px 0;
+
+}
+
+
+.creator-feature{
+
+  padding:20px;
+
+  background:
+
+  rgba(7,10,16,.65);
+
+  border:
+
+  1px solid
+  rgba(255,255,255,.08);
+
+  border-radius:15px;
+
+}
+
+
+.creator-feature strong{
+
+  display:block;
+
+  font-size:26px;
+
+  margin-bottom:8px;
+
+}
+
+
+.creator-feature span{
+
+  color:
+  var(--muted);
+
+  font-size:13px;
+
+}
+
+
+/* =====================================================
+   CONTENT CARDS
 ===================================================== */
 
 .cards{
@@ -1054,7 +1582,11 @@ section{
   display:grid;
 
   grid-template-columns:
-  repeat(3,1fr);
+
+  repeat(
+    3,
+    1fr
+  );
 
   gap:18px;
 
@@ -1067,28 +1599,32 @@ section{
 
   min-height:280px;
 
-  overflow:hidden;
-
   padding:28px;
 
-  border:
-  1px solid var(--border);
+  overflow:hidden;
 
   border-radius:20px;
 
+  border:
+
+  1px solid
+  var(--border);
+
   background:
+
   linear-gradient(
     145deg,
-    rgba(18,27,44,.8),
-    rgba(8,12,20,.8)
+    rgba(18,27,44,.82),
+    rgba(8,12,20,.82)
   );
 
   box-shadow:
   var(--shadow);
 
   transition:
-  transform .4s ease,
-  border-color .4s ease;
+
+  transform .35s ease,
+  border-color .35s ease;
 
 }
 
@@ -1099,6 +1635,7 @@ section{
   translateY(-10px);
 
   border-color:
+
   rgba(255,50,80,.45);
 
 }
@@ -1108,15 +1645,17 @@ section{
 
   position:absolute;
 
-  right:15px;
-  top:3px;
+  right:12px;
 
-  font-size:95px;
-
-  font-weight:1000;
+  top:-7px;
 
   color:
+
   rgba(255,255,255,.025);
+
+  font-size:100px;
+
+  font-weight:1000;
 
 }
 
@@ -1132,7 +1671,9 @@ section{
 
 .card h3{
 
-  margin:0 0 10px;
+  margin:
+
+  0 0 10px;
 
   font-size:24px;
 
@@ -1141,7 +1682,8 @@ section{
 
 .card p{
 
-  color:var(--muted);
+  color:
+  var(--muted);
 
   line-height:1.65;
 
@@ -1149,7 +1691,7 @@ section{
 
 
 /* =====================================================
-   GAMING
+   GAMES
 ===================================================== */
 
 .games-showcase{
@@ -1159,24 +1701,34 @@ section{
   overflow:hidden;
 
   padding:
-  60px;
 
-  border:
-  1px solid rgba(35,136,255,.18);
+  clamp(
+    35px,
+    7vw,
+    70px
+  );
 
   border-radius:28px;
 
+  text-align:center;
+
+  border:
+
+  1px solid
+  rgba(35,136,255,.18);
+
   background:
+
   linear-gradient(
     135deg,
-    rgba(35,136,255,.10),
+    rgba(35,136,255,.12),
     rgba(255,0,51,.07)
   );
 
   box-shadow:
-  0 30px 90px rgba(0,0,0,.4);
 
-  text-align:center;
+  0 30px 90px
+  rgba(0,0,0,.4);
 
 }
 
@@ -1187,10 +1739,11 @@ section{
 
   position:absolute;
 
-  font-size:300px;
+  right:-65px;
 
-  right:-60px;
   bottom:-120px;
+
+  font-size:300px;
 
   opacity:.025;
 
@@ -1200,9 +1753,12 @@ section{
 .games-showcase h2{
 
   margin:
-  0 0 15px;
+
+  10px 0
+  15px;
 
   font-size:
+
   clamp(
     38px,
     7vw,
@@ -1217,9 +1773,12 @@ section{
   max-width:650px;
 
   margin:
-  0 auto 30px;
 
-  color:var(--muted);
+  0 auto
+  30px;
+
+  color:
+  var(--muted);
 
   line-height:1.7;
 
@@ -1230,12 +1789,14 @@ section{
    YOUTUBE SECTION
 ===================================================== */
 
-.youtube-box{
+.youtube-grid{
 
   display:grid;
 
   grid-template-columns:
-  1fr 1fr;
+
+  1fr
+  1fr;
 
   gap:45px;
 
@@ -1244,7 +1805,7 @@ section{
 }
 
 
-.big-youtube{
+.youtube-preview{
 
   position:relative;
 
@@ -1261,31 +1822,37 @@ section{
   border-radius:28px;
 
   background:
+
   linear-gradient(
     145deg,
     #ff0033,
-    #9f001c
+    #970017
   );
 
   box-shadow:
-  0 25px 90px rgba(255,0,40,.22);
+
+  0 25px 90px
+  rgba(255,0,40,.22);
 
 }
 
 
 .big-youtube-icon{
 
+  position:relative;
+
   width:170px;
+
   height:115px;
 
   border-radius:28px;
 
   background:white;
 
-  position:relative;
-
   box-shadow:
-  0 10px 40px rgba(0,0,0,.25);
+
+  0 10px 40px
+  rgba(0,0,0,.25);
 
 }
 
@@ -1296,44 +1863,56 @@ section{
 
   position:absolute;
 
-  top:50%;
   left:54%;
+
+  top:50%;
 
   transform:
   translate(-50%,-50%);
 
   width:0;
+
   height:0;
 
   border-top:
-  25px solid transparent;
+
+  25px solid
+  transparent;
 
   border-bottom:
-  25px solid transparent;
+
+  25px solid
+  transparent;
 
   border-left:
-  40px solid #ff0033;
+
+  40px solid
+  #ff0033;
 
 }
 
 
 .youtube-copy h2{
 
+  margin:
+
+  0 0 18px;
+
   font-size:
+
   clamp(
     35px,
     6vw,
     65px
   );
 
-  margin:0 0 18px;
-
 }
 
 
 .youtube-copy p{
 
-  color:var(--muted);
+  color:
+  var(--muted);
 
   line-height:1.8;
 
@@ -1343,40 +1922,108 @@ section{
 
 
 /* =====================================================
+   REVEAL
+===================================================== */
+
+.reveal{
+
+  opacity:0;
+
+  transform:
+
+  translateY(55px)
+  scale(.98);
+
+  filter:
+  blur(6px);
+
+  transition:
+
+  opacity .9s
+  cubic-bezier(
+    .2,.7,.2,1
+  ),
+
+  transform .9s
+  cubic-bezier(
+    .2,.7,.2,1
+  ),
+
+  filter .9s ease;
+
+}
+
+
+.reveal.visible{
+
+  opacity:1;
+
+  transform:
+
+  translateY(0)
+  scale(1);
+
+  filter:
+  blur(0);
+
+}
+
+
+.delay-1{
+  transition-delay:.08s;
+}
+
+
+.delay-2{
+  transition-delay:.16s;
+}
+
+
+.delay-3{
+  transition-delay:.24s;
+}
+
+
+/* =====================================================
    FOOTER
 ===================================================== */
 
 footer{
 
-  position:relative;
-
   text-align:center;
 
   padding:
+
   55px 20px;
 
   border-top:
-  1px solid rgba(255,255,255,.08);
+
+  1px solid
+  rgba(255,255,255,.08);
 
   background:
-  rgba(4,6,10,.72);
+
+  rgba(4,6,10,.74);
 
 }
 
 
 .footer-logo{
 
-  width:70px;
-  height:70px;
+  width:72px;
+
+  height:72px;
 
   border-radius:50%;
 
   object-fit:cover;
 
-  margin-bottom:15px;
-
   border:
-  2px solid #ff234c;
+
+  2px solid
+  #ff234c;
+
+  margin-bottom:12px;
 
 }
 
@@ -1391,152 +2038,66 @@ footer p{
 
 
 /* =====================================================
-   REVEAL ON SCROLL
-===================================================== */
-
-.reveal{
-
-  opacity:0;
-
-  transform:
-  translateY(55px)
-  scale(.98);
-
-  filter:
-  blur(6px);
-
-  transition:
-
-  opacity .9s
-  cubic-bezier(.2,.7,.2,1),
-
-  transform .9s
-  cubic-bezier(.2,.7,.2,1),
-
-  filter .9s ease;
-
-}
-
-
-.reveal.visible{
-
-  opacity:1;
-
-  transform:
-  translateY(0)
-  scale(1);
-
-  filter:
-  blur(0);
-
-}
-
-
-/* delays */
-
-.reveal-delay-1{
-  transition-delay:.08s;
-}
-
-.reveal-delay-2{
-  transition-delay:.16s;
-}
-
-.reveal-delay-3{
-  transition-delay:.24s;
-}
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-.menu-button{
-
-  display:none;
-
-  border:0;
-
-  width:44px;
-  height:44px;
-
-  border-radius:12px;
-
-  background:
-  rgba(255,255,255,.07);
-
-  color:white;
-
-  font-size:22px;
-
-}
-
-
-/* =====================================================
    RESPONSIVE
 ===================================================== */
 
-@media(
-  max-width:900px
-){
+@media(max-width:950px){
 
   .about-grid,
-  .youtube-box{
+  .youtube-grid{
 
     grid-template-columns:1fr;
 
   }
 
 
+  .creator-features{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+  }
+
+
   .cards{
 
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+    1fr 1fr;
 
   }
 
 
   .about-text{
-
     text-align:center;
-
-  }
-
-
-  .games-showcase{
-
-    padding:
-    45px 25px;
-
   }
 
 }
 
 
-@media(
-  max-width:700px
-){
+@media(max-width:720px){
 
   .navbar{
 
     padding:
+
     0 16px;
 
   }
 
 
   .menu-button{
-
     display:block;
-
   }
 
 
   .nav-links{
 
-    position:absolute;
+    position:fixed;
 
-    top:70px;
+    top:75px;
+
     left:12px;
+
     right:12px;
 
     display:none;
@@ -1546,12 +2107,15 @@ footer p{
     padding:12px;
 
     border:
-    1px solid var(--border);
 
-    border-radius:15px;
+    1px solid
+    var(--border);
+
+    border-radius:16px;
 
     background:
-    rgba(7,10,16,.97);
+
+    rgba(7,10,16,.98);
 
     box-shadow:
     var(--shadow);
@@ -1560,9 +2124,7 @@ footer p{
 
 
   .nav-links.open{
-
     display:flex;
-
   }
 
 
@@ -1575,6 +2137,17 @@ footer p{
   }
 
 
+  section{
+
+    padding:
+
+    105px
+    20px
+    75px;
+
+  }
+
+
   .hero h1{
 
     letter-spacing:-2px;
@@ -1582,31 +2155,46 @@ footer p{
   }
 
 
-  .cards{
+  .hero-buttons{
+
+    flex-direction:column;
+
+    align-items:center;
+
+  }
+
+
+  .main-button{
+
+    width:min(
+      350px,
+      100%
+    );
+
+  }
+
+
+  .cards,
+  .creator-features,
+  .stats{
 
     grid-template-columns:1fr;
 
   }
 
 
-  .stat-grid{
+  .scroll-down{
 
-    grid-template-columns:1fr;
-
-  }
-
-
-  section{
-
-    padding:
-    105px 20px 70px;
+    display:none;
 
   }
 
 }
 
 
-/* utilizadores que preferem menos animação */
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
 
 @media(
   prefers-reduced-motion:reduce
@@ -1615,6 +2203,7 @@ footer p{
   html{
     scroll-behavior:auto;
   }
+
 
   *,
   *::before,
@@ -1634,12 +2223,16 @@ footer p{
 }
 
 </style>
+
 </head>
+
 
 <body>
 
 
-<!-- FUNDO -->
+<!-- =====================================================
+     PARTÍCULAS
+===================================================== -->
 
 <canvas id="particleCanvas"></canvas>
 
@@ -1652,18 +2245,27 @@ footer p{
      NAVBAR
 ===================================================== -->
 
-<header class="navbar" id="navbar">
+<header
+  class="navbar"
+  id="navbar"
+>
 
-<a href="#inicio" class="brand">
+
+<a
+  href="#inicio"
+  class="brand"
+>
 
 <img
   src="perfil.jpg"
   alt="AMIRIJOGOS"
 >
 
-<div class="brand-text">
+<span>
+
 AMIRI<span>JOGOS</span>
-</div>
+
+</span>
 
 </a>
 
@@ -1682,28 +2284,42 @@ AMIRI<span>JOGOS</span>
   id="navLinks"
 >
 
+
 <a href="#inicio">
 Início
 </a>
+
 
 <a href="#sobre">
 Sobre
 </a>
 
+
 <a href="#conteudo">
 Conteúdo
 </a>
+
 
 <a href="#youtube">
 YouTube
 </a>
 
+
+<a
+  href="creator.html"
+  class="creator-nav"
+>
+🎬 Creator
+</a>
+
+
 <a
   href="games.html"
-  class="games-link"
+  class="games-nav"
 >
 🎮 Jogos
 </a>
+
 
 </nav>
 
@@ -1711,7 +2327,7 @@ YouTube
 
 
 <!-- =====================================================
-     HERO
+     INÍCIO
 ===================================================== -->
 
 <section
@@ -1719,16 +2335,22 @@ YouTube
   class="hero"
 >
 
-<div class="hero-content">
+
+<div
+  class="hero-content"
+  id="heroContent"
+>
 
 
 <div class="hero-logo-wrap">
+
 
 <img
   src="perfil.jpg"
   class="hero-logo"
   alt="Logo AMIRIJOGOS"
 >
+
 
 </div>
 
@@ -1740,51 +2362,102 @@ YouTube
 
 <span class="youtube-icon"></span>
 
-Criador de conteúdo no YouTube
+AMIRIJOGOS • YouTube
 
 </div>
 
 
 <h1>
-AMIRIJOGOS
+SÊ UM YOUTUBER COMO EU
 </h1>
+
+
+<div class="hero-subtitle">
+
+🎥 Cria. Edita. Publica.
+
+</div>
 
 
 <p class="hero-description">
 
-Gaming, vídeos, desafios e projetos.
-Explora o meu site, vê o conteúdo
-e experimenta os jogos AMIRIJOGOS.
+Queres começar no YouTube?
+
+Cria o teu próprio canal,
+adere ao AMIRIJOGOS
+e usa o meu criador de conteúdo
+para fazer os teus vídeos e Shorts.
 
 </p>
 
 
 <div class="hero-buttons">
 
+
+<!-- CRIAR CANAL -->
+
 <a
-  href="https://www.youtube.com/@amirijogos"
+  href="https://www.youtube.com/create_channel"
   target="_blank"
   rel="noopener noreferrer"
-  class="main-button youtube-button"
+  class="main-button create-channel"
+>
+
+➕ Criar o meu canal
+
+</a>
+
+
+<!-- ADERIR AO AMIRIJOGOS -->
+
+<a
+  href="https://www.youtube.com/@amirijogos?sub_confirmation=1"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="main-button join-channel"
 >
 
 <span class="youtube-icon"></span>
 
-YouTube
+Aderir ao meu canal
 
 </a>
 
+
+<!-- EDITOR -->
+
+<a
+  href="creator.html"
+  class="main-button creator-button"
+>
+
+🎬 Criar vídeo ou Short
+
+</a>
+
+
+<!-- JOGOS -->
 
 <a
   href="games.html"
   class="main-button games-button"
 >
 
-🎮 Jogar agora
+🎮 Jogar
 
 </a>
 
+
 </div>
+
+
+<div class="youtube-note">
+
+Os botões de criar canal e aderir abrem o YouTube,
+onde podes concluir a ação com a tua própria conta.
+
+</div>
+
 
 </div>
 
@@ -1792,7 +2465,6 @@ YouTube
 <a
   href="#sobre"
   class="scroll-down"
-  aria-label="Descer"
 >
 
 <span>
@@ -1803,6 +2475,7 @@ SCROLL
 
 </a>
 
+
 </section>
 
 
@@ -1812,26 +2485,35 @@ SCROLL
 
 <section id="sobre">
 
+
 <div class="section-content">
 
 
 <div class="section-header reveal">
 
+
 <div class="section-label">
+
 AMIRIJOGOS
+
 </div>
 
+
 <h2>
+
 Bem-vindo ao meu mundo
+
 </h2>
+
 
 <p>
 
-Um espaço dedicado a gaming,
-vídeos, criatividade e experiências
-interativas.
+Gaming, criação de conteúdo,
+YouTube, edição e projetos
+interativos num só lugar.
 
 </p>
+
 
 </div>
 
@@ -1839,44 +2521,52 @@ interativas.
 <div class="about-grid">
 
 
-<div class="about-profile reveal">
+<div class="about-image reveal">
+
 
 <img
   src="perfil.jpg"
-  alt="Logo do canal AMIRIJOGOS"
+  alt="AMIRIJOGOS"
 >
+
 
 </div>
 
 
-<div class="about-text reveal reveal-delay-1">
+<div class="about-text reveal delay-1">
+
 
 <h3>
+
 Gaming + YouTube + criatividade
+
 </h3>
+
 
 <p>
 
-O AMIRIJOGOS junta num só lugar
-o conteúdo do canal e projetos
-que podes experimentar diretamente
+O AMIRIJOGOS é um espaço onde
+podes acompanhar o meu conteúdo,
+experimentar jogos e até começar
+a criar os teus próprios vídeos.
+
+</p>
+
+
+<p>
+
+Também podes utilizar o
+AMIRIJOGOS Creator para trabalhar
+em vídeos e Shorts diretamente
 no navegador.
 
 </p>
 
-<p>
 
-Continua a fazer scroll para descobrir
-mais partes do site. As partículas no
-fundo acompanham o movimento para
-dar um efeito de profundidade.
-
-</p>
+<div class="stats">
 
 
-<div class="stat-grid">
-
-<div class="big-stat">
+<div class="stat">
 
 <strong>
 🎮
@@ -1889,7 +2579,7 @@ Gaming
 </div>
 
 
-<div class="big-stat">
+<div class="stat">
 
 <strong>
 ▶
@@ -1902,25 +2592,146 @@ YouTube
 </div>
 
 
-<div class="big-stat">
+<div class="stat">
 
 <strong>
-⚡
+🎬
 </strong>
 
 <span>
-Projetos
+Creator
 </span>
 
 </div>
 
-</div>
 
 </div>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     CREATOR
+===================================================== -->
+
+<section id="creator">
+
+
+<div class="section-content">
+
+
+<div class="creator-showcase reveal">
+
+
+<div class="section-label">
+
+AMIRIJOGOS CREATOR
+
+</div>
+
+
+<h2>
+
+🎬 Cria os teus vídeos
+
+</h2>
+
+
+<p>
+
+Um editor para começares a criar
+conteúdo para YouTube.
+
+Escolhe entre vídeo normal
+ou Short e adiciona elementos
+ao teu projeto.
+
+</p>
+
+
+<div class="creator-features">
+
+
+<div class="creator-feature">
+
+<strong>
+📱
+</strong>
+
+<span>
+Shorts 9:16
+</span>
+
+</div>
+
+
+<div class="creator-feature">
+
+<strong>
+✂️
+</strong>
+
+<span>
+Cortar e editar
+</span>
+
+</div>
+
+
+<div class="creator-feature">
+
+<strong>
+✨
+</strong>
+
+<span>
+Filtros e efeitos
+</span>
+
+</div>
+
+
+<div class="creator-feature">
+
+<strong>
+😂
+</strong>
+
+<span>
+Biblioteca de memes
+</span>
+
+</div>
+
+
+</div>
+
+
+<a
+  href="creator.html"
+  class="main-button creator-button"
+>
+
+🚀 Abrir AMIRIJOGOS Creator
+
+</a>
+
+
+</div>
+
+
+</div>
+
 
 </section>
 
@@ -1931,25 +2742,34 @@ Projetos
 
 <section id="conteudo">
 
+
 <div class="section-content">
 
 
 <div class="section-header reveal">
 
+
 <div class="section-label">
+
 CONTEÚDO
+
 </div>
 
+
 <h2>
-O que vais encontrar
+
+O que encontras no site
+
 </h2>
+
 
 <p>
 
-Diferentes tipos de conteúdo
-e experiências AMIRIJOGOS.
+Explora as várias áreas
+do AMIRIJOGOS.
 
 </p>
+
 
 </div>
 
@@ -1957,83 +2777,113 @@ e experiências AMIRIJOGOS.
 <div class="cards">
 
 
-<article class="card reveal reveal-delay-1">
+<!-- CARD 1 -->
+
+<article
+  class="card reveal delay-1"
+>
+
 
 <div class="card-number">
 01
 </div>
 
+
 <div class="card-icon">
 🎮
 </div>
+
 
 <h3>
 Gaming
 </h3>
 
+
 <p>
 
-Conteúdo relacionado com jogos,
-desafios, partidas e momentos
-divertidos.
+Jogos, desafios,
+conteúdo gaming e experiências
+criadas para o site.
 
 </p>
+
 
 </article>
 
 
-<article class="card reveal reveal-delay-2">
+<!-- CARD 2 -->
+
+<article
+  class="card reveal delay-2"
+>
+
 
 <div class="card-number">
 02
 </div>
 
+
 <div class="card-icon">
 ▶️
 </div>
+
 
 <h3>
 YouTube
 </h3>
 
+
 <p>
 
-Acompanha os vídeos e novidades
-do canal AMIRIJOGOS.
+Acompanha o AMIRIJOGOS
+e descobre vídeos,
+Shorts e novos projetos.
 
 </p>
+
 
 </article>
 
 
-<article class="card reveal reveal-delay-3">
+<!-- CARD 3 -->
+
+<article
+  class="card reveal delay-3"
+>
+
 
 <div class="card-number">
 03
 </div>
 
+
 <div class="card-icon">
-🕹️
+🎬
 </div>
 
+
 <h3>
-Jogos do site
+Creator
 </h3>
+
 
 <p>
 
-Experimenta o Clicker,
-AMIRIJOGOS Battle e outros
-jogos que podem ser adicionados
-ao site.
+Cria os teus próprios
+vídeos e Shorts com texto,
+filtros, formatos e memes.
 
 </p>
 
+
 </article>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
@@ -2044,26 +2894,36 @@ ao site.
 
 <section id="jogos">
 
+
 <div class="section-content">
+
 
 <div class="games-showcase reveal">
 
+
 <div class="section-label">
-INTERATIVO
+
+AMIRIJOGOS GAMES
+
 </div>
 
+
 <h2>
-🎮 AMIRIJOGOS Games
+
+🎮 Bora jogar?
+
 </h2>
+
 
 <p>
 
-Entra na área de jogos,
+Experimenta os jogos AMIRIJOGOS,
 ganha Coins e Credits,
 faz Rebirths no Clicker
-e experimenta o Battle.
+e entra no Battle.
 
 </p>
+
 
 <a
   href="games.html"
@@ -2074,9 +2934,12 @@ e experimenta o Battle.
 
 </a>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
@@ -2087,55 +2950,88 @@ e experimenta o Battle.
 
 <section id="youtube">
 
+
 <div class="section-content">
 
-<div class="youtube-box">
+
+<div class="youtube-grid">
 
 
-<div class="big-youtube reveal">
+<div class="youtube-preview reveal">
+
 
 <div class="big-youtube-icon"></div>
 
+
 </div>
 
 
-<div class="youtube-copy reveal reveal-delay-1">
+<div class="youtube-copy reveal delay-1">
+
 
 <div class="section-label">
+
 YOUTUBE
+
 </div>
 
+
 <h2>
-Segue o AMIRIJOGOS
+
+Junta-te ao AMIRIJOGOS
+
 </h2>
+
 
 <p>
 
-Vê os vídeos do canal,
-acompanha os novos projetos
-e descobre o próximo conteúdo
-AMIRIJOGOS.
+Vê os meus vídeos,
+acompanha o canal e fica atento
+aos próximos conteúdos.
 
 </p>
+
+
+<div class="hero-buttons">
+
+
+<a
+  href="https://www.youtube.com/@amirijogos?sub_confirmation=1"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="main-button join-channel"
+>
+
+<span class="youtube-icon"></span>
+
+Aderir ao canal
+
+</a>
+
 
 <a
   href="https://www.youtube.com/@amirijogos"
   target="_blank"
   rel="noopener noreferrer"
-  class="main-button youtube-button"
+  class="main-button create-channel"
 >
 
-<span class="youtube-icon"></span>
-
-Abrir YouTube
+▶ Ver canal
 
 </a>
 
-</div>
 
 </div>
 
+
 </div>
+
+
+</div>
+
+
+</div>
+
 
 </section>
 
@@ -2146,30 +3042,44 @@ Abrir YouTube
 
 <footer>
 
+
 <img
   src="perfil.jpg"
   class="footer-logo"
   alt="AMIRIJOGOS"
 >
 
+
 <p>
+
 <strong>
 AMIRIJOGOS
 </strong>
+
 </p>
 
-<p>
-Gaming • YouTube • Jogos • Projetos
-</p>
 
 <p>
+
+🎮 Gaming • ▶ YouTube • 🎬 Creator
+
+</p>
+
+
+<p>
+
 © 2026 AMIRIJOGOS
+
 </p>
+
 
 </footer>
 
 
 <script>
+
+"use strict";
+
 
 /* =====================================================
    MENU MOBILE
@@ -2179,6 +3089,7 @@ const menuButton =
 document.getElementById(
   "menuButton"
 );
+
 
 const navLinks =
 document.getElementById(
@@ -2194,6 +3105,13 @@ menuButton.addEventListener(
       "open"
     );
 
+    document.body.classList.toggle(
+      "menu-open",
+      navLinks.classList.contains(
+        "open"
+      )
+    );
+
   }
 );
 
@@ -2202,104 +3120,197 @@ document
 .querySelectorAll(
   ".nav-links a"
 )
-.forEach(link=>{
+.forEach(
+  link=>{
 
-  link.addEventListener(
-    "click",
-    ()=>{
+    link.addEventListener(
+      "click",
+      ()=>{
 
-      navLinks.classList.remove(
-        "open"
-      );
+        navLinks.classList.remove(
+          "open"
+        );
 
-    }
-  );
+        document.body.classList.remove(
+          "menu-open"
+        );
 
-});
+      }
+    );
+
+  }
+);
 
 
 /* =====================================================
    SMOOTH SCROLL
 ===================================================== */
 
-/*
-  Faz a navegação por #secção
-  ficar mais controlada e suave.
-*/
-
 document
 .querySelectorAll(
   'a[href^="#"]'
 )
-.forEach(link=>{
+.forEach(
+  link=>{
 
-  link.addEventListener(
-    "click",
-    event=>{
+    link.addEventListener(
+      "click",
+      event=>{
 
-      const href =
-      link.getAttribute(
-        "href"
-      );
+        const href=
+        link.getAttribute(
+          "href"
+        );
 
 
-      if(
-        !href ||
-        href==="#"
-      ){
-        return;
+        if(
+          !href ||
+          href==="#"
+        ){
+          return;
+        }
+
+
+        const target=
+        document.querySelector(
+          href
+        );
+
+
+        if(!target){
+          return;
+        }
+
+
+        event.preventDefault();
+
+
+        const navbarHeight=
+        document
+        .getElementById(
+          "navbar"
+        )
+        .offsetHeight;
+
+
+        const targetPosition=
+        target
+        .getBoundingClientRect()
+        .top +
+        window.scrollY -
+        navbarHeight;
+
+
+        smoothScrollTo(
+          targetPosition,
+          900
+        );
+
       }
+    );
+
+  }
+);
 
 
-      const target =
-      document.querySelector(
-        href
-      );
+/*
+  Scroll mais suave do que
+  apenas behavior:smooth
+*/
+
+function smoothScrollTo(
+  target,
+  duration
+){
+
+  const start=
+  window.scrollY;
 
 
-      if(!target){
-        return;
-      }
+  const distance=
+  target-start;
 
 
-      event.preventDefault();
+  let startTime=null;
 
 
-      const navbarHeight =
-      document
-      .getElementById(
-        "navbar"
-      )
-      .offsetHeight;
+  function ease(
+    t
+  ){
+
+    return
+    t<.5
+    ?
+    4*t*t*t
+    :
+    1-
+    Math.pow(
+      -2*t+2,
+      3
+    )/2;
+
+  }
 
 
-      const top =
-      target
-      .getBoundingClientRect()
-      .top +
-      window.scrollY -
-      navbarHeight;
+  function animation(
+    currentTime
+  ){
 
+    if(startTime===null){
 
-      window.scrollTo({
-        top:top,
-        behavior:"smooth"
-      });
+      startTime=
+      currentTime;
 
     }
+
+
+    const elapsed=
+    currentTime-
+    startTime;
+
+
+    const progress=
+    Math.min(
+      elapsed/duration,
+      1
+    );
+
+
+    window.scrollTo(
+      0,
+      start+
+      distance*
+      ease(progress)
+    );
+
+
+    if(progress<1){
+
+      requestAnimationFrame(
+        animation
+      );
+
+    }
+
+  }
+
+
+  requestAnimationFrame(
+    animation
   );
 
-});
+}
 
 
 /* =====================================================
-   SCROLL PROGRESS + NAVBAR
+   SCROLL UI
 ===================================================== */
 
 const navbar =
 document.getElementById(
   "navbar"
 );
+
 
 const progress =
 document.getElementById(
@@ -2309,29 +3320,25 @@ document.getElementById(
 
 function updateScrollUI(){
 
-  const scrollTop =
-  window.scrollY ||
-  document.documentElement.scrollTop;
+  const scrollTop=
+  window.scrollY;
 
 
-  const documentHeight =
-  document.documentElement.scrollHeight -
+  const maxScroll=
+  document.documentElement.scrollHeight-
   window.innerHeight;
 
 
-  const percentage =
-  documentHeight>0
+  const percent=
+  maxScroll>0
   ?
-  (
-    scrollTop /
-    documentHeight
-  ) * 100
+  scrollTop/maxScroll*100
   :
   0;
 
 
-  progress.style.width =
-  percentage + "%";
+  progress.style.width=
+  percent+"%";
 
 
   navbar.classList.toggle(
@@ -2355,40 +3362,46 @@ updateScrollUI();
 
 
 /* =====================================================
-   REVEAL ANIMATION
+   REVEAL
 ===================================================== */
 
 const revealObserver =
 new IntersectionObserver(
+
   entries=>{
 
-    entries.forEach(entry=>{
+    entries.forEach(
+      entry=>{
 
-      if(
-        entry.isIntersecting
-      ){
+        if(
+          entry.isIntersecting
+        ){
 
-        entry.target
-        .classList.add(
-          "visible"
-        );
-
-
-        revealObserver
-        .unobserve(
           entry.target
-        );
+          .classList.add(
+            "visible"
+          );
+
+
+          revealObserver
+          .unobserve(
+            entry.target
+          );
+
+        }
 
       }
-
-    });
+    );
 
   },
+
   {
-    threshold:.15,
+    threshold:.13,
+
     rootMargin:
     "0px 0px -50px 0px"
   }
+
 );
 
 
@@ -2396,13 +3409,15 @@ document
 .querySelectorAll(
   ".reveal"
 )
-.forEach(element=>{
+.forEach(
+  element=>{
 
-  revealObserver.observe(
-    element
-  );
+    revealObserver.observe(
+      element
+    );
 
-});
+  }
+);
 
 
 /* =====================================================
@@ -2414,127 +3429,30 @@ document.getElementById(
   "particleCanvas"
 );
 
+
 const ctx =
 canvas.getContext(
   "2d"
 );
 
 
-let width = 0;
-let height = 0;
+let width=0;
 
-let pixelRatio =
-Math.min(
-  window.devicePixelRatio || 1,
-  2
-);
+let height=0;
 
+let pixelRatio=1;
 
-/* logo do canal */
 
 const channelLogo =
 new Image();
 
-channelLogo.src =
+
+channelLogo.src=
 "perfil.jpg";
 
 
 /* =====================================================
-   DESENHO DO LOGO YOUTUBE
-===================================================== */
-
-function drawYouTubeLogo(
-  x,
-  y,
-  size,
-  opacity,
-  rotation
-){
-
-  ctx.save();
-
-
-  ctx.globalAlpha =
-  opacity;
-
-
-  ctx.translate(
-    x,
-    y
-  );
-
-
-  ctx.rotate(
-    rotation
-  );
-
-
-  const w =
-  size;
-
-  const h =
-  size * .70;
-
-
-  const radius =
-  size * .17;
-
-
-  ctx.fillStyle =
-  "#ff0000";
-
-
-  roundedRect(
-    ctx,
-    -w/2,
-    -h/2,
-    w,
-    h,
-    radius
-  );
-
-
-  ctx.fill();
-
-
-  ctx.beginPath();
-
-
-  ctx.moveTo(
-    -size*.09,
-    -size*.17
-  );
-
-
-  ctx.lineTo(
-    size*.20,
-    0
-  );
-
-
-  ctx.lineTo(
-    -size*.09,
-    size*.17
-  );
-
-
-  ctx.closePath();
-
-
-  ctx.fillStyle =
-  "#ffffff";
-
-
-  ctx.fill();
-
-
-  ctx.restore();
-
-}
-
-
-/* =====================================================
-   RECTÂNGULO ARREDONDADO
+   YOUTUBE LOGO
 ===================================================== */
 
 function roundedRect(
@@ -2546,7 +3464,7 @@ function roundedRect(
   radius
 ){
 
-  const r =
+  const r=
   Math.min(
     radius,
     w/2,
@@ -2624,17 +3542,112 @@ function roundedRect(
 }
 
 
+function drawYouTubeLogo(
+  x,
+  y,
+  size,
+  opacity,
+  rotation
+){
+
+  ctx.save();
+
+
+  ctx.globalAlpha=
+  opacity;
+
+
+  ctx.translate(
+    x,
+    y
+  );
+
+
+  ctx.rotate(
+    rotation
+  );
+
+
+  const w=
+  size;
+
+
+  const h=
+  size*.70;
+
+
+  roundedRect(
+
+    ctx,
+
+    -w/2,
+
+    -h/2,
+
+    w,
+
+    h,
+
+    size*.17
+
+  );
+
+
+  ctx.fillStyle=
+  "#ff0000";
+
+
+  ctx.fill();
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    -size*.09,
+    -size*.17
+  );
+
+
+  ctx.lineTo(
+    size*.20,
+    0
+  );
+
+
+  ctx.lineTo(
+    -size*.09,
+    size*.17
+  );
+
+
+  ctx.closePath();
+
+
+  ctx.fillStyle=
+  "#ffffff";
+
+
+  ctx.fill();
+
+
+  ctx.restore();
+
+}
+
+
 /* =====================================================
-   PARTICLE CLASS
+   PARTICLE
 ===================================================== */
 
 class Particle{
+
 
   constructor(
     index
   ){
 
-    this.index =
+    this.index=
     index;
 
 
@@ -2649,59 +3662,54 @@ class Particle{
     randomY=false
   ){
 
-    this.x =
-    Math.random() *
+    this.x=
+    Math.random()*
     width;
 
 
-    this.y =
+    this.y=
     randomY
     ?
-    Math.random() *
+    Math.random()*
     height
     :
-    height +
+    height+
     Math.random()*100;
 
 
-    this.size =
-    22 +
+    this.size=
+    22+
     Math.random()*35;
 
 
-    this.speedY =
-    .08 +
+    this.speedY=
+    .08+
     Math.random()*.22;
 
 
-    this.speedX =
+    this.speedX=
     (
       Math.random()-.5
-    ) * .12;
+    )*.12;
 
 
-    this.rotation =
-    Math.random() *
+    this.rotation=
+    Math.random()*
     Math.PI*2;
 
 
-    this.rotationSpeed =
+    this.rotationSpeed=
     (
       Math.random()-.5
-    ) * .0017;
+    )*.0017;
 
 
-    this.opacity =
-    .06 +
+    this.opacity=
+    .06+
     Math.random()*.15;
 
 
-    /*
-      Alterna:
-      YouTube / perfil do canal
-    */
-
-    this.type =
+    this.type=
     this.index%2===0
     ?
     "youtube"
@@ -2709,8 +3717,8 @@ class Particle{
     "channel";
 
 
-    this.parallax =
-    .015 +
+    this.parallax=
+    .015+
     Math.random()*.045;
 
   }
@@ -2720,29 +3728,25 @@ class Particle{
     scrollDelta
   ){
 
-    this.y -=
+    this.y-=
     this.speedY;
 
 
-    this.x +=
+    this.x+=
     this.speedX;
 
 
-    /*
-      movimento ligado ao scroll
-    */
-
-    this.y -=
-    scrollDelta *
+    this.y-=
+    scrollDelta*
     this.parallax;
 
 
-    this.rotation +=
+    this.rotation+=
     this.rotationSpeed;
 
 
     if(
-      this.y <
+      this.y<
       -this.size*2
     ){
 
@@ -2754,11 +3758,11 @@ class Particle{
 
 
     if(
-      this.x <
+      this.x<
       -this.size
     ){
 
-      this.x =
+      this.x=
       width+
       this.size;
 
@@ -2766,12 +3770,12 @@ class Particle{
 
 
     if(
-      this.x >
+      this.x>
       width+
       this.size
     ){
 
-      this.x =
+      this.x=
       -this.size;
 
     }
@@ -2789,21 +3793,22 @@ class Particle{
       drawYouTubeLogo(
 
         this.x,
+
         this.y,
+
         this.size,
+
         this.opacity,
+
         this.rotation
 
       );
+
 
       return;
 
     }
 
-
-    /*
-      Partícula com logo do canal
-    */
 
     ctx.save();
 
@@ -2819,7 +3824,7 @@ class Particle{
     );
 
 
-    ctx.globalAlpha =
+    ctx.globalAlpha=
     this.opacity;
 
 
@@ -2835,9 +3840,6 @@ class Particle{
     );
 
 
-    ctx.closePath();
-
-
     ctx.clip();
 
 
@@ -2851,30 +3853,29 @@ class Particle{
         channelLogo,
 
         -this.size/2,
+
         -this.size/2,
 
         this.size,
+
         this.size
 
       );
 
     }else{
 
-      /*
-        fallback se perfil.jpg
-        ainda não carregou
-      */
-
-      ctx.fillStyle =
+      ctx.fillStyle=
       "#2388ff";
 
 
       ctx.fillRect(
 
         -this.size/2,
+
         -this.size/2,
 
         this.size,
+
         this.size
 
       );
@@ -2885,23 +3886,18 @@ class Particle{
     ctx.restore();
 
 
-    /*
-      borda exterior
-    */
-
     ctx.save();
 
 
-    ctx.globalAlpha =
+    ctx.globalAlpha=
     this.opacity+.04;
 
 
-    ctx.strokeStyle =
+    ctx.strokeStyle=
     "#ffffff";
 
 
-    ctx.lineWidth =
-    1;
+    ctx.lineWidth=1;
 
 
     ctx.beginPath();
@@ -2910,11 +3906,13 @@ class Particle{
     ctx.arc(
 
       this.x,
+
       this.y,
 
       this.size/2,
 
       0,
+
       Math.PI*2
 
     );
@@ -2931,7 +3929,7 @@ class Particle{
 
 
 /* =====================================================
-   RESIZE PARTICLES
+   RESIZE
 ===================================================== */
 
 let particles=[];
@@ -2939,36 +3937,36 @@ let particles=[];
 
 function resizeParticles(){
 
-  width =
+  width=
   window.innerWidth;
 
 
-  height =
+  height=
   window.innerHeight;
 
 
-  pixelRatio =
+  pixelRatio=
   Math.min(
-    window.devicePixelRatio || 1,
+    window.devicePixelRatio||1,
     2
   );
 
 
-  canvas.width =
-  width *
+  canvas.width=
+  width*
   pixelRatio;
 
 
-  canvas.height =
-  height *
+  canvas.height=
+  height*
   pixelRatio;
 
 
-  canvas.style.width =
+  canvas.style.width=
   width+"px";
 
 
-  canvas.style.height =
+  canvas.style.height=
   height+"px";
 
 
@@ -2982,11 +3980,7 @@ function resizeParticles(){
   );
 
 
-  /*
-    menos partículas em celular
-  */
-
-  const amount =
+  const amount=
   width<700
   ?
   20
@@ -2994,13 +3988,21 @@ function resizeParticles(){
   38;
 
 
-  particles =
+  particles=
   Array.from(
+
     {
       length:amount
     },
-    (_,index)=>
-    new Particle(index)
+
+    (
+      _,
+      index
+    )=>
+    new Particle(
+      index
+    )
+
   );
 
 }
@@ -3016,10 +4018,10 @@ resizeParticles();
 
 
 /* =====================================================
-   PARTICLE ANIMATION
+   PARTICLE LOOP
 ===================================================== */
 
-let previousScroll =
+let previousScroll=
 window.scrollY;
 
 
@@ -3033,16 +4035,16 @@ function particleLoop(){
   );
 
 
-  const currentScroll =
+  const currentScroll=
   window.scrollY;
 
 
-  const scrollDelta =
-  currentScroll -
+  const scrollDelta=
+  currentScroll-
   previousScroll;
 
 
-  previousScroll =
+  previousScroll=
   currentScroll;
 
 
@@ -3052,6 +4054,7 @@ function particleLoop(){
       particle.update(
         scrollDelta
       );
+
 
       particle.draw();
 
@@ -3070,87 +4073,82 @@ particleLoop();
 
 
 /* =====================================================
-   HERO PARALLAX
+   PARALLAX DO HERO
 ===================================================== */
 
 const heroContent =
-document.querySelector(
-  ".hero-content"
+document.getElementById(
+  "heroContent"
 );
 
 
-let latestScroll =
-0;
-
-let parallaxRunning =
-false;
+let parallaxRunning=false;
 
 
 window.addEventListener(
   "scroll",
   ()=>{
 
-    latestScroll =
-    window.scrollY;
-
-
     if(parallaxRunning){
       return;
     }
 
 
-    parallaxRunning =
-    true;
+    parallaxRunning=true;
 
 
     requestAnimationFrame(
       ()=>{
 
-        /*
-          efeito suave sem mexer
-          demasiado no layout
-        */
+        const scroll=
+        window.scrollY;
+
 
         if(
-          latestScroll <
+          scroll<
           window.innerHeight
         ){
 
-          heroContent.style.transform =
+          heroContent.style.transform=
+
           `translate3d(
             0,
-            ${latestScroll*.08}px,
+            ${scroll*.07}px,
             0
           )`;
 
 
-          heroContent.style.opacity =
+          heroContent.style.opacity=
+
           Math.max(
-            .25,
+            .2,
             1-
-            latestScroll/
+            scroll/
             (
               window.innerHeight*
-              1.15
+              1.1
             )
           );
 
         }
 
 
-        parallaxRunning =
-        false;
+        parallaxRunning=false;
 
       }
     );
 
   },
+
   {
     passive:true
   }
+
 );
 
 </script>
 
+
 </body>
+
 </html>
