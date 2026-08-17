@@ -30,52 +30,45 @@
     }
 
 
-    /* =========================
-       NAVIGATION
-    ========================= */
-
     nav {
-      width: 100%;
-
       display: flex;
       justify-content: center;
       align-items: center;
 
-      gap: 12px;
+      gap: 10px;
 
       padding: 18px;
 
-      background: rgba(5, 12, 24, 0.9);
+      background: rgba(5, 12, 24, 0.95);
 
       border-bottom: 1px solid #253b59;
     }
 
-    nav a {
-      text-decoration: none;
 
+    nav a {
       color: #cbd8e8;
 
-      padding: 10px 16px;
+      text-decoration: none;
+
+      padding: 10px 15px;
 
       border-radius: 10px;
 
       transition: 0.2s;
     }
 
+
     nav a:hover {
-      color: white;
       background: #1769ff;
+      color: white;
     }
+
 
     nav a.active {
-      color: white;
       background: #1769ff;
+      color: white;
     }
 
-
-    /* =========================
-       PAGE
-    ========================= */
 
     .page {
       width: 100%;
@@ -83,13 +76,9 @@
 
       margin: auto;
 
-      padding: 50px 20px;
+      padding: 45px 20px;
     }
 
-
-    /* =========================
-       TITLE
-    ========================= */
 
     .hero {
       text-align: center;
@@ -97,11 +86,13 @@
       margin-bottom: 30px;
     }
 
+
     .hero h1 {
       margin: 0 0 10px;
 
-      font-size: 46px;
+      font-size: 45px;
     }
+
 
     .hero p {
       margin: 0;
@@ -111,10 +102,6 @@
       font-size: 17px;
     }
 
-
-    /* =========================
-       COACH CARD
-    ========================= */
 
     .coach-card {
       background: rgba(11, 22, 39, 0.96);
@@ -130,17 +117,14 @@
     }
 
 
-    /* =========================
-       SETTINGS
-    ========================= */
-
-    .settings-title {
-      margin-bottom: 10px;
-
-      font-size: 14px;
+    .label {
+      margin-bottom: 8px;
 
       color: #8ea4bf;
+
+      font-size: 14px;
     }
+
 
     .settings {
       display: flex;
@@ -149,6 +133,7 @@
 
       margin-bottom: 22px;
     }
+
 
     .settings select {
       flex: 1;
@@ -164,24 +149,10 @@
       border-radius: 11px;
 
       font-size: 15px;
-
-      cursor: pointer;
     }
 
 
-    /* =========================
-       MECHANIC BUTTONS
-    ========================= */
-
-    .mechanics-title {
-      margin-bottom: 10px;
-
-      font-size: 14px;
-
-      color: #8ea4bf;
-    }
-
-    .mechanic-buttons {
+    .mechanics {
       display: flex;
 
       flex-wrap: wrap;
@@ -191,7 +162,8 @@
       margin-bottom: 22px;
     }
 
-    .mechanic-buttons button {
+
+    .mechanics button {
       background: #142944;
 
       color: white;
@@ -207,16 +179,13 @@
       transition: 0.2s;
     }
 
-    .mechanic-buttons button:hover {
+
+    .mechanics button:hover {
       background: #1769ff;
 
       transform: translateY(-2px);
     }
 
-
-    /* =========================
-       CHAT
-    ========================= */
 
     .chat {
       height: 450px;
@@ -236,6 +205,7 @@
       scroll-behavior: smooth;
     }
 
+
     .message {
       width: fit-content;
 
@@ -252,13 +222,15 @@
       white-space: pre-wrap;
     }
 
-    .bot-message {
+
+    .bot {
       background: #17273d;
 
       border-bottom-left-radius: 4px;
     }
 
-    .user-message {
+
+    .user {
       background: #1769ff;
 
       margin-left: auto;
@@ -267,10 +239,6 @@
     }
 
 
-    /* =========================
-       TYPING
-    ========================= */
-
     .typing {
       color: #9eb0c7;
 
@@ -278,15 +246,12 @@
     }
 
 
-    /* =========================
-       INPUT
-    ========================= */
-
     .input-area {
       display: flex;
 
       gap: 10px;
     }
+
 
     #question {
       flex: 1;
@@ -306,13 +271,11 @@
       font-size: 16px;
     }
 
-    #question::placeholder {
-      color: #788ba4;
-    }
 
     #question:focus {
       border-color: #1769ff;
     }
+
 
     #sendButton {
       min-width: 110px;
@@ -327,16 +290,14 @@
 
       font-weight: bold;
 
-      font-size: 15px;
-
       cursor: pointer;
-
-      transition: 0.2s;
     }
+
 
     #sendButton:hover {
       background: #3480ff;
     }
+
 
     #sendButton:disabled {
       opacity: 0.5;
@@ -345,14 +306,10 @@
     }
 
 
-    /* =========================
-       BOTTOM INFO
-    ========================= */
-
-    .bottom-info {
-      margin-top: 15px;
-
+    .info {
       text-align: center;
+
+      margin-top: 15px;
 
       color: #70849e;
 
@@ -360,47 +317,48 @@
     }
 
 
-    /* =========================
-       MOBILE
-    ========================= */
-
     @media (max-width: 650px) {
 
       nav {
-        gap: 3px;
-
-        padding: 12px 5px;
+        flex-wrap: wrap;
       }
+
 
       nav a {
-        padding: 8px 8px;
-
+        padding: 8px;
         font-size: 13px;
       }
+
 
       .page {
         padding: 30px 12px;
       }
 
+
       .hero h1 {
         font-size: 34px;
       }
+
 
       .settings {
         flex-direction: column;
       }
 
+
       .chat {
         height: 400px;
       }
+
 
       .message {
         max-width: 92%;
       }
 
+
       .input-area {
         flex-direction: column;
       }
+
 
       #sendButton {
         padding: 14px;
@@ -409,15 +367,12 @@
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
 
   <nav>
 
@@ -443,11 +398,6 @@
   </nav>
 
 
-
-  <!-- =========================
-       PAGE
-  ========================== -->
-
   <main class="page">
 
 
@@ -464,14 +414,11 @@
     </div>
 
 
-
     <div class="coach-card">
 
 
-      <!-- SETTINGS -->
-
-      <div class="settings-title">
-        Your settings
+      <div class="label">
+        Your rank and controls
       </div>
 
 
@@ -514,7 +461,6 @@
         </select>
 
 
-
         <select id="controls">
 
           <option value="Controller">
@@ -530,109 +476,74 @@
       </div>
 
 
-
-      <!-- MECHANICS -->
-
-      <div class="mechanics-title">
+      <div class="label">
         Quick lessons
       </div>
 
 
-      <div class="mechanic-buttons">
+      <div class="mechanics">
 
-
-        <button
-          onclick="quickAsk('Teach me how to wave dash step by step')"
-        >
+        <button onclick="quickAsk('Teach me how to wave dash step by step')">
           🌊 Wave Dash
         </button>
 
-
-        <button
-          onclick="quickAsk('Teach me how to fast aerial step by step')"
-        >
+        <button onclick="quickAsk('Teach me how to fast aerial step by step')">
           🚀 Fast Aerial
         </button>
 
-
-        <button
-          onclick="quickAsk('Teach me how to half flip step by step')"
-        >
+        <button onclick="quickAsk('Teach me how to half flip step by step')">
           🔄 Half Flip
         </button>
 
-
-        <button
-          onclick="quickAsk('Teach me how to speed flip step by step')"
-        >
+        <button onclick="quickAsk('Teach me how to speed flip step by step')">
           ⚡ Speed Flip
         </button>
 
-
-        <button
-          onclick="quickAsk('Teach me how to air dribble step by step')"
-        >
+        <button onclick="quickAsk('Teach me how to air dribble step by step')">
           ⚽ Air Dribble
         </button>
 
-
-        <button
-          onclick="quickAsk('Teach me how to dribble and flick')"
-        >
+        <button onclick="quickAsk('Teach me how to dribble and flick')">
           🎯 Dribbling
         </button>
 
-
-        <button
-          onclick="quickAsk('Teach me how to hit double taps')"
-        >
+        <button onclick="quickAsk('Teach me how to hit double taps')">
           💥 Double Tap
         </button>
 
-
-        <button
-          onclick="quickAsk('Create a 15 minute Rocket League training routine for my rank')"
-        >
-          🏋️ Training Routine
+        <button onclick="quickAsk('Create a 15 minute Rocket League training routine for my rank')">
+          🏋️ Training
         </button>
-
 
       </div>
 
-
-
-      <!-- CHAT -->
 
       <div
         id="chat"
         class="chat"
       >
 
-        <div class="message bot-message">
-👋 Hey! I'm your Rocket League AI Coach.
+        <div class="message bot">
+👋 Hey! I'm your Rocket League AI Coach!
 
-I can help you learn things like:
+I can help you learn:
 
-🌊 Wave Dashes
-🚀 Aerials
-⚡ Speed Flips
-🔄 Half Flips
-⚽ Air Dribbles
-💥 Double Taps
+🌊 Wave Dash
+🚀 Fast Aerial
+⚡ Speed Flip
+🔄 Half Flip
+⚽ Air Dribble
+💥 Double Tap
 🎯 Flicks
 🏋️ Training routines
 
-Choose a lesson above or ask me a question!
+Choose a lesson above or ask me anything about Rocket League!
         </div>
 
       </div>
 
 
-
-      <!-- INPUT -->
-
       <div class="input-area">
-
 
         <input
           id="question"
@@ -641,7 +552,6 @@ Choose a lesson above or ask me a question!
           autocomplete="off"
         >
 
-
         <button
           id="sendButton"
           onclick="sendMessage()"
@@ -649,12 +559,11 @@ Choose a lesson above or ask me a question!
           Send 🚀
         </button>
 
-
       </div>
 
 
-      <div class="bottom-info">
-        AI answers can make mistakes. Use the coach as a training helper.
+      <div class="info">
+        AI can make mistakes. Use the coach as a training helper.
       </div>
 
 
@@ -663,37 +572,22 @@ Choose a lesson above or ask me a question!
   </main>
 
 
-
   <script>
 
-
-    /* ========================================
-       IMPORTANT
-
-       Later replace this with your backend URL.
-
-       Example:
-
-       https://my-rl-coach.vercel.app/api/coach
-
-    ======================================== */
-
+    // ==========================================
+    // YOUR VERCEL API
+    // ==========================================
 
     const BACKEND_URL =
-      "https://YOUR-VERCEL-PROJECT.vercel.app/api/coach";
+      "https://amirijogos.vercel.app/api/coach";
 
-
-
-    /* Store the recent conversation */
 
     let conversation = [];
 
 
-
-    /* ========================================
-       ADD MESSAGE TO CHAT
-    ======================================== */
-
+    // ==========================================
+    // ADD MESSAGE
+    // ==========================================
 
     function addMessage(text, sender) {
 
@@ -701,32 +595,28 @@ Choose a lesson above or ask me a question!
         document.getElementById("chat");
 
 
-      const message =
+      const element =
         document.createElement("div");
 
 
-      message.classList.add("message");
+      element.classList.add("message");
 
 
       if (sender === "user") {
 
-        message.classList.add(
-          "user-message"
-        );
+        element.classList.add("user");
 
       } else {
 
-        message.classList.add(
-          "bot-message"
-        );
+        element.classList.add("bot");
 
       }
 
 
-      message.textContent = text;
+      element.textContent = text;
 
 
-      chat.appendChild(message);
+      chat.appendChild(element);
 
 
       chat.scrollTop =
@@ -735,19 +625,14 @@ Choose a lesson above or ask me a question!
     }
 
 
+    // ==========================================
+    // QUICK LESSON BUTTON
+    // ==========================================
 
-    /* ========================================
-       QUICK BUTTON
-    ======================================== */
+    function quickAsk(text) {
 
-
-    function quickAsk(question) {
-
-      const input =
-        document.getElementById("question");
-
-
-      input.value = question;
+      document.getElementById("question").value =
+        text;
 
 
       sendMessage();
@@ -755,20 +640,17 @@ Choose a lesson above or ask me a question!
     }
 
 
-
-    /* ========================================
-       SEND MESSAGE
-    ======================================== */
-
+    // ==========================================
+    // SEND MESSAGE
+    // ==========================================
 
     async function sendMessage() {
-
 
       const input =
         document.getElementById("question");
 
 
-      const sendButton =
+      const button =
         document.getElementById("sendButton");
 
 
@@ -784,25 +666,16 @@ Choose a lesson above or ask me a question!
         input.value.trim();
 
 
-
       if (!question) {
-
         return;
-
       }
 
-
-
-      /* Show user's message */
 
       addMessage(
         question,
         "user"
       );
 
-
-
-      /* Save it */
 
       conversation.push({
 
@@ -813,31 +686,25 @@ Choose a lesson above or ask me a question!
       });
 
 
-
       input.value = "";
 
 
+      button.disabled = true;
 
-      /* Disable button while AI thinks */
+      button.textContent =
+        "Thinking...";
 
-      sendButton.disabled = true;
-
-      sendButton.textContent = "...";
-
-
-
-      /* Typing message */
 
       const typing =
         document.createElement("div");
 
 
-      typing.className =
-        "message bot-message typing";
-
-
       typing.id =
-        "typing-message";
+        "typing";
+
+
+      typing.className =
+        "message bot typing";
 
 
       typing.textContent =
@@ -849,9 +716,7 @@ Choose a lesson above or ask me a question!
         .appendChild(typing);
 
 
-
       try {
-
 
         const response =
           await fetch(
@@ -866,7 +731,6 @@ Choose a lesson above or ask me a question!
                   "application/json"
 
               },
-
 
               body: JSON.stringify({
 
@@ -883,41 +747,30 @@ Choose a lesson above or ask me a question!
           );
 
 
-
         const data =
           await response.json();
 
 
-
-        /* Remove typing */
-
         document
-          .getElementById("typing-message")
+          .getElementById("typing")
           ?.remove();
-
 
 
         if (!response.ok) {
 
           throw new Error(
             data.error ||
-            "The coach could not answer."
+            "The AI Coach couldn't answer."
           );
 
         }
 
-
-
-        /* Show AI response */
 
         addMessage(
           data.reply,
           "bot"
         );
 
-
-
-        /* Remember AI response */
 
         conversation.push({
 
@@ -928,49 +781,37 @@ Choose a lesson above or ask me a question!
         });
 
 
-
       } catch (error) {
-
 
         console.error(error);
 
 
-
         document
-          .getElementById("typing-message")
+          .getElementById("typing")
           ?.remove();
 
 
-
         addMessage(
-          "⚠️ I couldn't connect to the AI coach.\n\nThe backend probably hasn't been connected yet.",
+          "⚠️ Error: " + error.message,
           "bot"
         );
 
-
       } finally {
 
+        button.disabled = false;
 
-        sendButton.disabled = false;
-
-
-        sendButton.textContent =
+        button.textContent =
           "Send 🚀";
 
 
         input.focus();
-
 
       }
 
     }
 
 
-
-    /* ========================================
-       ENTER KEY = SEND
-    ======================================== */
-
+    // ENTER = SEND
 
     document
       .getElementById("question")
@@ -978,11 +819,7 @@ Choose a lesson above or ask me a question!
         "keydown",
         function(event) {
 
-
-          if (
-            event.key === "Enter" &&
-            !event.shiftKey
-          ) {
+          if (event.key === "Enter") {
 
             event.preventDefault();
 
@@ -990,10 +827,8 @@ Choose a lesson above or ask me a question!
 
           }
 
-
         }
       );
-
 
   </script>
 
