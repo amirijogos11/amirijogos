@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Rocket League AI Coach</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      font-family: Arial, Helvetica, sans-serif;
+
+      background:
+        radial-gradient(circle at top, #12386b, #07101e 55%);
+
+      color: white;
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    nav {
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      gap: 12px;
+
+      padding: 18px;
+
+      background: rgba(5, 12, 24, 0.9);
+
+      border-bottom: 1px solid #253b59;
+    }
+
+    nav a {
+      text-decoration: none;
+
+      color: #cbd8e8;
+
+      padding: 10px 16px;
+
+      border-radius: 10px;
+
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: white;
+      background: #1769ff;
+    }
+
+    nav a.active {
+      color: white;
+      background: #1769ff;
+    }
+
+
+    /* =========================
+       PAGE
+    ========================= */
+
+    .page {
+      width: 100%;
+      max-width: 950px;
+
+      margin: auto;
+
+      padding: 50px 20px;
+    }
+
+
+    /* =========================
+       TITLE
+    ========================= */
+
+    .hero {
+      text-align: center;
+
+      margin-bottom: 30px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+
+      font-size: 46px;
+    }
+
+    .hero p {
+      margin: 0;
+
+      color: #aabbd0;
+
+      font-size: 17px;
+    }
+
+
+    /* =========================
+       COACH CARD
+    ========================= */
+
+    .coach-card {
+      background: rgba(11, 22, 39, 0.96);
+
+      border: 1px solid #294261;
+
+      border-radius: 22px;
+
+      padding: 25px;
+
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45);
+    }
+
+
+    /* =========================
+       SETTINGS
+    ========================= */
+
+    .settings-title {
+      margin-bottom: 10px;
+
+      font-size: 14px;
+
+      color: #8ea4bf;
+    }
+
+    .settings {
+      display: flex;
+
+      gap: 10px;
+
+      margin-bottom: 22px;
+    }
+
+    .settings select {
+      flex: 1;
+
+      padding: 13px;
+
+      background: #111f33;
+
+      color: white;
+
+      border: 1px solid #2c4464;
+
+      border-radius: 11px;
+
+      font-size: 15px;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       MECHANIC BUTTONS
+    ========================= */
+
+    .mechanics-title {
+      margin-bottom: 10px;
+
+      font-size: 14px;
+
+      color: #8ea4bf;
+    }
+
+    .mechanic-buttons {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-bottom: 22px;
+    }
+
+    .mechanic-buttons button {
+      background: #142944;
+
+      color: white;
+
+      border: 1px solid #2e527d;
+
+      border-radius: 22px;
+
+      padding: 10px 15px;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    .mechanic-buttons button:hover {
+      background: #1769ff;
+
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       CHAT
+    ========================= */
+
+    .chat {
+      height: 450px;
+
+      overflow-y: auto;
+
+      background: #07111f;
+
+      border: 1px solid #243b5a;
+
+      border-radius: 16px;
+
+      padding: 18px;
+
+      margin-bottom: 15px;
+
+      scroll-behavior: smooth;
+    }
+
+    .message {
+      width: fit-content;
+
+      max-width: 80%;
+
+      padding: 13px 16px;
+
+      margin-bottom: 13px;
+
+      border-radius: 15px;
+
+      line-height: 1.5;
+
+      white-space: pre-wrap;
+    }
+
+    .bot-message {
+      background: #17273d;
+
+      border-bottom-left-radius: 4px;
+    }
+
+    .user-message {
+      background: #1769ff;
+
+      margin-left: auto;
+
+      border-bottom-right-radius: 4px;
+    }
+
+
+    /* =========================
+       TYPING
+    ========================= */
+
+    .typing {
+      color: #9eb0c7;
+
+      font-style: italic;
+    }
+
+
+    /* =========================
+       INPUT
+    ========================= */
+
+    .input-area {
+      display: flex;
+
+      gap: 10px;
+    }
+
+    #question {
+      flex: 1;
+
+      padding: 15px;
+
+      background: #101d30;
+
+      color: white;
+
+      border: 1px solid #2c4566;
+
+      border-radius: 13px;
+
+      outline: none;
+
+      font-size: 16px;
+    }
+
+    #question::placeholder {
+      color: #788ba4;
+    }
+
+    #question:focus {
+      border-color: #1769ff;
+    }
+
+    #sendButton {
+      min-width: 110px;
+
+      border: none;
+
+      border-radius: 13px;
+
+      background: #1769ff;
+
+      color: white;
+
+      font-weight: bold;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    #sendButton:hover {
+      background: #3480ff;
+    }
+
+    #sendButton:disabled {
+      opacity: 0.5;
+
+      cursor: default;
+    }
+
+
+    /* =========================
+       BOTTOM INFO
+    ========================= */
+
+    .bottom-info {
+      margin-top: 15px;
+
+      text-align: center;
+
+      color: #70849e;
+
+      font-size: 12px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 650px) {
+
+      nav {
+        gap: 3px;
+
+        padding: 12px 5px;
+      }
+
+      nav a {
+        padding: 8px 8px;
+
+        font-size: 13px;
+      }
+
+      .page {
+        padding: 30px 12px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .settings {
+        flex-direction: column;
+      }
+
+      .chat {
+        height: 400px;
+      }
+
+      .message {
+        max-width: 92%;
+      }
+
+      .input-area {
+        flex-direction: column;
+      }
+
+      #sendButton {
+        padding: 14px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <nav>
+
+    <a href="index.html">
+      🏠 Home
+    </a>
+
+    <a href="game.html">
+      🎮 Games
+    </a>
+
+    <a href="creator.html">
+      👤 Creator
+    </a>
+
+    <a
+      href="coach.html"
+      class="active"
+    >
+      🚀 AI Coach
+    </a>
+
+  </nav>
+
+
+
+  <!-- =========================
+       PAGE
+  ========================== -->
+
+  <main class="page">
+
+
+    <div class="hero">
+
+      <h1>
+        🚀 Rocket League AI Coach
+      </h1>
+
+      <p>
+        Learn mechanics, fix mistakes and improve your Rocket League skills.
+      </p>
+
+    </div>
+
+
+
+    <div class="coach-card">
+
+
+      <!-- SETTINGS -->
+
+      <div class="settings-title">
+        Your settings
+      </div>
+
+
+      <div class="settings">
+
+        <select id="rank">
+
+          <option value="Bronze">
+            🥉 Bronze
+          </option>
+
+          <option value="Silver">
+            🥈 Silver
+          </option>
+
+          <option value="Gold">
+            🥇 Gold
+          </option>
+
+          <option value="Platinum">
+            💠 Platinum
+          </option>
+
+          <option value="Diamond" selected>
+            💎 Diamond
+          </option>
+
+          <option value="Champion">
+            🏆 Champion
+          </option>
+
+          <option value="Grand Champion">
+            🔴 Grand Champion
+          </option>
+
+          <option value="SSL">
+            🌟 SSL
+          </option>
+
+        </select>
+
+
+
+        <select id="controls">
+
+          <option value="Controller">
+            🎮 Controller
+          </option>
+
+          <option value="Keyboard and Mouse">
+            ⌨️ Keyboard & Mouse
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <!-- MECHANICS -->
+
+      <div class="mechanics-title">
+        Quick lessons
+      </div>
+
+
+      <div class="mechanic-buttons">
+
+
+        <button
+          onclick="quickAsk('Teach me how to wave dash step by step')"
+        >
+          🌊 Wave Dash
+        </button>
+
+
+        <button
+          onclick="quickAsk('Teach me how to fast aerial step by step')"
+        >
+          🚀 Fast Aerial
+        </button>
+
+
+        <button
+          onclick="quickAsk('Teach me how to half flip step by step')"
+        >
+          🔄 Half Flip
+        </button>
+
+
+        <button
+          onclick="quickAsk('Teach me how to speed flip step by step')"
+        >
+          ⚡ Speed Flip
+        </button>
+
+
+        <button
+          onclick="quickAsk('Teach me how to air dribble step by step')"
+        >
+          ⚽ Air Dribble
+        </button>
+
+
+        <button
+          onclick="quickAsk('Teach me how to dribble and flick')"
+        >
+          🎯 Dribbling
+        </button>
+
+
+        <button
+          onclick="quickAsk('Teach me how to hit double taps')"
+        >
+          💥 Double Tap
+        </button>
+
+
+        <button
+          onclick="quickAsk('Create a 15 minute Rocket League training routine for my rank')"
+        >
+          🏋️ Training Routine
+        </button>
+
+
+      </div>
+
+
+
+      <!-- CHAT -->
+
+      <div
+        id="chat"
+        class="chat"
+      >
+
+        <div class="message bot-message">
+👋 Hey! I'm your Rocket League AI Coach.
+
+I can help you learn things like:
+
+🌊 Wave Dashes
+🚀 Aerials
+⚡ Speed Flips
+🔄 Half Flips
+⚽ Air Dribbles
+💥 Double Taps
+🎯 Flicks
+🏋️ Training routines
+
+Choose a lesson above or ask me a question!
+        </div>
+
+      </div>
+
+
+
+      <!-- INPUT -->
+
+      <div class="input-area">
+
+
+        <input
+          id="question"
+          type="text"
+          placeholder="Example: Why do I keep missing aerials?"
+          autocomplete="off"
+        >
+
+
+        <button
+          id="sendButton"
+          onclick="sendMessage()"
+        >
+          Send 🚀
+        </button>
+
+
+      </div>
+
+
+      <div class="bottom-info">
+        AI answers can make mistakes. Use the coach as a training helper.
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+
+  <script>
+
+
+    /* ========================================
+       IMPORTANT
+
+       Later replace this with your backend URL.
+
+       Example:
+
+       https://my-rl-coach.vercel.app/api/coach
+
+    ======================================== */
+
+
+    const BACKEND_URL =
+      "https://YOUR-VERCEL-PROJECT.vercel.app/api/coach";
+
+
+
+    /* Store the recent conversation */
+
+    let conversation = [];
+
+
+
+    /* ========================================
+       ADD MESSAGE TO CHAT
+    ======================================== */
+
+
+    function addMessage(text, sender) {
+
+      const chat =
+        document.getElementById("chat");
+
+
+      const message =
+        document.createElement("div");
+
+
+      message.classList.add("message");
+
+
+      if (sender === "user") {
+
+        message.classList.add(
+          "user-message"
+        );
+
+      } else {
+
+        message.classList.add(
+          "bot-message"
+        );
+
+      }
+
+
+      message.textContent = text;
+
+
+      chat.appendChild(message);
+
+
+      chat.scrollTop =
+        chat.scrollHeight;
+
+    }
+
+
+
+    /* ========================================
+       QUICK BUTTON
+    ======================================== */
+
+
+    function quickAsk(question) {
+
+      const input =
+        document.getElementById("question");
+
+
+      input.value = question;
+
+
+      sendMessage();
+
+    }
+
+
+
+    /* ========================================
+       SEND MESSAGE
+    ======================================== */
+
+
+    async function sendMessage() {
+
+
+      const input =
+        document.getElementById("question");
+
+
+      const sendButton =
+        document.getElementById("sendButton");
+
+
+      const rank =
+        document.getElementById("rank").value;
+
+
+      const controls =
+        document.getElementById("controls").value;
+
+
+      const question =
+        input.value.trim();
+
+
+
+      if (!question) {
+
+        return;
+
+      }
+
+
+
+      /* Show user's message */
+
+      addMessage(
+        question,
+        "user"
+      );
+
+
+
+      /* Save it */
+
+      conversation.push({
+
+        role: "user",
+
+        content: question
+
+      });
+
+
+
+      input.value = "";
+
+
+
+      /* Disable button while AI thinks */
+
+      sendButton.disabled = true;
+
+      sendButton.textContent = "...";
+
+
+
+      /* Typing message */
+
+      const typing =
+        document.createElement("div");
+
+
+      typing.className =
+        "message bot-message typing";
+
+
+      typing.id =
+        "typing-message";
+
+
+      typing.textContent =
+        "🚀 Coach is thinking...";
+
+
+      document
+        .getElementById("chat")
+        .appendChild(typing);
+
+
+
+      try {
+
+
+        const response =
+          await fetch(
+            BACKEND_URL,
+            {
+
+              method: "POST",
+
+              headers: {
+
+                "Content-Type":
+                  "application/json"
+
+              },
+
+
+              body: JSON.stringify({
+
+                rank: rank,
+
+                controls: controls,
+
+                messages:
+                  conversation.slice(-10)
+
+              })
+
+            }
+          );
+
+
+
+        const data =
+          await response.json();
+
+
+
+        /* Remove typing */
+
+        document
+          .getElementById("typing-message")
+          ?.remove();
+
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            data.error ||
+            "The coach could not answer."
+          );
+
+        }
+
+
+
+        /* Show AI response */
+
+        addMessage(
+          data.reply,
+          "bot"
+        );
+
+
+
+        /* Remember AI response */
+
+        conversation.push({
+
+          role: "assistant",
+
+          content: data.reply
+
+        });
+
+
+
+      } catch (error) {
+
+
+        console.error(error);
+
+
+
+        document
+          .getElementById("typing-message")
+          ?.remove();
+
+
+
+        addMessage(
+          "⚠️ I couldn't connect to the AI coach.\n\nThe backend probably hasn't been connected yet.",
+          "bot"
+        );
+
+
+      } finally {
+
+
+        sendButton.disabled = false;
+
+
+        sendButton.textContent =
+          "Send 🚀";
+
+
+        input.focus();
+
+
+      }
+
+    }
+
+
+
+    /* ========================================
+       ENTER KEY = SEND
+    ======================================== */
+
+
+    document
+      .getElementById("question")
+      .addEventListener(
+        "keydown",
+        function(event) {
+
+
+          if (
+            event.key === "Enter" &&
+            !event.shiftKey
+          ) {
+
+            event.preventDefault();
+
+            sendMessage();
+
+          }
+
+
+        }
+      );
+
+
+  </script>
+
+
+</body>
+
+</html>
