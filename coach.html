@@ -1,837 +1,1481 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-PT">
 
 <head>
-  <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<meta charset="UTF-8">
 
-  <title>Rocket League AI Coach</title>
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
 
-  <style>
+<title>
+AMIRIJOGOS — Rocket League AI Coach
+</title>
 
-    * {
-      box-sizing: border-box;
-    }
+<style>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
+:root{
+  --bg:#05070c;
+  --panel:#0d1624;
+  --panel2:#101d30;
+  --text:#fff;
+  --muted:#9aa7b8;
+  --blue:#2388ff;
+  --purple:#7048ff;
+  --green:#38d27d;
+  --red:#ff3156;
+  --border:rgba(255,255,255,.09);
+  --sidebar:245px;
+}
 
-      font-family: Arial, Helvetica, sans-serif;
+*{
+  box-sizing:border-box;
+}
 
-      background:
-        radial-gradient(circle at top, #12386b, #07101e 55%);
+html{
+  scroll-behavior:smooth;
+}
 
-      color: white;
-    }
+body{
+  margin:0;
 
+  padding-left:
+  var(--sidebar);
 
-    nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  min-height:100vh;
 
-      gap: 10px;
+  font-family:
+  Arial,
+  Helvetica,
+  sans-serif;
 
-      padding: 18px;
+  color:
+  var(--text);
 
-      background: rgba(5, 12, 24, 0.95);
+  background:
+  radial-gradient(
+    circle at top,
+    #12386b,
+    #07101e 55%
+  );
+}
 
-      border-bottom: 1px solid #253b59;
-    }
+button,
+input,
+select{
+  font:inherit;
+}
 
+button{
+  cursor:pointer;
+}
 
-    nav a {
-      color: #cbd8e8;
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
-      text-decoration: none;
+.site-sidebar{
+  position:fixed;
 
-      padding: 10px 15px;
+  left:0;
+  top:0;
+  bottom:0;
 
-      border-radius: 10px;
+  width:
+  var(--sidebar);
 
-      transition: 0.2s;
-    }
+  z-index:3000;
 
+  display:flex;
 
-    nav a:hover {
-      background: #1769ff;
-      color: white;
-    }
+  flex-direction:column;
 
+  padding:
+  18px 14px;
 
-    nav a.active {
-      background: #1769ff;
-      color: white;
-    }
+  background:
+  rgba(5,8,14,.97);
 
+  backdrop-filter:
+  blur(18px);
 
-    .page {
-      width: 100%;
-      max-width: 950px;
+  border-right:
+  1px solid
+  var(--border);
 
-      margin: auto;
+  box-shadow:
+  15px 0 50px
+  rgba(0,0,0,.28);
+}
 
-      padding: 45px 20px;
-    }
+.sidebar-brand{
+  display:flex;
 
+  align-items:center;
 
-    .hero {
-      text-align: center;
+  gap:11px;
 
-      margin-bottom: 30px;
-    }
+  padding:
+  4px 5px 20px;
 
+  margin-bottom:12px;
 
-    .hero h1 {
-      margin: 0 0 10px;
+  border-bottom:
+  1px solid
+  rgba(255,255,255,.08);
 
-      font-size: 45px;
-    }
+  color:#fff;
 
+  text-decoration:none;
+}
 
-    .hero p {
-      margin: 0;
+.sidebar-brand img{
+  width:48px;
+  height:48px;
 
-      color: #aabbd0;
+  border-radius:50%;
 
-      font-size: 17px;
-    }
+  object-fit:cover;
 
+  border:
+  2px solid
+  #ff1744;
 
-    .coach-card {
-      background: rgba(11, 22, 39, 0.96);
+  box-shadow:
+  0 0 18px
+  rgba(255,0,50,.35);
+}
 
-      border: 1px solid #294261;
+.sidebar-nav{
+  display:grid;
 
-      border-radius: 22px;
+  gap:6px;
+}
 
-      padding: 25px;
+.sidebar-nav a{
+  display:flex;
 
-      box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.45);
-    }
+  align-items:center;
 
+  gap:11px;
 
-    .label {
-      margin-bottom: 8px;
+  padding:
+  12px 13px;
 
-      color: #8ea4bf;
+  border:
+  1px solid
+  transparent;
 
-      font-size: 14px;
-    }
+  border-radius:11px;
 
+  color:#cdd8e7;
 
-    .settings {
-      display: flex;
+  text-decoration:none;
 
-      gap: 10px;
+  transition:.22s;
+}
 
-      margin-bottom: 22px;
-    }
+.sidebar-nav a:hover{
+  color:#fff;
 
+  background:
+  rgba(255,255,255,.07);
 
-    .settings select {
-      flex: 1;
+  transform:
+  translateX(4px);
+}
 
-      padding: 13px;
+.creator-link{
+  background:
+  linear-gradient(
+    135deg,
+    rgba(112,72,255,.20),
+    rgba(35,136,255,.10)
+  );
+}
 
-      background: #111f33;
+.coach-link{
+  background:
+  linear-gradient(
+    135deg,
+    rgba(56,210,125,.25),
+    rgba(112,72,255,.18)
+  );
 
-      color: white;
+  border-color:
+  rgba(56,210,125,.16) !important;
+}
 
-      border: 1px solid #2c4464;
+.games-link{
+  background:
+  linear-gradient(
+    135deg,
+    rgba(35,136,255,.23),
+    rgba(35,136,255,.08)
+  );
+}
 
-      border-radius: 11px;
+/* =====================================================
+   LANGUAGE
+===================================================== */
 
-      font-size: 15px;
-    }
+.sidebar-language{
+  margin-top:auto;
 
+  padding-top:16px;
 
-    .mechanics {
-      display: flex;
+  border-top:
+  1px solid
+  rgba(255,255,255,.08);
+}
 
-      flex-wrap: wrap;
+.language-title{
+  padding:
+  0 8px 9px;
 
-      gap: 9px;
+  color:#8997aa;
 
-      margin-bottom: 22px;
-    }
+  font-size:12px;
 
+  font-weight:900;
+}
 
-    .mechanics button {
-      background: #142944;
+.language-button{
+  width:100%;
 
-      color: white;
+  padding:10px;
 
-      border: 1px solid #2e527d;
+  margin:3px 0;
 
-      border-radius: 22px;
+  border:
+  1px solid
+  transparent;
 
-      padding: 10px 15px;
+  border-radius:9px;
 
-      cursor: pointer;
+  background:transparent;
 
-      transition: 0.2s;
-    }
+  color:#cdd8e7;
 
+  text-align:left;
+}
 
-    .mechanics button:hover {
-      background: #1769ff;
+.language-button:hover{
+  background:
+  rgba(255,255,255,.06);
+}
 
-      transform: translateY(-2px);
-    }
+.selected-language{
+  color:#fff !important;
 
+  border-color:
+  rgba(255,255,255,.10) !important;
 
-    .chat {
-      height: 450px;
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,0,51,.22),
+    rgba(35,136,255,.19)
+  ) !important;
+}
 
-      overflow-y: auto;
+/* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
 
-      background: #07111f;
+.sidebar-toggle{
+  display:none;
 
-      border: 1px solid #243b5a;
+  position:fixed;
 
-      border-radius: 16px;
+  top:12px;
+  left:12px;
 
-      padding: 18px;
+  z-index:4000;
 
-      margin-bottom: 15px;
+  width:47px;
+  height:47px;
 
-      scroll-behavior: smooth;
-    }
+  border:0;
 
+  border-radius:12px;
 
-    .message {
-      width: fit-content;
+  background:#101827;
 
-      max-width: 80%;
+  color:#fff;
 
-      padding: 13px 16px;
+  font-size:23px;
 
-      margin-bottom: 13px;
+  box-shadow:
+  0 10px 30px
+  rgba(0,0,0,.4);
+}
 
-      border-radius: 15px;
+.mobile-overlay{
+  display:none;
 
-      line-height: 1.5;
+  position:fixed;
 
-      white-space: pre-wrap;
-    }
+  inset:0;
 
+  z-index:2500;
 
-    .bot {
-      background: #17273d;
+  background:
+  rgba(0,0,0,.55);
+}
 
-      border-bottom-left-radius: 4px;
-    }
+.mobile-overlay.show{
+  display:block;
+}
 
+/* =====================================================
+   PAGE
+===================================================== */
 
-    .user {
-      background: #1769ff;
+.page{
+  width:min(
+    1000px,
+    94%
+  );
 
-      margin-left: auto;
+  margin:auto;
 
-      border-bottom-right-radius: 4px;
-    }
+  padding:
+  45px 0 70px;
+}
 
+.hero{
+  text-align:center;
 
-    .typing {
-      color: #9eb0c7;
+  margin-bottom:30px;
+}
 
-      font-style: italic;
-    }
+.hero-logo{
+  width:82px;
+  height:82px;
 
+  border-radius:50%;
 
-    .input-area {
-      display: flex;
+  object-fit:cover;
 
-      gap: 10px;
-    }
+  border:
+  3px solid
+  var(--green);
 
+  box-shadow:
+  0 0 28px
+  rgba(56,210,125,.25);
+}
 
-    #question {
-      flex: 1;
+.hero h1{
+  font-size:
+  clamp(
+    36px,
+    6vw,
+    58px
+  );
 
-      padding: 15px;
+  margin:
+  18px 0 10px;
+}
 
-      background: #101d30;
+.hero p{
+  max-width:700px;
 
-      color: white;
+  margin:auto;
 
-      border: 1px solid #2c4566;
+  color:#aabbd0;
 
-      border-radius: 13px;
+  font-size:17px;
 
-      outline: none;
+  line-height:1.7;
+}
 
-      font-size: 16px;
-    }
+/* =====================================================
+   COACH
+===================================================== */
 
+.coach-card{
+  background:
+  rgba(11,22,39,.96);
 
-    #question:focus {
-      border-color: #1769ff;
-    }
+  border:
+  1px solid
+  #294261;
 
+  border-radius:22px;
 
-    #sendButton {
-      min-width: 110px;
+  padding:25px;
 
-      border: none;
+  box-shadow:
+  0 25px 60px
+  rgba(0,0,0,.45);
+}
 
-      border-radius: 13px;
+.label{
+  margin-bottom:8px;
 
-      background: #1769ff;
+  color:#8ea4bf;
 
-      color: white;
+  font-size:14px;
 
-      font-weight: bold;
+  font-weight:700;
+}
 
-      cursor: pointer;
-    }
+.settings{
+  display:flex;
 
+  gap:10px;
 
-    #sendButton:hover {
-      background: #3480ff;
-    }
+  margin-bottom:22px;
+}
 
+.settings select{
+  flex:1;
 
-    #sendButton:disabled {
-      opacity: 0.5;
+  padding:13px;
 
-      cursor: default;
-    }
+  background:#111f33;
 
+  color:#fff;
 
-    .info {
-      text-align: center;
+  border:
+  1px solid
+  #2c4464;
 
-      margin-top: 15px;
+  border-radius:11px;
 
-      color: #70849e;
+  font-size:15px;
+}
 
-      font-size: 12px;
-    }
+/* =====================================================
+   LESSONS
+===================================================== */
 
+.mechanics{
+  display:flex;
 
-    @media (max-width: 650px) {
+  flex-wrap:wrap;
 
-      nav {
-        flex-wrap: wrap;
-      }
+  gap:9px;
 
+  margin-bottom:22px;
+}
 
-      nav a {
-        padding: 8px;
-        font-size: 13px;
-      }
+.mechanics button{
+  background:#142944;
 
+  color:#fff;
 
-      .page {
-        padding: 30px 12px;
-      }
+  border:
+  1px solid
+  #2e527d;
 
+  border-radius:22px;
 
-      .hero h1 {
-        font-size: 34px;
-      }
+  padding:
+  10px 15px;
 
+  transition:.2s;
+}
 
-      .settings {
-        flex-direction: column;
-      }
+.mechanics button:hover{
+  background:#1769ff;
 
+  transform:
+  translateY(-2px);
+}
 
-      .chat {
-        height: 400px;
-      }
+/* =====================================================
+   CHAT
+===================================================== */
 
+.chat{
+  height:470px;
 
-      .message {
-        max-width: 92%;
-      }
+  overflow-y:auto;
 
+  background:#07111f;
 
-      .input-area {
-        flex-direction: column;
-      }
+  border:
+  1px solid
+  #243b5a;
 
+  border-radius:16px;
 
-      #sendButton {
-        padding: 14px;
-      }
+  padding:18px;
 
-    }
+  margin-bottom:15px;
 
-  </style>
+  scroll-behavior:smooth;
+}
+
+.message{
+  width:fit-content;
+
+  max-width:82%;
+
+  padding:
+  13px 16px;
+
+  margin-bottom:13px;
+
+  border-radius:15px;
+
+  line-height:1.55;
+
+  white-space:pre-wrap;
+}
+
+.bot{
+  background:#17273d;
+
+  border-bottom-left-radius:4px;
+}
+
+.user{
+  background:#1769ff;
+
+  margin-left:auto;
+
+  border-bottom-right-radius:4px;
+}
+
+.typing{
+  color:#9eb0c7;
+
+  font-style:italic;
+}
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.input-area{
+  display:flex;
+
+  gap:10px;
+}
+
+#question{
+  flex:1;
+
+  padding:15px;
+
+  background:#101d30;
+
+  color:#fff;
+
+  border:
+  1px solid
+  #2c4566;
+
+  border-radius:13px;
+
+  outline:none;
+
+  font-size:16px;
+}
+
+#question:focus{
+  border-color:#1769ff;
+}
+
+#sendButton{
+  min-width:120px;
+
+  border:0;
+
+  border-radius:13px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #1769ff,
+    #7048ff
+  );
+
+  color:#fff;
+
+  font-weight:800;
+
+  padding:
+  0 16px;
+}
+
+#sendButton:hover{
+  filter:
+  brightness(1.12);
+}
+
+#sendButton:disabled{
+  opacity:.5;
+
+  cursor:default;
+}
+
+.info{
+  text-align:center;
+
+  margin-top:15px;
+
+  color:#70849e;
+
+  font-size:12px;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px){
+
+  body{
+    padding-left:0;
+  }
+
+  .site-sidebar{
+    width:265px;
+
+    transform:
+    translateX(-105%);
+
+    transition:
+    transform .3s;
+  }
+
+  .site-sidebar.open{
+    transform:
+    translateX(0);
+  }
+
+  .sidebar-toggle{
+    display:block;
+  }
+
+  .page{
+    padding-top:75px;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .page{
+    width:min(
+      96%,
+      100%
+    );
+
+    padding-bottom:35px;
+  }
+
+  .settings{
+    flex-direction:column;
+  }
+
+  .chat{
+    height:430px;
+  }
+
+  .message{
+    max-width:92%;
+  }
+
+  .input-area{
+    flex-direction:column;
+  }
+
+  #sendButton{
+    padding:14px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .coach-card{
+    padding:16px;
+  }
+
+}
+</style>
 
 </head>
 
-
 <body>
 
+<button
+  id="sidebarToggle"
+  class="sidebar-toggle"
+  aria-label="Menu"
+>
+☰
+</button>
+
+<div
+  id="mobileOverlay"
+  class="mobile-overlay"
+></div>
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+  class="site-sidebar"
+  id="siteSidebar"
+>
+
+<a
+  href="index.html"
+  class="sidebar-brand"
+>
+
+<img
+  src="perfil.jpg"
+  alt="AMIRIJOGOS"
+>
+
+<strong>
+AMIRIJOGOS
+</strong>
+
+</a>
+
+<nav class="sidebar-nav">
+
+<a href="index.html">
+🏠
+<span data-i18n="home">
+Início
+</span>
+</a>
+
+<a
+  href="https://www.youtube.com/@amirijogos"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+▶️
+<span data-i18n="youtube">
+YouTube
+</span>
+</a>
+
+<a
+  href="creator.html"
+  class="creator-link"
+>
+🎬
+<span data-i18n="creator">
+Creator
+</span>
+</a>
+
+<a
+  href="coach.html"
+  class="coach-link"
+>
+🤖
+<span data-i18n="aiCoach">
+AI Coach
+</span>
+</a>
+
+<a
+  href="games.html"
+  class="games-link"
+>
+🎮
+<span data-i18n="games">
+Jogos
+</span>
+</a>
+
+</nav>
+
+<div class="sidebar-language">
+
+<div class="language-title">
+🌐
+<span data-i18n="language">
+Idioma
+</span>
+</div>
+
+<button
+  class="language-button"
+  data-language="pt"
+  onclick="setAmiriLanguage('pt')"
+>
+🇵🇹 Português
+</button>
+
+<button
+  class="language-button"
+  data-language="en"
+  onclick="setAmiriLanguage('en')"
+>
+🇬🇧 English
+</button>
+
+<button
+  class="language-button"
+  data-language="es"
+  onclick="setAmiriLanguage('es')"
+>
+🇪🇸 Español
+</button>
+
+</div>
+
+</aside>
+
+<!-- =====================================================
+     COACH
+===================================================== -->
+
+<main class="page">
+
+<header class="hero">
+
+<img
+  src="perfil.jpg"
+  alt="AMIRIJOGOS"
+  class="hero-logo"
+>
+
+<h1>
+
+🚀
+
+<span data-i18n="coachTitle">
+Rocket League AI Coach
+</span>
+
+</h1>
+
+<p data-i18n="coachSubtitle">
+Aprende mecânicas,
+corrige erros e melhora as tuas skills no Rocket League.
+</p>
+
+</header>
+
+<section class="coach-card">
+
+<div
+  class="label"
+  data-i18n="rankControls"
+>
+O teu rank e controlos
+</div>
+
+<div class="settings">
+
+<select id="rank">
+
+<option
+  value="Bronze"
+  data-i18n="bronze"
+>
+Bronze
+</option>
+
+<option
+  value="Silver"
+  data-i18n="silver"
+>
+Prata
+</option>
+
+<option
+  value="Gold"
+  data-i18n="gold"
+>
+Ouro
+</option>
+
+<option
+  value="Platinum"
+  data-i18n="platinum"
+>
+Platina
+</option>
+
+<option
+  value="Diamond"
+  data-i18n="diamond"
+  selected
+>
+Diamante
+</option>
+
+<option
+  value="Champion"
+  data-i18n="champion"
+>
+Champion
+</option>
+
+<option
+  value="Grand Champion"
+  data-i18n="grandChampion"
+>
+Grand Champion
+</option>
 
-  <nav>
+<option
+  value="SSL"
+  data-i18n="ssl"
+>
+SSL
+</option>
 
-    <a href="index.html">
-      🏠 Home
-    </a>
+</select>
 
-    <a href="game.html">
-      🎮 Games
-    </a>
+<select id="controls">
 
-    <a href="creator.html">
-      👤 Creator
-    </a>
+<option
+  value="Controller"
+  data-i18n="controller"
+>
+Comando
+</option>
 
-    <a
-      href="coach.html"
-      class="active"
-    >
-      🚀 AI Coach
-    </a>
+<option
+  value="Keyboard and Mouse"
+  data-i18n="keyboardMouse"
+>
+Teclado e rato
+</option>
 
-  </nav>
+</select>
 
+</div>
 
-  <main class="page">
+<!-- =====================================================
+     QUICK LESSONS
+===================================================== -->
 
+<div
+  class="label"
+  data-i18n="quickLessons"
+>
+Aulas rápidas
+</div>
 
-    <div class="hero">
+<div class="mechanics">
 
-      <h1>
-        🚀 Rocket League AI Coach
-      </h1>
+<button data-prompt="promptWaveDash">
 
-      <p>
-        Learn mechanics, fix mistakes and improve your Rocket League skills.
-      </p>
+🌊
+<span data-i18n="waveDash">
+Wave Dash
+</span>
 
-    </div>
+</button>
 
+<button data-prompt="promptFastAerial">
 
-    <div class="coach-card">
+🚀
+<span data-i18n="fastAerial">
+Fast Aerial
+</span>
 
+</button>
 
-      <div class="label">
-        Your rank and controls
-      </div>
+<button data-prompt="promptHalfFlip">
 
+🔄
+<span data-i18n="halfFlip">
+Half Flip
+</span>
 
-      <div class="settings">
+</button>
 
-        <select id="rank">
+<button data-prompt="promptSpeedFlip">
 
-          <option value="Bronze">
-            🥉 Bronze
-          </option>
+⚡
+<span data-i18n="speedFlip">
+Speed Flip
+</span>
 
-          <option value="Silver">
-            🥈 Silver
-          </option>
+</button>
 
-          <option value="Gold">
-            🥇 Gold
-          </option>
+<button data-prompt="promptAirDribble">
 
-          <option value="Platinum">
-            💠 Platinum
-          </option>
+⚽
+<span data-i18n="airDribble">
+Air Dribble
+</span>
 
-          <option value="Diamond" selected>
-            💎 Diamond
-          </option>
+</button>
 
-          <option value="Champion">
-            🏆 Champion
-          </option>
+<button data-prompt="promptDribbling">
 
-          <option value="Grand Champion">
-            🔴 Grand Champion
-          </option>
+🎯
+<span data-i18n="dribbling">
+Dribbling
+</span>
 
-          <option value="SSL">
-            🌟 SSL
-          </option>
+</button>
 
-        </select>
+<button data-prompt="promptDoubleTap">
 
+💥
+<span data-i18n="doubleTap">
+Double Tap
+</span>
 
-        <select id="controls">
+</button>
 
-          <option value="Controller">
-            🎮 Controller
-          </option>
+<button data-prompt="promptTraining">
 
-          <option value="Keyboard and Mouse">
-            ⌨️ Keyboard & Mouse
-          </option>
+🏋️
+<span data-i18n="training">
+Treino
+</span>
 
-        </select>
+</button>
 
-      </div>
+</div>
 
+<!-- =====================================================
+     CHAT
+===================================================== -->
 
-      <div class="label">
-        Quick lessons
-      </div>
+<div
+  id="chat"
+  class="chat"
+>
 
+<div
+  class="message bot"
+  data-i18n="coachWelcome"
+>
+👋 Olá!
+Sou o teu Rocket League AI Coach.
 
-      <div class="mechanics">
+Escolhe uma aula rápida
+ou pergunta-me qualquer coisa sobre Rocket League!
+</div>
 
-        <button onclick="quickAsk('Teach me how to wave dash step by step')">
-          🌊 Wave Dash
-        </button>
+</div>
 
-        <button onclick="quickAsk('Teach me how to fast aerial step by step')">
-          🚀 Fast Aerial
-        </button>
+<div class="input-area">
 
-        <button onclick="quickAsk('Teach me how to half flip step by step')">
-          🔄 Half Flip
-        </button>
+<input
+  id="question"
+  type="text"
+  data-i18n-placeholder="coachQuestionPlaceholder"
+  placeholder="Ex.: Porque é que continuo a falhar os aéreos?"
+  autocomplete="off"
+>
 
-        <button onclick="quickAsk('Teach me how to speed flip step by step')">
-          ⚡ Speed Flip
-        </button>
+<button id="sendButton">
 
-        <button onclick="quickAsk('Teach me how to air dribble step by step')">
-          ⚽ Air Dribble
-        </button>
+<span data-i18n="send">
+Enviar 🚀
+</span>
 
-        <button onclick="quickAsk('Teach me how to dribble and flick')">
-          🎯 Dribbling
-        </button>
+</button>
 
-        <button onclick="quickAsk('Teach me how to hit double taps')">
-          💥 Double Tap
-        </button>
+</div>
 
-        <button onclick="quickAsk('Create a 15 minute Rocket League training routine for my rank')">
-          🏋️ Training
-        </button>
+<div
+  class="info"
+  data-i18n="coachInfo"
+>
+A IA pode cometer erros.
+Usa o Coach como ajuda de treino.
+</div>
 
-      </div>
+</section>
 
+</main>
 
-      <div
-        id="chat"
-        class="chat"
-      >
+<script src="language.js"></script>
 
-        <div class="message bot">
-👋 Hey! I'm your Rocket League AI Coach!
+<script>
+"use strict";
 
-I can help you learn:
+/* =====================================================
+   API
+===================================================== */
 
-🌊 Wave Dash
-🚀 Fast Aerial
-⚡ Speed Flip
-🔄 Half Flip
-⚽ Air Dribble
-💥 Double Tap
-🎯 Flicks
-🏋️ Training routines
+const BACKEND_URL =
+"https://amirijogos.vercel.app/api/coach";
 
-Choose a lesson above or ask me anything about Rocket League!
-        </div>
+const chat =
+document.getElementById(
+  "chat"
+);
 
-      </div>
+const input =
+document.getElementById(
+  "question"
+);
 
+const sendButton =
+document.getElementById(
+  "sendButton"
+);
 
-      <div class="input-area">
+const sidebar =
+document.getElementById(
+  "siteSidebar"
+);
 
-        <input
-          id="question"
-          type="text"
-          placeholder="Example: Why do I keep missing aerials?"
-          autocomplete="off"
-        >
+const sidebarToggle =
+document.getElementById(
+  "sidebarToggle"
+);
 
-        <button
-          id="sendButton"
-          onclick="sendMessage()"
-        >
-          Send 🚀
-        </button>
+const mobileOverlay =
+document.getElementById(
+  "mobileOverlay"
+);
 
-      </div>
+let conversation=[];
 
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
-      <div class="info">
-        AI can make mistakes. Use the coach as a training helper.
-      </div>
+function closeSidebar(){
 
+  sidebar.classList.remove(
+    "open"
+  );
 
-    </div>
+  mobileOverlay.classList.remove(
+    "show"
+  );
 
-  </main>
+}
 
+sidebarToggle.addEventListener(
+  "click",
+  ()=>{
 
-  <script>
+    sidebar.classList.toggle(
+      "open"
+    );
 
-    // ==========================================
-    // YOUR VERCEL API
-    // ==========================================
+    mobileOverlay.classList.toggle(
+      "show",
+      sidebar.classList.contains(
+        "open"
+      )
+    );
 
-    const BACKEND_URL =
-      "https://amirijogos.vercel.app/api/coach";
+  }
+);
 
+mobileOverlay.addEventListener(
+  "click",
+  closeSidebar
+);
 
-    let conversation = [];
+/* =====================================================
+   ADD MESSAGE
+===================================================== */
 
+function addMessage(
+  text,
+  sender
+){
 
-    // ==========================================
-    // ADD MESSAGE
-    // ==========================================
+  const element =
+  document.createElement(
+    "div"
+  );
 
-    function addMessage(text, sender) {
+  element.className =
+  "message "+
+  (
+    sender==="user"
+    ? "user"
+    : "bot"
+  );
 
-      const chat =
-        document.getElementById("chat");
+  element.textContent =
+  text;
 
+  chat.appendChild(
+    element
+  );
 
-      const element =
-        document.createElement("div");
+  chat.scrollTop =
+  chat.scrollHeight;
 
+  return element;
 
-      element.classList.add("message");
+}
 
+/* =====================================================
+   LANGUAGE FOR AI
+===================================================== */
 
-      if (sender === "user") {
+function languageInstruction(){
 
-        element.classList.add("user");
+  if(
+    amiriLanguage==="pt"
+  ){
 
-      } else {
+    return "Responde em português de Portugal.";
 
-        element.classList.add("bot");
+  }
 
+  if(
+    amiriLanguage==="es"
+  ){
+
+    return "Responde en español.";
+
+  }
+
+  return "Reply in English.";
+
+}
+
+/* =====================================================
+   SEND MESSAGE
+===================================================== */
+
+async function sendMessage(){
+
+  const question =
+  input.value.trim();
+
+  if(!question){
+    return;
+  }
+
+  const rank =
+  document.getElementById(
+    "rank"
+  ).value;
+
+  const controls =
+  document.getElementById(
+    "controls"
+  ).value;
+
+  addMessage(
+    question,
+    "user"
+  );
+
+  input.value="";
+
+  sendButton.disabled=true;
+
+  sendButton.textContent=
+  t(
+    "coachThinking"
+  );
+
+  const typing =
+  addMessage(
+    t(
+      "coachThinking"
+    ),
+    "bot"
+  );
+
+  typing.classList.add(
+    "typing"
+  );
+
+  try{
+
+    const apiMessages =
+    conversation.slice(
+      -8
+    );
+
+    apiMessages.push({
+      role:"user",
+
+      content:
+      question+
+      "\n\n"+
+      languageInstruction()
+    });
+
+    const response =
+    await fetch(
+      BACKEND_URL,
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":
+          "application/json"
+        },
+
+        body:
+        JSON.stringify({
+          rank,
+          controls,
+          language:
+          amiriLanguage,
+          messages:
+          apiMessages
+        })
       }
+    );
 
+    const data =
+    await response.json();
 
-      element.textContent = text;
+    typing.remove();
 
+    if(
+      !response.ok
+    ){
 
-      chat.appendChild(element);
-
-
-      chat.scrollTop =
-        chat.scrollHeight;
+      throw new Error(
+        data.error ||
+        "AI Coach error"
+      );
 
     }
 
+    const reply =
+    data.reply ||
+    data.text;
 
-    // ==========================================
-    // QUICK LESSON BUTTON
-    // ==========================================
+    if(!reply){
 
-    function quickAsk(text) {
+      throw new Error(
+        "Empty AI response"
+      );
 
-      document.getElementById("question").value =
-        text;
+    }
 
+    addMessage(
+      reply,
+      "bot"
+    );
+
+    conversation.push(
+      {
+        role:"user",
+        content:question
+      },
+      {
+        role:"assistant",
+        content:reply
+      }
+    );
+
+  }catch(error){
+
+    typing.remove();
+
+    addMessage(
+      "⚠️ "+
+      t("error")+
+      ": "+
+      error.message,
+      "bot"
+    );
+
+  }finally{
+
+    sendButton.disabled=false;
+
+    sendButton.textContent=
+    t(
+      "send"
+    );
+
+    input.focus();
+
+  }
+
+}
+
+/* SEND BUTTON */
+
+sendButton.addEventListener(
+  "click",
+  sendMessage
+);
+
+/* ENTER */
+
+input.addEventListener(
+  "keydown",
+  event=>{
+
+    if(
+      event.key===
+      "Enter"
+    ){
+
+      event.preventDefault();
 
       sendMessage();
 
     }
 
+  }
+);
 
-    // ==========================================
-    // SEND MESSAGE
-    // ==========================================
+/* QUICK LESSONS */
 
-    async function sendMessage() {
+document
+.querySelectorAll(
+  "[data-prompt]"
+)
+.forEach(
+  button=>{
 
-      const input =
-        document.getElementById("question");
+    button.addEventListener(
+      "click",
+      ()=>{
 
+        input.value =
+        t(
+          button.dataset.prompt
+        );
 
-      const button =
-        document.getElementById("sendButton");
+        sendMessage();
 
-
-      const rank =
-        document.getElementById("rank").value;
-
-
-      const controls =
-        document.getElementById("controls").value;
-
-
-      const question =
-        input.value.trim();
-
-
-      if (!question) {
-        return;
       }
+    );
 
+  }
+);
 
-      addMessage(
-        question,
-        "user"
+/* LANGUAGE CHANGED */
+
+document.addEventListener(
+  "amirilanguagechange",
+  ()=>{
+
+    if(
+      !sendButton.disabled
+    ){
+
+      sendButton.textContent=
+      t(
+        "send"
       );
-
-
-      conversation.push({
-
-        role: "user",
-
-        content: question
-
-      });
-
-
-      input.value = "";
-
-
-      button.disabled = true;
-
-      button.textContent =
-        "Thinking...";
-
-
-      const typing =
-        document.createElement("div");
-
-
-      typing.id =
-        "typing";
-
-
-      typing.className =
-        "message bot typing";
-
-
-      typing.textContent =
-        "🚀 Coach is thinking...";
-
-
-      document
-        .getElementById("chat")
-        .appendChild(typing);
-
-
-      try {
-
-        const response =
-          await fetch(
-            BACKEND_URL,
-            {
-
-              method: "POST",
-
-              headers: {
-
-                "Content-Type":
-                  "application/json"
-
-              },
-
-              body: JSON.stringify({
-
-                rank: rank,
-
-                controls: controls,
-
-                messages:
-                  conversation.slice(-10)
-
-              })
-
-            }
-          );
-
-
-        const data =
-          await response.json();
-
-
-        document
-          .getElementById("typing")
-          ?.remove();
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            data.error ||
-            "The AI Coach couldn't answer."
-          );
-
-        }
-
-
-        addMessage(
-          data.reply,
-          "bot"
-        );
-
-
-        conversation.push({
-
-          role: "assistant",
-
-          content: data.reply
-
-        });
-
-
-      } catch (error) {
-
-        console.error(error);
-
-
-        document
-          .getElementById("typing")
-          ?.remove();
-
-
-        addMessage(
-          "⚠️ Error: " + error.message,
-          "bot"
-        );
-
-      } finally {
-
-        button.disabled = false;
-
-        button.textContent =
-          "Send 🚀";
-
-
-        input.focus();
-
-      }
 
     }
 
+  }
+);
 
-    // ENTER = SEND
-
-    document
-      .getElementById("question")
-      .addEventListener(
-        "keydown",
-        function(event) {
-
-          if (event.key === "Enter") {
-
-            event.preventDefault();
-
-            sendMessage();
-
-          }
-
-        }
-      );
-
-  </script>
-
+</script>
 
 </body>
 
