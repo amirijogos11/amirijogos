@@ -7,7 +7,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width,initial-scale=1.0"
+  content="width=device-width, initial-scale=1.0"
 >
 
 <title>AMIRIJOGOS</title>
@@ -15,26 +15,23 @@
 <style>
 
 /* =====================================================
-   CONFIG
+   CONFIGURAÇÕES
 ===================================================== */
 
 :root{
-
   --bg:#05070c;
   --panel:#0c121d;
-
   --text:#ffffff;
   --muted:#9aa7b8;
 
   --red:#ff0033;
   --blue:#2388ff;
   --purple:#7048ff;
+  --green:#38d27d;
 
-  --border:
-  rgba(255,255,255,.09);
+  --border:rgba(255,255,255,.09);
 
   --sidebar-width:245px;
-
 }
 
 
@@ -46,50 +43,41 @@
   box-sizing:border-box;
 }
 
-
 html{
-
   scroll-behavior:smooth;
-
 }
 
-
 body{
-
   margin:0;
 
   padding-left:
-  var(--sidebar-width);
+    var(--sidebar-width);
 
   min-height:100vh;
 
   overflow-x:hidden;
 
   font-family:
-  Arial,
-  Helvetica,
-  sans-serif;
+    Arial,
+    Helvetica,
+    sans-serif;
 
   color:
-  var(--text);
+    var(--text);
 
   background:
-
-  radial-gradient(
-    circle at 50% -10%,
-    #192a48 0,
-    #080b12 43%,
-    #040609 100%
-  );
-
+    radial-gradient(
+      circle at 50% -10%,
+      #192a48 0,
+      #080b12 43%,
+      #040609 100%
+    );
 }
-
 
 button,
 a{
   font:inherit;
 }
-
 
 button{
   cursor:pointer;
@@ -104,32 +92,27 @@ button{
   width:10px;
 }
 
-
 ::-webkit-scrollbar-track{
   background:#05070c;
 }
 
-
 ::-webkit-scrollbar-thumb{
-
   border-radius:20px;
 
   background:
-
-  linear-gradient(
-    #ff0033,
-    #2388ff
-  );
-
+    linear-gradient(
+      #ff0033,
+      #7048ff,
+      #2388ff
+    );
 }
 
 
 /* =====================================================
-   PARTICLES
+   FUNDO
 ===================================================== */
 
 #particleCanvas{
-
   position:fixed;
 
   inset:0;
@@ -140,34 +123,35 @@ button{
   pointer-events:none;
 
   z-index:-5;
-
 }
 
-
 .background-light{
-
   position:fixed;
 
   inset:0;
 
-  pointer-events:none;
-
   z-index:-4;
 
+  pointer-events:none;
+
   background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255,0,50,.11),
+      transparent 30%
+    ),
 
-  radial-gradient(
-    circle at 20% 25%,
-    rgba(255,0,50,.10),
-    transparent 30%
-  ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(35,136,255,.12),
+      transparent 34%
+    ),
 
-  radial-gradient(
-    circle at 80% 70%,
-    rgba(35,136,255,.12),
-    transparent 34%
-  );
-
+    radial-gradient(
+      circle at 55% 100%,
+      rgba(112,72,255,.08),
+      transparent 30%
+    );
 }
 
 
@@ -176,7 +160,6 @@ button{
 ===================================================== */
 
 #scrollProgress{
-
   position:fixed;
 
   top:0;
@@ -188,19 +171,16 @@ button{
   z-index:5000;
 
   background:
-
-  linear-gradient(
-    90deg,
-    #ff0033,
-    #7048ff,
-    #2388ff
-  );
+    linear-gradient(
+      90deg,
+      #ff0033,
+      #7048ff,
+      #2388ff
+    );
 
   box-shadow:
-
-  0 0 15px
-  rgba(255,0,50,.7);
-
+    0 0 15px
+    rgba(255,0,50,.7);
 }
 
 
@@ -209,7 +189,6 @@ button{
 ===================================================== */
 
 .site-sidebar{
-
   position:fixed;
 
   left:0;
@@ -217,7 +196,7 @@ button{
   bottom:0;
 
   width:
-  var(--sidebar-width);
+    var(--sidebar-width);
 
   z-index:3000;
 
@@ -226,34 +205,27 @@ button{
   flex-direction:column;
 
   padding:
-
-  18px
-  14px;
+    18px 14px;
 
   background:
-
-  rgba(5,8,14,.97);
+    rgba(5,8,14,.97);
 
   backdrop-filter:
-  blur(18px);
+    blur(18px);
 
   border-right:
-
-  1px solid
-  var(--border);
+    1px solid
+    var(--border);
 
   box-shadow:
-
-  15px 0 50px
-  rgba(0,0,0,.25);
-
+    15px 0 50px
+    rgba(0,0,0,.28);
 }
 
 
 /* LOGO */
 
 .sidebar-brand{
-
   display:flex;
 
   align-items:center;
@@ -261,27 +233,20 @@ button{
   gap:11px;
 
   padding:
-
-  4px
-  5px
-  20px;
+    4px 5px 20px;
 
   margin-bottom:12px;
 
   border-bottom:
-
-  1px solid
-  rgba(255,255,255,.08);
+    1px solid
+    rgba(255,255,255,.08);
 
   color:#fff;
 
   text-decoration:none;
-
 }
 
-
 .sidebar-brand img{
-
   width:48px;
   height:48px;
 
@@ -290,40 +255,32 @@ button{
   object-fit:cover;
 
   border:
-
-  2px solid
-  #ff1744;
+    2px solid
+    #ff1744;
 
   box-shadow:
-
-  0 0 18px
-  rgba(255,0,50,.35);
-
+    0 0 18px
+    rgba(255,0,50,.35);
 }
 
-
 .sidebar-brand strong{
-
   font-size:16px;
 
   letter-spacing:.4px;
-
 }
 
 
-/* LINKS */
+/* =====================================================
+   SIDEBAR LINKS
+===================================================== */
 
 .sidebar-nav{
-
   display:grid;
 
   gap:6px;
-
 }
 
-
 .sidebar-nav a{
-
   display:flex;
 
   align-items:center;
@@ -331,9 +288,7 @@ button{
   gap:11px;
 
   padding:
-
-  12px
-  13px;
+    12px 13px;
 
   border-radius:11px;
 
@@ -341,72 +296,87 @@ button{
 
   text-decoration:none;
 
-  transition:.22s ease;
+  border:
+    1px solid
+    transparent;
 
+  transition:.22s ease;
 }
 
-
 .sidebar-nav a:hover{
-
   color:#fff;
 
   background:
-
-  rgba(255,255,255,.07);
+    rgba(255,255,255,.07);
 
   transform:
-
-  translateX(4px);
-
+    translateX(4px);
 }
 
+
+/* CREATOR */
 
 .sidebar-nav .creator-link{
-
   background:
-
-  linear-gradient(
-    135deg,
-    rgba(112,72,255,.22),
-    rgba(35,136,255,.12)
-  );
-
+    linear-gradient(
+      135deg,
+      rgba(112,72,255,.22),
+      rgba(35,136,255,.12)
+    );
 }
 
 
-.sidebar-nav .games-link{
+/* AI COACH */
 
+.sidebar-nav .coach-link{
   background:
+    linear-gradient(
+      135deg,
+      rgba(56,210,125,.20),
+      rgba(112,72,255,.15)
+    );
 
-  linear-gradient(
-    135deg,
-    rgba(35,136,255,.22),
-    rgba(35,136,255,.08)
-  );
+  border-color:
+    rgba(56,210,125,.10);
+}
 
+.sidebar-nav .coach-link:hover{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56,210,125,.31),
+      rgba(112,72,255,.23)
+    );
+}
+
+
+/* GAMES */
+
+.sidebar-nav .games-link{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(35,136,255,.23),
+      rgba(35,136,255,.08)
+    );
 }
 
 
 /* =====================================================
-   LANGUAGE
+   IDIOMAS
 ===================================================== */
 
 .sidebar-language{
-
   margin-top:auto;
 
   padding-top:16px;
 
   border-top:
-
-  1px solid
-  rgba(255,255,255,.08);
-
+    1px solid
+    rgba(255,255,255,.08);
 }
 
-
 .language-title{
-
   display:flex;
 
   align-items:center;
@@ -414,22 +384,16 @@ button{
   gap:7px;
 
   padding:
-
-  0
-  8px
-  9px;
+    0 8px 9px;
 
   color:#8997aa;
 
   font-size:12px;
 
   font-weight:900;
-
 }
 
-
 .language-button{
-
   width:100%;
 
   padding:10px;
@@ -443,57 +407,46 @@ button{
   gap:8px;
 
   border:
-
-  1px solid
-  transparent;
+    1px solid
+    transparent;
 
   border-radius:9px;
 
-  background:transparent;
+  background:
+    transparent;
 
   color:#cdd8e7;
 
   text-align:left;
 
   transition:.2s;
-
 }
-
 
 .language-button:hover{
-
   background:
-
-  rgba(255,255,255,.06);
-
+    rgba(255,255,255,.06);
 }
 
-
 .selected-language{
-
   color:#fff !important;
 
   border-color:
-
-  rgba(255,255,255,.10) !important;
+    rgba(255,255,255,.10) !important;
 
   background:
-
-  linear-gradient(
-    135deg,
-    rgba(255,0,51,.22),
-    rgba(35,136,255,.19)
-  ) !important;
-
+    linear-gradient(
+      135deg,
+      rgba(255,0,51,.22),
+      rgba(35,136,255,.19)
+    ) !important;
 }
 
 
 /* =====================================================
-   MOBILE MENU BUTTON
+   MOBILE MENU
 ===================================================== */
 
 .sidebar-toggle{
-
   display:none;
 
   position:fixed;
@@ -517,19 +470,33 @@ button{
   font-size:23px;
 
   box-shadow:
+    0 10px 30px
+    rgba(0,0,0,.4);
+}
 
-  0 10px 30px
-  rgba(0,0,0,.4);
+.mobile-overlay{
+  display:none;
 
+  position:fixed;
+
+  inset:0;
+
+  z-index:2500;
+
+  background:
+    rgba(0,0,0,.55);
+}
+
+.mobile-overlay.show{
+  display:block;
 }
 
 
 /* =====================================================
-   SECTIONS
+   SECÇÕES
 ===================================================== */
 
 section{
-
   position:relative;
 
   min-height:100vh;
@@ -541,22 +508,16 @@ section{
   justify-content:center;
 
   padding:
-
-  90px
-  6%;
-
+    90px 6%;
 }
 
-
 .section-content{
-
   width:min(
     1100px,
     100%
   );
 
   margin:auto;
-
 }
 
 
@@ -565,30 +526,21 @@ section{
 ===================================================== */
 
 .hero{
-
   text-align:center;
 
   min-height:100vh;
-
 }
 
-
 .hero-content{
-
   width:min(
     1050px,
     100%
   );
 
   margin:auto;
-
 }
 
-
-/* LOGO */
-
 .logo-wrap{
-
   position:relative;
 
   display:inline-flex;
@@ -598,12 +550,9 @@ section{
   align-items:center;
 
   margin-bottom:23px;
-
 }
 
-
 .logo-wrap::before{
-
   content:"";
 
   position:absolute;
@@ -614,119 +563,97 @@ section{
   border-radius:50%;
 
   background:
-
-  radial-gradient(
-    circle,
-    rgba(255,0,50,.36),
-    transparent 68%
-  );
+    radial-gradient(
+      circle,
+      rgba(255,0,50,.36),
+      transparent 68%
+    );
 
   filter:blur(20px);
 
   animation:
-
-  logoGlow
-  3s ease-in-out
-  infinite;
-
+    logoGlow
+    3s ease-in-out
+    infinite;
 }
 
-
 .hero-logo{
-
   position:relative;
 
   z-index:2;
 
   width:
-
-  clamp(
-    125px,
-    18vw,
-    180px
-  );
+    clamp(
+      125px,
+      18vw,
+      180px
+    );
 
   height:
-
-  clamp(
-    125px,
-    18vw,
-    180px
-  );
+    clamp(
+      125px,
+      18vw,
+      180px
+    );
 
   border-radius:50%;
 
   object-fit:cover;
 
   border:
-
-  4px solid #fff;
+    4px solid #fff;
 
   box-shadow:
+    0 0 0 7px
+    rgba(255,0,50,.18),
 
-  0 0 0 7px
-  rgba(255,0,50,.18),
-
-  0 25px 70px
-  rgba(0,0,0,.5);
+    0 25px 70px
+    rgba(0,0,0,.5);
 
   animation:
-
-  logoFloat
-  4s ease-in-out
-  infinite;
-
+    logoFloat
+    4s ease-in-out
+    infinite;
 }
-
 
 @keyframes logoFloat{
 
   0%,
   100%{
-
     transform:
-    translateY(0);
-
+      translateY(0);
   }
 
   50%{
-
     transform:
-    translateY(-12px);
-
+      translateY(-12px);
   }
 
 }
-
 
 @keyframes logoGlow{
 
   0%,
   100%{
-
-    transform:
-    scale(.9);
+    transform:scale(.9);
 
     opacity:.6;
-
   }
 
   50%{
-
-    transform:
-    scale(1.2);
+    transform:scale(1.2);
 
     opacity:1;
-
   }
 
 }
 
 
-/* YOUTUBE BADGE */
+/* =====================================================
+   YOUTUBE ICON
+===================================================== */
 
 .youtube-badge{
-
   display:inline-flex;
 
   align-items:center;
@@ -734,32 +661,25 @@ section{
   gap:8px;
 
   padding:
-
-  8px
-  14px;
+    8px 14px;
 
   margin-bottom:18px;
 
   border-radius:999px;
 
   border:
-
-  1px solid
-  rgba(255,0,0,.3);
+    1px solid
+    rgba(255,0,0,.30);
 
   background:
-
-  rgba(255,0,0,.09);
+    rgba(255,0,0,.09);
 
   color:#ff9aaa;
 
   font-weight:800;
-
 }
 
-
 .youtube-icon{
-
   position:relative;
 
   width:31px;
@@ -772,15 +692,11 @@ section{
   background:#ff0000;
 
   box-shadow:
-
-  0 0 15px
-  rgba(255,0,0,.35);
-
+    0 0 15px
+    rgba(255,0,0,.35);
 }
 
-
 .youtube-icon::after{
-
   content:"";
 
   position:absolute;
@@ -789,36 +705,38 @@ section{
   top:50%;
 
   transform:
-  translate(-50%,-50%);
+    translate(-50%,-50%);
 
   width:0;
   height:0;
 
   border-top:
-  5px solid transparent;
+    5px solid
+    transparent;
 
   border-bottom:
-  5px solid transparent;
+    5px solid
+    transparent;
 
   border-left:
-  8px solid white;
-
+    8px solid
+    white;
 }
 
 
-/* TITLE */
+/* =====================================================
+   HERO TEXT
+===================================================== */
 
 .hero h1{
-
   margin:0;
 
   font-size:
-
-  clamp(
-    45px,
-    8vw,
-    105px
-  );
+    clamp(
+      45px,
+      8vw,
+      105px
+    );
 
   line-height:.95;
 
@@ -827,17 +745,16 @@ section{
   letter-spacing:-4px;
 
   background:
-
-  linear-gradient(
-    120deg,
-    #fff,
-    #ff4565,
-    #ff0033,
-    #8cbfff
-  );
+    linear-gradient(
+      120deg,
+      #fff,
+      #ff4565,
+      #ff0033,
+      #8cbfff
+    );
 
   background-size:
-  200% 200%;
+    200% 200%;
 
   background-clip:text;
 
@@ -846,82 +763,68 @@ section{
   color:transparent;
 
   animation:
-
-  titleGradient
-  6s ease
-  infinite;
-
+    titleGradient
+    6s ease
+    infinite;
 }
-
 
 @keyframes titleGradient{
 
   0%{
     background-position:
-    0 50%;
+      0 50%;
   }
 
   50%{
     background-position:
-    100% 50%;
+      100% 50%;
   }
 
   100%{
     background-position:
-    0 50%;
+      0 50%;
   }
 
 }
 
-
 .hero-subtitle{
-
   margin-top:18px;
 
   font-size:
-
-  clamp(
-    25px,
-    4vw,
-    42px
-  );
+    clamp(
+      25px,
+      4vw,
+      42px
+    );
 
   font-weight:900;
-
 }
 
-
 .hero-description{
-
   max-width:760px;
 
   margin:
-
-  20px auto
-  30px;
+    20px auto 30px;
 
   color:
-  var(--muted);
+    var(--muted);
 
   line-height:1.75;
 
   font-size:
-
-  clamp(
-    16px,
-    2vw,
-    20px
-  );
-
+    clamp(
+      16px,
+      2vw,
+      20px
+    );
 }
 
 
 /* =====================================================
-   BUTTONS
+   BOTÕES
 ===================================================== */
 
 .hero-buttons{
-
   display:flex;
 
   justify-content:center;
@@ -929,18 +832,13 @@ section{
   flex-wrap:wrap;
 
   gap:12px;
-
 }
 
-
 .main-button{
-
   min-width:185px;
 
   padding:
-
-  15px
-  20px;
+    15px 20px;
 
   display:inline-flex;
 
@@ -953,9 +851,8 @@ section{
   border-radius:14px;
 
   border:
-
-  1px solid
-  rgba(255,255,255,.11);
+    1px solid
+    rgba(255,255,255,.11);
 
   color:#fff;
 
@@ -964,99 +861,85 @@ section{
   font-weight:900;
 
   transition:
-
-  transform .25s ease,
-  filter .25s ease,
-  box-shadow .25s ease;
-
+    transform .25s ease,
+    filter .25s ease,
+    box-shadow .25s ease;
 }
-
 
 .main-button:hover{
-
   transform:
-
-  translateY(-5px)
-  scale(1.025);
+    translateY(-5px)
+    scale(1.025);
 
   filter:
-  brightness(1.12);
-
+    brightness(1.12);
 }
-
 
 .red-button{
-
   background:
-
-  linear-gradient(
-    135deg,
-    #ff0033,
-    #990017
-  );
+    linear-gradient(
+      135deg,
+      #ff0033,
+      #990017
+    );
 
   box-shadow:
-
-  0 15px 35px
-  rgba(255,0,40,.2);
-
+    0 15px 35px
+    rgba(255,0,40,.2);
 }
-
 
 .youtube-button{
-
   background:
-
-  linear-gradient(
-    135deg,
-    #ff0000,
-    #720010
-  );
-
+    linear-gradient(
+      135deg,
+      #ff0000,
+      #720010
+    );
 }
-
 
 .creator-button{
-
   background:
-
-  linear-gradient(
-    135deg,
-    #7048ff,
-    #2388ff
-  );
-
+    linear-gradient(
+      135deg,
+      #7048ff,
+      #2388ff
+    );
 }
 
+.coach-button{
+  background:
+    linear-gradient(
+      135deg,
+      #20ad68,
+      #7048ff
+    );
+
+  box-shadow:
+    0 15px 35px
+    rgba(56,210,125,.16);
+}
 
 .games-button{
-
   background:
-
-  linear-gradient(
-    135deg,
-    #2388ff,
-    #174f9c
-  );
-
+    linear-gradient(
+      135deg,
+      #2388ff,
+      #174f9c
+    );
 }
 
 
 /* =====================================================
-   HEADINGS
+   SECTION HEADERS
 ===================================================== */
 
 .section-header{
-
   text-align:center;
 
   margin-bottom:50px;
-
 }
 
-
 .section-label{
-
   color:#ff3d5d;
 
   font-size:12px;
@@ -1064,38 +947,29 @@ section{
   font-weight:900;
 
   letter-spacing:3px;
-
 }
-
 
 .section-header h2{
-
   margin:
-
-  12px 0;
+    12px 0;
 
   font-size:
-
-  clamp(
-    36px,
-    6vw,
-    65px
-  );
-
+    clamp(
+      36px,
+      6vw,
+      65px
+    );
 }
 
-
 .section-header p{
-
   max-width:680px;
 
   margin:auto;
 
   color:
-  var(--muted);
+    var(--muted);
 
   line-height:1.75;
-
 }
 
 
@@ -1104,32 +978,23 @@ section{
 ===================================================== */
 
 .about-grid{
-
   display:grid;
 
   grid-template-columns:
-
-  .85fr
-  1.15fr;
+    .85fr 1.15fr;
 
   gap:50px;
 
   align-items:center;
-
 }
 
-
 .about-image{
-
   display:flex;
 
   justify-content:center;
-
 }
 
-
 .about-image img{
-
   width:min(
     350px,
     85vw
@@ -1142,42 +1007,32 @@ section{
   border-radius:30px;
 
   border:
-
-  1px solid
-  rgba(255,255,255,.14);
+    1px solid
+    rgba(255,255,255,.14);
 
   box-shadow:
-
-  0 30px 80px
-  rgba(0,0,0,.48);
-
+    0 30px 80px
+    rgba(0,0,0,.48);
 }
 
-
 .about-text h3{
-
   margin-top:0;
 
   font-size:
-
-  clamp(
-    29px,
-    4vw,
-    48px
-  );
-
+    clamp(
+      29px,
+      4vw,
+      48px
+    );
 }
 
-
 .about-text p{
-
   color:
-  var(--muted);
+    var(--muted);
 
   line-height:1.8;
 
   font-size:17px;
-
 }
 
 
@@ -1186,192 +1041,152 @@ section{
 ===================================================== */
 
 .cards{
-
   display:grid;
 
   grid-template-columns:
+    repeat(4,1fr);
 
-  repeat(
-    3,
-    1fr
-  );
-
-  gap:18px;
-
+  gap:16px;
 }
 
-
 .card{
-
   position:relative;
 
+  min-height:260px;
+
+  padding:26px;
+
   overflow:hidden;
-
-  min-height:270px;
-
-  padding:27px;
 
   border-radius:20px;
 
   border:
-
-  1px solid
-  var(--border);
+    1px solid
+    var(--border);
 
   background:
-
-  linear-gradient(
-    145deg,
-    rgba(18,27,44,.8),
-    rgba(8,12,20,.8)
-  );
+    linear-gradient(
+      145deg,
+      rgba(18,27,44,.82),
+      rgba(8,12,20,.82)
+    );
 
   box-shadow:
-
-  0 20px 60px
-  rgba(0,0,0,.35);
+    0 20px 60px
+    rgba(0,0,0,.35);
 
   transition:.35s ease;
-
 }
-
 
 .card:hover{
-
   transform:
-  translateY(-9px);
+    translateY(-9px);
 
   border-color:
-
-  rgba(35,136,255,.4);
-
+    rgba(35,136,255,.4);
 }
 
-
 .card-icon{
-
   font-size:45px;
 
   margin-bottom:18px;
-
 }
-
 
 .card h3{
-
-  font-size:24px;
+  font-size:23px;
 
   margin:
-
-  0 0 10px;
-
+    0 0 10px;
 }
 
-
 .card p{
-
   color:
-  var(--muted);
+    var(--muted);
 
   line-height:1.7;
-
 }
 
 
 /* =====================================================
-   CREATOR / GAMES BOX
+   SHOWCASES
 ===================================================== */
 
 .showcase{
-
   position:relative;
 
   overflow:hidden;
 
   padding:
-
-  clamp(
-    35px,
-    6vw,
-    65px
-  );
+    clamp(
+      35px,
+      6vw,
+      65px
+    );
 
   text-align:center;
 
   border-radius:28px;
 
   border:
-
-  1px solid
-  rgba(255,255,255,.10);
+    1px solid
+    rgba(255,255,255,.10);
 
   box-shadow:
-
-  0 30px 90px
-  rgba(0,0,0,.38);
-
+    0 30px 90px
+    rgba(0,0,0,.38);
 }
-
 
 .creator-showcase{
-
   background:
-
-  linear-gradient(
-    135deg,
-    rgba(112,72,255,.16),
-    rgba(35,136,255,.10),
-    rgba(255,0,51,.06)
-  );
-
+    linear-gradient(
+      135deg,
+      rgba(112,72,255,.16),
+      rgba(35,136,255,.10),
+      rgba(255,0,51,.06)
+    );
 }
 
+.coach-showcase{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(56,210,125,.15),
+      rgba(112,72,255,.12),
+      rgba(35,136,255,.08)
+    );
+}
 
 .games-showcase{
-
   background:
-
-  linear-gradient(
-    135deg,
-    rgba(35,136,255,.15),
-    rgba(255,0,51,.07)
-  );
-
+    linear-gradient(
+      135deg,
+      rgba(35,136,255,.15),
+      rgba(255,0,51,.07)
+    );
 }
-
 
 .showcase h2{
-
   margin:
-
-  10px 0
-  15px;
+    10px 0 15px;
 
   font-size:
-
-  clamp(
-    38px,
-    7vw,
-    72px
-  );
-
+    clamp(
+      38px,
+      7vw,
+      72px
+    );
 }
 
-
 .showcase p{
-
   max-width:700px;
 
   margin:
-
-  0 auto
-  30px;
+    0 auto 30px;
 
   color:
-  var(--muted);
+    var(--muted);
 
   line-height:1.75;
-
 }
 
 
@@ -1380,23 +1195,17 @@ section{
 ===================================================== */
 
 .youtube-grid{
-
   display:grid;
 
   grid-template-columns:
-
-  1fr
-  1fr;
+    1fr 1fr;
 
   gap:45px;
 
   align-items:center;
-
 }
 
-
 .youtube-preview{
-
   aspect-ratio:16/9;
 
   display:flex;
@@ -1408,69 +1217,53 @@ section{
   border-radius:28px;
 
   background:
-
-  linear-gradient(
-    145deg,
-    #ff0033,
-    #850013
-  );
+    linear-gradient(
+      145deg,
+      #ff0033,
+      #850013
+    );
 
   box-shadow:
-
-  0 25px 80px
-  rgba(255,0,40,.2);
-
+    0 25px 80px
+    rgba(255,0,40,.2);
 }
 
-
-.youtube-preview .youtube-icon{
-
+.youtube-preview
+.youtube-icon{
   width:175px;
   height:120px;
 
   border-radius:28px;
-
 }
-
 
 .youtube-preview
 .youtube-icon::after{
-
   border-top-width:25px;
 
   border-bottom-width:25px;
 
   border-left-width:40px;
-
 }
-
 
 .youtube-text h2{
-
   margin:
-
-  0 0 17px;
+    0 0 17px;
 
   font-size:
-
-  clamp(
-    35px,
-    6vw,
-    62px
-  );
-
+    clamp(
+      35px,
+      6vw,
+      62px
+    );
 }
 
-
 .youtube-text p{
-
   color:
-  var(--muted);
+    var(--muted);
 
   line-height:1.8;
 
   font-size:17px;
-
 }
 
 
@@ -1479,38 +1272,28 @@ section{
 ===================================================== */
 
 .reveal{
-
   opacity:0;
 
   transform:
+    translateY(50px)
+    scale(.98);
 
-  translateY(50px)
-  scale(.98);
-
-  filter:
-  blur(5px);
+  filter:blur(5px);
 
   transition:
-
-  opacity .85s ease,
-  transform .85s ease,
-  filter .85s ease;
-
+    opacity .85s ease,
+    transform .85s ease,
+    filter .85s ease;
 }
 
-
 .reveal.visible{
-
   opacity:1;
 
   transform:
+    translateY(0)
+    scale(1);
 
-  translateY(0)
-  scale(1);
-
-  filter:
-  blur(0);
-
+  filter:blur(0);
 }
 
 
@@ -1519,30 +1302,22 @@ section{
 ===================================================== */
 
 footer{
-
   padding:
-
-  50px
-  20px;
+    50px 20px;
 
   text-align:center;
 
   border-top:
-
-  1px solid
-  rgba(255,255,255,.08);
+    1px solid
+    rgba(255,255,255,.08);
 
   color:#748195;
 
   background:
-
-  rgba(4,6,10,.78);
-
+    rgba(4,6,10,.78);
 }
 
-
 footer img{
-
   width:70px;
   height:70px;
 
@@ -1551,10 +1326,8 @@ footer img{
   object-fit:cover;
 
   border:
-
-  2px solid
-  #ff1744;
-
+    2px solid
+    #ff1744;
 }
 
 
@@ -1562,61 +1335,49 @@ footer img{
    MOBILE
 ===================================================== */
 
+@media(max-width:1050px){
+
+  .cards{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+}
+
+
 @media(max-width:850px){
 
   body{
     padding-left:0;
   }
 
-
   #scrollProgress{
     left:0;
   }
 
-
   .site-sidebar{
-
     width:265px;
 
     transform:
-
-    translateX(-105%);
+      translateX(-105%);
 
     transition:
-
-    transform .3s ease;
-
+      transform .3s ease;
   }
-
 
   .site-sidebar.open{
-
     transform:
-
-    translateX(0);
-
+      translateX(0);
   }
-
 
   .sidebar-toggle{
     display:block;
   }
 
-
   .about-grid,
   .youtube-grid{
-
     grid-template-columns:1fr;
-
   }
-
-
-  .cards{
-
-    grid-template-columns:1fr;
-
-  }
-
 
   .about-text{
     text-align:center;
@@ -1625,42 +1386,33 @@ footer img{
 }
 
 
-@media(max-width:600px){
+@media(max-width:650px){
 
   section{
-
     padding:
-
-    90px
-    20px
-    70px;
-
+      90px 20px
+      70px;
   }
-
 
   .hero h1{
-
     letter-spacing:-2px;
-
   }
 
-
   .hero-buttons{
-
     flex-direction:column;
 
     align-items:center;
-
   }
 
-
   .main-button{
-
     width:min(
       350px,
       100%
     );
+  }
 
+  .cards{
+    grid-template-columns:1fr;
   }
 
 }
@@ -1674,7 +1426,7 @@ footer img{
 
 
 <!-- =====================================================
-     BACKGROUND
+     FUNDO
 ===================================================== -->
 
 <canvas id="particleCanvas"></canvas>
@@ -1685,7 +1437,7 @@ footer img{
 
 
 <!-- =====================================================
-     MOBILE MENU
+     MENU MOBILE
 ===================================================== -->
 
 <button
@@ -1695,6 +1447,11 @@ footer img{
 >
 ☰
 </button>
+
+<div
+  id="mobileOverlay"
+  class="mobile-overlay"
+></div>
 
 
 <!-- =====================================================
@@ -1790,6 +1547,20 @@ Creator
 
 
 <a
+  href="creator.html?tool=coach"
+  class="coach-link"
+>
+
+🤖
+
+<span data-i18n="aiCoach">
+AI Coach
+</span>
+
+</a>
+
+
+<a
   href="games.html"
   class="games-link"
 >
@@ -1806,7 +1577,9 @@ Jogos
 </nav>
 
 
-<!-- LANGUAGE -->
+<!-- =====================================================
+     LANGUAGE
+===================================================== -->
 
 <div class="sidebar-language">
 
@@ -1941,7 +1714,9 @@ e começa a criar vídeos e Shorts.
 ➕
 
 <span data-i18n="createChannel">
+
 Criar o meu canal
+
 </span>
 
 </a>
@@ -1957,7 +1732,9 @@ Criar o meu canal
 <span class="youtube-icon"></span>
 
 <span data-i18n="joinChannel">
+
 Aderir ao meu canal
+
 </span>
 
 </a>
@@ -1971,7 +1748,25 @@ Aderir ao meu canal
 🎬
 
 <span data-i18n="createVideo">
+
 Criar vídeo ou Short
+
+</span>
+
+</a>
+
+
+<a
+  href="creator.html?tool=coach"
+  class="main-button coach-button"
+>
+
+🤖
+
+<span data-i18n="aiCoach">
+
+AI Coach
+
 </span>
 
 </a>
@@ -1985,7 +1780,9 @@ Criar vídeo ou Short
 🎮
 
 <span data-i18n="playGames">
+
 Jogar
+
 </span>
 
 </a>
@@ -2001,7 +1798,7 @@ Jogar
 
 
 <!-- =====================================================
-     ABOUT
+     SOBRE
 ===================================================== -->
 
 <section id="sobre">
@@ -2038,7 +1835,7 @@ Bem-vindo ao meu mundo
 
 <img
   src="perfil.jpg"
-  alt="Logo AMIRIJOGOS"
+  alt="AMIRIJOGOS"
 >
 
 
@@ -2058,8 +1855,8 @@ Gaming + YouTube + criatividade
 <p>
 
 🎮 Gaming, criação de conteúdo,
-vídeos, Shorts e projetos
-interativos.
+vídeos, Shorts, jogos
+e projetos interativos.
 
 </p>
 
@@ -2067,9 +1864,9 @@ interativos.
 <p>
 
 No AMIRIJOGOS podes jogar,
-ver o meu conteúdo e utilizar
-o Creator para começares
-a criar os teus próprios vídeos.
+acompanhar o meu conteúdo,
+criar os teus próprios vídeos
+e pedir ajuda ao AI Coach.
 
 </p>
 
@@ -2087,7 +1884,7 @@ a criar os teus próprios vídeos.
 
 
 <!-- =====================================================
-     CONTENT
+     CONTEÚDO
 ===================================================== -->
 
 <section id="conteudo">
@@ -2162,9 +1959,37 @@ Creator
 <p>
 
 Cria vídeos e Shorts,
-adiciona textos,
-filtros, memes e utiliza
-o AI Coach.
+adiciona texto,
+filtros, memes
+e outros efeitos.
+
+</p>
+
+
+</div>
+
+
+<div class="card reveal">
+
+
+<div class="card-icon">
+🤖
+</div>
+
+
+<h3 data-i18n="aiCoach">
+
+AI Coach
+
+</h3>
+
+
+<p>
+
+Usa inteligência artificial
+para receber ideias,
+títulos, roteiros,
+descrições e memes.
 
 </p>
 
@@ -2189,9 +2014,9 @@ YouTube
 
 <p>
 
-Acompanha os vídeos
-e novidades do canal
-AMIRIJOGOS.
+Acompanha os vídeos,
+Shorts e novidades
+do canal AMIRIJOGOS.
 
 </p>
 
@@ -2243,9 +2068,6 @@ no navegador.
 </p>
 
 
-<div class="hero-buttons">
-
-
 <a
   href="creator.html"
   class="main-button creator-button"
@@ -2263,6 +2085,65 @@ Abrir AMIRIJOGOS Creator
 
 
 </div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+     AI COACH
+===================================================== -->
+
+<section id="coach">
+
+
+<div class="section-content">
+
+
+<div class="showcase coach-showcase reveal">
+
+
+<div class="section-label">
+
+GEMINI AI
+
+</div>
+
+
+<h2>
+
+🤖
+
+<span data-i18n="aiCoach">
+
+AI Coach
+
+</span>
+
+</h2>
+
+
+<p>
+
+Pede ideias para vídeos,
+títulos, descrições,
+roteiros para Shorts,
+hooks e sugestões de memes.
+
+</p>
+
+
+<a
+  href="creator.html?tool=coach"
+  class="main-button coach-button"
+>
+
+🤖 Abrir AI Coach
+
+</a>
 
 
 </div>
@@ -2299,7 +2180,9 @@ AMIRIJOGOS GAMES
 🎮
 
 <span data-i18n="games">
+
 Jogos
+
 </span>
 
 </h2>
@@ -2308,6 +2191,7 @@ Jogos
 <p>
 
 Joga AMIRIJOGOS Clicker,
+ganha Coins,
 faz Rebirths,
 ganha Credits
 e entra no Battle.
@@ -2323,7 +2207,9 @@ e entra no Battle.
 🎮
 
 <span data-i18n="playGames">
+
 Jogar
+
 </span>
 
 </a>
@@ -2446,7 +2332,7 @@ AMIRIJOGOS
 
 <p>
 
-🎮 Gaming • ▶ YouTube • 🎬 Creator
+🎮 Gaming • ▶ YouTube • 🎬 Creator • 🤖 AI Coach
 
 </p>
 
@@ -2462,7 +2348,7 @@ AMIRIJOGOS
 
 
 <!-- =====================================================
-     NORMAL JAVASCRIPT
+     JAVASCRIPT DO INDEX
 ===================================================== -->
 
 <script>
@@ -2474,31 +2360,77 @@ AMIRIJOGOS
    SIDEBAR MOBILE
 ===================================================== */
 
-const sidebar=
+const sidebar =
 document.getElementById(
   "siteSidebar"
 );
 
 
-const sidebarToggle=
+const sidebarToggle =
 document.getElementById(
   "sidebarToggle"
 );
+
+
+const mobileOverlay =
+document.getElementById(
+  "mobileOverlay"
+);
+
+
+function openSidebar(){
+
+  sidebar.classList.add(
+    "open"
+  );
+
+  mobileOverlay.classList.add(
+    "show"
+  );
+
+}
+
+
+function closeSidebar(){
+
+  sidebar.classList.remove(
+    "open"
+  );
+
+  mobileOverlay.classList.remove(
+    "show"
+  );
+
+}
 
 
 sidebarToggle.addEventListener(
   "click",
   ()=>{
 
-    sidebar.classList.toggle(
-      "open"
-    );
+    if(
+      sidebar.classList.contains(
+        "open"
+      )
+    ){
+
+      closeSidebar();
+
+    }else{
+
+      openSidebar();
+
+    }
 
   }
 );
 
 
-/* fecha menu ao clicar */
+mobileOverlay.addEventListener(
+  "click",
+  closeSidebar
+);
+
 
 document
 .querySelectorAll(
@@ -2515,9 +2447,7 @@ document
           window.innerWidth<=850
         ){
 
-          sidebar.classList.remove(
-            "open"
-          );
+          closeSidebar();
 
         }
 
@@ -2543,7 +2473,7 @@ document
       "click",
       event=>{
 
-        const href=
+        const href =
         link.getAttribute(
           "href"
         );
@@ -2557,7 +2487,7 @@ document
         }
 
 
-        const target=
+        const target =
         document.querySelector(
           href
         );
@@ -2571,13 +2501,10 @@ document
         event.preventDefault();
 
 
-        target.scrollIntoView({
-
-          behavior:"smooth",
-
-          block:"start"
-
-        });
+        smoothScrollTo(
+          target.offsetTop,
+          850
+        );
 
       }
     );
@@ -2586,11 +2513,87 @@ document
 );
 
 
+function smoothScrollTo(
+  target,
+  duration
+){
+
+  const start =
+  window.scrollY;
+
+
+  const distance =
+  target-start;
+
+
+  let startTime=null;
+
+
+  function ease(t){
+
+    return t<.5
+
+    ? 4*t*t*t
+
+    : 1-
+      Math.pow(
+        -2*t+2,
+        3
+      )/2;
+
+  }
+
+
+  function animation(time){
+
+    if(startTime===null){
+
+      startTime=time;
+
+    }
+
+
+    const progress =
+    Math.min(
+      (
+        time-startTime
+      )/
+      duration,
+      1
+    );
+
+
+    window.scrollTo(
+      0,
+      start+
+      distance*
+      ease(progress)
+    );
+
+
+    if(progress<1){
+
+      requestAnimationFrame(
+        animation
+      );
+
+    }
+
+  }
+
+
+  requestAnimationFrame(
+    animation
+  );
+
+}
+
+
 /* =====================================================
    SCROLL PROGRESS
 ===================================================== */
 
-const progress=
+const progress =
 document.getElementById(
   "scrollProgress"
 );
@@ -2598,34 +2601,23 @@ document.getElementById(
 
 function updateScrollProgress(){
 
-  const maxScroll=
-
-  document
-  .documentElement
-  .scrollHeight
-
-  -
-
+  const maximum =
+  document.documentElement.scrollHeight-
   window.innerHeight;
 
 
-  const percent=
+  const percent =
+  maximum>0
 
-  maxScroll>0
+  ? (
+      window.scrollY/
+      maximum
+    )*100
 
-  ?
-
-  (
-    window.scrollY/
-    maxScroll
-  )*100
-
-  :
-
-  0;
+  : 0;
 
 
-  progress.style.width=
+  progress.style.width =
   percent+"%";
 
 }
@@ -2647,7 +2639,7 @@ updateScrollProgress();
    REVEAL
 ===================================================== */
 
-const observer=
+const observer =
 new IntersectionObserver(
 
   entries=>{
@@ -2659,8 +2651,7 @@ new IntersectionObserver(
           entry.isIntersecting
         ){
 
-          entry
-          .target
+          entry.target
           .classList.add(
             "visible"
           );
@@ -2700,26 +2691,26 @@ document
 
 
 /* =====================================================
-   PARTICLES
+   PARTICULAS
 ===================================================== */
 
-const particleCanvas=
+const particleCanvas =
 document.getElementById(
   "particleCanvas"
 );
 
 
-const ctx=
+const ctx =
 particleCanvas.getContext(
   "2d"
 );
 
 
-const channelLogo=
+const channelLogo =
 new Image();
 
 
-channelLogo.src=
+channelLogo.src =
 "perfil.jpg";
 
 
@@ -2731,59 +2722,98 @@ let particles=[];
 
 
 /* =====================================================
-   RESIZE
+   RECTÂNGULO ARREDONDADO
 ===================================================== */
 
-function resizeCanvas(){
+function roundedRect(
+  context,
+  x,
+  y,
+  width,
+  height,
+  radius
+){
 
-  canvasWidth=
-  window.innerWidth;
-
-
-  canvasHeight=
-  window.innerHeight;
-
-
-  const ratio=
+  const r =
   Math.min(
-    window.devicePixelRatio||1,
-    2
+    radius,
+    width/2,
+    height/2
   );
 
 
-  particleCanvas.width=
-  canvasWidth*ratio;
+  context.beginPath();
 
 
-  particleCanvas.height=
-  canvasHeight*ratio;
-
-
-  particleCanvas.style.width=
-  canvasWidth+"px";
-
-
-  particleCanvas.style.height=
-  canvasHeight+"px";
-
-
-  ctx.setTransform(
-    ratio,
-    0,
-    0,
-    ratio,
-    0,
-    0
+  context.moveTo(
+    x+r,
+    y
   );
 
 
-  createParticles();
+  context.lineTo(
+    x+width-r,
+    y
+  );
+
+
+  context.quadraticCurveTo(
+    x+width,
+    y,
+    x+width,
+    y+r
+  );
+
+
+  context.lineTo(
+    x+width,
+    y+height-r
+  );
+
+
+  context.quadraticCurveTo(
+    x+width,
+    y+height,
+    x+width-r,
+    y+height
+  );
+
+
+  context.lineTo(
+    x+r,
+    y+height
+  );
+
+
+  context.quadraticCurveTo(
+    x,
+    y+height,
+    x,
+    y+height-r
+  );
+
+
+  context.lineTo(
+    x,
+    y+r
+  );
+
+
+  context.quadraticCurveTo(
+    x,
+    y,
+    x+r,
+    y
+  );
+
+
+  context.closePath();
 
 }
 
 
 /* =====================================================
-   YOUTUBE PARTICLE
+   DESENHAR YOUTUBE
 ===================================================== */
 
 function drawYouTube(
@@ -2797,7 +2827,7 @@ function drawYouTube(
   ctx.save();
 
 
-  ctx.globalAlpha=
+  ctx.globalAlpha =
   opacity;
 
 
@@ -2812,44 +2842,32 @@ function drawYouTube(
   );
 
 
-  const width=
+  const width =
   size;
 
 
-  const height=
+  const height =
   size*.68;
 
 
-  const radius=
-  size*.17;
-
-
-  ctx.fillStyle=
-  "#ff0000";
-
-
-  ctx.beginPath();
-
-
-  ctx.roundRect(
-
+  roundedRect(
+    ctx,
     -width/2,
-
     -height/2,
-
     width,
-
     height,
-
-    radius
-
+    size*.17
   );
+
+
+  ctx.fillStyle =
+  "#ff0000";
 
 
   ctx.fill();
 
 
-  ctx.fillStyle=
+  ctx.fillStyle =
   "#ffffff";
 
 
@@ -2886,17 +2904,15 @@ function drawYouTube(
 
 
 /* =====================================================
-   PARTICLE CLASS
+   PARTICLE
 ===================================================== */
 
 class Particle{
 
 
-  constructor(
-    index
-  ){
+  constructor(index){
 
-    this.index=
+    this.index =
     index;
 
 
@@ -2907,78 +2923,76 @@ class Particle{
   }
 
 
-  reset(
-    randomY
-  ){
+  reset(randomY){
 
-    this.x=
+    this.x =
     Math.random()*
     canvasWidth;
 
 
-    this.y=
+    this.y =
     randomY
-    ?
-    Math.random()*
-    canvasHeight
-    :
-    canvasHeight+
-    70;
+
+    ? Math.random()*
+      canvasHeight
+
+    : canvasHeight+
+      70;
 
 
-    this.size=
+    this.size =
     22+
     Math.random()*34;
 
 
-    this.speed=
+    this.speed =
     .10+
     Math.random()*.24;
 
 
-    this.sideSpeed=
+    this.sideSpeed =
     (
       Math.random()-.5
     )*.12;
 
 
-    this.rotation=
+    this.rotation =
     Math.random()*
     Math.PI*2;
 
 
-    this.rotationSpeed=
+    this.rotationSpeed =
     (
       Math.random()-.5
     )*.002;
 
 
-    this.opacity=
+    this.opacity =
     .06+
     Math.random()*.14;
 
 
-    this.type=
+    this.type =
     this.index%2===0
-    ?
-    "youtube"
-    :
-    "channel";
+
+    ? "youtube"
+
+    : "channel";
 
   }
 
 
   update(){
 
-    this.y-=
+    this.y -=
     this.speed;
 
 
-    this.x+=
+    this.x +=
     this.sideSpeed;
 
 
-    this.rotation+=
+    this.rotation +=
     this.rotationSpeed;
 
 
@@ -2999,7 +3013,7 @@ class Particle{
       -this.size
     ){
 
-      this.x=
+      this.x =
       canvasWidth+
       this.size;
 
@@ -3012,7 +3026,7 @@ class Particle{
       this.size
     ){
 
-      this.x=
+      this.x =
       -this.size;
 
     }
@@ -3028,17 +3042,11 @@ class Particle{
     ){
 
       drawYouTube(
-
         this.x,
-
         this.y,
-
         this.size,
-
         this.opacity,
-
         this.rotation
-
       );
 
 
@@ -3050,7 +3058,7 @@ class Particle{
     ctx.save();
 
 
-    ctx.globalAlpha=
+    ctx.globalAlpha =
     this.opacity;
 
 
@@ -3069,17 +3077,11 @@ class Particle{
 
 
     ctx.arc(
-
       0,
-
       0,
-
       this.size/2,
-
       0,
-
       Math.PI*2
-
     );
 
 
@@ -3092,17 +3094,13 @@ class Particle{
     ){
 
       ctx.drawImage(
-
         channelLogo,
 
         -this.size/2,
-
         -this.size/2,
 
         this.size,
-
         this.size
-
       );
 
     }
@@ -3116,20 +3114,72 @@ class Particle{
 
 
 /* =====================================================
+   RESIZE
+===================================================== */
+
+function resizeCanvas(){
+
+  canvasWidth =
+  window.innerWidth;
+
+
+  canvasHeight =
+  window.innerHeight;
+
+
+  const ratio =
+  Math.min(
+    window.devicePixelRatio||1,
+    2
+  );
+
+
+  particleCanvas.width =
+  canvasWidth*
+  ratio;
+
+
+  particleCanvas.height =
+  canvasHeight*
+  ratio;
+
+
+  particleCanvas.style.width =
+  canvasWidth+"px";
+
+
+  particleCanvas.style.height =
+  canvasHeight+"px";
+
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+
+  createParticles();
+
+}
+
+
+/* =====================================================
    CREATE PARTICLES
 ===================================================== */
 
 function createParticles(){
 
-  const amount=
+  const amount =
   canvasWidth<700
-  ?
-  18
-  :
-  38;
+  ? 18
+  : 38;
 
 
-  particles=
+  particles =
   Array.from(
 
     {
@@ -3151,21 +3201,16 @@ function createParticles(){
 
 
 /* =====================================================
-   PARTICLE LOOP
+   LOOP
 ===================================================== */
 
 function particleLoop(){
 
   ctx.clearRect(
-
     0,
-
     0,
-
     canvasWidth,
-
     canvasHeight
-
   );
 
 
@@ -3201,7 +3246,7 @@ particleLoop();
 
 
 <!-- =====================================================
-     SISTEMA DE LÍNGUAS
+     IDIOMAS
 ===================================================== -->
 
 <script src="language.js"></script>
