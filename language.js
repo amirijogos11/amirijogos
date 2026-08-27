@@ -1,517 +1,748 @@
 "use strict";
 
-/* =====================================================
-   AMIRIJOGOS — SISTEMA DE IDIOMAS
-===================================================== */
-
 const AMIRI_TRANSLATIONS = {
 
   pt: {
 
-    home: "Início",
-    youtube: "YouTube",
-    games: "Jogos",
-    creator: "Creator",
-    aiCoach: "AI Coach",
+    home:"Início",
+    about:"Sobre",
+    content:"Conteúdo",
+    youtube:"YouTube",
+    creator:"Creator",
+    aiCoach:"AI Coach",
+    games:"Jogos",
+    language:"Idioma",
 
-    language: "Idioma",
-    portuguese: "Português",
-    english: "English",
-    spanish: "Español",
+    heroTitle:
+    "Sê um YouTuber como eu",
 
-    back: "Voltar",
-
-    heroTitle: "Sê um YouTuber como eu",
-    heroSubtitle: "Cria. Edita. Publica.",
+    heroSubtitle:
+    "Cria. Edita. Publica.",
 
     heroDescription:
-      "Cria o teu próprio canal, junta-te ao AMIRIJOGOS e começa a criar vídeos e Shorts.",
+    "Cria o teu canal, junta-te ao AMIRIJOGOS, cria vídeos e Shorts e melhora no Rocket League com o AI Coach.",
 
-    createChannel: "Criar o meu canal",
-    joinChannel: "Aderir ao meu canal",
-    createVideo: "Criar vídeo ou Short",
-    playGames: "Jogar",
+    createChannel:
+    "Criar o meu canal",
 
-    about: "Sobre",
-    content: "Conteúdo",
+    joinChannel:
+    "Aderir ao meu canal",
+
+    createVideo:
+    "Criar vídeo ou Short",
+
+    openCoach:
+    "Abrir AI Coach",
+
+    playGames:
+    "Jogar",
 
     welcome:
-      "Bem-vindo ao meu mundo",
+    "Bem-vindo ao AMIRIJOGOS",
 
-    gamingCreativity:
-      "Gaming + YouTube + criatividade",
+    welcomeText:
+    "Gaming, YouTube, criação de conteúdo, jogos e inteligência artificial num só site.",
+
+    contentTitle:
+    "Tudo num só lugar",
+
+    gamingTitle:
+    "Gaming",
+
+    gamingText:
+    "Conteúdo gaming, desafios e experiências AMIRIJOGOS.",
+
+    creatorCardText:
+    "Cria vídeos e Shorts com ferramentas de edição e memes.",
+
+    coachCardText:
+    "Recebe ajuda personalizada para melhorar no Rocket League.",
+
+    youtubeCardText:
+    "Acompanha os vídeos e Shorts do canal AMIRIJOGOS.",
 
     creatorTitle:
-      "Cria os teus vídeos",
+    "Cria os teus vídeos",
 
     creatorDescription:
-      "Cria vídeos e Shorts diretamente no navegador.",
+    "Abre o AMIRIJOGOS Creator para editar vídeos e Shorts diretamente no navegador.",
 
     openCreator:
-      "Abrir AMIRIJOGOS Creator",
+    "Abrir AMIRIJOGOS Creator",
 
-    memes:
-      "Memes",
+    coachHomeTitle:
+    "Rocket League AI Coach",
 
-    media:
-      "Media",
+    coachHomeText:
+    "Escolhe o teu rank, os teus controlos e pede ajuda para aprender mecânicas, corrigir erros e treinar melhor.",
 
-    format:
-      "Formato",
+    gamesTitle:
+    "AMIRIJOGOS Games",
 
-    text:
-      "Texto",
+    gamesText:
+    "Joga Clicker e Battle, ganha Coins, Credits e faz Rebirths.",
 
-    filters:
-      "Filtros",
+    youtubeTitle:
+    "Junta-te ao AMIRIJOGOS",
 
-    adjustments:
-      "Ajustes",
+    youtubeText:
+    "Vê os meus vídeos, acompanha os próximos Shorts e adere ao canal.",
 
-    export:
-      "Exportar",
+    footerText:
+    "Gaming • YouTube • Creator • AI Coach • Jogos",
 
-    addVideo:
-      "Adicionar vídeo",
+    /* CREATOR */
 
-    video:
-      "Vídeo",
+    media:"Media",
+    format:"Formato",
+    text:"Texto",
+    memes:"Memes",
+    filters:"Filtros",
+    adjustments:"Ajustes",
+    export:"Exportar",
+    addVideo:"Adicionar vídeo",
+    video:"Vídeo",
+    short:"Short",
 
-    short:
-      "Short",
+    /* GAMES */
 
-    battle:
-      "Battle",
-
-    clicker:
-      "Clicker",
-
-    coins:
-      "Coins",
-
-    credits:
-      "Credits",
+    battle:"Battle",
+    clicker:"Clicker",
+    coins:"Coins",
+    credits:"Credits",
 
     perClick:
-      "Por clique",
+    "Por clique",
 
     multiplier:
-      "Multiplicador",
+    "Multiplicador",
 
     rebirths:
-      "Rebirths",
+    "Rebirths",
 
     bonus:
-      "Bónus",
+    "Bónus",
 
     shop:
-      "Loja",
+    "Loja",
 
     strongClick:
-      "Clique Forte",
+    "Clique Forte",
 
     superClick:
-      "Super Clique",
+    "Super Clique",
 
     convert:
-      "Trocar",
+    "Trocar",
 
     rebirth:
-      "Rebirth",
+    "Rebirth",
 
     health:
-      "Vida",
+    "Vida",
 
     weapon:
-      "Arma",
+    "Arma",
 
     ammo:
-      "Munição",
+    "Munição",
 
     camera:
-      "Câmara",
+    "Câmara",
 
     device:
-      "Dispositivo",
+    "Dispositivo",
 
     difficulty:
-      "Dificuldade",
+    "Dificuldade",
 
     computer:
-      "Computador",
+    "Computador",
 
     mobile:
-      "Telemóvel",
+    "Telemóvel",
 
     continue:
-      "Continuar",
+    "Continuar",
 
     start:
-      "Começar",
+    "Começar",
 
     close:
-      "Fechar",
+    "Fechar",
 
     victory:
-      "Vitória!",
+    "Vitória!",
 
     defeat:
-      "Derrota!",
+    "Derrota!",
 
     playAgain:
-      "Jogar novamente",
+    "Jogar novamente",
+
+    /* ROCKET LEAGUE AI COACH */
+
+    coachTitle:
+    "Rocket League AI Coach",
+
+    coachSubtitle:
+    "Aprende mecânicas, corrige erros e melhora as tuas skills no Rocket League.",
+
+    rankControls:
+    "O teu rank e controlos",
+
+    quickLessons:
+    "Aulas rápidas",
+
+    controller:
+    "Comando",
+
+    keyboardMouse:
+    "Teclado e rato",
+
+    bronze:
+    "Bronze",
+
+    silver:
+    "Prata",
+
+    gold:
+    "Ouro",
+
+    platinum:
+    "Platina",
+
+    diamond:
+    "Diamante",
+
+    champion:
+    "Champion",
+
+    grandChampion:
+    "Grand Champion",
+
+    ssl:
+    "SSL",
+
+    waveDash:
+    "Wave Dash",
+
+    fastAerial:
+    "Fast Aerial",
+
+    halfFlip:
+    "Half Flip",
+
+    speedFlip:
+    "Speed Flip",
+
+    airDribble:
+    "Air Dribble",
+
+    dribbling:
+    "Dribbling",
+
+    doubleTap:
+    "Double Tap",
+
+    training:
+    "Treino",
+
+    coachWelcome:
+    "👋 Olá! Sou o teu Rocket League AI Coach. Escolhe uma aula rápida ou pergunta-me qualquer coisa sobre Rocket League!",
+
+    coachQuestionPlaceholder:
+    "Ex.: Porque é que continuo a falhar os aéreos?",
+
+    send:
+    "Enviar 🚀",
+
+    coachThinking:
+    "🚀 O Coach está a pensar...",
+
+    coachInfo:
+    "A IA pode cometer erros. Usa o Coach como ajuda de treino.",
+
+    error:
+    "Erro",
+
+    promptWaveDash:
+    "Ensina-me a fazer Wave Dash passo a passo.",
+
+    promptFastAerial:
+    "Ensina-me a fazer Fast Aerial passo a passo.",
+
+    promptHalfFlip:
+    "Ensina-me a fazer Half Flip passo a passo.",
+
+    promptSpeedFlip:
+    "Ensina-me a fazer Speed Flip passo a passo.",
+
+    promptAirDribble:
+    "Ensina-me a fazer Air Dribble passo a passo.",
+
+    promptDribbling:
+    "Ensina-me a fazer dribble e flick.",
+
+    promptDoubleTap:
+    "Ensina-me a acertar Double Taps.",
+
+    promptTraining:
+    "Cria uma rotina de treino de Rocket League de 15 minutos para o meu rank.",
 
     coachPlaceholder:
-      "Ex.: Cria um Short de gaming com um início muito forte.",
+    "Ex.: Cria um Short de gaming com um início muito forte.",
 
     generateAI:
-      "Gerar com IA",
+    "Gerar com IA",
 
     thinking:
-      "O Coach está a pensar...",
+    "O Coach está a pensar...",
 
     copy:
-      "Copiar resposta"
+    "Copiar resposta"
 
   },
 
 
   en: {
 
-    home: "Home",
-    youtube: "YouTube",
-    games: "Games",
-    creator: "Creator",
-    aiCoach: "AI Coach",
+    home:"Home",
+    about:"About",
+    content:"Content",
+    youtube:"YouTube",
+    creator:"Creator",
+    aiCoach:"AI Coach",
+    games:"Games",
+    language:"Language",
 
-    language: "Language",
-    portuguese: "Português",
-    english: "English",
-    spanish: "Español",
+    heroTitle:
+    "Become a YouTuber like me",
 
-    back: "Back",
-
-    heroTitle: "Become a YouTuber like me",
-    heroSubtitle: "Create. Edit. Publish.",
+    heroSubtitle:
+    "Create. Edit. Publish.",
 
     heroDescription:
-      "Create your own channel, join AMIRIJOGOS and start making videos and Shorts.",
+    "Create your channel, join AMIRIJOGOS, make videos and Shorts, and improve at Rocket League with the AI Coach.",
 
-    createChannel: "Create my channel",
-    joinChannel: "Join my channel",
-    createVideo: "Create video or Short",
-    playGames: "Play",
+    createChannel:
+    "Create my channel",
 
-    about: "About",
-    content: "Content",
+    joinChannel:
+    "Join my channel",
+
+    createVideo:
+    "Create video or Short",
+
+    openCoach:
+    "Open AI Coach",
+
+    playGames:
+    "Play",
 
     welcome:
-      "Welcome to my world",
+    "Welcome to AMIRIJOGOS",
 
-    gamingCreativity:
-      "Gaming + YouTube + creativity",
+    welcomeText:
+    "Gaming, YouTube, content creation, games and artificial intelligence in one website.",
+
+    contentTitle:
+    "Everything in one place",
+
+    gamingTitle:
+    "Gaming",
+
+    gamingText:
+    "Gaming content, challenges and AMIRIJOGOS experiences.",
+
+    creatorCardText:
+    "Create videos and Shorts with editing tools and memes.",
+
+    coachCardText:
+    "Get personalized help to improve at Rocket League.",
+
+    youtubeCardText:
+    "Follow AMIRIJOGOS videos and Shorts.",
 
     creatorTitle:
-      "Create your videos",
+    "Create your videos",
 
     creatorDescription:
-      "Create videos and Shorts directly in your browser.",
+    "Open AMIRIJOGOS Creator to edit videos and Shorts directly in your browser.",
 
     openCreator:
-      "Open AMIRIJOGOS Creator",
+    "Open AMIRIJOGOS Creator",
 
-    memes:
-      "Memes",
+    coachHomeTitle:
+    "Rocket League AI Coach",
 
-    media:
-      "Media",
+    coachHomeText:
+    "Choose your rank and controls and get help learning mechanics, fixing mistakes and training better.",
 
-    format:
-      "Format",
+    gamesTitle:
+    "AMIRIJOGOS Games",
 
-    text:
-      "Text",
+    gamesText:
+    "Play Clicker and Battle, earn Coins and Credits, and do Rebirths.",
 
-    filters:
-      "Filters",
+    youtubeTitle:
+    "Join AMIRIJOGOS",
 
-    adjustments:
-      "Adjustments",
+    youtubeText:
+    "Watch my videos, follow upcoming Shorts and join the channel.",
 
-    export:
-      "Export",
+    footerText:
+    "Gaming • YouTube • Creator • AI Coach • Games",
 
-    addVideo:
-      "Add video",
+    media:"Media",
+    format:"Format",
+    text:"Text",
+    memes:"Memes",
+    filters:"Filters",
+    adjustments:"Adjustments",
+    export:"Export",
+    addVideo:"Add video",
+    video:"Video",
+    short:"Short",
 
-    video:
-      "Video",
+    battle:"Battle",
+    clicker:"Clicker",
+    coins:"Coins",
+    credits:"Credits",
+    perClick:"Per click",
+    multiplier:"Multiplier",
+    rebirths:"Rebirths",
+    bonus:"Bonus",
+    shop:"Shop",
+    strongClick:"Strong Click",
+    superClick:"Super Click",
+    convert:"Convert",
+    rebirth:"Rebirth",
+    health:"Health",
+    weapon:"Weapon",
+    ammo:"Ammo",
+    camera:"Camera",
+    device:"Device",
+    difficulty:"Difficulty",
+    computer:"Computer",
+    mobile:"Mobile",
+    continue:"Continue",
+    start:"Start",
+    close:"Close",
+    victory:"Victory!",
+    defeat:"Defeat!",
+    playAgain:"Play again",
 
-    short:
-      "Short",
+    coachTitle:
+    "Rocket League AI Coach",
 
-    battle:
-      "Battle",
+    coachSubtitle:
+    "Learn mechanics, fix mistakes and improve your Rocket League skills.",
 
-    clicker:
-      "Clicker",
+    rankControls:
+    "Your rank and controls",
 
-    coins:
-      "Coins",
+    quickLessons:
+    "Quick lessons",
 
-    credits:
-      "Credits",
+    controller:
+    "Controller",
 
-    perClick:
-      "Per click",
+    keyboardMouse:
+    "Keyboard & Mouse",
 
-    multiplier:
-      "Multiplier",
+    bronze:"Bronze",
+    silver:"Silver",
+    gold:"Gold",
+    platinum:"Platinum",
+    diamond:"Diamond",
+    champion:"Champion",
+    grandChampion:"Grand Champion",
+    ssl:"SSL",
 
-    rebirths:
-      "Rebirths",
+    waveDash:"Wave Dash",
+    fastAerial:"Fast Aerial",
+    halfFlip:"Half Flip",
+    speedFlip:"Speed Flip",
+    airDribble:"Air Dribble",
+    dribbling:"Dribbling",
+    doubleTap:"Double Tap",
+    training:"Training",
 
-    bonus:
-      "Bonus",
+    coachWelcome:
+    "👋 Hey! I'm your Rocket League AI Coach. Choose a quick lesson or ask me anything about Rocket League!",
 
-    shop:
-      "Shop",
+    coachQuestionPlaceholder:
+    "Example: Why do I keep missing aerials?",
 
-    strongClick:
-      "Strong Click",
+    send:
+    "Send 🚀",
 
-    superClick:
-      "Super Click",
+    coachThinking:
+    "🚀 Coach is thinking...",
 
-    convert:
-      "Convert",
+    coachInfo:
+    "AI can make mistakes. Use the Coach as a training helper.",
 
-    rebirth:
-      "Rebirth",
+    error:
+    "Error",
 
-    health:
-      "Health",
+    promptWaveDash:
+    "Teach me how to Wave Dash step by step.",
 
-    weapon:
-      "Weapon",
+    promptFastAerial:
+    "Teach me how to Fast Aerial step by step.",
 
-    ammo:
-      "Ammo",
+    promptHalfFlip:
+    "Teach me how to Half Flip step by step.",
 
-    camera:
-      "Camera",
+    promptSpeedFlip:
+    "Teach me how to Speed Flip step by step.",
 
-    device:
-      "Device",
+    promptAirDribble:
+    "Teach me how to Air Dribble step by step.",
 
-    difficulty:
-      "Difficulty",
+    promptDribbling:
+    "Teach me how to dribble and flick.",
 
-    computer:
-      "Computer",
+    promptDoubleTap:
+    "Teach me how to hit Double Taps.",
 
-    mobile:
-      "Mobile",
-
-    continue:
-      "Continue",
-
-    start:
-      "Start",
-
-    close:
-      "Close",
-
-    victory:
-      "Victory!",
-
-    defeat:
-      "Defeat!",
-
-    playAgain:
-      "Play again",
+    promptTraining:
+    "Create a 15-minute Rocket League training routine for my rank.",
 
     coachPlaceholder:
-      "Example: Create a gaming Short with a strong hook.",
+    "Example: Create a gaming Short with a strong hook.",
 
     generateAI:
-      "Generate with AI",
+    "Generate with AI",
 
     thinking:
-      "The Coach is thinking...",
+    "The Coach is thinking...",
 
     copy:
-      "Copy answer"
+    "Copy answer"
 
   },
 
 
   es: {
 
-    home: "Inicio",
-    youtube: "YouTube",
-    games: "Juegos",
-    creator: "Creator",
-    aiCoach: "AI Coach",
+    home:"Inicio",
+    about:"Sobre",
+    content:"Contenido",
+    youtube:"YouTube",
+    creator:"Creator",
+    aiCoach:"AI Coach",
+    games:"Juegos",
+    language:"Idioma",
 
-    language: "Idioma",
-    portuguese: "Português",
-    english: "English",
-    spanish: "Español",
+    heroTitle:
+    "Sé un YouTuber como yo",
 
-    back: "Volver",
-
-    heroTitle: "Sé un YouTuber como yo",
-    heroSubtitle: "Crea. Edita. Publica.",
+    heroSubtitle:
+    "Crea. Edita. Publica.",
 
     heroDescription:
-      "Crea tu propio canal, únete a AMIRIJOGOS y empieza a crear vídeos y Shorts.",
+    "Crea tu canal, únete a AMIRIJOGOS, crea vídeos y Shorts y mejora en Rocket League con el AI Coach.",
 
-    createChannel: "Crear mi canal",
-    joinChannel: "Unirme a mi canal",
-    createVideo: "Crear vídeo o Short",
-    playGames: "Jugar",
+    createChannel:
+    "Crear mi canal",
 
-    about: "Sobre mí",
-    content: "Contenido",
+    joinChannel:
+    "Unirme a mi canal",
+
+    createVideo:
+    "Crear vídeo o Short",
+
+    openCoach:
+    "Abrir AI Coach",
+
+    playGames:
+    "Jugar",
 
     welcome:
-      "Bienvenido a mi mundo",
+    "Bienvenido a AMIRIJOGOS",
 
-    gamingCreativity:
-      "Gaming + YouTube + creatividad",
+    welcomeText:
+    "Gaming, YouTube, creación de contenido, juegos e inteligencia artificial en una sola web.",
+
+    contentTitle:
+    "Todo en un solo lugar",
+
+    gamingTitle:
+    "Gaming",
+
+    gamingText:
+    "Contenido gaming, desafíos y experiencias AMIRIJOGOS.",
+
+    creatorCardText:
+    "Crea vídeos y Shorts con herramientas de edición y memes.",
+
+    coachCardText:
+    "Recibe ayuda personalizada para mejorar en Rocket League.",
+
+    youtubeCardText:
+    "Sigue los vídeos y Shorts de AMIRIJOGOS.",
 
     creatorTitle:
-      "Crea tus vídeos",
+    "Crea tus vídeos",
 
     creatorDescription:
-      "Crea vídeos y Shorts directamente en el navegador.",
+    "Abre AMIRIJOGOS Creator para editar vídeos y Shorts directamente en el navegador.",
 
     openCreator:
-      "Abrir AMIRIJOGOS Creator",
+    "Abrir AMIRIJOGOS Creator",
 
-    memes:
-      "Memes",
+    coachHomeTitle:
+    "Rocket League AI Coach",
 
-    media:
-      "Media",
+    coachHomeText:
+    "Elige tu rango y controles y recibe ayuda para aprender mecánicas, corregir errores y entrenar mejor.",
 
-    format:
-      "Formato",
+    gamesTitle:
+    "AMIRIJOGOS Games",
 
-    text:
-      "Texto",
+    gamesText:
+    "Juega Clicker y Battle, gana Coins y Credits y haz Rebirths.",
 
-    filters:
-      "Filtros",
+    youtubeTitle:
+    "Únete a AMIRIJOGOS",
 
-    adjustments:
-      "Ajustes",
+    youtubeText:
+    "Mira mis vídeos, sigue los próximos Shorts y únete al canal.",
 
-    export:
-      "Exportar",
+    footerText:
+    "Gaming • YouTube • Creator • AI Coach • Juegos",
 
-    addVideo:
-      "Añadir vídeo",
+    media:"Media",
+    format:"Formato",
+    text:"Texto",
+    memes:"Memes",
+    filters:"Filtros",
+    adjustments:"Ajustes",
+    export:"Exportar",
+    addVideo:"Añadir vídeo",
+    video:"Vídeo",
+    short:"Short",
 
-    video:
-      "Vídeo",
+    battle:"Battle",
+    clicker:"Clicker",
+    coins:"Coins",
+    credits:"Credits",
+    perClick:"Por clic",
+    multiplier:"Multiplicador",
+    rebirths:"Rebirths",
+    bonus:"Bonus",
+    shop:"Tienda",
+    strongClick:"Clic fuerte",
+    superClick:"Súper clic",
+    convert:"Convertir",
+    rebirth:"Rebirth",
+    health:"Vida",
+    weapon:"Arma",
+    ammo:"Munición",
+    camera:"Cámara",
+    device:"Dispositivo",
+    difficulty:"Dificultad",
+    computer:"Ordenador",
+    mobile:"Móvil",
+    continue:"Continuar",
+    start:"Empezar",
+    close:"Cerrar",
+    victory:"¡Victoria!",
+    defeat:"¡Derrota!",
+    playAgain:"Jugar de nuevo",
 
-    short:
-      "Short",
+    coachTitle:
+    "Rocket League AI Coach",
 
-    battle:
-      "Battle",
+    coachSubtitle:
+    "Aprende mecánicas, corrige errores y mejora tus habilidades en Rocket League.",
 
-    clicker:
-      "Clicker",
+    rankControls:
+    "Tu rango y controles",
 
-    coins:
-      "Coins",
+    quickLessons:
+    "Clases rápidas",
 
-    credits:
-      "Credits",
+    controller:
+    "Mando",
 
-    perClick:
-      "Por clic",
+    keyboardMouse:
+    "Teclado y ratón",
 
-    multiplier:
-      "Multiplicador",
+    bronze:"Bronce",
+    silver:"Plata",
+    gold:"Oro",
+    platinum:"Platino",
+    diamond:"Diamante",
+    champion:"Champion",
+    grandChampion:"Grand Champion",
+    ssl:"SSL",
 
-    rebirths:
-      "Rebirths",
+    waveDash:"Wave Dash",
+    fastAerial:"Fast Aerial",
+    halfFlip:"Half Flip",
+    speedFlip:"Speed Flip",
+    airDribble:"Air Dribble",
+    dribbling:"Dribbling",
+    doubleTap:"Double Tap",
+    training:"Entrenamiento",
 
-    bonus:
-      "Bonus",
+    coachWelcome:
+    "👋 ¡Hola! Soy tu Rocket League AI Coach. Elige una clase rápida o pregúntame cualquier cosa sobre Rocket League.",
 
-    shop:
-      "Tienda",
+    coachQuestionPlaceholder:
+    "Ej.: ¿Por qué sigo fallando los aéreos?",
 
-    strongClick:
-      "Clic fuerte",
+    send:
+    "Enviar 🚀",
 
-    superClick:
-      "Súper clic",
+    coachThinking:
+    "🚀 El Coach está pensando...",
 
-    convert:
-      "Convertir",
+    coachInfo:
+    "La IA puede cometer errores. Usa el Coach como ayuda de entrenamiento.",
 
-    rebirth:
-      "Rebirth",
+    error:
+    "Error",
 
-    health:
-      "Vida",
+    promptWaveDash:
+    "Enséñame a hacer Wave Dash paso a paso.",
 
-    weapon:
-      "Arma",
+    promptFastAerial:
+    "Enséñame a hacer Fast Aerial paso a paso.",
 
-    ammo:
-      "Munición",
+    promptHalfFlip:
+    "Enséñame a hacer Half Flip paso a paso.",
 
-    camera:
-      "Cámara",
+    promptSpeedFlip:
+    "Enséñame a hacer Speed Flip paso a paso.",
 
-    device:
-      "Dispositivo",
+    promptAirDribble:
+    "Enséñame a hacer Air Dribble paso a paso.",
 
-    difficulty:
-      "Dificultad",
+    promptDribbling:
+    "Enséñame a hacer dribble y flick.",
 
-    computer:
-      "Ordenador",
+    promptDoubleTap:
+    "Enséñame a acertar Double Taps.",
 
-    mobile:
-      "Móvil",
-
-    continue:
-      "Continuar",
-
-    start:
-      "Empezar",
-
-    close:
-      "Cerrar",
-
-    victory:
-      "¡Victoria!",
-
-    defeat:
-      "¡Derrota!",
-
-    playAgain:
-      "Jugar de nuevo",
+    promptTraining:
+    "Crea una rutina de entrenamiento de Rocket League de 15 minutos para mi rango.",
 
     coachPlaceholder:
-      "Ej.: Crea un Short gaming con un inicio muy fuerte.",
+    "Ej.: Crea un Short gaming con un inicio muy fuerte.",
 
     generateAI:
-      "Generar con IA",
+    "Generar con IA",
 
     thinking:
-      "El Coach está pensando...",
+    "El Coach está pensando...",
 
     copy:
-      "Copiar respuesta"
+    "Copiar respuesta"
 
   }
 
@@ -519,7 +750,7 @@ const AMIRI_TRANSLATIONS = {
 
 
 /* =====================================================
-   IDIOMA ATUAL
+   CURRENT LANGUAGE
 ===================================================== */
 
 let amiriLanguage =
@@ -528,15 +759,21 @@ localStorage.getItem(
 ) || "pt";
 
 
+/* =====================================================
+   TRANSLATION FUNCTION
+===================================================== */
+
 function t(key){
 
   return (
     AMIRI_TRANSLATIONS[
       amiriLanguage
     ]?.[key]
-    ||
-    AMIRI_TRANSLATIONS.pt[key]
-    ||
+    ??
+    AMIRI_TRANSLATIONS.pt[
+      key
+    ]
+    ??
     key
   );
 
@@ -544,53 +781,7 @@ function t(key){
 
 
 /* =====================================================
-   ALTERAR IDIOMA
-===================================================== */
-
-function setAmiriLanguage(language){
-
-  if(
-    !AMIRI_TRANSLATIONS[language]
-  ){
-    return;
-  }
-
-
-  amiriLanguage =
-  language;
-
-
-  localStorage.setItem(
-    "amirijogosLanguage",
-    language
-  );
-
-
-  document.documentElement.lang =
-  language === "pt"
-    ? "pt-PT"
-    : language;
-
-
-  translatePage();
-
-
-  document.dispatchEvent(
-    new CustomEvent(
-      "amirilanguagechange",
-      {
-        detail:{
-          language
-        }
-      }
-    )
-  );
-
-}
-
-
-/* =====================================================
-   TRADUZIR ELEMENTOS
+   TRANSLATE PAGE
 ===================================================== */
 
 function translatePage(){
@@ -604,7 +795,6 @@ function translatePage(){
 
       const key =
       element.dataset.i18n;
-
 
       element.textContent =
       t(key);
@@ -620,12 +810,11 @@ function translatePage(){
   .forEach(
     element=>{
 
-      const key =
-      element.dataset.i18nPlaceholder;
-
-
       element.placeholder =
-      t(key);
+      t(
+        element.dataset
+        .i18nPlaceholder
+      );
 
     }
   );
@@ -651,14 +840,66 @@ function translatePage(){
 
 
 /* =====================================================
+   SET LANGUAGE
+===================================================== */
+
+function setAmiriLanguage(
+  language
+){
+
+  if(
+    !AMIRI_TRANSLATIONS[
+      language
+    ]
+  ){
+    return;
+  }
+
+  amiriLanguage =
+  language;
+
+  localStorage.setItem(
+    "amirijogosLanguage",
+    language
+  );
+
+  document.documentElement.lang =
+  language==="pt"
+  ? "pt-PT"
+  : language;
+
+  translatePage();
+
+  document.dispatchEvent(
+    new CustomEvent(
+      "amirilanguagechange",
+      {
+        detail:{
+          language
+        }
+      }
+    )
+  );
+
+}
+
+
+/* =====================================================
    START
 ===================================================== */
 
-document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
+if(
+  document.readyState===
+  "loading"
+){
 
-    translatePage();
+  document.addEventListener(
+    "DOMContentLoaded",
+    translatePage
+  );
 
-  }
-);
+}else{
+
+  translatePage();
+
+}
