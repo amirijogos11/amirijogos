@@ -1,43 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AMIRIJOGOS</title>
 
 <style>
-
-/* =====================================================
-   CONFIGURAÇÕES
-===================================================== */
-
 :root{
   --bg:#05070c;
-  --panel:#0c121d;
-  --text:#ffffff;
+  --panel:#0d1420;
+  --text:#fff;
   --muted:#9aa7b8;
-
   --red:#ff0033;
   --blue:#2388ff;
   --purple:#7048ff;
   --green:#38d27d;
-
   --border:rgba(255,255,255,.09);
-
-  --sidebar-width:245px;
+  --sidebar:245px;
 }
-
-
-/* =====================================================
-   BASE
-===================================================== */
 
 *{
   box-sizing:border-box;
@@ -49,12 +29,8 @@ html{
 
 body{
   margin:0;
-
-  padding-left:
-    var(--sidebar-width);
-
+  padding-left:var(--sidebar);
   min-height:100vh;
-
   overflow-x:hidden;
 
   font-family:
@@ -62,8 +38,7 @@ body{
     Helvetica,
     sans-serif;
 
-  color:
-    var(--text);
+  color:var(--text);
 
   background:
     radial-gradient(
@@ -74,8 +49,8 @@ body{
     );
 }
 
-button,
-a{
+a,
+button{
   font:inherit;
 }
 
@@ -83,38 +58,12 @@ button{
   cursor:pointer;
 }
 
-
 /* =====================================================
-   SCROLLBAR
-===================================================== */
-
-::-webkit-scrollbar{
-  width:10px;
-}
-
-::-webkit-scrollbar-track{
-  background:#05070c;
-}
-
-::-webkit-scrollbar-thumb{
-  border-radius:20px;
-
-  background:
-    linear-gradient(
-      #ff0033,
-      #7048ff,
-      #2388ff
-    );
-}
-
-
-/* =====================================================
-   FUNDO
+   BACKGROUND
 ===================================================== */
 
 #particleCanvas{
   position:fixed;
-
   inset:0;
 
   width:100%;
@@ -125,7 +74,7 @@ button{
   z-index:-5;
 }
 
-.background-light{
+.bg-glow{
   position:fixed;
 
   inset:0;
@@ -136,24 +85,17 @@ button{
 
   background:
     radial-gradient(
-      circle at 20% 20%,
+      circle at 15% 20%,
       rgba(255,0,50,.11),
       transparent 30%
     ),
 
     radial-gradient(
-      circle at 80% 70%,
+      circle at 85% 70%,
       rgba(35,136,255,.12),
       transparent 34%
-    ),
-
-    radial-gradient(
-      circle at 55% 100%,
-      rgba(112,72,255,.08),
-      transparent 30%
     );
 }
-
 
 /* =====================================================
    SCROLL PROGRESS
@@ -162,27 +104,26 @@ button{
 #scrollProgress{
   position:fixed;
 
+  left:var(--sidebar);
   top:0;
-  left:var(--sidebar-width);
 
-  width:0%;
   height:4px;
+  width:0;
 
   z-index:5000;
 
   background:
     linear-gradient(
       90deg,
-      #ff0033,
-      #7048ff,
-      #2388ff
+      var(--red),
+      var(--purple),
+      var(--blue)
     );
 
   box-shadow:
-    0 0 15px
+    0 0 14px
     rgba(255,0,50,.7);
 }
-
 
 /* =====================================================
    SIDEBAR
@@ -195,17 +136,14 @@ button{
   top:0;
   bottom:0;
 
-  width:
-    var(--sidebar-width);
+  width:var(--sidebar);
 
   z-index:3000;
 
   display:flex;
-
   flex-direction:column;
 
-  padding:
-    18px 14px;
+  padding:18px 14px;
 
   background:
     rgba(5,8,14,.97);
@@ -221,9 +159,6 @@ button{
     15px 0 50px
     rgba(0,0,0,.28);
 }
-
-
-/* LOGO */
 
 .sidebar-brand{
   display:flex;
@@ -263,17 +198,6 @@ button{
     rgba(255,0,50,.35);
 }
 
-.sidebar-brand strong{
-  font-size:16px;
-
-  letter-spacing:.4px;
-}
-
-
-/* =====================================================
-   SIDEBAR LINKS
-===================================================== */
-
 .sidebar-nav{
   display:grid;
 
@@ -290,17 +214,17 @@ button{
   padding:
     12px 13px;
 
+  border:
+    1px solid
+    transparent;
+
   border-radius:11px;
 
   color:#cdd8e7;
 
   text-decoration:none;
 
-  border:
-    1px solid
-    transparent;
-
-  transition:.22s ease;
+  transition:.22s;
 }
 
 .sidebar-nav a:hover{
@@ -313,10 +237,7 @@ button{
     translateX(4px);
 }
 
-
-/* CREATOR */
-
-.sidebar-nav .creator-link{
+.creator-link{
   background:
     linear-gradient(
       135deg,
@@ -325,10 +246,7 @@ button{
     );
 }
 
-
-/* AI COACH */
-
-.sidebar-nav .coach-link{
+.coach-link{
   background:
     linear-gradient(
       135deg,
@@ -337,22 +255,10 @@ button{
     );
 
   border-color:
-    rgba(56,210,125,.10);
+    rgba(56,210,125,.10) !important;
 }
 
-.sidebar-nav .coach-link:hover{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(56,210,125,.31),
-      rgba(112,72,255,.23)
-    );
-}
-
-
-/* GAMES */
-
-.sidebar-nav .games-link{
+.games-link{
   background:
     linear-gradient(
       135deg,
@@ -361,9 +267,8 @@ button{
     );
 }
 
-
 /* =====================================================
-   IDIOMAS
+   LANGUAGE
 ===================================================== */
 
 .sidebar-language{
@@ -377,12 +282,6 @@ button{
 }
 
 .language-title{
-  display:flex;
-
-  align-items:center;
-
-  gap:7px;
-
   padding:
     0 8px 9px;
 
@@ -400,26 +299,17 @@ button{
 
   margin:3px 0;
 
-  display:flex;
-
-  align-items:center;
-
-  gap:8px;
-
   border:
     1px solid
     transparent;
 
   border-radius:9px;
 
-  background:
-    transparent;
+  background:transparent;
 
   color:#cdd8e7;
 
   text-align:left;
-
-  transition:.2s;
 }
 
 .language-button:hover{
@@ -441,9 +331,8 @@ button{
     ) !important;
 }
 
-
 /* =====================================================
-   MOBILE MENU
+   MOBILE SIDEBAR
 ===================================================== */
 
 .sidebar-toggle{
@@ -491,14 +380,11 @@ button{
   display:block;
 }
 
-
 /* =====================================================
-   SECÇÕES
+   SECTIONS
 ===================================================== */
 
 section{
-  position:relative;
-
   min-height:100vh;
 
   display:flex;
@@ -509,6 +395,8 @@ section{
 
   padding:
     90px 6%;
+
+  position:relative;
 }
 
 .section-content{
@@ -520,15 +408,12 @@ section{
   margin:auto;
 }
 
-
 /* =====================================================
    HERO
 ===================================================== */
 
 .hero{
   text-align:center;
-
-  min-height:100vh;
 }
 
 .hero-content{
@@ -545,11 +430,11 @@ section{
 
   display:inline-flex;
 
-  justify-content:center;
-
   align-items:center;
 
-  margin-bottom:23px;
+  justify-content:center;
+
+  margin-bottom:22px;
 }
 
 .logo-wrap::before{
@@ -572,7 +457,7 @@ section{
   filter:blur(20px);
 
   animation:
-    logoGlow
+    glow
     3s ease-in-out
     infinite;
 }
@@ -611,18 +496,12 @@ section{
     rgba(0,0,0,.5);
 
   animation:
-    logoFloat
+    float
     4s ease-in-out
     infinite;
 }
 
-@keyframes logoFloat{
-
-  0%,
-  100%{
-    transform:
-      translateY(0);
-  }
+@keyframes float{
 
   50%{
     transform:
@@ -631,23 +510,20 @@ section{
 
 }
 
-@keyframes logoGlow{
+@keyframes glow{
 
   0%,
   100%{
     transform:scale(.9);
-
     opacity:.6;
   }
 
   50%{
     transform:scale(1.2);
-
     opacity:1;
   }
 
 }
-
 
 /* =====================================================
    YOUTUBE ICON
@@ -669,7 +545,7 @@ section{
 
   border:
     1px solid
-    rgba(255,0,0,.30);
+    rgba(255,0,0,.3);
 
   background:
     rgba(255,0,0,.09);
@@ -684,6 +560,8 @@ section{
 
   width:31px;
   height:22px;
+
+  display:inline-block;
 
   flex-shrink:0;
 
@@ -707,22 +585,15 @@ section{
   transform:
     translate(-50%,-50%);
 
-  width:0;
-  height:0;
-
   border-top:
-    5px solid
-    transparent;
+    5px solid transparent;
 
   border-bottom:
-    5px solid
-    transparent;
+    5px solid transparent;
 
   border-left:
-    8px solid
-    white;
+    8px solid #fff;
 }
-
 
 /* =====================================================
    HERO TEXT
@@ -770,19 +641,9 @@ section{
 
 @keyframes titleGradient{
 
-  0%{
-    background-position:
-      0 50%;
-  }
-
   50%{
     background-position:
       100% 50%;
-  }
-
-  100%{
-    background-position:
-      0 50%;
   }
 
 }
@@ -801,7 +662,7 @@ section{
 }
 
 .hero-description{
-  max-width:760px;
+  max-width:780px;
 
   margin:
     20px auto 30px;
@@ -819,9 +680,8 @@ section{
     );
 }
 
-
 /* =====================================================
-   BOTÕES
+   BUTTONS
 ===================================================== */
 
 .hero-buttons{
@@ -860,10 +720,7 @@ section{
 
   font-weight:900;
 
-  transition:
-    transform .25s ease,
-    filter .25s ease,
-    box-shadow .25s ease;
+  transition:.25s;
 }
 
 .main-button:hover{
@@ -882,10 +739,6 @@ section{
       #ff0033,
       #990017
     );
-
-  box-shadow:
-    0 15px 35px
-    rgba(255,0,40,.2);
 }
 
 .youtube-button{
@@ -913,10 +766,6 @@ section{
       #20ad68,
       #7048ff
     );
-
-  box-shadow:
-    0 15px 35px
-    rgba(56,210,125,.16);
 }
 
 .games-button{
@@ -928,9 +777,8 @@ section{
     );
 }
 
-
 /* =====================================================
-   SECTION HEADERS
+   CONTENT
 ===================================================== */
 
 .section-header{
@@ -961,42 +809,35 @@ section{
     );
 }
 
-.section-header p{
-  max-width:680px;
-
-  margin:auto;
-
-  color:
-    var(--muted);
+.section-header p,
+.showcase p,
+.card p,
+.about-text p,
+.youtube-text p{
+  color:var(--muted);
 
   line-height:1.75;
 }
 
-
-/* =====================================================
-   ABOUT
-===================================================== */
-
-.about-grid{
+.about-grid,
+.youtube-grid{
   display:grid;
 
   grid-template-columns:
-    .85fr 1.15fr;
+    .9fr 1.1fr;
 
-  gap:50px;
+  gap:45px;
 
   align-items:center;
 }
 
 .about-image{
-  display:flex;
-
-  justify-content:center;
+  text-align:center;
 }
 
 .about-image img{
   width:min(
-    350px,
+    340px,
     85vw
   );
 
@@ -1016,8 +857,6 @@ section{
 }
 
 .about-text h3{
-  margin-top:0;
-
   font-size:
     clamp(
       29px,
@@ -1025,16 +864,6 @@ section{
       48px
     );
 }
-
-.about-text p{
-  color:
-    var(--muted);
-
-  line-height:1.8;
-
-  font-size:17px;
-}
-
 
 /* =====================================================
    CARDS
@@ -1050,13 +879,9 @@ section{
 }
 
 .card{
-  position:relative;
-
   min-height:260px;
 
   padding:26px;
-
-  overflow:hidden;
 
   border-radius:20px;
 
@@ -1075,7 +900,7 @@ section{
     0 20px 60px
     rgba(0,0,0,.35);
 
-  transition:.35s ease;
+  transition:.35s;
 }
 
 .card:hover{
@@ -1099,23 +924,11 @@ section{
     0 0 10px;
 }
 
-.card p{
-  color:
-    var(--muted);
-
-  line-height:1.7;
-}
-
-
 /* =====================================================
-   SHOWCASES
+   SHOWCASE
 ===================================================== */
 
 .showcase{
-  position:relative;
-
-  overflow:hidden;
-
   padding:
     clamp(
       35px,
@@ -1166,44 +979,27 @@ section{
 }
 
 .showcase h2{
-  margin:
-    10px 0 15px;
-
   font-size:
     clamp(
       38px,
       7vw,
       72px
     );
+
+  margin:
+    10px 0 15px;
 }
 
 .showcase p{
-  max-width:700px;
+  max-width:720px;
 
   margin:
     0 auto 30px;
-
-  color:
-    var(--muted);
-
-  line-height:1.75;
 }
-
 
 /* =====================================================
    YOUTUBE
 ===================================================== */
-
-.youtube-grid{
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:45px;
-
-  align-items:center;
-}
 
 .youtube-preview{
   aspect-ratio:16/9;
@@ -1228,16 +1024,14 @@ section{
     rgba(255,0,40,.2);
 }
 
-.youtube-preview
-.youtube-icon{
+.youtube-preview .youtube-icon{
   width:175px;
   height:120px;
 
   border-radius:28px;
 }
 
-.youtube-preview
-.youtube-icon::after{
+.youtube-preview .youtube-icon::after{
   border-top-width:25px;
 
   border-bottom-width:25px;
@@ -1246,26 +1040,16 @@ section{
 }
 
 .youtube-text h2{
-  margin:
-    0 0 17px;
-
   font-size:
     clamp(
       35px,
       6vw,
       62px
     );
+
+  margin:
+    0 0 17px;
 }
-
-.youtube-text p{
-  color:
-    var(--muted);
-
-  line-height:1.8;
-
-  font-size:17px;
-}
-
 
 /* =====================================================
    REVEAL
@@ -1289,23 +1073,20 @@ section{
 .reveal.visible{
   opacity:1;
 
-  transform:
-    translateY(0)
-    scale(1);
+  transform:none;
 
-  filter:blur(0);
+  filter:none;
 }
-
 
 /* =====================================================
    FOOTER
 ===================================================== */
 
 footer{
+  text-align:center;
+
   padding:
     50px 20px;
-
-  text-align:center;
 
   border-top:
     1px solid
@@ -1330,9 +1111,8 @@ footer img{
     #ff1744;
 }
 
-
 /* =====================================================
-   MOBILE
+   RESPONSIVE
 ===================================================== */
 
 @media(max-width:1050px){
@@ -1343,7 +1123,6 @@ footer img{
   }
 
 }
-
 
 @media(max-width:850px){
 
@@ -1385,13 +1164,11 @@ footer img{
 
 }
 
-
 @media(max-width:650px){
 
   section{
     padding:
-      90px 20px
-      70px;
+      90px 20px 70px;
   }
 
   .hero h1{
@@ -1416,29 +1193,16 @@ footer img{
   }
 
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     FUNDO
-===================================================== -->
-
 <canvas id="particleCanvas"></canvas>
 
-<div class="background-light"></div>
+<div class="bg-glow"></div>
 
 <div id="scrollProgress"></div>
-
-
-<!-- =====================================================
-     MENU MOBILE
-===================================================== -->
 
 <button
   id="sidebarToggle"
@@ -1453,186 +1217,127 @@ footer img{
   class="mobile-overlay"
 ></div>
 
-
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
-
 <aside
   class="site-sidebar"
   id="siteSidebar"
 >
 
-
 <a
   href="#inicio"
   class="sidebar-brand"
 >
+  <img
+    src="perfil.jpg"
+    alt="AMIRIJOGOS"
+  >
 
-<img
-  src="perfil.jpg"
-  alt="AMIRIJOGOS"
->
-
-<strong>
-AMIRIJOGOS
-</strong>
-
+  <strong>
+    AMIRIJOGOS
+  </strong>
 </a>
-
 
 <nav class="sidebar-nav">
 
-
 <a href="#inicio">
-
 🏠
-
 <span data-i18n="home">
 Início
 </span>
-
 </a>
 
-
 <a href="#sobre">
-
 👤
-
 <span data-i18n="about">
 Sobre
 </span>
-
 </a>
 
-
 <a href="#conteudo">
-
 ✨
-
 <span data-i18n="content">
 Conteúdo
 </span>
-
 </a>
-
 
 <a
   href="https://www.youtube.com/@amirijogos"
   target="_blank"
   rel="noopener noreferrer"
 >
-
 ▶️
-
 <span data-i18n="youtube">
 YouTube
 </span>
-
 </a>
-
 
 <a
   href="creator.html"
   class="creator-link"
 >
-
 🎬
-
 <span data-i18n="creator">
 Creator
 </span>
-
 </a>
 
-
 <a
-  href="creator.html?tool=coach"
+  href="coach.html"
   class="coach-link"
 >
-
 🤖
-
 <span data-i18n="aiCoach">
 AI Coach
 </span>
-
 </a>
-
 
 <a
   href="games.html"
   class="games-link"
 >
-
 🎮
-
 <span data-i18n="games">
 Jogos
 </span>
-
 </a>
-
 
 </nav>
 
-
-<!-- =====================================================
-     LANGUAGE
-===================================================== -->
-
 <div class="sidebar-language">
 
-
 <div class="language-title">
-
 🌐
-
 <span data-i18n="language">
 Idioma
 </span>
-
 </div>
-
 
 <button
   class="language-button"
   data-language="pt"
   onclick="setAmiriLanguage('pt')"
 >
-
 🇵🇹 Português
-
 </button>
-
 
 <button
   class="language-button"
   data-language="en"
   onclick="setAmiriLanguage('en')"
 >
-
 🇬🇧 English
-
 </button>
-
 
 <button
   class="language-button"
   data-language="es"
   onclick="setAmiriLanguage('es')"
 >
-
 🇪🇸 Español
-
 </button>
-
 
 </div>
 
-
 </aside>
-
 
 <!-- =====================================================
      HERO
@@ -1643,12 +1348,9 @@ Idioma
   id="inicio"
 >
 
-
 <div class="hero-content">
 
-
 <div class="logo-wrap">
-
 
 <img
   src="perfil.jpg"
@@ -1656,12 +1358,9 @@ Idioma
   alt="AMIRIJOGOS"
 >
 
-
 </div>
 
-
 <br>
-
 
 <div class="youtube-badge">
 
@@ -1671,38 +1370,27 @@ AMIRIJOGOS • YouTube
 
 </div>
 
-
 <h1 data-i18n="heroTitle">
-
 Sê um YouTuber como eu
-
 </h1>
-
 
 <div
   class="hero-subtitle"
   data-i18n="heroSubtitle"
 >
-
 Cria. Edita. Publica.
-
 </div>
-
 
 <p
   class="hero-description"
   data-i18n="heroDescription"
 >
-
-Cria o teu próprio canal,
-junta-te ao AMIRIJOGOS
-e começa a criar vídeos e Shorts.
-
+Cria o teu canal, junta-te ao AMIRIJOGOS,
+cria vídeos e Shorts e melhora no Rocket League
+com o AI Coach.
 </p>
 
-
 <div class="hero-buttons">
-
 
 <a
   href="https://www.youtube.com/create_channel"
@@ -1710,17 +1398,11 @@ e começa a criar vídeos e Shorts.
   rel="noopener noreferrer"
   class="main-button red-button"
 >
-
 ➕
-
 <span data-i18n="createChannel">
-
 Criar o meu canal
-
 </span>
-
 </a>
-
 
 <a
   href="https://www.youtube.com/@amirijogos?sub_confirmation=1"
@@ -1732,156 +1414,101 @@ Criar o meu canal
 <span class="youtube-icon"></span>
 
 <span data-i18n="joinChannel">
-
 Aderir ao meu canal
-
 </span>
 
 </a>
-
 
 <a
   href="creator.html"
   class="main-button creator-button"
 >
-
 🎬
-
 <span data-i18n="createVideo">
-
 Criar vídeo ou Short
-
 </span>
-
 </a>
-
 
 <a
-  href="creator.html?tool=coach"
+  href="coach.html"
   class="main-button coach-button"
 >
-
 🤖
-
-<span data-i18n="aiCoach">
-
-AI Coach
-
+<span data-i18n="openCoach">
+Abrir AI Coach
 </span>
-
 </a>
-
 
 <a
   href="games.html"
   class="main-button games-button"
 >
-
 🎮
-
 <span data-i18n="playGames">
-
 Jogar
-
 </span>
-
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </section>
 
-
 <!-- =====================================================
-     SOBRE
+     ABOUT
 ===================================================== -->
 
 <section id="sobre">
 
-
 <div class="section-content">
-
 
 <div class="section-header reveal">
 
-
 <div class="section-label">
-
 AMIRIJOGOS
-
 </div>
-
 
 <h2 data-i18n="welcome">
-
-Bem-vindo ao meu mundo
-
+Bem-vindo ao AMIRIJOGOS
 </h2>
 
+<p data-i18n="welcomeText">
+Gaming, YouTube, criação de conteúdo,
+jogos e inteligência artificial num só site.
+</p>
 
 </div>
-
 
 <div class="about-grid">
 
-
 <div class="about-image reveal">
-
 
 <img
   src="perfil.jpg"
   alt="AMIRIJOGOS"
 >
 
-
 </div>
-
 
 <div class="about-text reveal">
 
-
-<h3 data-i18n="gamingCreativity">
-
-Gaming + YouTube + criatividade
-
+<h3>
+Gaming + YouTube + Creator + AI
 </h3>
 
-
-<p>
-
-🎮 Gaming, criação de conteúdo,
-vídeos, Shorts, jogos
-e projetos interativos.
-
+<p data-i18n="welcomeText">
+Gaming, YouTube, criação de conteúdo,
+jogos e inteligência artificial num só site.
 </p>
 
-
-<p>
-
-No AMIRIJOGOS podes jogar,
-acompanhar o meu conteúdo,
-criar os teus próprios vídeos
-e pedir ajuda ao AI Coach.
-
-</p>
-
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
 
 </section>
-
 
 <!-- =====================================================
      CONTEÚDO
@@ -1889,149 +1516,91 @@ e pedir ajuda ao AI Coach.
 
 <section id="conteudo">
 
-
 <div class="section-content">
-
 
 <div class="section-header reveal">
 
-
 <div class="section-label">
-
 AMIRIJOGOS
-
 </div>
 
-
-<h2 data-i18n="content">
-
-Conteúdo
-
+<h2 data-i18n="contentTitle">
+Tudo num só lugar
 </h2>
 
-
 </div>
-
 
 <div class="cards">
 
-
-<div class="card reveal">
-
+<article class="card reveal">
 
 <div class="card-icon">
 🎮
 </div>
 
-
-<h3>
+<h3 data-i18n="gamingTitle">
 Gaming
 </h3>
 
-
-<p>
-
-Jogos, desafios,
-partidas e experiências
-AMIRIJOGOS.
-
+<p data-i18n="gamingText">
+Conteúdo gaming, desafios e experiências AMIRIJOGOS.
 </p>
 
+</article>
 
-</div>
-
-
-<div class="card reveal">
-
+<article class="card reveal">
 
 <div class="card-icon">
 🎬
 </div>
 
-
 <h3 data-i18n="creator">
-
 Creator
-
 </h3>
 
-
-<p>
-
-Cria vídeos e Shorts,
-adiciona texto,
-filtros, memes
-e outros efeitos.
-
+<p data-i18n="creatorCardText">
+Cria vídeos e Shorts com ferramentas de edição e memes.
 </p>
 
+</article>
 
-</div>
-
-
-<div class="card reveal">
-
+<article class="card reveal">
 
 <div class="card-icon">
 🤖
 </div>
 
-
 <h3 data-i18n="aiCoach">
-
 AI Coach
-
 </h3>
 
-
-<p>
-
-Usa inteligência artificial
-para receber ideias,
-títulos, roteiros,
-descrições e memes.
-
+<p data-i18n="coachCardText">
+Recebe ajuda personalizada para melhorar no Rocket League.
 </p>
 
+</article>
 
-</div>
-
-
-<div class="card reveal">
-
+<article class="card reveal">
 
 <div class="card-icon">
 ▶️
 </div>
 
-
 <h3 data-i18n="youtube">
-
 YouTube
-
 </h3>
 
-
-<p>
-
-Acompanha os vídeos,
-Shorts e novidades
-do canal AMIRIJOGOS.
-
+<p data-i18n="youtubeCardText">
+Acompanha os vídeos e Shorts do canal AMIRIJOGOS.
 </p>
 
+</article>
 
 </div>
 
-
 </div>
-
-
-</div>
-
 
 </section>
-
 
 <!-- =====================================================
      CREATOR
@@ -2039,121 +1608,80 @@ do canal AMIRIJOGOS.
 
 <section id="creator">
 
-
 <div class="section-content">
-
 
 <div class="showcase creator-showcase reveal">
 
-
 <div class="section-label">
-
 AMIRIJOGOS CREATOR
-
 </div>
 
-
 <h2 data-i18n="creatorTitle">
-
 Cria os teus vídeos
-
 </h2>
 
-
 <p data-i18n="creatorDescription">
-
-Cria vídeos e Shorts diretamente
-no navegador.
-
+Abre o AMIRIJOGOS Creator
+para editar vídeos e Shorts diretamente no navegador.
 </p>
-
 
 <a
   href="creator.html"
   class="main-button creator-button"
 >
-
 🎬
-
 <span data-i18n="openCreator">
-
 Abrir AMIRIJOGOS Creator
-
 </span>
-
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </section>
 
-
 <!-- =====================================================
-     AI COACH
+     COACH
 ===================================================== -->
 
 <section id="coach">
 
-
 <div class="section-content">
-
 
 <div class="showcase coach-showcase reveal">
 
-
 <div class="section-label">
-
 GEMINI AI
-
 </div>
-
 
 <h2>
-
 🤖
-
-<span data-i18n="aiCoach">
-
-AI Coach
-
+<span data-i18n="coachHomeTitle">
+Rocket League AI Coach
 </span>
-
 </h2>
 
-
-<p>
-
-Pede ideias para vídeos,
-títulos, descrições,
-roteiros para Shorts,
-hooks e sugestões de memes.
-
+<p data-i18n="coachHomeText">
+Escolhe o teu rank, os teus controlos e pede ajuda
+para aprender mecânicas, corrigir erros e treinar melhor.
 </p>
 
-
 <a
-  href="creator.html?tool=coach"
+  href="coach.html"
   class="main-button coach-button"
 >
-
-🤖 Abrir AI Coach
-
+🤖
+<span data-i18n="openCoach">
+Abrir AI Coach
+</span>
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </section>
-
 
 <!-- =====================================================
      GAMES
@@ -2161,68 +1689,41 @@ hooks e sugestões de memes.
 
 <section id="jogos">
 
-
 <div class="section-content">
-
 
 <div class="showcase games-showcase reveal">
 
-
 <div class="section-label">
-
 AMIRIJOGOS GAMES
-
 </div>
 
-
 <h2>
-
 🎮
-
-<span data-i18n="games">
-
-Jogos
-
+<span data-i18n="gamesTitle">
+AMIRIJOGOS Games
 </span>
-
 </h2>
 
-
-<p>
-
-Joga AMIRIJOGOS Clicker,
-ganha Coins,
-faz Rebirths,
-ganha Credits
-e entra no Battle.
-
+<p data-i18n="gamesText">
+Joga Clicker e Battle,
+ganha Coins, Credits e faz Rebirths.
 </p>
-
 
 <a
   href="games.html"
   class="main-button games-button"
 >
-
 🎮
-
 <span data-i18n="playGames">
-
 Jogar
-
 </span>
-
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </section>
-
 
 <!-- =====================================================
      YOUTUBE
@@ -2230,50 +1731,30 @@ Jogar
 
 <section id="youtube">
 
-
 <div class="section-content">
-
 
 <div class="youtube-grid">
 
-
 <div class="youtube-preview reveal">
 
-
-<div class="youtube-icon"></div>
-
+<span class="youtube-icon"></span>
 
 </div>
-
 
 <div class="youtube-text reveal">
 
-
 <div class="section-label">
-
 YOUTUBE
-
 </div>
 
-
-<h2>
-
-AMIRIJOGOS
-
+<h2 data-i18n="youtubeTitle">
+Junta-te ao AMIRIJOGOS
 </h2>
 
-
-<p>
-
+<p data-i18n="youtubeText">
 Vê os meus vídeos,
-acompanha os próximos conteúdos
-e junta-te ao canal.
-
+acompanha os próximos Shorts e adere ao canal.
 </p>
-
-
-<div class="hero-buttons">
-
 
 <a
   href="https://www.youtube.com/@amirijogos?sub_confirmation=1"
@@ -2285,111 +1766,61 @@ e junta-te ao canal.
 <span class="youtube-icon"></span>
 
 <span data-i18n="joinChannel">
-
 Aderir ao meu canal
-
 </span>
 
 </a>
 
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
-
-</div>
-
 
 </section>
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
 <footer>
-
 
 <img
   src="perfil.jpg"
   alt="AMIRIJOGOS"
 >
 
-
 <p>
-
 <strong>
 AMIRIJOGOS
 </strong>
-
 </p>
 
-
-<p>
-
-🎮 Gaming • ▶ YouTube • 🎬 Creator • 🤖 AI Coach
-
+<p data-i18n="footerText">
+Gaming • YouTube • Creator • AI Coach • Jogos
 </p>
 
-
 <p>
-
 © 2026 AMIRIJOGOS
-
 </p>
-
 
 </footer>
 
-
-<!-- =====================================================
-     JAVASCRIPT DO INDEX
-===================================================== -->
-
 <script>
-
 "use strict";
 
-
-/* =====================================================
-   SIDEBAR MOBILE
-===================================================== */
+/* SIDEBAR */
 
 const sidebar =
 document.getElementById(
   "siteSidebar"
 );
 
-
-const sidebarToggle =
+const toggle =
 document.getElementById(
   "sidebarToggle"
 );
 
-
-const mobileOverlay =
+const overlay =
 document.getElementById(
   "mobileOverlay"
 );
-
-
-function openSidebar(){
-
-  sidebar.classList.add(
-    "open"
-  );
-
-  mobileOverlay.classList.add(
-    "show"
-  );
-
-}
-
 
 function closeSidebar(){
 
@@ -2397,40 +1828,34 @@ function closeSidebar(){
     "open"
   );
 
-  mobileOverlay.classList.remove(
+  overlay.classList.remove(
     "show"
   );
 
 }
 
-
-sidebarToggle.addEventListener(
+toggle.addEventListener(
   "click",
   ()=>{
 
-    if(
+    sidebar.classList.toggle(
+      "open"
+    );
+
+    overlay.classList.toggle(
+      "show",
       sidebar.classList.contains(
         "open"
       )
-    ){
-
-      closeSidebar();
-
-    }else{
-
-      openSidebar();
-
-    }
+    );
 
   }
 );
 
-
-mobileOverlay.addEventListener(
+overlay.addEventListener(
   "click",
   closeSidebar
 );
-
 
 document
 .querySelectorAll(
@@ -2444,7 +1869,7 @@ document
       ()=>{
 
         if(
-          window.innerWidth<=850
+          innerWidth<=850
         ){
 
           closeSidebar();
@@ -2457,10 +1882,7 @@ document
   }
 );
 
-
-/* =====================================================
-   SMOOTH SCROLL
-===================================================== */
+/* SMOOTH SCROLL */
 
 document
 .querySelectorAll(
@@ -2473,38 +1895,23 @@ document
       "click",
       event=>{
 
-        const href =
-        link.getAttribute(
-          "href"
-        );
-
-
-        if(
-          !href ||
-          href==="#"
-        ){
-          return;
-        }
-
-
         const target =
         document.querySelector(
-          href
+          link.getAttribute(
+            "href"
+          )
         );
-
 
         if(!target){
           return;
         }
 
-
         event.preventDefault();
 
-
-        smoothScrollTo(
-          target.offsetTop,
-          850
-        );
+        target.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
 
       }
     );
@@ -2512,136 +1919,42 @@ document
   }
 );
 
-
-function smoothScrollTo(
-  target,
-  duration
-){
-
-  const start =
-  window.scrollY;
-
-
-  const distance =
-  target-start;
-
-
-  let startTime=null;
-
-
-  function ease(t){
-
-    return t<.5
-
-    ? 4*t*t*t
-
-    : 1-
-      Math.pow(
-        -2*t+2,
-        3
-      )/2;
-
-  }
-
-
-  function animation(time){
-
-    if(startTime===null){
-
-      startTime=time;
-
-    }
-
-
-    const progress =
-    Math.min(
-      (
-        time-startTime
-      )/
-      duration,
-      1
-    );
-
-
-    window.scrollTo(
-      0,
-      start+
-      distance*
-      ease(progress)
-    );
-
-
-    if(progress<1){
-
-      requestAnimationFrame(
-        animation
-      );
-
-    }
-
-  }
-
-
-  requestAnimationFrame(
-    animation
-  );
-
-}
-
-
-/* =====================================================
-   SCROLL PROGRESS
-===================================================== */
+/* PROGRESS */
 
 const progress =
 document.getElementById(
   "scrollProgress"
 );
 
+function updateProgress(){
 
-function updateScrollProgress(){
-
-  const maximum =
-  document.documentElement.scrollHeight-
-  window.innerHeight;
-
-
-  const percent =
-  maximum>0
-
-  ? (
-      window.scrollY/
-      maximum
-    )*100
-
-  : 0;
-
+  const max =
+    document.documentElement.scrollHeight -
+    innerHeight;
 
   progress.style.width =
-  percent+"%";
+    (
+      max>0
+      ? scrollY/max*100
+      : 0
+    )+"%";
 
 }
 
-
-window.addEventListener(
+addEventListener(
   "scroll",
-  updateScrollProgress,
+  updateProgress,
   {
     passive:true
   }
 );
 
+updateProgress();
 
-updateScrollProgress();
-
-
-/* =====================================================
-   REVEAL
-===================================================== */
+/* REVEAL */
 
 const observer =
 new IntersectionObserver(
-
   entries=>{
 
     entries.forEach(
@@ -2651,11 +1964,9 @@ new IntersectionObserver(
           entry.isIntersecting
         ){
 
-          entry.target
-          .classList.add(
+          entry.target.classList.add(
             "visible"
           );
-
 
           observer.unobserve(
             entry.target
@@ -2667,13 +1978,10 @@ new IntersectionObserver(
     );
 
   },
-
   {
     threshold:.12
   }
-
 );
-
 
 document
 .querySelectorAll(
@@ -2689,468 +1997,226 @@ document
   }
 );
 
-
-/* =====================================================
-   PARTICULAS
-===================================================== */
+/* PARTICULAS */
 
 const particleCanvas =
 document.getElementById(
   "particleCanvas"
 );
 
-
 const ctx =
 particleCanvas.getContext(
   "2d"
 );
 
-
-const channelLogo =
+const logo =
 new Image();
 
-
-channelLogo.src =
+logo.src =
 "perfil.jpg";
 
+let cw=0;
 
-let canvasWidth=0;
-
-let canvasHeight=0;
+let ch=0;
 
 let particles=[];
 
-
-/* =====================================================
-   RECTÂNGULO ARREDONDADO
-===================================================== */
-
 function roundedRect(
-  context,
   x,
   y,
-  width,
-  height,
-  radius
+  w,
+  h,
+  r
 ){
 
-  const r =
-  Math.min(
-    radius,
-    width/2,
-    height/2
-  );
+  ctx.beginPath();
 
-
-  context.beginPath();
-
-
-  context.moveTo(
+  ctx.moveTo(
     x+r,
     y
   );
 
-
-  context.lineTo(
-    x+width-r,
+  ctx.lineTo(
+    x+w-r,
     y
   );
 
-
-  context.quadraticCurveTo(
-    x+width,
+  ctx.quadraticCurveTo(
+    x+w,
     y,
-    x+width,
+    x+w,
     y+r
   );
 
-
-  context.lineTo(
-    x+width,
-    y+height-r
+  ctx.lineTo(
+    x+w,
+    y+h-r
   );
 
-
-  context.quadraticCurveTo(
-    x+width,
-    y+height,
-    x+width-r,
-    y+height
+  ctx.quadraticCurveTo(
+    x+w,
+    y+h,
+    x+w-r,
+    y+h
   );
 
-
-  context.lineTo(
+  ctx.lineTo(
     x+r,
-    y+height
+    y+h
   );
 
-
-  context.quadraticCurveTo(
+  ctx.quadraticCurveTo(
     x,
-    y+height,
+    y+h,
     x,
-    y+height-r
+    y+h-r
   );
 
-
-  context.lineTo(
+  ctx.lineTo(
     x,
     y+r
   );
 
-
-  context.quadraticCurveTo(
+  ctx.quadraticCurveTo(
     x,
     y,
     x+r,
     y
   );
 
-
-  context.closePath();
+  ctx.closePath();
 
 }
 
-
-/* =====================================================
-   DESENHAR YOUTUBE
-===================================================== */
-
-function drawYouTube(
-  x,
-  y,
-  size,
-  opacity,
-  rotation
-){
+function drawYT(p){
 
   ctx.save();
 
-
   ctx.globalAlpha =
-  opacity;
-
+  p.o;
 
   ctx.translate(
-    x,
-    y
+    p.x,
+    p.y
   );
-
 
   ctx.rotate(
-    rotation
+    p.r
   );
 
-
   const width =
-  size;
-
+  p.s;
 
   const height =
-  size*.68;
-
+  p.s*.68;
 
   roundedRect(
-    ctx,
     -width/2,
     -height/2,
     width,
     height,
-    size*.17
+    p.s*.17
   );
 
-
-  ctx.fillStyle =
+  ctx.fillStyle=
   "#ff0000";
 
-
   ctx.fill();
-
-
-  ctx.fillStyle =
-  "#ffffff";
-
 
   ctx.beginPath();
 
-
   ctx.moveTo(
-    -size*.08,
-    -size*.16
+    -p.s*.08,
+    -p.s*.16
   );
 
-
   ctx.lineTo(
-    size*.20,
+    p.s*.20,
     0
   );
 
-
   ctx.lineTo(
-    -size*.08,
-    size*.16
+    -p.s*.08,
+    p.s*.16
   );
-
 
   ctx.closePath();
 
+  ctx.fillStyle=
+  "#fff";
 
   ctx.fill();
-
 
   ctx.restore();
 
 }
 
-
-/* =====================================================
-   PARTICLE
-===================================================== */
-
-class Particle{
-
-
-  constructor(index){
-
-    this.index =
-    index;
-
-
-    this.reset(
-      true
-    );
-
-  }
-
-
-  reset(randomY){
-
-    this.x =
-    Math.random()*
-    canvasWidth;
-
-
-    this.y =
-    randomY
-
-    ? Math.random()*
-      canvasHeight
-
-    : canvasHeight+
-      70;
-
-
-    this.size =
-    22+
-    Math.random()*34;
-
-
-    this.speed =
-    .10+
-    Math.random()*.24;
-
-
-    this.sideSpeed =
-    (
-      Math.random()-.5
-    )*.12;
-
-
-    this.rotation =
-    Math.random()*
-    Math.PI*2;
-
-
-    this.rotationSpeed =
-    (
-      Math.random()-.5
-    )*.002;
-
-
-    this.opacity =
-    .06+
-    Math.random()*.14;
-
-
-    this.type =
-    this.index%2===0
-
-    ? "youtube"
-
-    : "channel";
-
-  }
-
-
-  update(){
-
-    this.y -=
-    this.speed;
-
-
-    this.x +=
-    this.sideSpeed;
-
-
-    this.rotation +=
-    this.rotationSpeed;
-
-
-    if(
-      this.y<
-      -this.size*2
-    ){
-
-      this.reset(
-        false
-      );
-
-    }
-
-
-    if(
-      this.x<
-      -this.size
-    ){
-
-      this.x =
-      canvasWidth+
-      this.size;
-
-    }
-
-
-    if(
-      this.x>
-      canvasWidth+
-      this.size
-    ){
-
-      this.x =
-      -this.size;
-
-    }
-
-  }
-
-
-  draw(){
-
-    if(
-      this.type===
-      "youtube"
-    ){
-
-      drawYouTube(
-        this.x,
-        this.y,
-        this.size,
-        this.opacity,
-        this.rotation
-      );
-
-
-      return;
-
-    }
-
-
-    ctx.save();
-
-
-    ctx.globalAlpha =
-    this.opacity;
-
-
-    ctx.translate(
-      this.x,
-      this.y
-    );
-
-
-    ctx.rotate(
-      this.rotation
-    );
-
-
-    ctx.beginPath();
-
-
-    ctx.arc(
-      0,
-      0,
-      this.size/2,
-      0,
-      Math.PI*2
-    );
-
-
-    ctx.clip();
-
-
-    if(
-      channelLogo.complete &&
-      channelLogo.naturalWidth>0
-    ){
-
-      ctx.drawImage(
-        channelLogo,
-
-        -this.size/2,
-        -this.size/2,
-
-        this.size,
-        this.size
-      );
-
-    }
-
-
-    ctx.restore();
-
-  }
+function reset(
+  particle,
+  randomY=true
+){
+
+  particle.x =
+  Math.random()*cw;
+
+  particle.y =
+  randomY
+  ? Math.random()*ch
+  : ch+60;
+
+  particle.s =
+  22+
+  Math.random()*34;
+
+  particle.v =
+  .1+
+  Math.random()*.24;
+
+  particle.vx =
+  (
+    Math.random()-.5
+  )*.12;
+
+  particle.r =
+  Math.random()*
+  Math.PI*2;
+
+  particle.rv =
+  (
+    Math.random()-.5
+  )*.002;
+
+  particle.o =
+  .06+
+  Math.random()*.14;
 
 }
 
+function resize(){
 
-/* =====================================================
-   RESIZE
-===================================================== */
+  cw=
+  innerWidth;
 
-function resizeCanvas(){
-
-  canvasWidth =
-  window.innerWidth;
-
-
-  canvasHeight =
-  window.innerHeight;
-
+  ch=
+  innerHeight;
 
   const ratio =
   Math.min(
-    window.devicePixelRatio||1,
+    devicePixelRatio||1,
     2
   );
 
+  particleCanvas.width=
+  cw*ratio;
 
-  particleCanvas.width =
-  canvasWidth*
-  ratio;
+  particleCanvas.height=
+  ch*ratio;
 
+  particleCanvas.style.width=
+  cw+"px";
 
-  particleCanvas.height =
-  canvasHeight*
-  ratio;
-
-
-  particleCanvas.style.width =
-  canvasWidth+"px";
-
-
-  particleCanvas.style.height =
-  canvasHeight+"px";
-
+  particleCanvas.style.height=
+  ch+"px";
 
   ctx.setTransform(
     ratio,
@@ -3161,97 +2227,142 @@ function resizeCanvas(){
     0
   );
 
-
-  createParticles();
-
-}
-
-
-/* =====================================================
-   CREATE PARTICLES
-===================================================== */
-
-function createParticles(){
-
-  const amount =
-  canvasWidth<700
-  ? 18
-  : 38;
-
-
   particles =
   Array.from(
-
     {
-      length:amount
+      length:
+      cw<700
+      ? 18
+      : 38
     },
+    (_,index)=>{
 
-    (
-      _,
-      index
-    )=>
+      const particle={
+        type:
+        index%2
+        ? "channel"
+        : "youtube"
+      };
 
-    new Particle(
-      index
-    )
+      reset(
+        particle,
+        true
+      );
 
-  );
-
-}
-
-
-/* =====================================================
-   LOOP
-===================================================== */
-
-function particleLoop(){
-
-  ctx.clearRect(
-    0,
-    0,
-    canvasWidth,
-    canvasHeight
-  );
-
-
-  particles.forEach(
-    particle=>{
-
-      particle.update();
-
-      particle.draw();
+      return particle;
 
     }
   );
 
+}
+
+function loop(){
+
+  ctx.clearRect(
+    0,
+    0,
+    cw,
+    ch
+  );
+
+  for(
+    const particle
+    of particles
+  ){
+
+    particle.y-=
+    particle.v;
+
+    particle.x+=
+    particle.vx;
+
+    particle.r+=
+    particle.rv;
+
+    if(
+      particle.y<
+      -particle.s*2
+    ){
+
+      reset(
+        particle,
+        false
+      );
+
+    }
+
+    if(
+      particle.type===
+      "youtube"
+    ){
+
+      drawYT(
+        particle
+      );
+
+    }else if(
+      logo.complete &&
+      logo.naturalWidth
+    ){
+
+      ctx.save();
+
+      ctx.globalAlpha=
+      particle.o;
+
+      ctx.translate(
+        particle.x,
+        particle.y
+      );
+
+      ctx.rotate(
+        particle.r
+      );
+
+      ctx.beginPath();
+
+      ctx.arc(
+        0,
+        0,
+        particle.s/2,
+        0,
+        Math.PI*2
+      );
+
+      ctx.clip();
+
+      ctx.drawImage(
+        logo,
+        -particle.s/2,
+        -particle.s/2,
+        particle.s,
+        particle.s
+      );
+
+      ctx.restore();
+
+    }
+
+  }
 
   requestAnimationFrame(
-    particleLoop
+    loop
   );
 
 }
 
-
-window.addEventListener(
+addEventListener(
   "resize",
-  resizeCanvas
+  resize
 );
 
+resize();
 
-resizeCanvas();
-
-particleLoop();
+loop();
 
 </script>
 
-
-<!-- =====================================================
-     IDIOMAS
-===================================================== -->
-
 <script src="language.js"></script>
 
-
 </body>
-
 </html>
