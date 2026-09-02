@@ -1,171 +1,272 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AMIRIJOGOS Creator</title>
 
 <style>
-
-*{
-  box-sizing:border-box;
-}
-
 :root{
+  --sidebar-width:245px;
   --bg:#05070b;
   --panel:#0d121c;
   --panel2:#111927;
   --blue:#2388ff;
   --red:#ff234c;
   --purple:#764cff;
+  --green:#38d27d;
   --text:#fff;
   --muted:#9aa7b8;
+  --border:rgba(255,255,255,.08);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
   margin:0;
-
-  font-family:
-  Arial,
-  Helvetica,
-  sans-serif;
-
-  background:#05070b;
-
-  color:white;
-
   min-height:100vh;
+  padding-left:var(--sidebar-width);
+  overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#05070b;
+  color:#fff;
 }
 
-
-/* ===============================
-   TOP BAR
-================================ */
-
-.topbar{
-  height:68px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:12px;
-
-  padding:0 20px;
-
-  background:#090d14;
-
-  border-bottom:
-  1px solid rgba(255,255,255,.08);
-
-  position:sticky;
-
-  top:0;
-
-  z-index:100;
+button,
+input,
+select{
+  font:inherit;
 }
 
-.brand{
+button{
+  cursor:pointer;
+}
+
+/* ==========================
+   SITE SIDEBAR
+========================== */
+
+.site-sidebar{
+  position:fixed;
+  inset:0 auto 0 0;
+  width:var(--sidebar-width);
+  z-index:3000;
   display:flex;
+  flex-direction:column;
+  padding:18px 14px;
+  background:rgba(5,8,14,.97);
+  backdrop-filter:blur(18px);
+  border-right:1px solid var(--border);
+  box-shadow:15px 0 50px #0005;
+}
 
+.sidebar-brand{
+  display:flex;
   align-items:center;
+  gap:11px;
+  padding:4px 5px 20px;
+  margin-bottom:12px;
+  border-bottom:1px solid var(--border);
+  color:white;
+  text-decoration:none;
+}
 
-  gap:10px;
+.sidebar-brand img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #ff1744;
+}
 
+.sidebar-nav{
+  display:grid;
+  gap:6px;
+}
+
+.sidebar-nav a{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:12px 13px;
+  color:#cdd8e7;
+  text-decoration:none;
+  border:1px solid transparent;
+  border-radius:11px;
+  transition:.2s;
+}
+
+.sidebar-nav a:hover{
+  color:white;
+  background:#ffffff12;
+  transform:translateX(4px);
+}
+
+.creator-link{
+  background:linear-gradient(
+    135deg,
+    rgba(112,72,255,.28),
+    rgba(35,136,255,.15)
+  );
+}
+
+.coach-link{
+  background:linear-gradient(
+    135deg,
+    rgba(56,210,125,.18),
+    rgba(112,72,255,.12)
+  );
+}
+
+.games-link{
+  background:linear-gradient(
+    135deg,
+    rgba(35,136,255,.20),
+    rgba(35,136,255,.07)
+  );
+}
+
+/* LANG */
+
+.sidebar-language{
+  margin-top:auto;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+}
+
+.language-title{
+  padding:0 8px 9px;
+  color:#8997aa;
+  font-size:12px;
   font-weight:900;
 }
 
-.brand img{
+.language-button{
+  width:100%;
+  padding:10px;
+  margin:3px 0;
+  border:1px solid transparent;
+  border-radius:9px;
+  background:transparent;
+  color:#cdd8e7;
+  text-align:left;
+}
+
+.language-button:hover{
+  background:#ffffff0f;
+}
+
+.selected-language{
+  color:white!important;
+  border-color:#ffffff1a!important;
+  background:linear-gradient(
+    135deg,
+    rgba(255,0,51,.22),
+    rgba(35,136,255,.19)
+  )!important;
+}
+
+.sidebar-toggle{
+  display:none;
+  position:fixed;
+  top:12px;
+  left:12px;
+  z-index:4000;
+  width:47px;
+  height:47px;
+  border:0;
+  border-radius:12px;
+  background:#101827;
+  color:white;
+  font-size:23px;
+}
+
+.mobile-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:2500;
+  background:#0009;
+}
+
+.mobile-overlay.show{
+  display:block;
+}
+
+/* ==========================
+   CREATOR HEADER
+========================== */
+
+.creator-header{
+  min-height:68px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding:12px 20px;
+  background:#090d14;
+  border-bottom:1px solid var(--border);
+}
+
+.creator-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:900;
+}
+
+.creator-title img{
   width:40px;
   height:40px;
-
-  object-fit:cover;
-
   border-radius:50%;
-
-  border:
-  2px solid var(--red);
+  object-fit:cover;
 }
 
-.back{
+.export-top{
+  border:0;
+  border-radius:11px;
+  padding:11px 16px;
   color:white;
-
-  text-decoration:none;
-
-  padding:10px 14px;
-
-  background:#172235;
-
-  border-radius:10px;
+  font-weight:900;
+  background:linear-gradient(135deg,#7048ff,#2388ff);
 }
 
-
-/* ===============================
-   LAYOUT
-================================ */
+/* ==========================
+   EDITOR
+========================== */
 
 .editor{
-  min-height:
-  calc(100vh - 68px);
-
+  min-height:calc(100vh - 68px);
   display:grid;
-
-  grid-template-columns:
-  250px 1fr 280px;
-
-  background:#05070b;
+  grid-template-columns:220px minmax(0,1fr) 290px;
 }
 
-
-/* ===============================
-   SIDE BAR
-================================ */
-
-.sidebar{
-  background:#090d14;
-
-  border-right:
-  1px solid rgba(255,255,255,.07);
-
+.tools{
   padding:15px;
-
-  overflow:auto;
+  background:#090d14;
+  border-right:1px solid var(--border);
 }
 
-.sidebar h3{
-  margin-top:5px;
+.tools h3{
+  margin:4px 0 12px;
 }
 
 .tool{
   width:100%;
-
-  border:0;
-
-  color:#dce7f7;
-
-  background:#111927;
-
-  border-radius:10px;
-
   padding:12px;
-
   margin:5px 0;
-
-  cursor:pointer;
-
+  border:0;
+  border-radius:10px;
+  color:#dce7f7;
+  background:#111927;
   text-align:left;
-
-  font-weight:700;
-
+  font-weight:800;
   transition:.2s;
 }
 
@@ -175,149 +276,71 @@ body{
   transform:translateX(3px);
 }
 
-
-/* ===============================
-   MAIN
-================================ */
-
 .workspace{
   padding:20px;
-
-  display:flex;
-
-  flex-direction:column;
-
   min-width:0;
-}
-
-.workspace-title{
   display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  margin-bottom:15px;
+  flex-direction:column;
 }
 
-.workspace-title h1{
-  margin:0;
-
-  font-size:
-  clamp(22px,4vw,36px);
+.workspace h1{
+  margin:0 0 15px;
+  font-size:clamp(24px,4vw,38px);
 }
-
-
-/* ===============================
-   CANVAS AREA
-================================ */
 
 .preview-area{
-  flex:1;
-
-  min-height:480px;
-
-  background:
-    radial-gradient(
-      circle,
-      #172438,
-      #070a10 70%
-    );
-
-  border-radius:18px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  overflow:auto;
-
-  padding:25px;
-
   position:relative;
+  min-height:480px;
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  overflow:auto;
+  border-radius:18px;
+  background:radial-gradient(circle,#172438,#070a10 70%);
 }
 
 #editorCanvas{
-  background:#000;
-
   max-width:100%;
-  max-height:68vh;
-
-  box-shadow:
-  0 25px 70px rgba(0,0,0,.55);
-
+  max-height:67vh;
+  background:black;
   border-radius:8px;
+  box-shadow:0 25px 70px #0009;
 }
 
-
-/* ===============================
-   NO VIDEO
-================================ */
+#videoSource{
+  display:none;
+}
 
 .empty-editor{
   position:absolute;
-
   inset:0;
-
   display:flex;
-
-  align-items:center;
-
   justify-content:center;
-
+  align-items:center;
   text-align:center;
-
-  pointer-events:none;
-
   color:#8390a2;
+  pointer-events:none;
 }
 
 .empty-editor.hide{
   display:none;
 }
 
-
-/* ===============================
-   VIDEO HIDDEN
-================================ */
-
-#videoSource{
-  display:none;
-}
-
-
-/* ===============================
-   TIMELINE
-================================ */
-
 .timeline{
-  background:#0c111a;
-
   margin-top:15px;
-
   padding:15px;
-
+  border:1px solid var(--border);
   border-radius:14px;
-
-  border:
-  1px solid rgba(255,255,255,.06);
+  background:#0c111a;
 }
 
 .timeline-top{
   display:flex;
-
   justify-content:space-between;
-
-  gap:10px;
-
-  margin-bottom:10px;
-
+  margin-bottom:8px;
   color:#a9b4c4;
-
   font-size:13px;
 }
 
@@ -325,34 +348,19 @@ body{
   width:100%;
 }
 
-.time-line-controls{
+.timeline-buttons{
   display:flex;
-
-  gap:8px;
-
-  margin-top:12px;
-
   flex-wrap:wrap;
+  gap:8px;
+  margin-top:12px;
 }
-
-
-/* ===============================
-   BUTTONS
-================================ */
 
 .btn{
   border:0;
-
   border-radius:10px;
-
   padding:10px 14px;
-
-  color:#fff;
-
   background:#1a2638;
-
-  cursor:pointer;
-
+  color:white;
   font-weight:800;
 }
 
@@ -360,36 +368,27 @@ body{
   filter:brightness(1.15);
 }
 
-.btn.blue{
-  background:#1767c6;
+.blue{background:#1767c6}
+.red{background:#bd1438}
+.green{background:#167e4a}
+.purple{background:#6841d7}
+
+.status{
+  min-height:20px;
+  margin-top:10px;
+  color:#89a0bc;
+  font-size:13px;
 }
 
-.btn.red{
-  background:#bd1438;
-}
-
-.btn.green{
-  background:#167e4a;
-}
-
-.btn.purple{
-  background:#6841d7;
-}
-
-
-/* ===============================
-   RIGHT PANEL
-================================ */
+/* ==========================
+   PROPERTIES
+========================== */
 
 .properties{
-  background:#090d14;
-
-  border-left:
-  1px solid rgba(255,255,255,.07);
-
   padding:15px;
-
   overflow:auto;
+  background:#090d14;
+  border-left:1px solid var(--border);
 }
 
 .panel{
@@ -401,7 +400,8 @@ body{
 }
 
 .panel h2{
-  font-size:20px;
+  margin-top:3px;
+  font-size:21px;
 }
 
 .control{
@@ -410,58 +410,33 @@ body{
 
 .control label{
   display:block;
-
-  color:#9aa7b8;
-
-  font-size:13px;
-
   margin-bottom:7px;
+  color:#9aa7b8;
+  font-size:13px;
 }
 
 .control input,
 .control select{
   width:100%;
-
   padding:10px;
-
-  background:#101827;
-
-  border:
-  1px solid rgba(255,255,255,.1);
-
+  border:1px solid #ffffff1a;
   border-radius:8px;
-
-  color:#fff;
+  background:#101827;
+  color:white;
 }
-
-
-/* ===============================
-   FORMAT BUTTONS
-================================ */
 
 .format-grid{
   display:grid;
-
-  grid-template-columns:
-  repeat(2,1fr);
-
+  grid-template-columns:1fr 1fr;
   gap:8px;
 }
 
 .format{
-  border:
-  1px solid rgba(255,255,255,.1);
-
-  background:#111927;
-
-  color:white;
-
-  border-radius:10px;
-
   padding:12px 5px;
-
-  cursor:pointer;
-
+  border:1px solid #ffffff1a;
+  border-radius:10px;
+  background:#111927;
+  color:white;
   font-weight:bold;
 }
 
@@ -469,342 +444,285 @@ body{
   background:#17335b;
 }
 
-
-/* ===============================
-   MEMES
-================================ */
+/* MEMES */
 
 .meme-search{
   width:100%;
-
   padding:11px;
-
-  border:1px solid #ffffff18;
-
-  background:#101827;
-
-  border-radius:9px;
-
-  color:white;
-
   margin-bottom:12px;
+  border:1px solid #ffffff18;
+  border-radius:9px;
+  background:#101827;
+  color:white;
 }
 
 .meme-grid{
   display:grid;
-
-  grid-template-columns:
-  repeat(3,1fr);
-
+  grid-template-columns:repeat(3,1fr);
   gap:7px;
-
-  max-height:430px;
-
+  max-height:400px;
   overflow:auto;
 }
 
 .meme{
   min-height:58px;
-
-  border:1px solid #ffffff12;
-
-  border-radius:10px;
-
-  background:#111927;
-
-  color:white;
-
-  cursor:pointer;
-
-  font-size:23px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  text-align:center;
-
   padding:5px;
-
-  word-break:break-word;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:1px solid #ffffff12;
+  border-radius:10px;
+  background:#111927;
+  color:white;
+  font-size:23px;
+  text-align:center;
 }
 
 .meme.text-meme{
   font-size:11px;
-
   font-weight:900;
 }
 
 .meme:hover{
-  transform:scale(1.05);
-
+  transform:scale(1.04);
   background:#18345b;
 }
 
-
-/* ===============================
-   TEXT OVERLAY LIST
-================================ */
-
 .overlay-list{
   display:grid;
-
   gap:7px;
-
   margin-top:12px;
 }
 
 .overlay-row{
-  background:#101827;
-
-  border-radius:9px;
-
-  padding:8px;
-
   display:flex;
-
   justify-content:space-between;
-
   gap:5px;
-
   align-items:center;
-
+  padding:8px;
+  border-radius:9px;
+  background:#101827;
   font-size:12px;
 }
 
-
-/* ===============================
-   STATUS
-================================ */
-
-.status{
-  font-size:13px;
-
-  color:#89a0bc;
-
-  margin-top:10px;
-
-  min-height:20px;
+.overlay-row button{
+  border:0;
+  background:#9f1f3c;
+  color:white;
+  border-radius:6px;
+  padding:4px 7px;
 }
 
+/* ==========================
+   RESPONSIVE
+========================== */
 
-/* ===============================
-   MOBILE
-================================ */
-
-@media(max-width:950px){
-
+@media(max-width:1100px){
   .editor{
-    grid-template-columns:
-    190px 1fr;
+    grid-template-columns:190px 1fr;
   }
 
   .properties{
-    position:fixed;
+    grid-column:1/-1;
+    border-left:0;
+    border-top:1px solid var(--border);
+  }
+}
 
-    right:10px;
-    top:80px;
-
-    width:280px;
-
-    max-height:
-    calc(100vh - 100px);
-
-    z-index:70;
-
-    border:
-    1px solid rgba(255,255,255,.1);
-
-    border-radius:14px;
-
-    box-shadow:
-    0 20px 60px #000a;
+@media(max-width:850px){
+  body{
+    padding-left:0;
   }
 
+  .site-sidebar{
+    width:265px;
+    transform:translateX(-105%);
+    transition:.3s;
+  }
+
+  .site-sidebar.open{
+    transform:translateX(0);
+  }
+
+  .sidebar-toggle{
+    display:block;
+  }
+
+  .creator-header{
+    padding-left:70px;
+  }
 }
 
 @media(max-width:700px){
-
   .editor{
     display:block;
   }
 
-  .sidebar{
+  .tools{
     display:flex;
-
-    overflow-x:auto;
-
     gap:5px;
-
+    overflow-x:auto;
     position:sticky;
-
-    top:68px;
-
-    z-index:60;
-
+    top:0;
+    z-index:50;
     border-right:0;
-
-    border-bottom:
-    1px solid #ffffff12;
+    border-bottom:1px solid var(--border);
   }
 
-  .sidebar h3{
+  .tools h3{
     display:none;
   }
 
   .tool{
-    min-width:max-content;
-
     width:auto;
+    min-width:max-content;
   }
 
-  .properties{
-    position:static;
-
-    width:auto;
-
-    max-height:none;
-
-    border-radius:0;
-
-    border:0;
+  .workspace{
+    padding:12px;
   }
 
   .preview-area{
-    min-height:400px;
-
+    min-height:390px;
     padding:10px;
   }
 
+  .creator-title span{
+    display:none;
+  }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
+<button
+  id="sidebarToggle"
+  class="sidebar-toggle"
+  aria-label="Menu"
+>☰</button>
 
-<header class="topbar">
+<div id="mobileOverlay" class="mobile-overlay"></div>
 
-<div class="brand">
+<aside id="siteSidebar" class="site-sidebar">
 
-<img
-  src="perfil.jpg"
-  alt="AMIRIJOGOS"
->
-
-<span>
-🎬 AMIRIJOGOS Creator
-</span>
-
-</div>
-
-
-<a
-  href="index.html"
-  class="back"
->
-← Voltar
+<a href="index.html" class="sidebar-brand">
+  <img src="perfil.jpg" alt="AMIRIJOGOS">
+  <strong>AMIRIJOGOS</strong>
 </a>
 
-</header>
+<nav class="sidebar-nav">
 
+<a href="index.html">
+🏠 <span data-i18n="home">Início</span>
+</a>
 
-<div class="editor">
+<a
+  href="https://www.youtube.com/@amirijogos"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+▶️ <span data-i18n="youtube">YouTube</span>
+</a>
 
+<a href="creator.html" class="creator-link">
+🎬 <span data-i18n="creator">Creator</span>
+</a>
 
-<!-- ===============================
-     LEFT TOOLS
-================================ -->
+<a href="coach.html" class="coach-link">
+🤖 <span data-i18n="aiCoach">AI Coach</span>
+</a>
 
-<aside class="sidebar">
+<a href="games.html" class="games-link">
+🎮 <span data-i18n="games">Jogos</span>
+</a>
 
-<h3>
-Ferramentas
-</h3>
+</nav>
 
+<div class="sidebar-language">
+
+<div class="language-title">
+🌐 <span data-i18n="language">Idioma</span>
+</div>
 
 <button
-  class="tool active"
-  data-panel="mediaPanel"
->
-📁 Media
-</button>
-
+  class="language-button"
+  data-language="pt"
+  onclick="setAmiriLanguage('pt')"
+>🇵🇹 Português</button>
 
 <button
-  class="tool"
-  data-panel="formatPanel"
->
-📱 Formato
-</button>
-
+  class="language-button"
+  data-language="en"
+  onclick="setAmiriLanguage('en')"
+>🇬🇧 English</button>
 
 <button
-  class="tool"
-  data-panel="textPanel"
->
-🔤 Texto
-</button>
+  class="language-button"
+  data-language="es"
+  onclick="setAmiriLanguage('es')"
+>🇪🇸 Español</button>
 
-
-<button
-  class="tool"
-  data-panel="memePanel"
->
-😂 Memes
-</button>
-
-
-<button
-  class="tool"
-  data-panel="filterPanel"
->
-✨ Filtros
-</button>
-
-
-<button
-  class="tool"
-  data-panel="adjustPanel"
->
-⚙️ Ajustes
-</button>
-
+</div>
 
 </aside>
 
+<header class="creator-header">
 
-<!-- ===============================
-     WORKSPACE
-================================ -->
+<div class="creator-title">
+  <img src="perfil.jpg" alt="AMIRIJOGOS">
+  <span>🎬 AMIRIJOGOS Creator</span>
+</div>
+
+<button id="exportTop" class="export-top">
+⬇ <span data-i18n="exportVideo">Exportar vídeo</span>
+</button>
+
+</header>
+
+<div class="editor">
+
+<!-- TOOLS -->
+
+<aside class="tools">
+
+<h3 data-i18n="tools">Ferramentas</h3>
+
+<button class="tool active" data-panel="mediaPanel">
+📁 <span data-i18n="media">Media</span>
+</button>
+
+<button class="tool" data-panel="formatPanel">
+📱 <span data-i18n="format">Formato</span>
+</button>
+
+<button class="tool" data-panel="textPanel">
+🔤 <span data-i18n="text">Texto</span>
+</button>
+
+<button class="tool" data-panel="memePanel">
+😂 <span data-i18n="memes">Memes</span>
+</button>
+
+<button class="tool" data-panel="filterPanel">
+✨ <span data-i18n="filters">Filtros</span>
+</button>
+
+<button class="tool" data-panel="adjustPanel">
+⚙️ <span data-i18n="adjustments">Ajustes</span>
+</button>
+
+</aside>
+
+<!-- WORKSPACE -->
 
 <main class="workspace">
 
-
-<div class="workspace-title">
-
-<h1>
+<h1 data-i18n="createContent">
 Criar conteúdo
 </h1>
 
-
-<button
-  id="exportButton"
-  class="btn purple"
->
-⬇ Exportar
-</button>
-
-</div>
-
-
 <div class="preview-area">
-
 
 <canvas
   id="editorCanvas"
@@ -812,151 +730,95 @@ Criar conteúdo
   height="720"
 ></canvas>
 
-
-<div
-  id="emptyEditor"
-  class="empty-editor"
->
+<div id="emptyEditor" class="empty-editor">
 
 <div>
-
-<h2>
+<h2 data-i18n="addYourVideo">
 🎥 Adiciona o teu vídeo
 </h2>
 
-<p>
+<p data-i18n="startUpload">
 Começa por carregar um vídeo no menu Media.
 </p>
-
 </div>
 
 </div>
-
 
 <video
   id="videoSource"
   playsinline
 ></video>
 
-
 </div>
-
-
-<!-- TIMELINE -->
 
 <div class="timeline">
 
-
 <div class="timeline-top">
-
-<span id="currentTime">
-00:00
-</span>
-
-<span id="duration">
-00:00
-</span>
-
+  <span id="currentTime">00:00</span>
+  <span id="duration">00:00</span>
 </div>
 
-
 <input
-  type="range"
   id="seek"
+  type="range"
   min="0"
   max="1000"
   value="0"
 >
 
+<div class="timeline-buttons">
 
-<div class="time-line-controls">
-
-
-<button
-  id="playButton"
-  class="btn blue"
->
-▶ Play
+<button id="playButton" class="btn blue">
+▶ <span data-i18n="play">Play</span>
 </button>
 
-
-<button
-  id="setStart"
-  class="btn"
->
-✂ Início
+<button id="setStart" class="btn">
+✂ <span data-i18n="trimStart">Início</span>
 </button>
 
-
-<button
-  id="setEnd"
-  class="btn"
->
-✂ Fim
+<button id="setEnd" class="btn">
+✂ <span data-i18n="trimEnd">Fim</span>
 </button>
 
-
-<button
-  id="removeLastOverlay"
-  class="btn red"
->
-🗑 Último elemento
+<button id="removeLastOverlay" class="btn red">
+🗑 <span data-i18n="lastElement">Último elemento</span>
 </button>
-
 
 </div>
 
-
-<div class="status" id="status">
-
-Pronto.
-
+<div id="status" class="status">
+<span data-i18n="ready">Pronto.</span>
 </div>
 
-
 </div>
-
 
 </main>
 
-
-<!-- ===============================
-     RIGHT SETTINGS
-================================ -->
+<!-- PROPERTIES -->
 
 <aside class="properties">
 
-
 <!-- MEDIA -->
 
-<section
-  id="mediaPanel"
-  class="panel active"
->
+<section id="mediaPanel" class="panel active">
 
 <h2>
-📁 Media
+📁 <span data-i18n="media">Media</span>
 </h2>
 
-
 <div class="control">
-
-<label>
-Vídeo
-</label>
+<label data-i18n="videoFile">Vídeo</label>
 
 <input
   type="file"
   id="videoUpload"
   accept="video/*"
 >
-
 </div>
-
 
 <div class="control">
 
-<label>
+<label data-i18n="yourImage">
 Adicionar imagem/meme teu
 </label>
 
@@ -968,1474 +830,1174 @@ Adicionar imagem/meme teu
 
 </div>
 
-
 </section>
-
 
 <!-- FORMAT -->
 
-<section
-  id="formatPanel"
-  class="panel"
->
+<section id="formatPanel" class="panel">
 
-<h2>
+<h2 data-i18n="videoOrShort">
 📱 Vídeo ou Short
 </h2>
 
-
 <div class="format-grid">
 
-
-<button
-  class="format"
-  data-format="16:9"
->
-🖥 16:9
-<br>
-Vídeo
+<button class="format" data-format="16:9">
+🖥 16:9<br>
+<span data-i18n="video">Vídeo</span>
 </button>
 
-
-<button
-  class="format"
-  data-format="9:16"
->
-📱 9:16
-<br>
+<button class="format" data-format="9:16">
+📱 9:16<br>
 Short
 </button>
 
-
-<button
-  class="format"
-  data-format="1:1"
->
+<button class="format" data-format="1:1">
 ⬜ 1:1
 </button>
 
-
-<button
-  class="format"
-  data-format="4:5"
->
+<button class="format" data-format="4:5">
 📲 4:5
 </button>
 
-
 </div>
-
 
 </section>
 
-
 <!-- TEXT -->
 
-<section
-  id="textPanel"
-  class="panel"
->
+<section id="textPanel" class="panel">
 
 <h2>
-🔤 Texto
+🔤 <span data-i18n="text">Texto</span>
 </h2>
-
 
 <div class="control">
 
-<label>
-Texto
+<label data-i18n="textToAdd">
+Texto a adicionar
 </label>
 
 <input
   id="textInput"
-  placeholder="Escreve alguma coisa..."
+  type="text"
+  placeholder="AMIRIJOGOS"
+  data-i18n-placeholder="textPlaceholder"
 >
 
 </div>
 
-
 <div class="control">
 
-<label>
+<label data-i18n="textSize">
 Tamanho
 </label>
 
 <input
+  id="textSize"
   type="range"
-  id="fontSize"
   min="20"
-  max="140"
+  max="150"
   value="60"
 >
 
 </div>
 
-
 <div class="control">
 
-<label>
+<label data-i18n="textColor">
 Cor
 </label>
 
 <input
-  type="color"
   id="textColor"
+  type="color"
   value="#ffffff"
 >
 
 </div>
 
-
-<button
-  class="btn blue"
-  id="addText"
->
-+ Adicionar texto
+<button id="addTextButton" class="btn blue">
+➕ <span data-i18n="addText">Adicionar texto</span>
 </button>
 
+<div id="overlayList" class="overlay-list"></div>
 
 </section>
 
-
 <!-- MEMES -->
 
-<section
-  id="memePanel"
-  class="panel"
->
+<section id="memePanel" class="panel">
 
 <h2>
-😂 Memes
+😂 <span data-i18n="memes">Memes</span>
 </h2>
-
-<p style="color:#9aa7b8;font-size:13px">
-Clica num meme para o adicionar ao vídeo.
-</p>
-
 
 <input
   id="memeSearch"
   class="meme-search"
-  placeholder="🔎 Procurar meme..."
+  type="search"
+  placeholder="Pesquisar meme..."
+  data-i18n-placeholder="searchMeme"
 >
 
-
-<div
-  class="meme-grid"
-  id="memeGrid"
-></div>
-
+<div id="memeGrid" class="meme-grid"></div>
 
 </section>
 
-
 <!-- FILTERS -->
 
-<section
-  id="filterPanel"
-  class="panel"
->
+<section id="filterPanel" class="panel">
 
 <h2>
-✨ Filtros
+✨ <span data-i18n="filters">Filtros</span>
 </h2>
-
 
 <div class="control">
 
-<label>
+<label data-i18n="filter">
 Filtro
 </label>
 
 <select id="filterSelect">
-
-<option value="none">
-Normal
-</option>
-
-<option value="brightness(1.25)">
-☀ Claro
-</option>
-
-<option value="brightness(.7)">
-🌑 Escuro
-</option>
-
-<option value="contrast(1.4)">
-⚡ Contraste
-</option>
-
-<option value="saturate(1.7)">
-🌈 Saturado
-</option>
-
-<option value="grayscale(1)">
-⚪ Preto e branco
-</option>
-
-<option value="sepia(1)">
-📸 Vintage
-</option>
-
-<option value="hue-rotate(90deg)">
-👽 Alien
-</option>
-
-<option value="contrast(1.3) saturate(1.6)">
-🎮 Gaming
-</option>
-
+<option value="none" data-i18n="normal">Normal</option>
+<option value="brightness(1.25)" data-i18n="bright">Mais brilho</option>
+<option value="brightness(.65)" data-i18n="dark">Escuro</option>
+<option value="contrast(1.45)" data-i18n="contrast">Contraste</option>
+<option value="saturate(1.8)" data-i18n="saturated">Saturado</option>
+<option value="grayscale(1)" data-i18n="grayscale">Preto e branco</option>
+<option value="sepia(1)" data-i18n="sepia">Sépia</option>
+<option value="hue-rotate(90deg)" data-i18n="gamingFilter">Gaming</option>
 </select>
 
 </div>
-
 
 </section>
 
-
 <!-- ADJUST -->
 
-<section
-  id="adjustPanel"
-  class="panel"
->
+<section id="adjustPanel" class="panel">
 
 <h2>
-⚙️ Ajustes
+⚙️ <span data-i18n="adjustments">Ajustes</span>
 </h2>
-
 
 <div class="control">
 
-<label>
+<label data-i18n="speed">
 Velocidade
 </label>
 
-<select id="speed">
-
-<option value=".5">
-0.5x
-</option>
-
-<option value=".75">
-0.75x
-</option>
-
-<option value="1" selected>
-1x
-</option>
-
-<option value="1.25">
-1.25x
-</option>
-
-<option value="1.5">
-1.5x
-</option>
-
-<option value="2">
-2x
-</option>
-
+<select id="speedSelect">
+<option value=".5">0.5x</option>
+<option value=".75">0.75x</option>
+<option value="1" selected>1x</option>
+<option value="1.25">1.25x</option>
+<option value="1.5">1.5x</option>
+<option value="2">2x</option>
 </select>
 
 </div>
 
-
 <div class="control">
 
-<label>
+<label data-i18n="volume">
 Volume
 </label>
 
 <input
-  id="volume"
+  id="volumeRange"
   type="range"
   min="0"
   max="1"
-  value="1"
   step=".05"
+  value="1"
 >
 
 </div>
 
+<div class="control">
 
-<button
-  class="btn"
-  id="rotateLeft"
->
-↶ Rodar
+<label data-i18n="rotation">
+Rotação
+</label>
+
+<select id="rotationSelect">
+<option value="0">0°</option>
+<option value="90">90°</option>
+<option value="180">180°</option>
+<option value="270">270°</option>
+</select>
+
+</div>
+
+<button id="flipButton" class="btn">
+↔ <span data-i18n="flip">Espelhar</span>
 </button>
-
-
-<button
-  class="btn"
-  id="flipButton"
->
-↔ Espelho
-</button>
-
 
 </section>
 
-
 </aside>
-
 
 </div>
 
+<script src="language.js"></script>
 
 <script>
-
 "use strict";
 
+/* ======================================================
+   TRADUÇÕES DO CREATOR
+====================================================== */
 
-/* ===============================
-   ELEMENTOS
-================================ */
-
-const video =
-document.getElementById(
-  "videoSource"
+Object.assign(
+  AMIRI_TRANSLATIONS.pt,
+  {
+    tools:"Ferramentas",
+    createContent:"Criar conteúdo",
+    exportVideo:"Exportar vídeo",
+    addYourVideo:"🎥 Adiciona o teu vídeo",
+    startUpload:"Começa por carregar um vídeo no menu Media.",
+    play:"Play",
+    trimStart:"Início",
+    trimEnd:"Fim",
+    lastElement:"Último elemento",
+    ready:"Pronto.",
+    videoFile:"Vídeo",
+    yourImage:"Adicionar imagem/meme teu",
+    videoOrShort:"📱 Vídeo ou Short",
+    textToAdd:"Texto a adicionar",
+    textPlaceholder:"Escreve o texto...",
+    textSize:"Tamanho",
+    textColor:"Cor",
+    addText:"Adicionar texto",
+    searchMeme:"Pesquisar meme...",
+    filter:"Filtro",
+    normal:"Normal",
+    bright:"Mais brilho",
+    dark:"Escuro",
+    contrast:"Contraste",
+    saturated:"Saturado",
+    grayscale:"Preto e branco",
+    sepia:"Sépia",
+    gamingFilter:"Gaming",
+    speed:"Velocidade",
+    volume:"Volume",
+    rotation:"Rotação",
+    flip:"Espelhar",
+    loadedVideo:"Vídeo carregado.",
+    imageAdded:"Imagem adicionada.",
+    textAdded:"Texto adicionado.",
+    memeAdded:"Meme adicionado.",
+    removed:"Elemento removido.",
+    noVideo:"Adiciona primeiro um vídeo.",
+    exporting:"A exportar...",
+    exportDone:"Exportação concluída.",
+    exportError:"Não foi possível exportar neste navegador.",
+    startMarked:"Início definido.",
+    endMarked:"Fim definido.",
+    delete:"Apagar"
+  }
 );
 
+Object.assign(
+  AMIRI_TRANSLATIONS.en,
+  {
+    tools:"Tools",
+    createContent:"Create content",
+    exportVideo:"Export video",
+    addYourVideo:"🎥 Add your video",
+    startUpload:"Start by uploading a video from the Media menu.",
+    play:"Play",
+    trimStart:"Start",
+    trimEnd:"End",
+    lastElement:"Last element",
+    ready:"Ready.",
+    videoFile:"Video",
+    yourImage:"Add your own image/meme",
+    videoOrShort:"📱 Video or Short",
+    textToAdd:"Text to add",
+    textPlaceholder:"Write your text...",
+    textSize:"Size",
+    textColor:"Color",
+    addText:"Add text",
+    searchMeme:"Search meme...",
+    filter:"Filter",
+    normal:"Normal",
+    bright:"Brighter",
+    dark:"Dark",
+    contrast:"Contrast",
+    saturated:"Saturated",
+    grayscale:"Black & white",
+    sepia:"Sepia",
+    gamingFilter:"Gaming",
+    speed:"Speed",
+    volume:"Volume",
+    rotation:"Rotation",
+    flip:"Flip",
+    loadedVideo:"Video loaded.",
+    imageAdded:"Image added.",
+    textAdded:"Text added.",
+    memeAdded:"Meme added.",
+    removed:"Element removed.",
+    noVideo:"Add a video first.",
+    exporting:"Exporting...",
+    exportDone:"Export complete.",
+    exportError:"Export is not supported by this browser.",
+    startMarked:"Start point set.",
+    endMarked:"End point set.",
+    delete:"Delete"
+  }
+);
+
+Object.assign(
+  AMIRI_TRANSLATIONS.es,
+  {
+    tools:"Herramientas",
+    createContent:"Crear contenido",
+    exportVideo:"Exportar vídeo",
+    addYourVideo:"🎥 Añade tu vídeo",
+    startUpload:"Empieza subiendo un vídeo desde el menú Media.",
+    play:"Play",
+    trimStart:"Inicio",
+    trimEnd:"Fin",
+    lastElement:"Último elemento",
+    ready:"Listo.",
+    videoFile:"Vídeo",
+    yourImage:"Añadir tu propia imagen/meme",
+    videoOrShort:"📱 Vídeo o Short",
+    textToAdd:"Texto para añadir",
+    textPlaceholder:"Escribe el texto...",
+    textSize:"Tamaño",
+    textColor:"Color",
+    addText:"Añadir texto",
+    searchMeme:"Buscar meme...",
+    filter:"Filtro",
+    normal:"Normal",
+    bright:"Más brillo",
+    dark:"Oscuro",
+    contrast:"Contraste",
+    saturated:"Saturado",
+    grayscale:"Blanco y negro",
+    sepia:"Sepia",
+    gamingFilter:"Gaming",
+    speed:"Velocidad",
+    volume:"Volumen",
+    rotation:"Rotación",
+    flip:"Voltear",
+    loadedVideo:"Vídeo cargado.",
+    imageAdded:"Imagen añadida.",
+    textAdded:"Texto añadido.",
+    memeAdded:"Meme añadido.",
+    removed:"Elemento eliminado.",
+    noVideo:"Añade primero un vídeo.",
+    exporting:"Exportando...",
+    exportDone:"Exportación terminada.",
+    exportError:"No se puede exportar en este navegador.",
+    startMarked:"Inicio definido.",
+    endMarked:"Final definido.",
+    delete:"Eliminar"
+  }
+);
+
+translatePage();
+
+/* ======================================================
+   SIDEBAR
+====================================================== */
+
+const siteSidebar =
+document.getElementById("siteSidebar");
+
+const sidebarToggle =
+document.getElementById("sidebarToggle");
+
+const mobileOverlay =
+document.getElementById("mobileOverlay");
+
+function closeSiteSidebar(){
+  siteSidebar.classList.remove("open");
+  mobileOverlay.classList.remove("show");
+}
+
+sidebarToggle.addEventListener(
+  "click",
+  ()=>{
+    siteSidebar.classList.toggle("open");
+
+    mobileOverlay.classList.toggle(
+      "show",
+      siteSidebar.classList.contains("open")
+    );
+  }
+);
+
+mobileOverlay.addEventListener(
+  "click",
+  closeSiteSidebar
+);
+
+/* ======================================================
+   ELEMENTOS
+====================================================== */
 
 const canvas =
-document.getElementById(
-  "editorCanvas"
-);
-
+document.getElementById("editorCanvas");
 
 const ctx =
-canvas.getContext(
-  "2d"
-);
+canvas.getContext("2d");
 
+const video =
+document.getElementById("videoSource");
+
+const videoUpload =
+document.getElementById("videoUpload");
+
+const imageUpload =
+document.getElementById("imageUpload");
+
+const emptyEditor =
+document.getElementById("emptyEditor");
 
 const seek =
-document.getElementById(
-  "seek"
-);
+document.getElementById("seek");
 
+const currentTimeElement =
+document.getElementById("currentTime");
 
-const statusText =
-document.getElementById(
-  "status"
-);
+const durationElement =
+document.getElementById("duration");
 
+const playButton =
+document.getElementById("playButton");
+
+const statusElement =
+document.getElementById("status");
+
+const exportTop =
+document.getElementById("exportTop");
+
+const filterSelect =
+document.getElementById("filterSelect");
+
+const speedSelect =
+document.getElementById("speedSelect");
+
+const volumeRange =
+document.getElementById("volumeRange");
+
+const rotationSelect =
+document.getElementById("rotationSelect");
+
+const overlayList =
+document.getElementById("overlayList");
+
+const memes = [
+  "😂","🤣","😭","💀","☠️","🗿","🤡","🤨",
+  "😎","😱","😡","😈","👀","🔥","💯","🚨",
+  "📢","🤯","🫡","🥶","😏","🤓","🙃","👑",
+  "🐐","🚀","⚠️","❌","✅",
+  "BRO 💀","BRUH","NAH 💀","SUS","W","L","GG",
+  "EZ","POV","WAIT...","WHAT?!","NO WAY",
+  "💀 RIP","LET HIM COOK","BRO...",
+  "AIN'T NO WAY","MISSION FAILED","BIG W",
+  "BIG L","CLUTCH","1 HP 💀","RUN!","WHY 😭",
+  "OMG","LOL","HAHAHA","EMOTIONAL DAMAGE",
+  "GAME OVER","VICTORY","EPIC FAIL",
+  "TO BE CONTINUED..."
+];
+
+let overlays=[];
 
 let videoLoaded=false;
-
 
 let trimStart=0;
 
 let trimEnd=0;
 
+let flipped=false;
 
-let rotation=0;
+let activeFilter="none";
 
-let flip=false;
+/* ======================================================
+   STATUS
+====================================================== */
 
+function setStatus(key){
+  statusElement.textContent=t(key);
+}
 
-let currentFilter=
-"none";
+/* ======================================================
+   FORMAT TIME
+====================================================== */
 
+function formatTime(seconds){
+  if(!Number.isFinite(seconds)){
+    return "00:00";
+  }
 
-let overlays=[];
+  const minutes=
+  Math.floor(seconds/60);
 
+  const secs=
+  Math.floor(seconds%60);
 
-let exporting=false;
-
-let mediaRecorder=null;
-
-let recordedChunks=[];
-
-
-/* ===============================
-   TOOLS
-================================ */
-
-document
-.querySelectorAll(
-  ".tool"
-)
-.forEach(button=>{
-
-  button.addEventListener(
-    "click",
-    ()=>{
-
-      document
-      .querySelectorAll(
-        ".tool"
-      )
-      .forEach(
-        b=>
-        b.classList.remove(
-          "active"
-        )
-      );
-
-
-      document
-      .querySelectorAll(
-        ".panel"
-      )
-      .forEach(
-        panel=>
-        panel.classList.remove(
-          "active"
-        )
-      );
-
-
-      button.classList.add(
-        "active"
-      );
-
-
-      document
-      .getElementById(
-        button.dataset.panel
-      )
-      .classList.add(
-        "active"
-      );
-
-    }
+  return (
+    String(minutes).padStart(2,"0")+
+    ":"+
+    String(secs).padStart(2,"0")
   );
+}
 
-});
-
-
-/* ===============================
-   UPLOAD VIDEO
-================================ */
+/* ======================================================
+   TOOL TABS
+====================================================== */
 
 document
-.getElementById(
-  "videoUpload"
-)
-.addEventListener(
+.querySelectorAll(".tool")
+.forEach(
+  button=>{
+    button.addEventListener(
+      "click",
+      ()=>{
+        document
+        .querySelectorAll(".tool")
+        .forEach(
+          item=>item.classList.remove("active")
+        );
+
+        document
+        .querySelectorAll(".panel")
+        .forEach(
+          panel=>panel.classList.remove("active")
+        );
+
+        button.classList.add("active");
+
+        const panel=
+        document.getElementById(
+          button.dataset.panel
+        );
+
+        if(panel){
+          panel.classList.add("active");
+        }
+      }
+    );
+  }
+);
+
+/* ======================================================
+   VIDEO UPLOAD
+====================================================== */
+
+videoUpload.addEventListener(
   "change",
   event=>{
-
     const file=
-    event.target.files[0];
-
+    event.target.files?.[0];
 
     if(!file){
       return;
     }
 
-
-    const url=
-    URL.createObjectURL(
-      file
-    );
-
-
     video.src=
-    url;
-
+    URL.createObjectURL(file);
 
     video.load();
 
-
-    statusText.textContent=
-    "🎬 A carregar vídeo...";
-
-  }
-);
-
-
-video.addEventListener(
-  "loadedmetadata",
-  ()=>{
-
-    videoLoaded=true;
-
-
-    trimStart=0;
-
-    trimEnd=
-    video.duration;
-
-
-    document
-    .getElementById(
-      "duration"
-    )
-    .textContent=
-    formatTime(
-      video.duration
-    );
-
-
-    document
-    .getElementById(
-      "emptyEditor"
-    )
-    .classList.add(
-      "hide"
-    );
-
-
-    statusText.textContent=
-    "✅ Vídeo carregado.";
-
-
-    drawFrame();
-
-  }
-);
-
-
-/* ===============================
-   PLAY
-================================ */
-
-document
-.getElementById(
-  "playButton"
-)
-.addEventListener(
-  "click",
-  ()=>{
-
-    if(!videoLoaded){
-      return;
-    }
-
-
-    if(video.paused){
-
-      if(
-        video.currentTime<
-        trimStart ||
-        video.currentTime>=
-        trimEnd
-      ){
-
-        video.currentTime=
-        trimStart;
-
-      }
-
-
-      video.play();
-
-
-      document
-      .getElementById(
-        "playButton"
-      )
-      .textContent=
-      "⏸ Pause";
-
-
-    }else{
-
-      video.pause();
-
-
-      document
-      .getElementById(
-        "playButton"
-      )
-      .textContent=
-      "▶ Play";
-
-    }
-
-  }
-);
-
-
-/* ===============================
-   SEEK
-================================ */
-
-seek.addEventListener(
-  "input",
-  ()=>{
-
-    if(!videoLoaded){
-      return;
-    }
-
-
-    video.currentTime=
-    (
-      seek.value/
-      1000
-    )*
-    video.duration;
-
-
-    drawFrame();
-
-  }
-);
-
-
-/* ===============================
-   TRIM
-================================ */
-
-document
-.getElementById(
-  "setStart"
-)
-.onclick=
-()=>{
-
-  if(!videoLoaded){
-    return;
-  }
-
-
-  trimStart=
-  video.currentTime;
-
-
-  statusText.textContent=
-  "✂ Início: "+
-  formatTime(
-    trimStart
-  );
-
-};
-
-
-document
-.getElementById(
-  "setEnd"
-)
-.onclick=
-()=>{
-
-  if(!videoLoaded){
-    return;
-  }
-
-
-  trimEnd=
-  video.currentTime;
-
-
-  if(
-    trimEnd<=trimStart
-  ){
-
-    trimEnd=
-    video.duration;
-
-  }
-
-
-  statusText.textContent=
-  "✂ Fim: "+
-  formatTime(
-    trimEnd
-  );
-
-};
-
-
-/* ===============================
-   FORMATOS
-================================ */
-
-document
-.querySelectorAll(
-  ".format"
-)
-.forEach(button=>{
-
-  button.onclick=
-  ()=>{
-
-    const format=
-    button.dataset.format;
-
-
-    if(format==="16:9"){
-
-      canvas.width=
-      1280;
-
-      canvas.height=
-      720;
-
-    }
-
-
-    if(format==="9:16"){
-
-      canvas.width=
-      720;
-
-      canvas.height=
-      1280;
-
-    }
-
-
-    if(format==="1:1"){
-
-      canvas.width=
-      1080;
-
-      canvas.height=
-      1080;
-
-    }
-
-
-    if(format==="4:5"){
-
-      canvas.width=
-      864;
-
-      canvas.height=
-      1080;
-
-    }
-
-
-    drawFrame();
-
-
-    statusText.textContent=
-    "📐 Formato: "+
-    format;
-
-  };
-
-});
-
-
-/* ===============================
-   TEXTO
-================================ */
-
-document
-.getElementById(
-  "addText"
-)
-.onclick=
-()=>{
-
-  const value=
-  document
-  .getElementById(
-    "textInput"
-  )
-  .value.trim();
-
-
-  if(!value){
-    return;
-  }
-
-
-  overlays.push({
-
-    type:"text",
-
-    text:value,
-
-    x:.5,
-
-    y:.2,
-
-    size:
-    Number(
-      document
-      .getElementById(
-        "fontSize"
-      )
-      .value
-    ),
-
-    color:
-    document
-    .getElementById(
-      "textColor"
-    )
-    .value
-
-  });
-
-
-  drawFrame();
-
-
-  statusText.textContent=
-  "🔤 Texto adicionado.";
-
-};
-
-
-/* ===============================
-   MEMES
-================================ */
-
-const memes=[
-
-  "😂",
-  "🤣",
-  "😭",
-  "💀",
-  "☠️",
-  "🗿",
-  "🤡",
-  "🤨",
-  "😎",
-  "😱",
-  "😡",
-  "😈",
-  "👀",
-  "🔥",
-  "💯",
-  "🚨",
-  "📢",
-  "🤯",
-  "🫡",
-  "🥶",
-  "😏",
-  "🤓",
-  "🙃",
-  "👑",
-  "🐐",
-  "🚀",
-  "⚠️",
-  "❌",
-  "✅",
-
-  "BRO 💀",
-  "BRUH",
-  "NAH 💀",
-  "SUS",
-  "W",
-  "L",
-  "GG",
-  "EZ",
-  "POV",
-  "WAIT...",
-  "WHAT?!",
-  "NO WAY",
-  "💀 RIP",
-  "LET HIM COOK",
-  "BRO...",
-  "AIN'T NO WAY",
-  "MISSION FAILED",
-  "BIG W",
-  "BIG L",
-  "CLUTCH",
-  "1 HP 💀",
-  "RUN!",
-  "WHY 😭",
-  "OMG",
-  "LOL",
-  "HAHAHA",
-  "EMOTIONAL DAMAGE",
-  "GAME OVER",
-  "VICTORY",
-  "EPIC FAIL",
-  "TO BE CONTINUED..."
-
-];
-
-
-const memeGrid=
-document.getElementById(
-  "memeGrid"
-);
-
-
-function renderMemes(
-  search=""
-){
-
-  memeGrid.innerHTML="";
-
-
-  memes
-  .filter(
-    meme=>
-    meme
-    .toLowerCase()
-    .includes(
-      search.toLowerCase()
-    )
-  )
-  .forEach(
-    meme=>{
-
-      const button=
-      document.createElement(
-        "button"
-      );
-
-
-      button.className=
-      "meme";
-
-
-      if(
-        meme.length>4
-      ){
-
-        button.classList.add(
-          "text-meme"
-        );
-
-      }
-
-
-      button.textContent=
-      meme;
-
-
-      button.onclick=
+    video.addEventListener(
+      "loadedmetadata",
       ()=>{
+        videoLoaded=true;
 
-        overlays.push({
+        emptyEditor.classList.add("hide");
 
-          type:"meme",
+        trimStart=0;
 
-          text:meme,
+        trimEnd=video.duration;
 
-          x:
-          .3+
-          Math.random()*.4,
+        durationElement.textContent=
+        formatTime(video.duration);
 
-          y:
-          .3+
-          Math.random()*.4,
+        seek.value="0";
 
-          size:
-          meme.length>4
-          ? 45
-          : 100
-
-        });
-
-
-        drawFrame();
-
-
-        statusText.textContent=
-        "😂 Meme adicionado: "+
-        meme;
-
-      };
-
-
-      memeGrid.appendChild(
-        button
-      );
-
-    }
-  );
-
-}
-
-
-renderMemes();
-
-
-document
-.getElementById(
-  "memeSearch"
-)
-.addEventListener(
-  "input",
-  event=>{
-
-    renderMemes(
-      event.target.value
+        setStatus("loadedVideo");
+      },
+      {
+        once:true
+      }
     );
-
   }
 );
 
+/* ======================================================
+   IMAGE UPLOAD
+====================================================== */
 
-/* ===============================
-   UPLOAD MEME / IMAGE
-================================ */
-
-document
-.getElementById(
-  "imageUpload"
-)
-.addEventListener(
+imageUpload.addEventListener(
   "change",
   event=>{
-
     const file=
-    event.target.files[0];
-
+    event.target.files?.[0];
 
     if(!file){
       return;
     }
-
 
     const image=
     new Image();
 
-
-    image.onload=
-    ()=>{
-
+    image.onload=()=>{
       overlays.push({
-
         type:"image",
-
         image,
-
         x:.5,
-
         y:.5,
-
-        width:.35
-
+        width:.34
       });
 
+      refreshOverlayList();
 
-      drawFrame();
-
-
-      statusText.textContent=
-      "🖼 Imagem adicionada.";
-
+      setStatus("imageAdded");
     };
 
-
     image.src=
-    URL.createObjectURL(
-      file
-    );
-
+    URL.createObjectURL(file);
   }
 );
 
-
-/* ===============================
-   FILTROS
-================================ */
-
-document
-.getElementById(
-  "filterSelect"
-)
-.onchange=
-event=>{
-
-  currentFilter=
-  event.target.value;
-
-
-  drawFrame();
-
-};
-
-
-/* ===============================
-   SPEED
-================================ */
+/* ======================================================
+   FORMATS
+====================================================== */
 
 document
-.getElementById(
-  "speed"
-)
-.onchange=
-event=>{
+.querySelectorAll(".format")
+.forEach(
+  button=>{
+    button.addEventListener(
+      "click",
+      ()=>{
+        const format=
+        button.dataset.format;
 
-  video.playbackRate=
-  Number(
-    event.target.value
+        if(format==="16:9"){
+          canvas.width=1280;
+          canvas.height=720;
+        }
+
+        if(format==="9:16"){
+          canvas.width=720;
+          canvas.height=1280;
+        }
+
+        if(format==="1:1"){
+          canvas.width=1080;
+          canvas.height=1080;
+        }
+
+        if(format==="4:5"){
+          canvas.width=1080;
+          canvas.height=1350;
+        }
+      }
+    );
+  }
+);
+
+/* ======================================================
+   TEXT
+====================================================== */
+
+document
+.getElementById("addTextButton")
+.addEventListener(
+  "click",
+  ()=>{
+    const value=
+    document
+    .getElementById("textInput")
+    .value
+    .trim();
+
+    if(!value){
+      return;
+    }
+
+    overlays.push({
+      type:"text",
+      text:value,
+      x:.5,
+      y:.18,
+      size:Number(
+        document.getElementById("textSize").value
+      ),
+      color:
+        document.getElementById("textColor").value
+    });
+
+    document
+    .getElementById("textInput")
+    .value="";
+
+    refreshOverlayList();
+
+    setStatus("textAdded");
+  }
+);
+
+/* ======================================================
+   MEMES
+====================================================== */
+
+const memeGrid=
+document.getElementById("memeGrid");
+
+const memeSearch=
+document.getElementById("memeSearch");
+
+function renderMemes(search=""){
+  memeGrid.innerHTML="";
+
+  const query=
+  search.toLowerCase();
+
+  for(const meme of memes){
+    if(
+      query &&
+      !meme.toLowerCase().includes(query)
+    ){
+      continue;
+    }
+
+    const button=
+    document.createElement("button");
+
+    button.className=
+    "meme"+
+    (
+      meme.length>4
+      ? " text-meme"
+      : ""
+    );
+
+    button.textContent=meme;
+
+    button.addEventListener(
+      "click",
+      ()=>{
+        overlays.push({
+          type:"text",
+          text:meme,
+          x:.5,
+          y:.5,
+          size:
+            meme.length>4
+            ? 50
+            : 90,
+          color:"#ffffff"
+        });
+
+        refreshOverlayList();
+
+        setStatus("memeAdded");
+      }
+    );
+
+    memeGrid.appendChild(button);
+  }
+}
+
+memeSearch.addEventListener(
+  "input",
+  ()=>{
+    renderMemes(memeSearch.value);
+  }
+);
+
+renderMemes();
+
+/* ======================================================
+   OVERLAY LIST
+====================================================== */
+
+function refreshOverlayList(){
+  overlayList.innerHTML="";
+
+  overlays.forEach(
+    (overlay,index)=>{
+      const row=
+      document.createElement("div");
+
+      row.className=
+      "overlay-row";
+
+      const name=
+      document.createElement("span");
+
+      name.textContent=
+      overlay.type==="text"
+      ? overlay.text.slice(0,22)
+      : "🖼️ Image";
+
+      const remove=
+      document.createElement("button");
+
+      remove.textContent=
+      "✕";
+
+      remove.title=
+      t("delete");
+
+      remove.addEventListener(
+        "click",
+        ()=>{
+          overlays.splice(index,1);
+
+          refreshOverlayList();
+
+          setStatus("removed");
+        }
+      );
+
+      row.append(
+        name,
+        remove
+      );
+
+      overlayList.appendChild(row);
+    }
   );
-
-};
-
-
-/* ===============================
-   VOLUME
-================================ */
+}
 
 document
-.getElementById(
-  "volume"
-)
-.oninput=
-event=>{
+.getElementById("removeLastOverlay")
+.addEventListener(
+  "click",
+  ()=>{
+    if(!overlays.length){
+      return;
+    }
 
-  video.volume=
-  Number(
-    event.target.value
-  );
+    overlays.pop();
 
-};
+    refreshOverlayList();
 
+    setStatus("removed");
+  }
+);
 
-/* ===============================
-   ROTATE
-================================ */
+/* ======================================================
+   FILTER / ADJUST
+====================================================== */
 
-document
-.getElementById(
-  "rotateLeft"
-)
-.onclick=
-()=>{
+filterSelect.addEventListener(
+  "change",
+  ()=>{
+    activeFilter=
+    filterSelect.value;
+  }
+);
 
-  rotation-=90;
+speedSelect.addEventListener(
+  "change",
+  ()=>{
+    video.playbackRate=
+    Number(speedSelect.value);
+  }
+);
 
-
-  drawFrame();
-
-};
-
-
-/* ===============================
-   FLIP
-================================ */
-
-document
-.getElementById(
-  "flipButton"
-)
-.onclick=
-()=>{
-
-  flip=
-  !flip;
-
-
-  drawFrame();
-
-};
-
-
-/* ===============================
-   REMOVE
-================================ */
+volumeRange.addEventListener(
+  "input",
+  ()=>{
+    video.volume=
+    Number(volumeRange.value);
+  }
+);
 
 document
-.getElementById(
-  "removeLastOverlay"
-)
-.onclick=
-()=>{
+.getElementById("flipButton")
+.addEventListener(
+  "click",
+  ()=>{
+    flipped=!flipped;
+  }
+);
 
-  overlays.pop();
+/* ======================================================
+   TIMELINE
+====================================================== */
 
+video.addEventListener(
+  "timeupdate",
+  ()=>{
+    if(!video.duration){
+      return;
+    }
 
-  drawFrame();
+    currentTimeElement.textContent=
+    formatTime(video.currentTime);
 
-};
+    seek.value=
+    Math.round(
+      video.currentTime/
+      video.duration*
+      1000
+    );
 
+    if(
+      video.currentTime>=trimEnd &&
+      !video.paused
+    ){
+      video.pause();
 
-/* ===============================
+      video.currentTime=
+      trimStart;
+    }
+  }
+);
+
+seek.addEventListener(
+  "input",
+  ()=>{
+    if(!video.duration){
+      return;
+    }
+
+    video.currentTime=
+    Number(seek.value)/
+    1000*
+    video.duration;
+  }
+);
+
+playButton.addEventListener(
+  "click",
+  async ()=>{
+    if(!videoLoaded){
+      setStatus("noVideo");
+      return;
+    }
+
+    if(video.paused){
+      if(
+        video.currentTime<trimStart ||
+        video.currentTime>=trimEnd
+      ){
+        video.currentTime=trimStart;
+      }
+
+      await video.play();
+
+      playButton.firstChild.textContent="⏸ ";
+    }else{
+      video.pause();
+
+      playButton.firstChild.textContent="▶ ";
+    }
+  }
+);
+
+document
+.getElementById("setStart")
+.addEventListener(
+  "click",
+  ()=>{
+    if(!videoLoaded){
+      return;
+    }
+
+    trimStart=
+    Math.min(
+      video.currentTime,
+      trimEnd-.05
+    );
+
+    setStatus("startMarked");
+  }
+);
+
+document
+.getElementById("setEnd")
+.addEventListener(
+  "click",
+  ()=>{
+    if(!videoLoaded){
+      return;
+    }
+
+    trimEnd=
+    Math.max(
+      video.currentTime,
+      trimStart+.05
+    );
+
+    setStatus("endMarked");
+  }
+);
+
+/* ======================================================
    DRAW VIDEO
-================================ */
+====================================================== */
 
 function drawVideoCover(){
-
-  if(!videoLoaded){
-    return;
-  }
-
-
-  const cw=
-  canvas.width;
-
-
-  const ch=
-  canvas.height;
-
-
-  const vw=
-  video.videoWidth;
-
-
-  const vh=
-  video.videoHeight;
-
-
   if(
-    !vw ||
-    !vh
+    !videoLoaded ||
+    video.readyState<2
   ){
     return;
   }
 
+  const sourceRatio=
+  video.videoWidth/
+  video.videoHeight;
+
+  const canvasRatio=
+  canvas.width/
+  canvas.height;
+
+  let width;
+  let height;
+
+  if(sourceRatio>canvasRatio){
+    height=canvas.height;
+
+    width=
+    height*sourceRatio;
+  }else{
+    width=canvas.width;
+
+    height=
+    width/sourceRatio;
+  }
 
   ctx.save();
 
-
   ctx.translate(
-    cw/2,
-    ch/2
+    canvas.width/2,
+    canvas.height/2
   );
 
+  if(flipped){
+    ctx.scale(-1,1);
+  }
 
-  ctx.rotate(
-    rotation*
-    Math.PI/
-    180
-  );
+  const rotation=
+  Number(
+    rotationSelect.value
+  )*
+  Math.PI/180;
 
-
-  ctx.scale(
-    flip
-    ? -1
-    : 1,
-    1
-  );
-
-
-  const rotated=
-  Math.abs(rotation)%180===
-  90;
-
-
-  const targetW=
-  rotated
-  ? ch
-  : cw;
-
-
-  const targetH=
-  rotated
-  ? cw
-  : ch;
-
-
-  const scale=
-  Math.max(
-    targetW/vw,
-    targetH/vh
-  );
-
-
-  const width=
-  vw*scale;
-
-
-  const height=
-  vh*scale;
-
+  ctx.rotate(rotation);
 
   ctx.filter=
-  currentFilter;
-
+  activeFilter;
 
   ctx.drawImage(
-
     video,
-
     -width/2,
     -height/2,
-
     width,
     height
-
   );
-
 
   ctx.restore();
 
-
-  ctx.filter=
-  "none";
-
+  ctx.filter="none";
 }
 
-
-/* ===============================
+/* ======================================================
    DRAW OVERLAYS
-================================ */
+====================================================== */
 
 function drawOverlays(){
-
-  overlays.forEach(
-    overlay=>{
-
-      const x=
-      overlay.x*
-      canvas.width;
-
-
-      const y=
-      overlay.y*
-      canvas.height;
-
-
-      if(
-        overlay.type===
-        "text"
-      ){
-
-        ctx.save();
-
-
-        ctx.textAlign=
-        "center";
-
-
-        ctx.textBaseline=
-        "middle";
-
-
-        ctx.font=
-        `900 ${overlay.size}px Arial`;
-
-
-        ctx.lineWidth=
-        Math.max(
-          3,
-          overlay.size*.08
-        );
-
-
-        ctx.strokeStyle=
-        "#000";
-
-
-        ctx.fillStyle=
-        overlay.color;
-
-
-        ctx.strokeText(
-          overlay.text,
-          x,
-          y
-        );
-
-
-        ctx.fillText(
-          overlay.text,
-          x,
-          y
-        );
-
-
-        ctx.restore();
-
-      }
-
-
-      if(
-        overlay.type===
-        "meme"
-      ){
-
-        ctx.save();
-
-
-        ctx.textAlign=
-        "center";
-
-
-        ctx.textBaseline=
-        "middle";
-
-
-        ctx.font=
-        `900 ${overlay.size}px Arial`;
-
-
-        ctx.lineWidth=
-        Math.max(
-          3,
-          overlay.size*.08
-        );
-
-
-        ctx.strokeStyle=
-        "#000";
-
-
-        ctx.fillStyle=
-        "#fff";
-
-
-        ctx.strokeText(
-          overlay.text,
-          x,
-          y
-        );
-
-
-        ctx.fillText(
-          overlay.text,
-          x,
-          y
-        );
-
-
-        ctx.restore();
-
-      }
-
-
-      if(
-        overlay.type===
-        "image"
-      ){
-
-        const width=
-        canvas.width*
-        overlay.width;
-
-
-        const ratio=
-        overlay.image.height/
-        overlay.image.width;
-
-
-        const height=
-        width*
-        ratio;
-
-
-        ctx.drawImage(
-
-          overlay.image,
-
-          x-width/2,
-
-          y-height/2,
-
-          width,
-
-          height
-
-        );
-
-      }
-
+  for(const overlay of overlays){
+
+    const x=
+    overlay.x*
+    canvas.width;
+
+    const y=
+    overlay.y*
+    canvas.height;
+
+    if(
+      overlay.type==="image"
+    ){
+      const width=
+      canvas.width*
+      overlay.width;
+
+      const ratio=
+      overlay.image.height/
+      overlay.image.width;
+
+      const height=
+      width*ratio;
+
+      ctx.drawImage(
+        overlay.image,
+        x-width/2,
+        y-height/2,
+        width,
+        height
+      );
+
+      continue;
     }
-  );
 
+    ctx.save();
+
+    ctx.textAlign="center";
+
+    ctx.textBaseline="middle";
+
+    ctx.font=
+    "900 "+
+    overlay.size+
+    "px Arial";
+
+    ctx.lineWidth=
+    Math.max(
+      4,
+      overlay.size*.09
+    );
+
+    ctx.strokeStyle=
+    "rgba(0,0,0,.85)";
+
+    ctx.fillStyle=
+    overlay.color;
+
+    ctx.strokeText(
+      overlay.text,
+      x,
+      y
+    );
+
+    ctx.fillText(
+      overlay.text,
+      x,
+      y
+    );
+
+    ctx.restore();
+  }
 }
 
+/* ======================================================
+   RENDER LOOP
+====================================================== */
 
-/* ===============================
-   FRAME
-================================ */
+function draw(){
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
 
-function drawFrame(){
-
-  ctx.fillStyle=
-  "#000";
-
+  ctx.fillStyle="#000";
 
   ctx.fillRect(
     0,
@@ -2444,405 +2006,209 @@ function drawFrame(){
     canvas.height
   );
 
-
   drawVideoCover();
-
 
   drawOverlays();
 
+  requestAnimationFrame(draw);
 }
 
+draw();
 
-/* ===============================
-   LOOP
-================================ */
-
-function loop(){
-
-  if(videoLoaded){
-
-    if(!video.paused){
-
-      if(
-        video.currentTime>=
-        trimEnd
-      ){
-
-        if(exporting){
-
-          stopExport();
-
-        }else{
-
-          video.pause();
-
-          video.currentTime=
-          trimStart;
-
-
-          document
-          .getElementById(
-            "playButton"
-          )
-          .textContent=
-          "▶ Play";
-
-        }
-
-      }
-
-    }
-
-
-    drawFrame();
-
-
-    seek.value=
-    video.duration
-    ?
-    (
-      video.currentTime/
-      video.duration
-    )*
-    1000
-    :
-    0;
-
-
-    document
-    .getElementById(
-      "currentTime"
-    )
-    .textContent=
-    formatTime(
-      video.currentTime
-    );
-
-  }
-
-
-  requestAnimationFrame(
-    loop
-  );
-
-}
-
-
-loop();
-
-
-/* ===============================
-   TIME
-================================ */
-
-function formatTime(
-  seconds
-){
-
-  if(
-    !Number.isFinite(
-      seconds
-    )
-  ){
-
-    return "00:00";
-
-  }
-
-
-  const minutes=
-  Math.floor(
-    seconds/60
-  );
-
-
-  const secs=
-  Math.floor(
-    seconds%60
-  );
-
-
-  return
-  String(minutes)
-  .padStart(
-    2,
-    "0"
-  )
-  +
-  ":"
-  +
-  String(secs)
-  .padStart(
-    2,
-    "0"
-  );
-
-}
-
-
-/* ===============================
+/* ======================================================
    EXPORT
-================================ */
-
-document
-.getElementById(
-  "exportButton"
-)
-.addEventListener(
-  "click",
-  async()=>{
-
-    if(!videoLoaded){
-
-      statusText.textContent=
-      "❌ Primeiro adiciona um vídeo.";
-
-      return;
-
-    }
-
-
-    if(exporting){
-      return;
-    }
-
-
-    recordedChunks=[];
-
-
-    const canvasStream=
-    canvas.captureStream(
-      30
-    );
-
-
-    /*
-      tenta adicionar áudio
-      do vídeo original
-    */
-
-    try{
-
-      const videoStream=
-      video.captureStream
-      ? video.captureStream()
-      : null;
-
-
-      if(videoStream){
-
-        const audioTracks=
-        videoStream
-        .getAudioTracks();
-
-
-        audioTracks.forEach(
-          track=>
-          canvasStream.addTrack(
-            track
-          )
-        );
-
-      }
-
-    }catch(error){
-
-      console.log(
-        "Exportação de áudio não disponível:",
-        error
-      );
-
-    }
-
-
-    let mime=
-    "video/webm";
-
-
-    if(
-      MediaRecorder
-      .isTypeSupported(
-        "video/webm;codecs=vp9"
-      )
-    ){
-
-      mime=
-      "video/webm;codecs=vp9";
-
-    }
-
-
-    mediaRecorder=
-    new MediaRecorder(
-
-      canvasStream,
-
-      {
-        mimeType:mime
-      }
-
-    );
-
-
-    mediaRecorder.ondataavailable=
-    event=>{
-
-      if(
-        event.data.size>0
-      ){
-
-        recordedChunks.push(
-          event.data
-        );
-
-      }
-
-    };
-
-
-    mediaRecorder.onstop=
-    ()=>{
-
-      const blob=
-      new Blob(
-
-        recordedChunks,
-
-        {
-          type:"video/webm"
-        }
-
-      );
-
-
-      const url=
-      URL.createObjectURL(
-        blob
-      );
-
-
-      const a=
-      document.createElement(
-        "a"
-      );
-
-
-      a.href=
-      url;
-
-
-      a.download=
-      canvas.height>
-      canvas.width
-      ?
-      "AMIRIJOGOS-Short.webm"
-      :
-      "AMIRIJOGOS-Video.webm";
-
-
-      a.click();
-
-
-      setTimeout(
-        ()=>{
-
-          URL.revokeObjectURL(
-            url
-          );
-
-        },
-        2000
-      );
-
-
-      statusText.textContent=
-      "✅ Exportação concluída!";
-
-    };
-
-
-    exporting=true;
-
-
-    video.pause();
-
-
-    video.currentTime=
-    trimStart;
-
-
-    await new Promise(
-      resolve=>{
-
-        video.addEventListener(
-          "seeked",
-          resolve,
-          {
-            once:true
-          }
-        );
-
-      }
-    );
-
-
-    mediaRecorder.start(
-      100
-    );
-
-
-    statusText.textContent=
-    "⏳ A exportar... deixa o vídeo reproduzir até ao fim.";
-
-
-    try{
-
-      await video.play();
-
-    }catch(error){
-
-      exporting=false;
-
-
-      mediaRecorder.stop();
-
-
-      statusText.textContent=
-      "❌ Não foi possível iniciar a exportação.";
-
-    }
-
-  }
-);
-
-
-function stopExport(){
-
-  if(!exporting){
+====================================================== */
+
+async function exportVideo(){
+  if(!videoLoaded){
+    setStatus("noVideo");
     return;
   }
 
+  if(
+    typeof MediaRecorder==="undefined" ||
+    !canvas.captureStream
+  ){
+    setStatus("exportError");
+    return;
+  }
 
-  exporting=false;
-
+  setStatus("exporting");
 
   video.pause();
 
+  video.currentTime=
+  trimStart;
 
-  if(
-    mediaRecorder &&
-    mediaRecorder.state!==
-    "inactive"
-  ){
+  video.playbackRate=
+  Number(speedSelect.value);
 
-    mediaRecorder.stop();
+  video.volume=
+  Number(volumeRange.value);
 
+  const canvasStream=
+  canvas.captureStream(30);
+
+  try{
+    const videoStream=
+      video.captureStream
+      ? video.captureStream()
+      : (
+          video.mozCaptureStream
+          ? video.mozCaptureStream()
+          : null
+        );
+
+    if(videoStream){
+      for(
+        const track
+        of videoStream.getAudioTracks()
+      ){
+        canvasStream.addTrack(track);
+      }
+    }
+  }catch(error){
+    console.warn(
+      "Audio capture unavailable",
+      error
+    );
   }
 
+  let mimeType=
+  "";
+
+  const types=[
+    "video/webm;codecs=vp9,opus",
+    "video/webm;codecs=vp8,opus",
+    "video/webm"
+  ];
+
+  for(const type of types){
+    if(
+      MediaRecorder.isTypeSupported(type)
+    ){
+      mimeType=type;
+      break;
+    }
+  }
+
+  try{
+    const recorder=
+    mimeType
+    ? new MediaRecorder(
+        canvasStream,
+        {mimeType}
+      )
+    : new MediaRecorder(
+        canvasStream
+      );
+
+    const chunks=[];
+
+    recorder.addEventListener(
+      "dataavailable",
+      event=>{
+        if(event.data.size>0){
+          chunks.push(event.data);
+        }
+      }
+    );
+
+    const stopped=
+    new Promise(
+      resolve=>{
+        recorder.addEventListener(
+          "stop",
+          resolve,
+          {once:true}
+        );
+      }
+    );
+
+    recorder.start(250);
+
+    await video.play();
+
+    await new Promise(
+      resolve=>{
+        function check(){
+          if(
+            video.currentTime>=trimEnd ||
+            video.ended
+          ){
+            resolve();
+            return;
+          }
+
+          requestAnimationFrame(check);
+        }
+
+        check();
+      }
+    );
+
+    video.pause();
+
+    recorder.stop();
+
+    await stopped;
+
+    const blob=
+    new Blob(
+      chunks,
+      {
+        type:
+        recorder.mimeType ||
+        "video/webm"
+      }
+    );
+
+    const url=
+    URL.createObjectURL(blob);
+
+    const link=
+    document.createElement("a");
+
+    link.href=url;
+
+    link.download=
+    "AMIRIJOGOS-video.webm";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+    setTimeout(
+      ()=>URL.revokeObjectURL(url),
+      1000
+    );
+
+    setStatus("exportDone");
+
+  }catch(error){
+    console.error(error);
+
+    setStatus("exportError");
+  }
 }
+
+exportTop.addEventListener(
+  "click",
+  exportVideo
+);
+
+/* LANGUAGE CHANGE */
+
+document.addEventListener(
+  "amirilanguagechange",
+  ()=>{
+    refreshOverlayList();
+  }
+);
 
 </script>
 
 </body>
-
 </html>
